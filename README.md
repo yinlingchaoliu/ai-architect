@@ -1,6 +1,6 @@
 # AI项目架构 用于商业项目实战
 
-##  OpenAI API HK代理
+##  1. OpenAI API HK代理
 
 ```bash
 #HK代理环境，不需要科学上网
@@ -9,19 +9,19 @@ export OPENAI_API_KEY='hk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 ```
 [详见.env配置](.env)
 
-### 费用计算
+## 2. 费用计算
 1 token = 4 chars
 
 1 token = 3/4 words
 
 1000个token 约为750英文单词 (400汉字)
 
-### 环境 python env
+## 3.环境 python env
 ```shell
 Python 3.12.6
 ```
 
-## AI 项目架构
+## 4.AI 项目架构
 
 先写代码，再画架构图
 
@@ -33,6 +33,11 @@ baselib库
 1) 原则: 项目sdk之间要隔离
 2) 以lib_开头
 3) [基础库sdk管理](lib_hello/README.md)
+
+[chatbot-app](webui-chatbot): 初版chat代码
+从界面混合，改成MVC -> 前后端分离
+
+chatbot + server(restful) + rag + openmanus + mcp + function_call 
 
 先尝试封装 复用
 ```shell
@@ -56,6 +61,17 @@ tips
 13) python jni c++
 14) 支持本地模型
 15) 基础库抽取
+
+## 启动项目
+
+### chatbot-app 模块
+```shell
+# 启动项目
+sh port.sh 1234
+streamlit chatbot-app/src/home.py --server.port 1234
+```
+
+
 
 ### 通过脚手架 项目工程化
 ```shell
