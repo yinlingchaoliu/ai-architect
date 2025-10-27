@@ -5,6 +5,9 @@
 
 import sys
 import os
+
+from lib_request import OpenAIAssistantClient
+
 # 确保可以导入 hello SDK
 
 try:
@@ -106,4 +109,7 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # sys.exit(main())
+    client = OpenAIAssistantClient()
+    client.enableDebug(True)
+    client.request("hello")

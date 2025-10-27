@@ -34,6 +34,9 @@ baselib库
 2) 以lib_开头
 3) [基础库sdk管理](lib_hello/README.md)
 
+```shell
+pip install -e lib_request
+```
 
 tips
 1) 分层架构
