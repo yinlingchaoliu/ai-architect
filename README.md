@@ -34,7 +34,9 @@ baselib库
 2) 以lib_开头
 3) [基础库sdk管理](lib_hello/README.md)
 
+先尝试封装 复用
 ```shell
+# 基础封装 
 pip install -e lib_request
 ```
 
