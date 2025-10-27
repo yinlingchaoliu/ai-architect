@@ -4,7 +4,7 @@ import json
 import os, sys
 import base64
 import requests
-
+from utils.env import setDefaultEnv,getBaseUrl,getApiKey
 
 @st.cache_resource
 def get_openai_client(url, api_key):
@@ -18,19 +18,13 @@ def vision_page():
     st.caption("use GPT-4 to understand images")
 
     # 初始化参数
-    api_key = (
-        st.session_state.api_key
-        if "api_key" in st.session_state and st.session_state.api_key != ""
-        else None
-    )
+    setDefaultEnv()
+    base_url = getBaseUrl()
+    api_key = getApiKey()
+
     if api_key is None:
         st.error("Please enter your API key in the home.")
         st.stop()
-
-    if "base_url" in st.session_state:
-        base_url = st.session_state.base_url
-    else:
-        base_url = "https://api.openai.com/v1"
 
     # 获取当前脚本的目录路径
     src_path = os.path.dirname(os.path.realpath(sys.argv[0]))

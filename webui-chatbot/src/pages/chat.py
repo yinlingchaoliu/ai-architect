@@ -5,6 +5,7 @@ import time
 import tiktoken
 import os, sys
 
+from utils.env import setDefaultEnv,getBaseUrl,getApiKey
 
 # 计算消息列表使用的token数量
 def num_tokens_from_messages(messages, model):
@@ -62,23 +63,17 @@ def get_openai_client(url, api_key):
     return client
 
 
-# 聊天页面
 def chat_page():
     st.title("Chat（聊天）")
     # 初始化参数
-    api_key = (
-        st.session_state.api_key
-        if "api_key" in st.session_state and st.session_state.api_key != ""
-        else None
-    )
+
+    setDefaultEnv()
+    base_url = getBaseUrl()
+    api_key = getApiKey()
+
     if api_key is None:
         st.error("Please enter your API key in the home.")
         st.stop()
-
-    if "base_url" in st.session_state:
-        base_url = st.session_state.base_url
-    else:
-        base_url = "https://api.openai.com/v1"
 
     #获取当前脚本文件所在的目录路径
     src_path = os.path.dirname(os.path.realpath(sys.argv[0]))

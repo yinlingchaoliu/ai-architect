@@ -1,8 +1,6 @@
 import streamlit as st
 import json
-import os
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+from utils.env import setDefaultEnv
 
 def import_config_file(file):
     '''
@@ -23,14 +21,11 @@ def home():
     st.title("🏠openai playground")
     st.caption("Please fill in the parameters in the sidebar before using, or import the parameters by uploading a file.")
 
-    if "base_url" not in st.session_state:
-        st.session_state['base_url'] = os.getenv('OPENAI_BASE_URL')
-    
-    if "api_key" not in st.session_state:
-        st.session_state['api_key'] =  os.getenv('OPENAI_API_KEY')
+    setDefaultEnv()
 
     #通过上传配置的方式导入base_url和api_key
     uploaded_file = st.sidebar.file_uploader("uploaded config", type="json")
+    print(uploaded_file)
     if uploaded_file is not None:
         import_config_file(uploaded_file)
 
@@ -54,28 +49,24 @@ def home():
                     ```
                 * 接下来在侧边栏选择需要使用的页面。
                 ---------------------------------------------------------
-                """
-        )
-        st.markdown(
-                """
                 ### 1 💬chat page  \n
-                该页面用于文本对话，选择模型，输入问题，得到回答。对应openai文档：[text-generation](https://platform.openai.com/docs/guides/text-generation)\n
+                该页面用于文本对话，选择模型，输入问题，得到回答。[文本生成](/chat)\n
 
                 ### 2 🎞️vision page \n
-                该页面用于图像理解，使用gpt-4-vision-preview模型，输入图片和问题，得到回答。对应openai文档：[vision](https://platform.openai.com/docs/guides/vision)\n
+                该页面用于图像理解，使用gpt-4-vision-preview模型，输入图片和问题，得到回答。[视觉理解](/vision)\n
                 
                 ### 3 🖼️drawing page \n
-                该页面用于图像生成，使用DALL·E模型，输入提示词，输出图片。对应openai文档：[image-generation](https://platform.openai.com/docs/guides/images?context=node)\n
+                该页面用于图像生成，使用DALL·E模型，输入提示词，输出图片。[文生图](/drawing)\n
                 
                 ### 4 🗣️speech to text\n
-                该页面用于语音转文本，使用whisper模型。对应openai文档：[speech-to-text](https://platform.openai.com/docs/guides/speech-to-text)\n
+                该页面用于语音转文本，使用whisper模型。[语音转文字](/speech_to_text)\n
                 
                 ### 5 📢text to speech\n
-                该页面用于文本转语音，使用tts模型。对应openai文档：[text-to-speech](https://platform.openai.com/docs/guides/text-to-speech)\n
+                该页面用于文本转语音，使用tts模型。[文字转语言](/text_to_speech)\n                                
                 """
-            )
+        )
     elif option == "En":
-            st.markdown(
+        st.markdown(
             """
             **Here you can experience all the capabilities provided by OpenAI.**
             ## Instructions for use
@@ -90,20 +81,21 @@ def home():
             * Next, select the desired page from the sidebar.
             ---------------------------------------------------------
             ### 1 💬chat page
-            This page is used for text-based conversations. Select a model, input a question, and get a response. Corresponds to the OpenAI documentation: [text-generation](https://platform.openai.com/docs/guides/text-generation)
+            This page is used for text-based conversations. Select a model, input a question, and get a response. [text-generation](/chat)
 
             ### 2 🎞️vision page
-            This page is used for image understanding. It utilizes the gpt-4-vision-preview model. Input an image and a question, and get a response. Corresponds to the OpenAI documentation: [vision](https://platform.openai.com/docs/guides/vision)
+            This page is used for image understanding. It utilizes the gpt-4-vision-preview model. Input an image and a question, and get a response. [vision](/vision)
 
             ### 3 🖼️drawing page
-            This page is used for image generation. It utilizes the DALL·E model. Input prompts and generate images. Corresponds to the OpenAI documentation: [image-generation](https://platform.openai.com/docs/guides/images?context=node)
+            This page is used for image generation. It utilizes the DALL·E model. Input prompts and generate images.  [image-generation](/drawing)
 
             ### 4 🗣️speech to text
-            This page is used for speech-to-text conversion. It utilizes the whisper model. Corresponds to the OpenAI documentation: [speech-to-text](https://platform.openai.com/docs/guides/speech-to-text)
+            This page is used for speech-to-text conversion. It utilizes the whisper model. [speech-to-text](/speech_to_text)
 
             ### 5 📢text to speech
-            This page is used for text-to-speech conversion. It utilizes the tts model. Corresponds to the OpenAI documentation: [text-to-speech](https://platform.openai.com/docs/guides/text-to-speech)
+            This page is used for text-to-speech conversion. It utilizes the tts model. [text-to-speech](/text_to_speech)
             """
         )
+
 if __name__ == "__main__":
     home()

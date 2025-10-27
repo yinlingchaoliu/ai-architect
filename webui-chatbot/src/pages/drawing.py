@@ -1,6 +1,6 @@
 from openai import OpenAI
 import streamlit as st
-
+from utils.env import setDefaultEnv,getBaseUrl,getApiKey
 
 @st.cache_resource
 def get_openai_client(url, api_key):
@@ -17,20 +17,13 @@ def drawing_page():
     st.caption("use DALL·E 3 to draw images")
 
     # 初始化参数
-    api_key = (
-        st.session_state.api_key
-        if "api_key" in st.session_state and st.session_state.api_key != ""
-        else None
-    )
+    setDefaultEnv()
+    base_url = getBaseUrl()
+    api_key = getApiKey()
+
     if api_key is None:
         st.error("Please enter your API key in the home.")
         st.stop()
-
-    if "base_url" in st.session_state:
-        base_url = st.session_state.base_url
-    else:
-        base_url = "https://api.openai.com/v1"
-
 
     #使用Streamlit的selectbox组件创建下拉菜单，让用户选择图像尺寸、质量和生成图像的数量。
     image_size = st.selectbox('image size', ["1024x1024", "1024x1792","1792x1024"], key='image_size')

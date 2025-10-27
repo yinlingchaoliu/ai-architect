@@ -3,6 +3,7 @@ from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 from io import BytesIO
 import os, sys, json
+from utils.env import setDefaultEnv,getBaseUrl,getApiKey
 
 filter_text = {
     "en": [
@@ -60,19 +61,13 @@ def stt_page():
     st.title("speech to text（语音转文字）")
     st.caption("based on our state-of-the-art open source large-v2 Whisper model")
     # 初始化参数
-    api_key = (
-        st.session_state.api_key
-        if "api_key" in st.session_state and st.session_state.api_key != ""
-        else None
-    )
+    setDefaultEnv()
+    base_url = getBaseUrl()
+    api_key = getApiKey()
+
     if api_key is None:
         st.error("Please enter your API key in the home.")
         st.stop()
-
-    if "base_url" in st.session_state:
-        base_url = st.session_state.base_url
-    else:
-        base_url = "https://api.openai.com/v1"
 
     if "button_active" not in st.session_state:
         st.session_state.button_active = False

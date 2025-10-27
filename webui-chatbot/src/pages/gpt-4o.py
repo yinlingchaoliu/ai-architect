@@ -4,7 +4,7 @@ import json
 import os, sys  # os 和 sys 用于与操作系统和系统参数交互。
 import base64  # base64 用于处理 Base64 编码
 import requests  # requests 用于发送 HTTP 请求
-
+from utils.env import setDefaultEnv,getBaseUrl,getApiKey
 
 @st.cache_resource
 def get_openai_client(url, api_key):
@@ -21,19 +21,13 @@ def vision_page():
     st.caption("它接受文本、音频和图像的任何组合作为输入，并生成文本、音频和图像的任何组合作为输出")
     st.caption("！目前gpt-4o 的api接口还不支持音频输入，只能传入图片，所以就和gpt 4v差不多了")
     # 初始化参数
-    api_key = (
-        st.session_state.api_key
-        if "api_key" in st.session_state and st.session_state.api_key != ""
-        else None
-    )
+    setDefaultEnv()
+    base_url = getBaseUrl()
+    api_key = getApiKey()
+
     if api_key is None:
         st.error("Please enter your API key in the home.")
         st.stop()
-
-    if "base_url" in st.session_state:
-        base_url = st.session_state.base_url
-    else:
-        base_url = "https://api.openai.com/v1"
 
     src_path = os.path.dirname(os.path.realpath(sys.argv[0]))
     with open(os.path.join(src_path, 'config/default.json'), 'r', encoding='utf-8') as f:

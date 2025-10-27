@@ -64,11 +64,11 @@ tips
 
 ## 启动项目
 
-### chatbot-app 模块
+### webui-chatbot 模块
 ```shell
 # 启动项目
 sh port.sh 1234
-streamlit chatbot-app/src/home.py --server.port 1234
+streamlit run webui-chatbot/src/home.py --server.port 1234
 ```
 
 

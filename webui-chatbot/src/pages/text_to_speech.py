@@ -1,5 +1,6 @@
 import streamlit as st
 from openai import OpenAI
+from utils.env import setDefaultEnv,getBaseUrl,getApiKey
 
 st.set_page_config(
     page_title="speech to text",
@@ -43,19 +44,13 @@ def tts_page():
         "The page provides a speech endpoint based on TTS (text-to-speech) model. It comes with 6 built-in voices")
 
     # 初始化参数，尝试从 st.session_state 中获取 API 密钥，如果没有则设置为 None。
-    api_key = (
-        st.session_state.api_key
-        if "api_key" in st.session_state and st.session_state.api_key != ""
-        else None
-    )
+    setDefaultEnv()
+    base_url = getBaseUrl()
+    api_key = getApiKey()
+
     if api_key is None:
         st.error("Please enter your API key in the home.")
         st.stop()
-
-    if "base_url" in st.session_state:
-        base_url = st.session_state.base_url
-    else:
-        base_url = "https://api.openai.com/v1"
 
     client = get_openai_client(base_url, api_key)
 
