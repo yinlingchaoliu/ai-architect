@@ -1,0 +1,58 @@
+
+requests
+
+dotenv
+
+openai
+
+tiktoken
+
+numpy
+
+streamlit
+audio_recorder_streamlit
+
+langchain
+langchain-openai
+langchain_community
+asyncio
+
+langchain-chroma
+
+#服务器cs
+langserve
+#api服务
+fastapi
+#脚手架
+langchain-cli
+#依赖管理
+poetry
+
+#向量数据库
+faiss-cpu==1.8.0
+
+# 数据验证和解析库
+pydantic
+
+# 向量数据库
+pinecone
+langchain-pinecone
+
+#文档处理
+python-docx
+PyPDF2
+
+#BeautifulSoup 库，用于解析 HTML 文档
+bs4
+
+langgraph
+
+# 基础库打包配置
+setuptools
+build
+twine
+
+# 代码质量检测
+pytest
+flake8
+black
