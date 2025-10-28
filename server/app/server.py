@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from langserve import add_routes
-
-from .openai_prompt_server import OpenAIPromptServer
-from .openai_server import OpenAIServer
+from app.routes.init import DynamicRouteRegistry
+from app.routes.routes_config import ROUTE_CONFIGS
 
 app = FastAPI(
     title="LangChain 服务器",
@@ -12,11 +10,24 @@ app = FastAPI(
     description="langchain 支持路由扩展",
 )
 
-openaiServer = OpenAIServer()
-openaiPromptServer = OpenAIPromptServer()
+route_registry = DynamicRouteRegistry(app)
+route_registry.register_from_config(ROUTE_CONFIGS)
 
-add_routes(app,openaiServer.get_chain(),path="/openai")
-add_routes(app,openaiPromptServer.get_chain(),path="/openai_ext")
+# 添加健康检查端点
+@app.get("/health")
+async def health_check():
+    return {
+        "status": "healthy",
+        "registered_routes": route_registry.get_registered_routes()
+    }
+
+# 添加路由信息端点
+@app.get("/routes")
+async def get_routes():
+    return {
+        "route_configs": ROUTE_CONFIGS,
+        "registered_routes": route_registry.get_registered_routes()
+    }
 
 # 设置所有启用 CORS 的来源
 app.add_middleware(
@@ -27,6 +38,7 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["*"],
 )
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=8005)
+    uvicorn.run(app, host="localhost", port=8008)
