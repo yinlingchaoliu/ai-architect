@@ -1,6 +1,6 @@
 import requests
 
-from config.settings import OPENWEATHER_API_KEY, OPENWEATHER_BASE_URL
+from ..config.settings import OPENWEATHER_API_KEY, OPENWEATHER_BASE_URL
 
 class WeatherAPI:
     """天气API接口类，用于获取天气数据"""

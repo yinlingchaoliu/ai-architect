@@ -10,6 +10,7 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 
 MCP_SERVERS = {
     "weather_tools": "http://127.0.0.1:8000/sse",
+    "math_tools": "http://127.0.0.1:8001/sse",
 }
 
 LLM_CONFIG = {

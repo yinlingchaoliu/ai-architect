@@ -25,6 +25,7 @@ class LLMProtocolRouter:
             if not tools:
                 return "错误: 没有可用的MCP工具"
 
+            print(tools)
             # 使用LLM进行工具调用决策
             response = self.llm_client.chat.completions.create(
                 model=self.model,

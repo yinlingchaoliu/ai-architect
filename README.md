@@ -77,16 +77,24 @@ tips
 2) 以lib_开头
 3) [基础库sdk管理](lib_hello/README.md)
 
-### 4.mcp 协议
-1) 需要编写client-server
-
-#### 已经实现
-
 [x]1、支持依赖库(本地发布,远程发布)
 
 [x]2、lib_request 对openai request简单封装 为复用做准备
 
 [x]3、lib_hello 是基础库的模版代码
+
+### 5.mcp 协议
+
+[x] 编写 mcp-server [天气服务](mcp_weather)
+
+[x] 编写 mcp-server [计算服务](mcp_server_math)
+
+[x] 编写 mcp-client-manager [mcp客户端管理,支持LLM自主选择 远程MCP tools](mcp_client_manager)
+
+[x] 编写 mcp-client-manager 支持动态注册 mcp server
+
+[x] 编写 mcp-client-manager 实现 LLM 自主决策 调用与实现隔离
+
 
 本地引用
 ```shell
