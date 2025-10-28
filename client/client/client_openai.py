@@ -3,12 +3,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableMap
 from langserve import RemoteRunnable
 
-from dotenv import load_dotenv, find_dotenv
-import os
-load_dotenv(find_dotenv())
-base_url = os.getenv('SERVER_BASE_URL')
-port = os.getenv('SERVER_PORT')
-url = base_url+":"+port +"/openai/"
+from client.client.utils import getUrl
+url = getUrl("/openai/")
 
 openai = RemoteRunnable(url)
 prompt = ChatPromptTemplate.from_messages(

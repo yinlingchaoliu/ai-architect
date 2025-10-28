@@ -63,6 +63,10 @@ tips
 
 [x]5、langserve 可支持 simth (需要申请key)
 
+[x]6、增加[测试用例](client/client)测试用例来测试
+
+[x]7、适配支持get 配置路径 服务器默认只支持post
+
 ### 3.[rag外接知识库](rag): 提供rag扩展
 
 
@@ -113,6 +117,16 @@ cd ..
 http://127.0.0.1:8008/routes
 #健康检查
 http://127.0.0.1:8008/health
+```
+
+get请求
+```shell
+curl -X GET "http://127.0.0.1:8008/get-example/invoke?input=123"
+```
+
+post请求
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"input":"测试Pydantic处理"}' http://127.0.0.1:8002/post-example/invoke
 ```
 
 ### 通过脚手架 项目工程化

@@ -19,6 +19,22 @@ ROUTE_CONFIGS = {
             "description": "智能对话服务扩展"
         }
     ],
+    "demo": [
+        {
+            "module_path": "app.demo.get_demo_server",
+            "enabled": True,
+            "path": "/get_demo",
+            "tags": ["get_demo"],
+            "description": "getdemo示例"
+        },
+        {
+            "module_path": "app.demo.post_demo_server",
+            "enabled": True,
+            "path": "/post_demo",
+            "tags": ["post_demo", "conversation"],
+            "description": "postdemo示例"
+        }
+    ],
     "rag": [
         {
             "module_path": "app.rag.rag_service",
