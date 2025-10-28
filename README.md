@@ -25,26 +25,9 @@ Python 3.12.6
 
 先写代码，再画架构图
 
-[webui](webui) : python编写界面
-[ai服务](server): 提供restful api
-[rag外接知识库](rag): 提供rag扩展
+方向: chatbot + server(restful) + rag + openmanus + mcp + function_call 
 
-baselib库
-1) 原则: 项目sdk之间要隔离
-2) 以lib_开头
-3) [基础库sdk管理](lib_hello/README.md)
-
-[chatbot-app](webui-chatbot): 初版chat代码
-从界面混合，改成MVC -> 前后端分离
-
-chatbot + server(restful) + rag + openmanus + mcp + function_call 
-
-先尝试封装 复用
-```shell
-# 基础封装 
-pip install -e lib_request
-```
-
+目标
 tips
 1) 分层架构
 2) 工具能力抽象 + 动态加载
@@ -62,6 +45,50 @@ tips
 14) 支持本地模型
 15) 基础库抽取
 
+### 1.[webui](webui-chatbot) : python编写界面
+
+#### 待做
+[chatbot-app](webui-chatbot): 初版chat代码
+
+从界面混合，改成MVC -> 前后端分离
+
+### 2.[ai服务](server): 提供restful api
+[x]1、支持动态路由注册
+
+[x]2、服务健康检查 路由配置查询
+
+[x]3、支持openai服务 get/post样例
+
+[x]4、支持playground调试
+
+[x]5、langserve 可支持 simth (需要申请key)
+
+### 3.[rag外接知识库](rag): 提供rag扩展
+
+
+### 4.baselib库
+1) 原则: 项目sdk之间要隔离
+2) 以lib_开头
+3) [基础库sdk管理](lib_hello/README.md)
+
+### 4.mcp 协议
+1) 需要编写client-server
+
+#### 已经实现
+
+[x]1、支持依赖库(本地发布,远程发布)
+
+[x]2、lib_request 对openai request简单封装 为复用做准备
+
+[x]3、lib_hello 是基础库的模版代码
+
+本地引用
+```shell
+# 基础封装 
+pip install -e lib_request
+```
+
+
 ## 启动项目
 
 ### webui-chatbot 模块
@@ -75,10 +102,17 @@ streamlit run webui-chatbot/src/home.py --server.port 1234
 
 ```shell
 # 启动项目
-sh port.sh 8000 8081 8080
+sh port.sh 8008
 cd server
-langchain serve --port 8001
+langchain serve --port 8008
 cd ..
+```
+
+```shell
+#查询路由表
+http://127.0.0.1:8008/routes
+#健康检查
+http://127.0.0.1:8008/health
 ```
 
 ### 通过脚手架 项目工程化
