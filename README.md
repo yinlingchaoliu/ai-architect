@@ -67,6 +67,8 @@ tips
 
 [x]7、适配支持get 配置路径 服务器默认只支持post
 
+[x] 8、支持[shell请求](client/shell/post.sh), 实际场景只需要post
+
 ### 3.[rag外接知识库](rag): 提供rag扩展
 
 
