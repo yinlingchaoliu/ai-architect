@@ -55,3 +55,8 @@ twine
 #pytest
 #flake8
 #black
+
+# mcp协议
+mcp
+httpx
+fastmcp
