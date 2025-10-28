@@ -71,7 +71,15 @@ sh port.sh 1234
 streamlit run webui-chatbot/src/home.py --server.port 1234
 ```
 
+### server 模块
 
+```shell
+# 启动项目
+sh port.sh 8000 8081 8080
+cd server
+langchain serve --port 8001
+cd ..
+```
 
 ### 通过脚手架 项目工程化
 ```shell
