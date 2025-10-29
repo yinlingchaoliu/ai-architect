@@ -1,15 +1,14 @@
-# llm_integration.py
 import json
-import os
 from typing import Dict, Any, List
 from openai import OpenAI
 
+from core.mcp_manager import MCPManager
 
-class LLMProtocolRouter:
+class LLMMCP:
     """LLM协议路由器 - 通过LLM决策调用哪个MCP协议工具"""
 
-    def __init__(self, mcp_client, api_key: str = None):
-        self.mcp_client = mcp_client
+    def __init__(self, mcp_manager:MCPManager, api_key: str = None):
+        self.mcp_manager = mcp_manager
         self.llm_client = OpenAI(api_key=api_key)
         self.model = "gpt-3.5-turbo"
 
@@ -20,18 +19,17 @@ class LLMProtocolRouter:
 
         try:
             # 获取所有通过MCP协议注册的工具
-            tools = self.mcp_client.get_all_tool_schemas()
+            tools = self.mcp_manager.get_all_tool_schemas()
 
             if not tools:
                 return "错误: 没有可用的MCP工具"
 
-            print(tools)
             # 使用LLM进行工具调用决策
             response = self.llm_client.chat.completions.create(
                 model=self.model,
                 messages=[{
                     "role": "system",
-                    "content": "你是一个智能助手，可以调用各种工具。请分析用户请求并选择合适的工具。"
+                    "content": "你是一个智能助手，可以调用各种工具。请分析用户请求并选择合适的工具。 如果没有合适工具, 大模型可以回复, 在回复开头加上 LLM直接回应:"
                 }, {
                     "role": "user",
                     "content": user_input
@@ -49,7 +47,7 @@ class LLMProtocolRouter:
                     function_args = json.loads(tool_call.function.arguments)
 
                     # 通过MCP协议执行调用
-                    result = await self.mcp_client.call_tool(function_name, function_args)
+                    result = await self.mcp_manager.call_tool(function_name, function_args)
                     results.append({
                         "tool": function_name,
                         "result": result
@@ -65,7 +63,7 @@ class LLMProtocolRouter:
 
     async def _fallback_process(self, user_input: str) -> str:
         """回退处理 - 基于工具描述的简单匹配"""
-        tools = self.mcp_client.get_all_tool_schemas()
+        tools = self.mcp_manager.get_all_tool_schemas()
         user_input_lower = user_input.lower()
 
         # 简单的关键词匹配

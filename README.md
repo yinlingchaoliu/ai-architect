@@ -95,6 +95,9 @@ tips
 
 [x] 编写 mcp-client-manager 实现 LLM 自主决策 调用与实现隔离
 
+[x] 编写 mcp-client-manager 增加mcp_manager 中间层 用于管理mcp服务 ,给LLM提供tools和调用
+
+[x] 模型支持调用工具链, 也可以自主回复
 
 本地引用
 ```shell
