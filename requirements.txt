@@ -1,3 +1,4 @@
+langchain-core
 requests
 
 dotenv
@@ -8,8 +9,12 @@ tiktoken
 
 numpy
 
+#ui服务
 streamlit
 audio_recorder_streamlit
+streamlit_chat==0.0.2.2
+
+wikipedia
 
 langchain
 langchain-openai
@@ -60,3 +65,4 @@ twine
 mcp
 httpx
 fastmcp
+langchain_mcp_adapters

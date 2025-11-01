@@ -25,7 +25,7 @@ Python 3.12.6
 
 先写代码，再画架构图
 
-方向: chatbot + server(restful) + rag + openmanus + mcp + function_call 
+方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call)
 
 目标
 tips
@@ -53,21 +53,21 @@ tips
 从界面混合，改成MVC -> 前后端分离
 
 ### 2.[ai服务](server): 提供restful api
-[x]1、支持动态路由注册
+-[x]  1、支持动态路由注册
 
-[x]2、服务健康检查 路由配置查询
+-[x]  2、服务健康检查 路由配置查询
 
-[x]3、支持openai服务 get/post样例
+-[x]  3、支持openai服务 get/post样例
 
-[x]4、支持playground调试
+-[x] 4、支持playground调试
 
-[x]5、langserve 可支持 simth (需要申请key)
+-[x] 5、langserve 可支持 simth (需要申请key)
 
-[x]6、增加[测试用例](client/client)测试用例来测试
+-[x] 6、增加[测试用例](client/client)测试用例来测试
 
-[x]7、适配支持get 配置路径 服务器默认只支持post
+-[x] 7、适配支持get 配置路径 服务器默认只支持post
 
-[x] 8、支持[shell请求](client/shell/post.sh), 实际场景只需要post
+-[x]  8、支持[shell请求](client/shell/post.sh), 实际场景只需要post
 
 ### 3.[rag外接知识库](rag): 提供rag扩展
 
@@ -77,27 +77,27 @@ tips
 2) 以lib_开头
 3) [基础库sdk管理](lib_hello/README.md)
 
-[x]1、支持依赖库(本地发布,远程发布)
+-[x] 1、支持依赖库(本地发布,远程发布)
 
-[x]2、lib_request 对openai request简单封装 为复用做准备
+-[x] 2、lib_request 对openai request简单封装 为复用做准备
 
-[x]3、lib_hello 是基础库的模版代码
+-[x] 3、lib_hello 是基础库的模版代码
 
 ### 5.mcp 协议
 
-[x] 编写 mcp-server [天气服务](mcp_weather)
+-[x]  编写 mcp-server [天气服务](mcp_weather)
 
-[x] 编写 mcp-server [计算服务](mcp_server_math)
+-[x]  编写 mcp-server [计算服务](mcp_server_math)
 
-[x] 编写 mcp-client-manager [mcp客户端管理,支持LLM自主选择 远程MCP tools](mcp_client_manager)
+-[x]  编写 mcp-client-manager [mcp客户端管理,支持LLM自主选择 远程MCP tools](mcp_client_manager)
 
-[x] 编写 mcp-client-manager 支持动态注册 mcp server
+-[x]  编写 mcp-client-manager 支持动态注册 mcp server
 
-[x] 编写 mcp-client-manager 实现 LLM 自主决策 调用与实现隔离
+-[x]  编写 mcp-client-manager 实现 LLM 自主决策 调用与实现隔离
 
-[x] 编写 mcp-client-manager 增加mcp_manager 中间层 用于管理mcp服务 ,给LLM提供tools和调用
+-[x]  编写 mcp-client-manager 增加mcp_manager 中间层 用于管理mcp服务 ,给LLM提供tools和调用
 
-[x] 模型支持调用工具链, 也可以自主回复
+-[x]  模型支持调用工具链, 也可以自主回复
 
 本地引用
 ```shell

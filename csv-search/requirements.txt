@@ -1,0 +1,8 @@
+streamlit<1.30
+pandas
+numpy
+openai
+langchain
+langchain-openai
+langchain-experimental
+tiktoken
