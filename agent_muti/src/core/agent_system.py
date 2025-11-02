@@ -23,7 +23,6 @@ class EnhancedDynamicAgentSystem:
         agent_timeout = self.config.get('agent_timeout', 30)
         coordinator_timeout = self.config.get('coordinator_timeout', 45)
 
-        self.coordinator.initialize(api_key, timeout=coordinator_timeout)
         self.plugin_manager = AgentPluginManager()
 
         # 性能监控
@@ -43,17 +42,14 @@ class EnhancedDynamicAgentSystem:
         """注册内置 Agent"""
         # 天气 Agent
         weather_agent = WeatherAgent()
-        weather_agent.initialize(self.api_key, timeout=timeout)
         self.coordinator.register_agent(weather_agent)
 
         # 交通 Agent
         transport_agent = TransportAgent()
-        transport_agent.initialize(self.api_key, timeout=timeout)
         self.coordinator.register_agent(transport_agent)
 
         # 预算 Agent
         budget_agent = BudgetAgent()
-        budget_agent.initialize(self.api_key, timeout=timeout)
         self.coordinator.register_agent(budget_agent)
 
         print(f"✅ 注册了 {len(self.coordinator.agent_registry)} 个内置Agent (超时: {timeout}秒)")

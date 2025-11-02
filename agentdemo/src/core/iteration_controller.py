@@ -3,6 +3,8 @@ import asyncio
 import json
 import time
 from typing import Dict, List, Any, Optional
+
+from agent_muti.src.prompt.constants import jsonFormat
 from ..models.agent_models import IterationStep, AgentResponse, AgentType, IterationPhase
 from ..utils.logger_manager import logger_manager
 
@@ -257,7 +259,7 @@ class EnhancedIterationController:
 3. 还需要获取哪些关键信息？
 4. 是否可以直接回答用户问题？
 
-请以JSON格式返回分析结果，包括：
+请返回分析结果, 包括：
 - core_requirements: 核心需求列表
 - acquired_info: 已获得信息
 - missing_info: 缺失的关键信息
@@ -265,7 +267,7 @@ class EnhancedIterationController:
 - should_complete: 是否可以直接完成
 - reasoning: 推理过程
 
-请确保返回有效的JSON格式，不要包含其他文本。
+{jsonFormat}
 """
 
             messages = [
@@ -317,14 +319,14 @@ class EnhancedIterationController:
 可用Agent: {available_agents}
 当前上下文: {json.dumps(current_context, ensure_ascii=False, default=str)}
 
-请制定一个详细的执行计划来获取缺失信息，以JSON格式返回：
+请制定一个详细的执行计划来获取缺失信息：
 - required_agents: 需要调用的Agent列表
 - execution_sequence: 执行序列（并行/串行）
 - expected_outputs: 期望从每个Agent获得的输出
 - strategy: 执行策略
 - iteration_goal: 本轮迭代的目标
 
-请确保返回有效的JSON格式，不要包含其他文本。
+{jsonFormat}
 """
 
             messages = [
@@ -543,13 +545,13 @@ Agent执行结果: {json.dumps({k: v.content for k, v in agent_responses.items()
 2. 是否需要继续迭代收集更多信息？
 3. 下一轮迭代的重点应该是什么？
 
-以JSON格式返回：
+返回：
 - should_terminate: 是否终止迭代
 - confidence_score: 当前整体置信度(0-1)
 - next_focus: 下一轮迭代重点
 - reasoning: 决策理由
 
-请确保返回有效的JSON格式，不要包含其他文本。
+{jsonFormat}
 """
 
             messages = [

@@ -4,11 +4,13 @@ import json
 import time
 from abc import ABC, abstractmethod
 from typing import Dict, List, Any, Optional
-from openai import OpenAI
+from openai import AsyncOpenAI
 from openai import APITimeoutError, APIError, RateLimitError
 
 from ..models.agent_models import AgentType, AgentResponse, AgentCapability
 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 class BaseAgent(ABC):
     """抽象基础 Agent 类"""
@@ -18,19 +20,12 @@ class BaseAgent(ABC):
         self.name = name
         self.description = description
         self.capabilities: List[AgentCapability] = []
-        self.llm_client: Optional[OpenAI] = None
-        self._initialized = False
         self.model = "gpt-3.5-turbo"
+        self.llm_client = AsyncOpenAI()
+        self._initialized = False
         self.timeout = 30  # 默认超时时间
         self.max_retries = 3  # 最大重试次数
         self.retry_delay = 1  # 重试延迟（秒）
-
-    def initialize(self, api_key: str, model: str = "gpt-3.5-turbo", timeout: int = 30):
-        """初始化 Agent"""
-        self.llm_client = OpenAI(api_key=api_key, timeout=timeout)
-        self.model = model
-        self.timeout = timeout
-        self._initialized = True
 
     @abstractmethod
     async def process_request(self, query: str, context: Dict[str, Any] = None) -> AgentResponse:
@@ -47,8 +42,6 @@ class BaseAgent(ABC):
 
     async def _call_llm(self, messages: List[Dict], **kwargs) -> str:
         """调用 LLM 的通用方法，包含重试机制"""
-        if not self._initialized:
-            raise RuntimeError("Agent 未初始化，请先调用 initialize() 方法")
 
         temperature = kwargs.get('temperature', 0.1)
         max_tokens = kwargs.get('max_tokens', 1000)
@@ -60,21 +53,16 @@ class BaseAgent(ABC):
             try:
                 print(f"🔄 [{self.name}] LLM 调用尝试 {attempt + 1}/{self.max_retries}")
 
-                # 使用 asyncio 来包装同步调用，并设置超时
-                response = await asyncio.wait_for(
-                    asyncio.get_event_loop().run_in_executor(
-                        None,
-                        lambda: self.llm_client.chat.completions.create(
+                print(f"{self.agent_type}  请求消息: {messages}")
+                response = await self.llm_client.chat.completions.create(
                             model=self.model,
                             messages=messages,
                             temperature=temperature,
                             max_tokens=max_tokens
                         )
-                    ),
-                    timeout=timeout
-                )
-                print(response)
-                return response.choices[0].message.content
+                content = response.choices[0].message.content
+                print(f"{self.agent_type}  返回消息: {content}")
+                return content
 
             except asyncio.TimeoutError:
                 last_exception = f"LLM 请求超时 (尝试 {attempt + 1}/{self.max_retries})"

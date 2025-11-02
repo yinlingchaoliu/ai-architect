@@ -3,6 +3,7 @@ import asyncio
 import json
 from typing import Dict, List, Any, Optional
 
+from agent_muti.src.prompt.constants import jsonFormat
 from .base_agent import BaseAgent
 from ..models.agent_models import AgentType, AgentResponse, AgentCapability
 from ..utils.logger_manager import logger_manager
@@ -96,14 +97,14 @@ class CoordinatorAgent(BaseAgent):
 3. 制定执行顺序和策略
 4. 预估可能的问题和解决方案
 
-请以JSON格式返回分析结果，包括：
+返回分析结果, 包括：
 - key_requirements: 关键需求列表
 - required_agent_types: 需要的Agent类型
 - execution_strategy: 执行策略
 - potential_issues: 潜在问题
 - fallback_plan: 备用计划
 
-请确保返回有效的JSON格式，不要包含其他文本。
+{jsonFormat}
 """
 
         messages = [
@@ -203,7 +204,7 @@ Agent响应汇总: {json.dumps(agent_responses, ensure_ascii=False, default=str)
 3. 是否需要继续迭代？
 4. 下一轮迭代的重点是什么？
 
-以JSON格式返回评估结果：
+返回评估结果：
 - is_sufficient: 信息是否足够
 - missing_information: 缺失的信息
 - should_continue: 是否继续迭代
@@ -211,7 +212,7 @@ Agent响应汇总: {json.dumps(agent_responses, ensure_ascii=False, default=str)
 - confidence: 当前置信度(0-1)
 - reasoning: 评估理由
 
-请确保返回有效的JSON格式，不要包含其他文本。
+{jsonFormat}
 """
 
             messages = [

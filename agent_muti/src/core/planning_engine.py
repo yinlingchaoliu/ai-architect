@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from enum import Enum
 from collections import defaultdict
 
+from ..prompt.constants import jsonFormat
+
 
 class PlanPriority(Enum):
     """计划优先级枚举"""
@@ -405,7 +407,7 @@ class PlanningEngine:
 3. 资源合理分配
 4. 预期输出质量
 
-请以JSON格式返回计划，包括以下字段:
+返回计划，包括以下字段:
 - strategy: 策略名称
 - agent_sequence: Agent执行序列
 - parallel_tasks: 并行执行的任务组
@@ -413,6 +415,7 @@ class PlanningEngine:
 - priority: 优先级 (critical/high/medium/low)
 - estimated_duration: 预估执行时间(秒)
 - reasoning: 规划理由
+{jsonFormat}
 """
 
     def _parse_llm_plan(self, plan_data: Dict[str, Any], context: PlanningContext) -> ExecutionPlan:

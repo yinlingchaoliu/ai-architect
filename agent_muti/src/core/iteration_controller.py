@@ -4,6 +4,7 @@ import json
 import time
 from typing import Dict, List, Any, Optional
 from ..models.agent_models import IterationStep, AgentResponse, AgentType
+from ..prompt.constants import jsonFormat
 
 
 class IterationController:
@@ -105,13 +106,14 @@ class IterationController:
 3. 还需要获取哪些关键信息？
 4. 是否可以直接回答用户问题？
 
-请以JSON格式返回分析结果，包括：
+返回分析结果 包括：
 - core_requirements: 核心需求列表
 - acquired_info: 已获得信息
 - missing_info: 缺失的关键信息
 - confidence_level: 当前置信度(0-1)
 - should_complete: 是否可以直接完成
 - reasoning: 推理过程
+{jsonFormat}
 """
 
             messages = [
@@ -125,11 +127,13 @@ class IterationController:
             )
 
             try:
-                return json.loads(analysis_text)
-            except:
+                result = json.loads(analysis_text)
+                # 确保结果可序列化
+                return self._make_serializable(result)
+            except Exception:
                 return {
                     "core_requirements": [query],
-                    "acquired_info": context,
+                    "acquired_info": self._make_serializable(context),
                     "missing_info": ["更多详细信息"],
                     "confidence_level": 0.3,
                     "should_complete": False,
@@ -160,12 +164,14 @@ class IterationController:
 可用Agent: {available_agents}
 当前上下文: {json.dumps(current_context, ensure_ascii=False, default=str)}
 
-请制定一个详细的执行计划来获取缺失信息，以JSON格式返回：
+请制定一个详细的执行计划来获取缺失信息：
 - required_agents: 需要调用的Agent列表
 - execution_sequence: 执行序列（并行/串行）
 - expected_outputs: 期望从每个Agent获得的输出
 - strategy: 执行策略
 - iteration_goal: 本轮迭代的目标
+
+{jsonFormat}
 """
 
             messages = [
@@ -186,8 +192,9 @@ class IterationController:
                 plan.setdefault("expected_outputs", {})
                 plan.setdefault("strategy", "parallel")
                 plan.setdefault("iteration_goal", "收集缺失信息")
-                return plan
-            except:
+                # 确保结果可序列化
+                return self._make_serializable(plan)
+            except Exception:
                 return {
                     "required_agents": available_agents,
                     "execution_sequence": [available_agents],
@@ -209,43 +216,44 @@ class IterationController:
     async def _action_phase(self, plan: Dict, coordinator, context: Dict) -> Dict[str, Any]:
         """执行阶段 - 调用Agent执行计划"""
         required_agents = plan.get("required_agents", [])
+        expected_outputs = plan.get("expected_outputs", {})
         execution_sequence = plan.get("execution_sequence", [required_agents])
 
         agent_responses = {}
         updated_context = context.copy()
 
         # 按序列执行
-        for task_group in execution_sequence:
-            tasks = []
-            for agent_name in task_group:
-                if agent_name in coordinator.agent_registry:
-                    agent = coordinator.agent_registry[agent_name]
-                    # 为每个Agent任务设置超时
-                    task = asyncio.wait_for(
-                        agent.process_request(context.get("last_query", ""), updated_context),
-                        timeout=self.phase_timeouts["action"]
-                    )
-                    tasks.append(task)
+        tasks = []
+        for agent_name in required_agents:
+            if agent_name in coordinator.agent_registry:
+                agent = coordinator.agent_registry[agent_name]
+                prompt = expected_outputs[agent_name]
+                # 为每个Agent任务设置超时
+                task = asyncio.wait_for(
+                    agent.process_request(prompt, updated_context),
+                    timeout=self.phase_timeouts["action"]
+                )
+                tasks.append(task)
 
-            # 并行执行任务组
-            if tasks:
-                try:
-                    task_results = await asyncio.gather(*tasks, return_exceptions=True)
-                    for agent_name, result in zip(task_group, task_results):
-                        if isinstance(result, AgentResponse):
-                            agent_responses[agent_name] = result
-                            # 更新上下文
-                            updated_context[agent_name] = result.data
-                        elif isinstance(result, Exception):
-                            print(f"❌ Agent {agent_name} 执行错误: {result}")
-                            agent_responses[agent_name] = AgentResponse(
-                                agent_type=AgentType.CUSTOM,
-                                content=f"执行错误: {str(result)}",
-                                data={},
-                                confidence=0.0
-                            )
-                except Exception as e:
-                    print(f"❌ 任务组执行失败: {e}")
+        # 并行执行任务组
+        if tasks:
+            try:
+                task_results = await asyncio.gather(*tasks, return_exceptions=True)
+                for agent_name, result in zip(required_agents, task_results):
+                    if isinstance(result, AgentResponse):
+                        agent_responses[agent_name] = result
+                        # 更新上下文并确保数据可序列化
+                        updated_context[agent_name] = self._make_serializable(result.data)
+                    elif isinstance(result, Exception):
+                        print(f"❌ Agent {agent_name} 执行错误: {result}")
+                        agent_responses[agent_name] = AgentResponse(
+                            agent_type=AgentType.CUSTOM,
+                            content=f"执行错误: {str(result)}",
+                            data={},
+                            confidence=0.0
+                        )
+            except Exception as e:
+                print(f"❌ 任务组执行失败: {e}")
 
         return {
             "agent_responses": agent_responses,
@@ -269,11 +277,12 @@ Agent执行结果: {json.dumps({k: v.content for k, v in agent_responses.items()
 2. 是否需要继续迭代收集更多信息？
 3. 下一轮迭代的重点应该是什么？
 
-以JSON格式返回：
+返回：
 - should_terminate: 是否终止迭代
 - confidence_score: 当前整体置信度(0-1)
 - next_focus: 下一轮迭代重点
 - reasoning: 决策理由
+{jsonFormat}
 """
 
             messages = [
@@ -287,8 +296,10 @@ Agent执行结果: {json.dumps({k: v.content for k, v in agent_responses.items()
             )
 
             try:
-                return json.loads(next_text)
-            except:
+                result = json.loads(next_text)
+                # 确保结果可序列化
+                return self._make_serializable(result)
+            except Exception:
                 return {
                     "should_terminate": len(agent_responses) > 0,
                     "confidence_score": 0.7,
@@ -314,6 +325,38 @@ Agent执行结果: {json.dumps({k: v.content for k, v in agent_responses.items()
             agent_responses=agent_responses
         )
         self.iteration_history.append(step)
+        print(f"step: {step}")
+
+    def _make_serializable(self, data):
+        """确保数据可JSON序列化"""
+        if data is None:
+            return None
+        
+        # 处理字典
+        if isinstance(data, dict):
+            return {k: self._make_serializable(v) for k, v in data.items()}
+        
+        # 处理列表
+        elif isinstance(data, list):
+            return [self._make_serializable(item) for item in data]
+        
+        # 处理AgentResponse对象
+        elif hasattr(data, 'to_dict') and callable(getattr(data, 'to_dict')):
+            return data.to_dict()
+        
+        # 处理协程对象（转换为字符串）
+        elif asyncio.iscoroutine(data):
+            print(f"⚠️  发现协程对象，转换为字符串表示")
+            return f"<coroutine object at {hex(id(data))}>"
+        
+        # 处理其他可能不可序列化的对象
+        elif not isinstance(data, (str, int, float, bool, list, dict, type(None))):
+            try:
+                return str(data)
+            except:
+                return f"<object {type(data).__name__}>"
+        
+        return data
 
     def set_phase_timeout(self, phase: str, timeout: int):
         """设置阶段超时时间"""

@@ -93,7 +93,7 @@ def main():
     parser = argparse.ArgumentParser(description="多 Agent 智能系统")
     parser.add_argument("--api-key", help="OpenAI API 密钥")
     parser.add_argument("--mode", choices=["demo", "interactive", "iteration"],
-                        default="interactive", help="运行模式")
+                        default="demo", help="运行模式")
     parser.add_argument("--config", default="config.yaml", help="配置文件路径")
 
     args = parser.parse_args()
