@@ -1,0 +1,130 @@
+# multi_agent_system/config.yaml
+system:
+  name: "多Agent智能旅行规划系统"
+  version: "2.0.0"
+  debug: false
+  log_level: "INFO"
+  max_iterations: 5
+  enable_monitoring: true
+  api_timeout: 30
+
+# 超时配置
+timeouts:
+  agent_timeout: 25  # 单个Agent超时时间
+  coordinator_timeout: 40  # 协调器超时时间
+  iteration_phases:
+    think: 25
+    plan: 25
+    action: 45
+    next: 15
+
+# API 配置
+api:
+  openai:
+    key: "hk-fwuzp810000596427a889f4a9def096b062f5a0d01ac0abd"  # 在这里设置你的 API 密钥
+    model: "gpt-3.5-turbo"
+    temperature: 0.1
+    max_tokens: 2000
+
+agents:
+  coordinator:
+    model: "gpt-3.5-turbo"
+    temperature: 0.1
+    max_tokens: 2000
+    enable_memory: true
+    memory_size: 10
+
+  weather:
+    enabled: true
+    cities:
+      - "北京"
+      - "上海"
+      - "广州"
+      - "深圳"
+      - "杭州"
+      - "成都"
+      - "武汉"
+      - "西安"
+    cache_duration: 3600
+
+  transport:
+    enabled: true
+    default_from_city: "北京"
+    transport_types:
+      - "飞机"
+      - "高铁"
+      - "自驾"
+      - "大巴"
+
+  budget:
+    enabled: true
+    currency: "CNY"
+    default_days: 3
+    default_travelers: 2
+
+  hotel:
+    enabled: true
+    default_budget: 500
+    hotel_chains:
+      - "希尔顿"
+      - "万豪"
+      - "洲际"
+      - "如家"
+      - "汉庭"
+
+  attraction:
+    enabled: true
+    default_days: 2
+    interest_categories:
+      - "历史"
+      - "自然"
+      - "美食"
+      - "购物"
+
+performance:
+  enable_metrics: true
+  metrics_port: 9090
+  collect_interval: 30
+  enable_tracing: false
+
+message_bus:
+  max_queue_size: 1000
+  enable_health_monitor: true
+  health_check_interval: 30
+
+security:
+  enable_encryption: false
+  api_key_rotation_days: 30
+  max_request_size: "10MB"
+
+plugins:
+  auto_discover: true
+  plugin_paths:
+    - "./plugins"
+    - "./agent_plugins"
+  hot_reload: false
+
+# 迭代配置
+iteration:
+  max_iterations: 5
+  think_timeout: 30
+  plan_timeout: 30
+  action_timeout: 60
+  next_timeout: 15
+
+# 规划策略配置
+planning:
+  default_strategy: "dependency_aware"
+  strategies:
+    sequential:
+      enabled: true
+      max_agents: 3
+    parallel:
+      enabled: true
+      max_agents: 5
+    dependency_aware:
+      enabled: true
+    llm_optimized:
+      enabled: true
+    iterative_refinement:
+      enabled: true
