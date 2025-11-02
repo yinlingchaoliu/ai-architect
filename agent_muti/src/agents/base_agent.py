@@ -73,7 +73,7 @@ class BaseAgent(ABC):
                     ),
                     timeout=timeout
                 )
-
+                print(response)
                 return response.choices[0].message.content
 
             except asyncio.TimeoutError:

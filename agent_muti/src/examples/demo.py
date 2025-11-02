@@ -23,10 +23,10 @@ async def demo_enhanced_system():
     await system.initialize_system()
 
     # 设置迭代阶段超时
-    system.set_iteration_timeout("think", 25)
-    system.set_iteration_timeout("plan", 25)
-    system.set_iteration_timeout("action", 45)
-    system.set_iteration_timeout("next", 15)
+    system.set_iteration_timeout("think", 2500)
+    system.set_iteration_timeout("plan", 2500)
+    system.set_iteration_timeout("action", 4500)
+    system.set_iteration_timeout("next", 1500)
 
     # 测试复杂查询
     complex_queries = [

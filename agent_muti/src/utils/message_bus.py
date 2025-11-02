@@ -42,6 +42,21 @@ class Message:
     target: str = None
     correlation_id: str = None
     metadata: Dict[str, Any] = None
+    
+    def __post_init__(self):
+        """初始化后自动设置时间戳"""
+        if self.timestamp is None:
+            self.timestamp = time.time()
+    
+    def __lt__(self, other):
+        """定义比较方法，优先按优先级排序，相同优先级则按时间戳排序"""
+        if not isinstance(other, Message):
+            return NotImplemented
+        # 优先级数字越小优先级越低，所以返回负号进行降序排序
+        if self.priority.value != other.priority.value:
+            return self.priority.value > other.priority.value
+        # 相同优先级时，时间戳小的优先（先到达的消息优先）
+        return self.timestamp < other.timestamp
 
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典"""

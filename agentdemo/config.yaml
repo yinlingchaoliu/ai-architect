@@ -1,0 +1,118 @@
+# agentdemo 配置文件
+# 多 Agent 智能系统 - 增强版
+
+# API 配置
+api:
+  openai:
+    key: "hk-fwuzp810000596427a889f4a9def096b062f5a0d01ac0abd"  # 请替换为您的 OpenAI API 密钥
+    base_url: "https://api.openai.com/v1"
+    default_model: "gpt-3.5-turbo"
+
+# 系统配置
+system:
+  name: "多 Agent 智能系统"
+  version: "1.0.0"
+  description: "专注于超时处理和日志记录的健壮多 Agent 系统"
+  max_concurrent_queries: 10
+  health_check_interval: 30  # 秒
+
+# 迭代配置
+iteration:
+  max_iterations: 5
+  timeout_warning_threshold: 0.8  # 80% 超时预警阈值
+  phase_timeouts:
+    think: 30
+    plan: 30
+    action: 60
+    next: 15
+
+# Agent 配置
+agents:
+  coordinator:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    timeout: 50
+    max_retries: 3
+    description: "协调器 Agent，负责协调其他 Agent 的工作"
+  
+  weather:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    timeout: 30
+    max_retries: 2
+    description: "天气查询 Agent，提供专业的天气查询服务"
+  
+  transport:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    timeout: 35
+    max_retries: 2
+    description: "交通查询 Agent，提供交通方式和路线规划服务"
+  
+  budget:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    timeout: 25
+    max_retries: 2
+    description: "预算分析 Agent，提供旅行预算分析和成本估算服务"
+
+# 插件配置
+plugins:
+  auto_discover: true
+  plugin_path: "src/plugins"
+  enabled_plugins:
+    - "weather"
+    - "transport"
+    - "budget"
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_logging: true
+  log_file: "logs/agentdemo.log"
+  max_file_size: 10485760  # 10MB
+  backup_count: 5
+  console_output: true
+
+# 性能监控配置
+monitoring:
+  enabled: true
+  metrics_interval: 60  # 秒
+  alert_thresholds:
+    timeout_rate: 0.2  # 20% 超时率触发警报
+    error_rate: 0.1    # 10% 错误率触发警报
+    avg_response_time: 30  # 平均响应时间超过30秒触发警报
+
+# 超时配置
+timeout:
+  default_timeout: 30
+  max_timeout: 120
+  retry_config:
+    max_retries: 3
+    retry_delay: 1.0
+    exponential_backoff: true
+    max_retry_delay: 10.0
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl: 300  # 5分钟
+  max_size: 1000
+
+# 安全配置
+security:
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+    burst_limit: 10
+  input_validation:
+    enabled: true
+    max_query_length: 1000
+
+# 调试配置
+debug:
+  enabled: false
+  verbose_logging: false
+  save_iteration_history: true
+  export_logs_on_error: true
