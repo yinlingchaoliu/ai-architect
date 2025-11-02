@@ -52,7 +52,7 @@ class TransportAgent(PluginAgent):
             {"role": "user", "content": f"基于以下交通数据提供建议: {json.dumps(transport_data, ensure_ascii=False)}"}
         ]
 
-        content = self._call_llm(messages)
+        content = await self._call_llm(messages)
 
         return AgentResponse(
             agent_type=self.agent_type,

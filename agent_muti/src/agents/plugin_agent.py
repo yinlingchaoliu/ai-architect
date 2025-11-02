@@ -31,8 +31,9 @@ class PluginAgent(BaseAgent):
         # 检查是否是异步函数
         if inspect.iscoroutinefunction(plugin_func):
             return await plugin_func(**kwargs)
-        else: # 包装一个异步函数
-            return await asyncio.create_task(plugin_func(**kwargs))
+        else:
+            return plugin_func(**kwargs)
+
 
     def list_plugins(self) -> List[str]:
         """列出所有插件"""

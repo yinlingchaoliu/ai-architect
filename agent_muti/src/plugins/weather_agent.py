@@ -51,7 +51,7 @@ class WeatherAgent(PluginAgent):
             {"role": "user", "content": f"基于以下天气数据生成天气报告: {json.dumps(weather_data, ensure_ascii=False)}"}
         ]
 
-        content = self._call_llm(messages)
+        content = await self._call_llm(messages)
 
         return AgentResponse(
             agent_type=self.agent_type,
