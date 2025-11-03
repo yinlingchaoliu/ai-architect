@@ -10,19 +10,18 @@ import os
 # 添加项目根目录到Python路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from core.session_manager import DiscussionSession
-from agents.analyzer_agent import AnalyzerAgent
-from agents.moderator_agent import ModeratorAgent
-from agents.expert_agents.tech_expert import TechExpertAgent
-from agents.expert_agents.business_expert import BusinessExpertAgent
-from agents.expert_agents.research_expert import ResearchExpertAgent
-from core.plugin_manager import PluginManager
-from plugins.web_search import WebSearchPlugin
-from plugins.knowledge_base import KnowledgeBasePlugin
-from plugins.reflection_tool import ReflectionToolPlugin
-from utils.config import ConfigLoader
-from utils.logger import setup_logger
-
+from src.core.session_manager import DiscussionSession
+from src.agents.analyzer_agent import AnalyzerAgent
+from src.agents.moderator_agent import ModeratorAgent
+from src.expert_agents.tech_expert import TechExpertAgent
+from src.expert_agents.business_expert import BusinessExpertAgent
+from src.expert_agents.research_expert import ResearchExpertAgent
+from src.core.plugin_manager import PluginManager
+from src.plugins.web_search import WebSearchPlugin
+from src.plugins.knowledge_base import KnowledgeBasePlugin
+from src.plugins.reflection_tool import ReflectionToolPlugin
+from src.utils.config import ConfigLoader
+from src.utils.logger import setup_logger
 
 class MultiAgentSystem:
     def __init__(self, config_path: str = None):
