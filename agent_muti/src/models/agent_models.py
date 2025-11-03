@@ -15,7 +15,8 @@ class AgentType(Enum):
     HOTEL = "hotel"
     ATTRACTION = "attraction"
     CUSTOM = "custom"
-
+    ACTION = "action"
+    
 
 @dataclass
 class AgentResponse:

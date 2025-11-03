@@ -26,6 +26,11 @@ class BaseAgent(ABC):
         self.timeout = 30  # 默认超时时间
         self.max_retries = 3  # 最大重试次数
         self.retry_delay = 1  # 重试延迟（秒）
+        self.step = None  # 记录步骤
+
+    def set_step(self, step: str):
+        """设置当前执行的 step"""
+        self.step = step
 
     @abstractmethod
     async def process_request(self, query: str, context: Dict[str, Any] = None) -> AgentResponse:
@@ -51,9 +56,10 @@ class BaseAgent(ABC):
 
         for attempt in range(self.max_retries):
             try:
-                print(f"🔄 [{self.name}] LLM 调用尝试 {attempt + 1}/{self.max_retries}")
+                print(f" 🔄 [{self.name}] LLM 调用尝试 {attempt + 1}/{self.max_retries}")
 
-                print(f"{self.agent_type}  请求消息: {messages}")
+                print(f" 🔄 {self.name}-{self.agent_type}{f' - {self.step}' if self.step else ''}  请求消息:\n {messages}")
+
                 response = await self.llm_client.chat.completions.create(
                             model=self.model,
                             messages=messages,
@@ -61,7 +67,7 @@ class BaseAgent(ABC):
                             max_tokens=max_tokens
                         )
                 content = response.choices[0].message.content
-                print(f"{self.agent_type}  返回消息: {content}")
+                print(f" ☑️ {self.name}-{self.agent_type}{f' - {self.step}' if self.step else ''}  返回消息: \n {content}")
                 return content
 
             except asyncio.TimeoutError:

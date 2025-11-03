@@ -3,8 +3,9 @@ import asyncio
 import json
 import time
 from typing import Dict, List, Any, Optional
+
 from ..models.agent_models import IterationStep, AgentResponse, AgentType
-from ..prompt.constants import jsonFormat
+from ..prompt.constants import  THINK_PROMPT, think_prompt, plan_prompt,PLAN_PROMPT,next_prompt,NEXT_PROMPT
 
 
 class IterationController:
@@ -15,16 +16,16 @@ class IterationController:
         self.current_iteration = 0
         self.iteration_history: List[IterationStep] = []
         self.phase_timeouts = {
-            "think": 30,
-            "plan": 30,
-            "action": 60,
-            "next": 15
+            "think": 3000,
+            "plan": 3000,
+            "action": 6000,
+            "next": 1500
         }
 
     async def execute_iteration_cycle(self, query: str, context: Dict[str, Any],
                                       coordinator, available_agents: List[str]) -> Dict[str, Any]:
         """执行完整的迭代周期"""
-
+        self.coordinator = coordinator
         self.current_iteration = 0
         final_results = {}
         execution_context = context or {}
@@ -34,6 +35,7 @@ class IterationController:
 
             try:
                 # THINK 阶段 - 分析当前状态和需求
+                coordinator.set_step("think")
                 think_result = await self._think_phase(query, execution_context, coordinator)
                 self._record_step("think", think_result)
 
@@ -43,14 +45,17 @@ class IterationController:
                     break
 
                 # PLAN 阶段 - 制定执行计划
+                coordinator.set_step("plan")
                 plan_result = await self._plan_phase(query, think_result, coordinator, available_agents)
                 self._record_step("plan", plan_result)
 
                 # ACTION 阶段 - 执行计划
+                coordinator.set_step("action")
                 action_result = await self._action_phase(plan_result, coordinator, execution_context)
                 self._record_step("action", action_result, action_result.get("agent_responses"))
 
                 # NEXT 阶段 - 决定下一步
+                coordinator.set_step("next")
                 next_result = await self._next_phase(query, action_result, coordinator)
                 self._record_step("next", next_result)
 
@@ -95,30 +100,16 @@ class IterationController:
     async def _think_phase(self, query: str, context: Dict, coordinator) -> Dict[str, Any]:
         """思考阶段 - 分析意图和当前状态"""
         try:
-            think_prompt = f"""
-当前用户查询: {query}
-历史上下文: {json.dumps(context, ensure_ascii=False, default=str)}
-当前迭代: {self.current_iteration + 1}
 
-请分析：
-1. 用户的核心需求是什么？
-2. 当前已经获得了哪些信息？
-3. 还需要获取哪些关键信息？
-4. 是否可以直接回答用户问题？
-
-返回分析结果 包括：
-- core_requirements: 核心需求列表
-- acquired_info: 已获得信息
-- missing_info: 缺失的关键信息
-- confidence_level: 当前置信度(0-1)
-- should_complete: 是否可以直接完成
-- reasoning: 推理过程
-{jsonFormat}
-"""
+            prompt = think_prompt(
+                query=query,
+                context=json.dumps(context, ensure_ascii=False, default=str),
+                iteration_count=self.current_iteration + 1
+            )
 
             messages = [
-                {"role": "system", "content": "你是一个深思熟虑的分析专家，能够准确评估当前状况和下一步需求。"},
-                {"role": "user", "content": think_prompt}
+                {"role": "system", "content": THINK_PROMPT},
+                {"role": "user", "content": prompt}
             ]
 
             analysis_text = await asyncio.wait_for(
@@ -158,25 +149,16 @@ class IterationController:
             missing_info = think_result.get("missing_info", [])
             current_context = think_result.get("acquired_info", {})
 
-            plan_prompt = f"""
-用户查询: {query}
-缺失信息: {missing_info}
-可用Agent: {available_agents}
-当前上下文: {json.dumps(current_context, ensure_ascii=False, default=str)}
-
-请制定一个详细的执行计划来获取缺失信息：
-- required_agents: 需要调用的Agent列表
-- execution_sequence: 执行序列（并行/串行）
-- expected_outputs: 期望从每个Agent获得的输出
-- strategy: 执行策略
-- iteration_goal: 本轮迭代的目标
-
-{jsonFormat}
-"""
+            prompt = plan_prompt(
+                query=query,
+                context=json.dumps(current_context, ensure_ascii=False, default=str),
+                missing_info=missing_info,
+                available_agents=available_agents
+            )
 
             messages = [
-                {"role": "system", "content": "你是一个专业的任务规划师，能够制定高效的信息收集和执行计划。"},
-                {"role": "user", "content": plan_prompt}
+                {"role": "system", "content": PLAN_PROMPT},
+                {"role": "user", "content": prompt}
             ]
 
             plan_text = await asyncio.wait_for(
@@ -267,27 +249,13 @@ class IterationController:
             agent_responses = action_result.get("agent_responses", {})
             updated_context = action_result.get("updated_context", {})
 
-            next_prompt = f"""
-原始查询: {query}
-当前收集到的信息: {json.dumps(updated_context, ensure_ascii=False, default=str)}
-Agent执行结果: {json.dumps({k: v.content for k, v in agent_responses.items()}, ensure_ascii=False)}
+            context = json.dumps(updated_context, ensure_ascii=False, default=str)
+            agent_responses_context = json.dumps({k: v.content for k, v in agent_responses.items()}, ensure_ascii=False)
 
-请评估：
-1. 当前信息是否足够回答用户问题？
-2. 是否需要继续迭代收集更多信息？
-3. 下一轮迭代的重点应该是什么？
-
-返回：
-- should_terminate: 是否终止迭代
-- confidence_score: 当前整体置信度(0-1)
-- next_focus: 下一轮迭代重点
-- reasoning: 决策理由
-{jsonFormat}
-"""
-
+            prompt = next_prompt(query, context, agent_responses_context)
             messages = [
-                {"role": "system", "content": "你是一个决策专家，能够基于当前信息质量决定是否继续迭代。"},
-                {"role": "user", "content": next_prompt}
+                {"role": "system", "content": NEXT_PROMPT},
+                {"role": "user", "content": prompt}
             ]
 
             next_text = await asyncio.wait_for(
@@ -325,7 +293,6 @@ Agent执行结果: {json.dumps({k: v.content for k, v in agent_responses.items()
             agent_responses=agent_responses
         )
         self.iteration_history.append(step)
-        print(f"step: {step}")
 
     def _make_serializable(self, data):
         """确保数据可JSON序列化"""

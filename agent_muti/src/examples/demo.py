@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from ..core.agent_system import EnhancedDynamicAgentSystem
-from ..models.agent_models import AgentResponse
+
 
 async def demo_enhanced_system():
     """演示增强版系统"""
@@ -30,10 +30,10 @@ async def demo_enhanced_system():
 
     # 测试复杂查询
     complex_queries = [
+        "两人去成都玩三天大概要花多少钱？天气怎么样？怎么去最方便？",
         "我想规划一次去上海的旅行，需要了解天气、交通和预算，还要考虑酒店和景点",
         "帮我比较北京、上海、广州三个城市的旅行成本，包括交通、住宿和餐饮",
         "我需要一个完整的杭州五日游计划，要详细的天气预测、交通方案和每日预算",
-        "两人去成都玩三天大概要花多少钱？天气怎么样？怎么去最方便？"
     ]
 
     print("🚀 增强多Agent系统演示")

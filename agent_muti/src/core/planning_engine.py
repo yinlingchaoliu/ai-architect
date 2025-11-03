@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from enum import Enum
 from collections import defaultdict
 
-from ..prompt.constants import jsonFormat
+from ..prompt.constants import JSON_FORMAT
 
 
 class PlanPriority(Enum):
@@ -415,7 +415,7 @@ class PlanningEngine:
 - priority: 优先级 (critical/high/medium/low)
 - estimated_duration: 预估执行时间(秒)
 - reasoning: 规划理由
-{jsonFormat}
+{JSON_FORMAT}
 """
 
     def _parse_llm_plan(self, plan_data: Dict[str, Any], context: PlanningContext) -> ExecutionPlan:

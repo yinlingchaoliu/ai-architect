@@ -8,6 +8,7 @@ from lazy_object_proxy.utils import await_
 from .plugin_agent import PluginAgent
 from ..models.agent_models import AgentType, AgentResponse
 from ..core.iteration_controller import IterationController
+from ..prompt.constants import SUMMARY_PROMPT, summary_prompt
 
 
 class EnhancedCoordinatorAgent(PluginAgent):
@@ -100,25 +101,15 @@ class EnhancedCoordinatorAgent(PluginAgent):
         response_summaries = []
         for agent_name, response in agent_responses.items():
             response_summaries.append(f"## {agent_name}\n{response.content}")
+        summaries = "\n".join(response_summaries)
 
-        integration_prompt = f"""
-用户原始查询: {query}
-
-经过{iteration_result['iteration_count']}轮迭代收集，获得以下专业分析:
-{"".join(response_summaries)}
-
-迭代过程摘要:
-- 总迭代轮次: {iteration_result['iteration_count']}
-- 收集到的关键信息: {len(agent_responses)}个专业分析
-
-请基于以上所有信息，生成一个完整、准确、有用的最终回答。
-确保回答自然流畅，突出关键信息，并提供实用的建议。
-"""
-
+        # 构建整合提示
+        prompt = summary_prompt(query, summaries, iteration_result['iteration_count'],
+                                                len(agent_responses))        
         messages = [
             {"role": "system",
-             "content": "你是一个专业的整合专家，擅长将多轮迭代收集的专业信息整合成用户友好的最终回答。"},
-            {"role": "user", "content": integration_prompt}
+             "content": SUMMARY_PROMPT},
+            {"role": "user", "content": prompt}
         ]
-
+        self.set_step("summary")
         return await self._call_llm(messages)
