@@ -48,7 +48,7 @@ async def demo_enhanced_system():
             response = await system.process_query(query)
 
             print(f"🎯 最终回答:")
-            print(f"{response}")
+            print(f"{response.content}")
 
             print(f"\n📊 执行详情:")
             print(f"• 迭代轮次: {response.metadata.get('iterations')}")
