@@ -25,7 +25,7 @@ Python 3.12.6
 
 先写代码，再画架构图
 
-方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call)
+方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call) + 多agent
 
 目标
 tips
@@ -105,6 +105,15 @@ tips
 pip install -e lib_request
 ```
 
+### 6. [Think-Plan-Action-Next 模式 多agent协调设计](agent_muti)
+
+-[x]  1、增加 Think-Plan-Action-Next 多轮迭代思考 通用化逻辑思考方法论
+
+-[x]  2、支持agent插件平行扩展
+
+-[x]  3、产品场景: 旅游攻略
+
+-[x]  4、[架构设计和产品理念](agent_muti/README.md)
 
 ## 启动项目
 
