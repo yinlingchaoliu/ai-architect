@@ -1,44 +1,68 @@
-from typing import Optional, Any, Dict
+from typing import Dict, Any, List, Optional
+from ..plugins.web_search import WebSearchPlugin
+from ..plugins.knowledge_base import KnowledgeBasePlugin
+from ..plugins.reflection_tool import ReflectionToolPlugin
+from ..utils.logger import logger
 
 
 class PluginManager:
-    """插件管理器 - 负责插件的注册和加载"""
+    """插件管理器"""
+
     def __init__(self):
-        self.available_plugins = {}
-        self.loaded_plugins = {}
+        self.plugins: Dict[str, Any] = {}
+        self._initialize_plugins()
 
-    def register_plugin(self, plugin_name: str, plugin_class):
+    def _initialize_plugins(self):
+        """初始化所有插件"""
+        # 核心插件
+        self.register_plugin("web_search", WebSearchPlugin())
+        self.register_plugin("knowledge_base", KnowledgeBasePlugin())
+        self.register_plugin("reflection_tool", ReflectionToolPlugin())
+
+        logger.info("插件管理器初始化完成")
+
+    def register_plugin(self, name: str, plugin_instance: Any):
         """注册插件"""
-        self.available_plugins[plugin_name] = plugin_class
+        self.plugins[name] = plugin_instance
+        logger.info(f"注册插件: {name}")
 
-    def load_plugin(self, plugin_name: str, config: Dict = None) -> Any:
-        """加载插件实例"""
-        if plugin_name in self.available_plugins:
-            plugin_instance = self.available_plugins[plugin_name](config or {})
-            self.loaded_plugins[plugin_name] = plugin_instance
-            return plugin_instance
-        return None
-
-    def unload_plugin(self, plugin_name: str):
-        """卸载插件"""
-        self.loaded_plugins.pop(plugin_name, None)
-
-    def get_plugin(self, plugin_name: str) -> Optional[Any]:
+    def get_plugin(self, name: str) -> Optional[Any]:
         """获取插件实例"""
-        return self.loaded_plugins.get(plugin_name)
-    
-    async def close_all_plugins(self):
-        """关闭所有已加载的插件"""
-        for plugin_name, plugin in self.loaded_plugins.items():
-            # 尝试调用插件的close方法，如果存在的话
-            if hasattr(plugin, 'close') and callable(plugin.close):
-                try:
-                    # 检查是否为异步方法
-                    if hasattr(plugin.close, '__await__'):
-                        await plugin.close()
-                    else:
-                        plugin.close()
-                except Exception as e:
-                    print(f"关闭插件 {plugin_name} 时出错: {e}")
-        # 清空已加载的插件
-        self.loaded_plugins.clear()
+        return self.plugins.get(name)
+
+    def execute_plugin(self, plugin_name: str, action: str, **kwargs) -> Dict[str, Any]:
+        """执行插件操作"""
+        plugin = self.get_plugin(plugin_name)
+        if not plugin:
+            return {"success": False, "error": f"插件 {plugin_name} 不存在"}
+
+        try:
+            if hasattr(plugin, action):
+                method = getattr(plugin, action)
+                result = method(**kwargs)
+                logger.info(f"执行插件 {plugin_name}.{action} 成功")
+                return result
+            else:
+                return {"success": False, "error": f"插件 {plugin_name} 没有方法 {action}"}
+        except Exception as e:
+            logger.error(f"执行插件 {plugin_name}.{action} 异常: {str(e)}")
+            return {"success": False, "error": f"执行异常: {str(e)}"}
+
+    def list_plugins(self) -> List[Dict[str, str]]:
+        """列出所有可用插件"""
+        plugins_info = []
+        for name, plugin in self.plugins.items():
+            plugins_info.append({
+                "name": name,
+                "description": getattr(plugin, 'description', 'No description'),
+                "available_actions": self._get_plugin_actions(plugin)
+            })
+        return plugins_info
+
+    def _get_plugin_actions(self, plugin: Any) -> List[str]:
+        """获取插件可用操作"""
+        actions = []
+        for attr_name in dir(plugin):
+            if not attr_name.startswith('_') and callable(getattr(plugin, attr_name)):
+                actions.append(attr_name)
+        return actions

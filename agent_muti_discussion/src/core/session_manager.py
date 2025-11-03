@@ -1,187 +1,170 @@
-import uuid
-import asyncio
-from typing import List, Dict, Any, Optional
-from datetime import datetime
-from .base_agent import BaseAgent
-from .consensus_checker import ConsensusChecker
-from ..utils.logger import default_logger
+from typing import Dict, Any, List, Optional
 from ..agents.analyzer_agent import AnalyzerAgent
+from ..agents.moderator_agent import ModeratorAgent
+from ..expert_agents.tech_expert import TechExpertAgent
+from ..expert_agents.business_expert import BusinessExpertAgent
+from ..expert_agents.research_expert import ResearchExpertAgent
+from ..core.consensus_checker import ConsensusChecker
+from ..utils.logger import logger
 
 
-class DiscussionSession:
-    def __init__(self, session_id: str, moderator: BaseAgent, experts: List[BaseAgent]):
-        self.session_id = session_id
-        self.moderator = moderator
-        self.experts = experts
-        self.discussion_history = []
+class SessionManager:
+    """会话管理器"""
+
+    def __init__(self):
+        self.analyzer = AnalyzerAgent()
+        self.moderator = ModeratorAgent()
         self.consensus_checker = ConsensusChecker()
-        self.is_active = False
-        self.start_time = None
-        self.end_time = None
 
-    def _add_to_history(self, speaker: str, content: str, metadata: Dict[str, Any] = None):
-        """添加讨论记录到历史"""
-        entry = {
-            'speaker': speaker,
-            'content': content,
-            'metadata': metadata or {},
-            'timestamp': datetime.now().isoformat(),
-            'round': len([h for h in self.discussion_history if h.get('speaker') == 'moderator'])
+        # 初始化专家池
+        self.experts = {
+            "tech_expert": TechExpertAgent(),
+            "business_expert": BusinessExpertAgent(),
+            "research_expert": ResearchExpertAgent()
         }
-        self.discussion_history.append(entry)
-        default_logger.info(f"{speaker}: {content[:100]}...")  # 日志记录前100个字符
 
-    def _get_current_context(self) -> str:
-        """获取当前讨论上下文"""
-        if not self.discussion_history:
-            return "初始讨论开始"
+        # 讨论状态
+        self.discussion_history: List[Dict[str, Any]] = []
+        self.current_round = 0
+        self.is_completed = False
 
-        # 返回最近几条讨论的摘要
-        recent_entries = self.discussion_history[-5:]
-        context = "最近的讨论：\n"
-        for entry in recent_entries:
-            speaker = entry['speaker']
-            content_preview = entry['content'][:50] + "..." if len(entry['content']) > 50 else entry['content']
-            context += f"{speaker}: {content_preview}\n"
-        return context
+    def process_user_input(self, user_input: str) -> Dict[str, Any]:
+        """处理用户输入，启动多轮讨论"""
+        logger.info("开始处理用户输入")
 
-    async def start_discussion(self, user_prompt: str, max_rounds: int = 10) -> str:
-        """开始讨论流程"""
+        # 重置状态
+        self._reset_session()
 
-        self.is_active = True
-        self.start_time = datetime.now()
-        default_logger.info(f"开始讨论会话 {self.session_id}, 用户问题: {user_prompt}")
+        # 步骤1: 需求分析
+        analysis_result = self.analyzer.process(user_input)
+        analyzed_requirement = analysis_result["analyzed_requirement"]
 
-        try:
-            # 1. 分析阶段
-            analyzer = AnalyzerAgent()
-            analysis_result = await analyzer.process(user_prompt)
-            self._add_to_history("analyzer", analysis_result.content, analysis_result.metadata)
+        # 步骤2: 开始多轮讨论
+        final_result = self._conduct_discussion(analyzed_requirement)
 
-            # 2. 提交给主持人
-            moderator_response = await self.moderator.process(
-                analysis_result.content,
-                context={'discussion_history': self.discussion_history}
-            )
-            self._add_to_history("moderator", moderator_response.content, moderator_response.metadata)
+        # 组合最终结果
+        result = {
+            "original_question": user_input,
+            "analyzed_requirement": analyzed_requirement,
+            "discussion_rounds": self.current_round,
+            "final_summary": final_result,
+            "discussion_history": self.discussion_history
+        }
 
-            # 3. 多轮专家讨论
-            round_count = 0
-            # 确保discussion_history中的所有条目都是字典类型
-            self.discussion_history = [entry for entry in self.discussion_history if isinstance(entry, dict)]
-            
-            while (round_count < max_rounds and
-                   not self.consensus_checker.is_consensus_reached(self.discussion_history)):
-
-                default_logger.info(f"开始第 {round_count + 1} 轮讨论")
-
-                for expert in self.experts:
-                    try:
-                        # 专家发言
-                        expert_response = await expert.process(
-                            self._get_current_context(),
-                            context={'discussion_history': self.discussion_history.copy()}
-                        )
-                        # 确保响应是有效的AgentResponse对象
-                        if hasattr(expert_response, 'content') and hasattr(expert_response, 'metadata'):
-                            self._add_to_history(expert.name, expert_response.content, expert_response.metadata)
-
-                            # 主持人判断是否需要干预
-                            if hasattr(expert_response, 'requires_reflection') and expert_response.requires_reflection:
-                                moderator_intervention = await self.moderator.process(
-                                    expert_response.content,
-                                    context={
-                                        'discussion_history': self.discussion_history.copy(),
-                                        'current_speaker': expert.name
-                                    }
-                                )
-                                # 确保干预响应有效
-                                if hasattr(moderator_intervention, 'content') and hasattr(moderator_intervention, 'metadata'):
-                                    self._add_to_history("moderator", moderator_intervention.content,
-                                                         moderator_intervention.metadata)
-                    except Exception as e:
-                        default_logger.error(f"专家 {expert.name} 处理出错: {e}")
-                        # 确保discussion_history保持有效格式
-                        self.discussion_history = [entry for entry in self.discussion_history if isinstance(entry, dict)]
-
-                round_count += 1
-
-                # 再次确保discussion_history格式正确
-                self.discussion_history = [entry for entry in self.discussion_history if isinstance(entry, dict)]
-                
-                # 每轮结束后检查共识
-                try:
-                    consensus_summary = self.consensus_checker.get_consensus_summary(self.discussion_history)
-                    # 检查共识摘要是否是有效的字典
-                    if isinstance(consensus_summary, dict) and 'consensus_score' in consensus_summary:
-                        default_logger.info(f"第 {round_count} 轮共识分数: {consensus_summary['consensus_score']:.2f}")
-
-                        if 'consensus_reached' in consensus_summary and consensus_summary['consensus_reached']:
-                            default_logger.info("达成共识，结束讨论")
-                            break
-                except Exception as e:
-                    default_logger.error(f"共识检查出错: {e}")
-
-            # 4. 生成最终总结
-            final_summary = await self.moderator.process(
-                "请基于所有讨论生成最终总结报告",
-                context={'discussion_history': self.discussion_history}
-            )
-
-            self._add_to_history("moderator", final_summary.content, final_summary.metadata)
-
-            # 5. 返回完整讨论结果
-            full_discussion = self._format_final_result(final_summary.content)
-            return full_discussion
-
-        except Exception as e:
-            default_logger.error(f"讨论过程中出现错误: {e}")
-            return f"讨论过程中出现错误: {e}"
-        finally:
-            self.is_active = False
-            self.end_time = datetime.now()
-            duration = (self.end_time - self.start_time).total_seconds() if self.start_time else 0
-            default_logger.info(f"讨论会话 {self.session_id} 结束，耗时: {duration:.2f}秒")
-
-    def _format_final_result(self, summary: str) -> str:
-        """格式化最终结果"""
-        result = f"讨论会话: {self.session_id}\n"
-        result += "=" * 50 + "\n"
-        result += "最终总结:\n"
-        result += summary + "\n\n"
-        result += "讨论过程摘要:\n"
-
-        for i, entry in enumerate(self.discussion_history, 1):
-            speaker = entry['speaker']
-            content_preview = entry['content'][:80] + "..." if len(entry['content']) > 80 else entry['content']
-            result += f"{i}. {speaker}: {content_preview}\n"
-
-        # 添加共识报告
-        consensus_report = self.consensus_checker.get_consensus_summary(self.discussion_history)
-        result += f"\n共识分析: 分数{consensus_report['consensus_score']:.2f}, "
-        result += "已达成共识" if consensus_report['consensus_reached'] else "未完全达成共识"
-
+        logger.info("用户输入处理完成")
         return result
 
-    def get_discussion_history(self) -> List[Dict[str, Any]]:
-        """获取完整的讨论历史"""
-        return self.discussion_history.copy()
+    def _conduct_discussion(self, analyzed_requirement: str) -> Dict[str, Any]:
+        """执行多轮讨论"""
+        expert_opinions = []
+        moderator_decision = None
 
-    def get_session_stats(self) -> Dict[str, Any]:
-        """获取会话统计信息"""
-        expert_contributions = {}
-        for entry in self.discussion_history:
-            speaker = entry['speaker']
-            if speaker not in ['analyzer', 'moderator']:
-                expert_contributions[speaker] = expert_contributions.get(speaker, 0) + 1
+        while not self.is_completed:
+            self.current_round += 1
+            logger.info(f"开始第 {self.current_round} 轮讨论")
+
+            # 邀请专家发言
+            round_opinions = self._invite_experts(analyzed_requirement, expert_opinions)
+            expert_opinions.extend(round_opinions)
+
+            # 主持人引导
+            moderator_result = self.moderator.process(
+                analyzed_requirement,
+                expert_opinions=round_opinions
+            )
+            moderator_decision = moderator_result["moderator_decision"]
+
+            # 记录本轮讨论
+            round_record = {
+                "round": self.current_round,
+                "expert_opinions": round_opinions,
+                "moderator_decision": moderator_decision
+            }
+            self.discussion_history.append(round_record)
+
+            # 检查是否结束讨论
+            if moderator_result["discussion_complete"]:
+                self.is_completed = True
+                logger.info("讨论结束")
+                break
+
+        # 生成最终总结
+        final_summary = self._generate_final_summary(analyzed_requirement, expert_opinions)
+        return final_summary
+
+    def _invite_experts(self, requirement: str, previous_opinions: List[Dict] = None) -> List[Dict[str, Any]]:
+        """邀请专家发言"""
+        opinions = []
+
+        # 构建讨论上下文
+        context = {
+            "requirement": requirement,
+            "previous_rounds": len(previous_opinions) // len(self.experts) if previous_opinions else 0
+        }
+
+        # 如果是第一轮，所有专家都发言
+        if not previous_opinions:
+            for expert_id, expert in self.experts.items():
+                opinion = expert.process(requirement, context=context)
+                opinions.append(opinion)
+        else:
+            # 后续轮次，专家可以参考之前的意见
+            context["previous_opinions"] = previous_opinions
+            for expert_id, expert in self.experts.items():
+                # 可以在这里添加逻辑，让专家参考其他专家的意见进行反思
+                # 暂时简单处理：直接再次邀请发言
+                opinion = expert.process(requirement, context=context)
+                opinions.append(opinion)
+
+        return opinions
+
+    def _generate_final_summary(self, requirement: str, expert_opinions: List[Dict]) -> Dict[str, Any]:
+        """生成最终总结"""
+        # 使用一致性检查器
+        consensus_result = self.consensus_checker.check_consensus(expert_opinions)
+
+        # 构建总结提示
+        summary_prompt = f"""
+基于以下需求和专家讨论，生成最终总结：
+
+需求：{requirement}
+
+专家意见汇总：
+"""
+        for opinion in expert_opinions:
+            summary_prompt += f"\n{opinion['expert_name']}：{opinion['opinion']}\n"
+
+        summary_prompt += f"\n一致性检查结果：{'达成共识' if consensus_result['consensus_achieved'] else '未完全达成共识'}"
+        summary_prompt += "\n\n请生成一个全面的总结，包括：\n1. 主要观点和结论\n2. 共识领域\n3. 分歧点（如果有）\n4. 最终建议"
+
+        # 使用主持人来生成总结
+        final_summary = self.moderator.generate_response(summary_prompt)
 
         return {
-            'session_id': self.session_id,
-            'total_entries': len(self.discussion_history),
-            'expert_contributions': expert_contributions,
-            'duration_seconds': (
-                        self.end_time - self.start_time).total_seconds() if self.start_time and self.end_time else 0,
-            'start_time': self.start_time.isoformat() if self.start_time else None,
-            'end_time': self.end_time.isoformat() if self.end_time else None,
-            'is_active': self.is_active
+            "summary": final_summary,
+            "consensus_result": consensus_result,
+            "total_opinions": len(expert_opinions)
+        }
+
+    def _reset_session(self):
+        """重置会话状态"""
+        self.discussion_history = []
+        self.current_round = 0
+        self.is_completed = False
+        self.moderator.reset_rounds()
+
+        # 清空所有智能体的历史
+        self.analyzer.clear_history()
+        self.moderator.clear_history()
+        for expert in self.experts.values():
+            expert.clear_history()
+
+        logger.info("会话状态已重置")
+
+    def get_discussion_status(self) -> Dict[str, Any]:
+        """获取当前讨论状态"""
+        return {
+            "current_round": self.current_round,
+            "is_completed": self.is_completed,
+            "total_rounds": len(self.discussion_history)
         }

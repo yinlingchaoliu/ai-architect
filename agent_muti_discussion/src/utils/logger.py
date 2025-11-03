@@ -1,36 +1,45 @@
 import logging
 import sys
-from typing import Optional
+from datetime import datetime
 
 
-def setup_logger(name: str, log_level: int = logging.INFO, log_file: Optional[str] = None) -> logging.Logger:
-    """设置日志记录器"""
-    logger = logging.getLogger(name)
-    logger.setLevel(log_level)
+class Logger:
+    """日志管理类"""
 
-    # 避免重复添加处理器
-    if logger.handlers:
-        return logger
+    def __init__(self, name: str = "multi_agent_discussion"):
+        self.logger = logging.getLogger(name)
+        self.logger.setLevel(logging.INFO)
 
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
+        # 避免重复添加handler
+        if not self.logger.handlers:
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            )
 
-    # 控制台处理器
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setLevel(log_level)
-    console_handler.setFormatter(formatter)
-    logger.addHandler(console_handler)
+            # 控制台handler
+            console_handler = logging.StreamHandler(sys.stdout)
+            console_handler.setFormatter(formatter)
+            self.logger.addHandler(console_handler)
 
-    # 文件处理器（如果指定了日志文件）
-    if log_file:
-        file_handler = logging.FileHandler(log_file, encoding='utf-8')
-        file_handler.setLevel(log_level)
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
+            # 文件handler
+            file_handler = logging.FileHandler(
+                f'logs/discussion_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+            )
+            file_handler.setFormatter(formatter)
+            self.logger.addHandler(file_handler)
 
-    return logger
+    def info(self, message: str):
+        self.logger.info(message)
+
+    def error(self, message: str):
+        self.logger.error(message)
+
+    def warning(self, message: str):
+        self.logger.warning(message)
+
+    def debug(self, message: str):
+        self.logger.debug(message)
 
 
-# 创建默认日志记录器
-default_logger = setup_logger('multi_agent_discussion')
+# 全局日志实例
+logger = Logger()

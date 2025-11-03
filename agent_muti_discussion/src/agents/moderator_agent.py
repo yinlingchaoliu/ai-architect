@@ -1,86 +1,106 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
+# from langchain.schema import HumanMessage
 
-from ..core.base_agent import BaseAgent, AgentResponse
+from ..core.base_agent import BaseAgent
+from ..utils.logger import logger
 
 
 class ModeratorAgent(BaseAgent):
-    def __init__(self):
-        super().__init__("Moderator", "会议主持和流程控制专家")
-        self.reflection_triggers = ["矛盾", "不确定", "需要澄清", "意见分歧"]
+    """会议主持人智能体"""
 
-    async def process(self, input_text: str, context: Dict[str, Any] = None) -> AgentResponse:
-        discussion_history = context.get('discussion_history', [])
-        current_speaker = context.get('current_speaker')
+    def __init__(self, max_rounds: int = 3):
+        system_prompt = """你是一个专业的会议主持人，擅长组织和引导专家讨论。
 
-        # 分析当前讨论状态
-        analysis = await self._analyze_discussion_state(discussion_history)
+你的职责：
+1. 主持会议进程，确保讨论有序进行
+2. 邀请合适的专家参与讨论
+3. 在适当时机提出问题，引导讨论方向
+4. 总结讨论成果，形成最终结论
+5. 处理专家间的分歧，促进共识达成
 
-        if analysis.get('needs_intervention'):
-            # 提出反思问题
-            reflection_question = self._generate_reflection_question(
-                current_speaker, analysis['issue_type']
-            )
-            return AgentResponse(
-                content=reflection_question,
-                metadata={"action": "request_reflection", "target_agent": current_speaker},
-                requires_reflection=True
-            )
+请确保：
+- 讨论保持专业和高效
+- 每个专家都有充分表达机会
+- 讨论不偏离主题
+- 及时总结关键观点
 
-        # 正常推进讨论
-        if self._is_consensus_reached(discussion_history):
-            summary = await self._generate_summary(discussion_history)
-            return AgentResponse(
-                content=summary,
-                metadata={"action": "conclude_discussion"}
-            )
+请用中文回复。"""
+
+        super().__init__("会议主持人", system_prompt)
+        self.max_rounds = max_rounds
+        self.current_round = 0
+
+    def process(self, analyzed_requirement: str, expert_opinions: List[Dict] = None, **kwargs) -> Dict[str, Any]:
+        """主持会议讨论"""
+        logger.info("主持人开始主持会议")
+
+        self.current_round += 1
+
+        # 构建主持提示
+        moderation_prompt = self._build_moderation_prompt(analyzed_requirement, expert_opinions)
+
+        # 生成主持响应
+        moderation_response = self.generate_response(moderation_prompt)
+
+        # 判断是否继续讨论
+        should_continue = self._should_continue_discussion(moderation_response, expert_opinions)
+
+        result = {
+            "moderator_decision": moderation_response,
+            "current_round": self.current_round,
+            "max_rounds": self.max_rounds,
+            "should_continue": should_continue,
+            "discussion_complete": not should_continue or self.current_round >= self.max_rounds
+        }
+
+        logger.info(f"主持人处理完成，轮次: {self.current_round}/{self.max_rounds}")
+        return result
+
+    def _build_moderation_prompt(self, requirement: str, expert_opinions: List[Dict] = None) -> str:
+        """构建主持提示"""
+        prompt = f"""
+当前讨论需求：{requirement}
+
+"""
+
+        if expert_opinions:
+            prompt += "专家意见汇总：\n"
+            for i, opinion in enumerate(expert_opinions):
+                prompt += f"\n{opinion.get('expert_name', f'专家{i + 1}')}：{opinion.get('opinion', '')}\n"
+
+            prompt += f"\n当前是第 {self.current_round} 轮讨论。"
+
+            if self.current_round == 1:
+                prompt += "\n\n作为主持人，请：\n1. 欢迎各位专家并介绍讨论主题\n2. 提出引导性问题开始讨论\n3. 明确讨论目标和期望成果"
+            else:
+                prompt += "\n\n作为主持人，请：\n1. 总结当前讨论进展\n2. 指出存在的分歧或共识\n3. 提出引导性问题促进深入讨论\n4. 判断是否需要进行下一轮讨论"
         else:
-            # 指定下一个发言者或提出新问题
-            next_action = await self._determine_next_action(discussion_history)
-            return AgentResponse(
-                content=next_action,
-                metadata={"action": "continue_discussion"}
-            )
-    
-    async def _analyze_discussion_state(self, discussion_history: list) -> dict:
-        """分析讨论状态"""
-        # 简单实现：如果讨论历史太短，不需要干预
-        if len(discussion_history) < 2:
-            return {"needs_intervention": False}
-        
-        # 检查是否包含反思触发词
-        for message in discussion_history[-2:]:  # 检查最近两条消息
-            if any(trigger in message.get('content', '') for trigger in self.reflection_triggers):
-                return {
-                    "needs_intervention": True,
-                    "issue_type": "conflict",
-                    "trigger_message": message.get('content', '')
-                }
-        
-        return {"needs_intervention": False}
-    
-    def _generate_reflection_question(self, speaker: str, issue_type: str) -> str:
-        """生成反思问题"""
-        if issue_type == "conflict":
-            return f"{speaker}，我注意到您的观点可能与之前的讨论存在一些不一致。能否进一步澄清您的立场？"
-        else:
-            return f"{speaker}，为了更好地推进讨论，请您再详细解释一下这个观点。"
-    
-    def _is_consensus_reached(self, discussion_history: list) -> bool:
-        """判断是否达成共识"""
-        # 简单实现：如果讨论轮数达到5轮，就认为可以总结了
-        return len(discussion_history) >= 5
-    
-    async def _generate_summary(self, discussion_history: list) -> str:
-        """生成讨论总结"""
-        # 简单实现：调用LLM生成总结
-        summary_prompt = "请总结以下讨论内容：\n" + "\n".join(
-            [f"{msg.get('role', 'Unknown')}: {msg.get('content', '')}" for msg in discussion_history]
-        )
-        return await self._call_llm(summary_prompt)
-    
-    async def _determine_next_action(self, discussion_history: list) -> str:
-        """确定下一步行动"""
-        # 简单实现：调用LLM确定下一步
-        prompt = f"根据以下讨论历史，确定下一步讨论方向或提出下一个问题：\n"
-        prompt += "\n".join([f"{msg.get('role', 'Unknown')}: {msg.get('content', '')}" for msg in discussion_history[-3:]])
-        return await self._call_llm(prompt)
+            prompt += "\n这是首次讨论，请：\n1. 介绍讨论主题和参与专家\n2. 提出引导性问题开始讨论\n3. 明确讨论规则和期望"
+
+        prompt += "\n\n请输出你的主持决策："
+
+        return prompt
+
+    def _should_continue_discussion(self, moderation_response: str, expert_opinions: List[Dict] = None) -> bool:
+        """判断是否继续讨论"""
+        if self.current_round >= self.max_rounds:
+            return False
+
+        if not expert_opinions:
+            return True
+
+        # 基于主持人响应内容判断
+        continue_keywords = ["继续", "下一轮", "进一步", "深入讨论", "尚未达成"]
+        stop_keywords = ["总结", "结束", "达成共识", "结论", "完成"]
+
+        response_lower = moderation_response.lower()
+
+        continue_count = sum(1 for keyword in continue_keywords if keyword in response_lower)
+        stop_count = sum(1 for keyword in stop_keywords if keyword in response_lower)
+
+        return continue_count > stop_count
+
+    def reset_rounds(self):
+        """重置讨论轮次"""
+        self.current_round = 0
+        logger.info("主持人轮次已重置")

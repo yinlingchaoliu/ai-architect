@@ -1,56 +1,90 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any, Optional
-from dataclasses import dataclass
-import uuid
+from typing import Dict, Any, List, Optional
 
+from langchain_core.messages import BaseMessage, SystemMessage, HumanMessage
+# from langchain.chat_models import ChatOpenAI
+# from langchain.schema import HumanMessage, SystemMessage, BaseMessage
+from langchain_openai import ChatOpenAI
 
-@dataclass
-class AgentResponse:
-    content: str
-    metadata: Dict[str, Any]
-    requires_reflection: bool = False
+from ..utils.config import config
+from ..utils.logger import logger
 
 
 class BaseAgent(ABC):
-    def __init__(self, name: str, role: str, capabilities: List[str] = None):
-        self.agent_id = str(uuid.uuid4())
+    """智能体基类"""
+
+    def __init__(self, name: str, system_prompt: str, model_name: str = None, temperature: float = None):
         self.name = name
-        self.role = role
-        self.capabilities = capabilities or []
-        self.plugins = {}
+        self.system_prompt = system_prompt
+        self.model_name = model_name or config.model_name
+        self.temperature = temperature or config.temperature
 
-    def add_plugin(self, plugin_name: str, plugin_instance):
-        """添加功能插件"""
-        self.plugins[plugin_name] = plugin_instance
+        # 初始化大模型
+        self.llm = ChatOpenAI(
+            model_name=self.model_name,
+            temperature=self.temperature,
+            openai_api_key=config.openai_api_key,
+            max_tokens=config.max_tokens
+        )
 
-    def remove_plugin(self, plugin_name: str):
-        """移除功能插件"""
-        self.plugins.pop(plugin_name, None)
+        # 消息历史
+        self.message_history: List[BaseMessage] = []
 
-    def use_plugin(self, plugin_name: str, *args, **kwargs):
-        """使用插件"""
-        if plugin_name in self.plugins:
-            return self.plugins[plugin_name].execute(*args, **kwargs)
-        return None
+        # 初始化系统提示
+        self._initialize_system_prompt()
+
+    def _initialize_system_prompt(self):
+        """初始化系统提示"""
+        if self.system_prompt:
+            self.message_history.append(SystemMessage(content=self.system_prompt))
+
+    def add_message(self, message: BaseMessage):
+        """添加消息到历史"""
+        self.message_history.append(message)
+
+    def clear_history(self):
+        """清空消息历史（保留系统提示）"""
+        system_msg = None
+        if self.message_history and isinstance(self.message_history[0], SystemMessage):
+            system_msg = self.message_history[0]
+
+        self.message_history = []
+        if system_msg:
+            self.message_history.append(system_msg)
 
     @abstractmethod
-    async def process(self, input_text: str, context: Dict[str, Any] = None) -> AgentResponse:
-        """处理输入并返回响应"""
+    def process(self, input_data: str, **kwargs) -> Dict[str, Any]:
+        """处理输入数据，返回结果字典"""
         pass
 
-    def should_reflect(self, response: AgentResponse, discussion_history: List[Dict]) -> bool:
-        """判断是否需要反思"""
-        return response.requires_reflection
-    
-    async def _call_llm(self, prompt: str, **kwargs) -> str:
-        """调用大语言模型 - 提供简单的模拟实现"""
-        # 这是一个模拟实现，在实际应用中应该替换为真实的LLM API调用
-        # 根据不同类型的代理返回不同的模拟响应
-        if self.role == "分析器":
-            return f"分析结果: 问题 '{prompt}' 需要进一步探讨和专家意见。"
-        elif self.role == "主持人":
-            return f"主持响应: 感谢您的输入，我会协调专家们讨论 '{prompt}' 这个问题。"
-        elif "专家" in self.role:
-            return f"{self.role}意见: 关于 '{prompt}'，我认为这需要从多个角度考虑，包括技术可行性、商业价值和实施策略。"
-        else:
-            return f"模拟响应: 这是对 '{prompt}' 的响应，由 {self.role} 提供。"
+    def generate_response(self, prompt: str, **kwargs) -> str:
+        """生成响应"""
+        try:
+            # 添加用户消息
+            self.add_message(HumanMessage(content=prompt))
+
+            # 调用大模型
+            response = self.llm(self.message_history)
+            response_content = response.content
+
+            # 添加助手消息
+            self.add_message(response)
+
+            logger.info(f"Agent {self.name} 生成响应: {response_content[:100]}...")
+            return response_content
+        except Exception as e:
+            logger.error(f"Agent {self.name} 生成响应异常: {str(e)}")
+            return f"错误: {str(e)}"
+
+    def get_history(self) -> List[Dict[str, str]]:
+        """获取消息历史（用于显示）"""
+        history = []
+        for msg in self.message_history:
+            if isinstance(msg, SystemMessage):
+                role = "system"
+            elif isinstance(msg, HumanMessage):
+                role = "user"
+            else:
+                role = "assistant"
+            history.append({"role": role, "content": msg.content})
+        return history

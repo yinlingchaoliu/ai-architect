@@ -1,37 +1,57 @@
 from typing import Dict, Any
+# from langchain.schema import HumanMessage
 
-from ..core.base_agent import BaseAgent, AgentResponse
+from ..core.base_agent import BaseAgent
+from ..utils.logger import logger
 
-# from core.base_agent import AgentResponse,BaseAgent
 
 class AnalyzerAgent(BaseAgent):
+    """分析智能体"""
+
     def __init__(self):
-        super().__init__("Analyzer", "问题分析和需求提炼专家")
+        system_prompt = """你是一个专业的需求分析师，擅长分析和完善用户需求。
 
-    async def process(self, input_text: str, context: Dict[str, Any] = None) -> AgentResponse:
-        # 分析用户问题，完善需求描述
+你的任务：
+1. 仔细分析用户提出的问题，理解其核心需求
+2. 完善和澄清需求，使其更加明确和具体
+3. 描述任务的基本需求和背景
+4. 将完善后的问题提交给会议主持人
+
+请确保你的分析：
+- 准确理解用户意图
+- 识别潜在的需求和约束
+- 为后续专家讨论提供清晰的基础
+
+请用中文回复。"""
+
+        super().__init__("需求分析师", system_prompt)
+
+    def process(self, input_data: str, **kwargs) -> Dict[str, Any]:
+        """处理用户输入，进行分析"""
+        logger.info(f"分析智能体开始处理: {input_data}")
+
+        # 生成分析提示
         analysis_prompt = f"""
-        请对以下用户问题进行深入分析：
+请对以下用户问题进行需求分析：
 
-        原始问题：{input_text}
+用户问题：{input_data}
 
-        请完成：
-        1. 完善问题描述，使其更清晰具体
-        2. 分析任务的基本需求和隐含需求
-        3. 识别需要哪些领域的专家参与讨论
-        4. 提出讨论的关键要点
+请从以下方面进行分析：
+1. 核心需求：用户真正想要什么？
+2. 背景信息：问题发生的背景是什么？
+3. 约束条件：有哪些限制或要求？
+4. 完善建议：如何使需求更清晰？
 
-        请以结构化的方式输出分析结果。
-        """
+请输出完善后的需求描述：
+"""
+        # 调用大模型进行分析
+        analyzed_requirement = self.generate_response(analysis_prompt)
 
-        # 这里可以集成大模型调用
-        analyzed_content = await self._call_llm(analysis_prompt)
+        result = {
+            "original_question": input_data,
+            "analyzed_requirement": analyzed_requirement,
+            "status": "completed"
+        }
 
-        return AgentResponse(
-            content=analyzed_content,
-            metadata={
-                "task_requirements": "提取的需求列表",
-                "needed_experts": ["技术", "商业", "研究"],
-                "key_points": ["要点1", "要点2"]
-            }
-        )
+        logger.info("分析智能体处理完成")
+        return result

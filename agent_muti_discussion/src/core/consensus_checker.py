@@ -1,135 +1,105 @@
-from typing import List, Dict, Any
-import re
+from typing import Dict, Any, List, Optional
+from ..utils.logger import logger
 
 
 class ConsensusChecker:
-    def __init__(self, consensus_threshold: float = 0.8, min_agreements: int = 2):
-        self.consensus_threshold = consensus_threshold
-        self.min_agreements = min_agreements
+    """一致性检查器"""
 
-    def is_consensus_reached(self, discussion_history: List[Dict]) -> bool:
-        """检查是否达成共识"""
-        if len(discussion_history) < 3:  # 至少需要一些讨论
-            return False
+    def __init__(self):
+        self.name = "consensus_checker"
 
-        recent_discussion = discussion_history[-10:]  # 检查最近10条发言
+    def check_consensus(self, opinions: List[Dict[str, Any]], max_differences: int = 2) -> Dict[str, Any]:
+        """检查专家意见的一致性"""
+        try:
+            logger.info("开始一致性检查")
 
-        # 提取关键观点和立场
-        viewpoints = self._extract_viewpoints(recent_discussion)
-
-        if len(viewpoints) < self.min_agreements:
-            return False
-
-        # 计算共识度
-        consensus_score = self._calculate_consensus_score(viewpoints)
-
-        return consensus_score >= self.consensus_threshold
-
-    def _extract_viewpoints(self, discussion: List[Dict]) -> List[Dict[str, Any]]:
-        """从讨论中提取关键观点"""
-        viewpoints = []
-
-        for entry in discussion:
-            # 添加类型检查，确保entry是字典类型
-            if not isinstance(entry, dict):
-                continue
-                
-            content = entry.get('content', '')
-            speaker = entry.get('speaker', '')
-
-            if not content or speaker in ['analyzer', 'moderator']:
-                continue
-
-            # 提取立场和关键论点
-            viewpoint = {
-                'speaker': speaker,
-                'stance': self._detect_stance(content),
-                'key_points': self._extract_key_points(content),
-                'agreement_level': self._detect_agreement_level(content)
-            }
-            viewpoints.append(viewpoint)
-
-        return viewpoints
-
-    def _detect_stance(self, text: str) -> str:
-        """检测立场"""
-        positive_indicators = ["支持", "同意", "建议", "推荐", "可行", "有利"]
-        negative_indicators = ["反对", "不建议", "风险", "问题", "困难", "不可行"]
-        neutral_indicators = ["可能", "需要考虑", "取决于", "有条件"]
-
-        if any(indicator in text for indicator in positive_indicators):
-            return "positive"
-        elif any(indicator in text for indicator in negative_indicators):
-            return "negative"
-        elif any(indicator in text for indicator in neutral_indicators):
-            return "neutral"
-        else:
-            return "unknown"
-
-    def _extract_key_points(self, text: str) -> List[str]:
-        """提取关键论点"""
-        # 简单的论点提取，实际应该使用更复杂的NLP技术
-        points = []
-
-        # 提取编号列表
-        numbered_points = re.findall(r'\d+\.\s*(.*?)(?=\d+\.|$)', text)
-        points.extend(numbered_points)
-
-        # 提取关键短语
-        key_phrases = re.findall(r'[^。！？]+(?:优势|好处|风险|问题|建议)[^。！？]*[。！？]', text)
-        points.extend(key_phrases)
-
-        return points[:5]  # 返回前5个关键点
-
-    def _detect_agreement_level(self, text: str) -> float:
-        """检测同意程度"""
-        strong_agreement = ["完全同意", "强烈支持", "毫无疑问"]
-        moderate_agreement = ["同意", "支持", "认可"]
-        weak_agreement = ["基本同意", "可以考虑", "部分支持"]
-
-        if any(phrase in text for phrase in strong_agreement):
-            return 1.0
-        elif any(phrase in text for phrase in moderate_agreement):
-            return 0.7
-        elif any(phrase in text for phrase in weak_agreement):
-            return 0.4
-        else:
-            return 0.0
-
-    def _calculate_consensus_score(self, viewpoints: List[Dict]) -> float:
-        """计算共识分数"""
-        if not viewpoints:
-            return 0.0
-
-        # 计算立场一致性
-        stances = [v['stance'] for v in viewpoints]
-        positive_count = stances.count('positive')
-        consensus_ratio = positive_count / len(stances)
-
-        # 考虑同意程度
-        avg_agreement = sum(v['agreement_level'] for v in viewpoints) / len(viewpoints)
-
-        # 综合共识分数
-        total_score = (consensus_ratio + avg_agreement) / 2
-        return total_score
-
-    def get_consensus_summary(self, discussion_history: List[Dict]) -> Dict[str, Any]:
-        """生成共识摘要"""
-        recent_discussion = discussion_history[-10:]
-        viewpoints = self._extract_viewpoints(recent_discussion)
-
-        summary = {
-            'consensus_reached': self.is_consensus_reached(discussion_history),
-            'consensus_score': self._calculate_consensus_score(viewpoints),
-            'participating_experts': list(set(v['speaker'] for v in viewpoints)),
-            'main_viewpoints': [
-                {
-                    'expert': v['speaker'],
-                    'stance': v['stance'],
-                    'key_points': v['key_points'][:2]  # 前2个关键点
+            if len(opinions) <= 1:
+                return {
+                    "consensus_achieved": True,
+                    "confidence": "high",
+                    "reason": "只有一个专家意见"
                 }
-                for v in viewpoints
-            ]
-        }
 
-        return summary
+            # 分析意见差异
+            differences = self._analyze_differences(opinions)
+
+            # 评估一致性
+            consensus_result = self._evaluate_consensus(differences, max_differences)
+
+            result = {
+                "consensus_achieved": consensus_result["achieved"],
+                "confidence": consensus_result["confidence"],
+                "differences_found": len(differences),
+                "key_differences": differences,
+                "suggestions": consensus_result["suggestions"]
+            }
+
+            logger.info(f"一致性检查完成: 达成共识={result['consensus_achieved']}")
+            return result
+        except Exception as e:
+            logger.error(f"一致性检查异常: {str(e)}")
+            return {
+                "consensus_achieved": False,
+                "confidence": "low",
+                "error": f"检查异常: {str(e)}"
+            }
+
+    def _analyze_differences(self, opinions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """分析意见差异"""
+        differences = []
+
+        for i in range(len(opinions)):
+            for j in range(i + 1, len(opinions)):
+                diff = self._compare_opinions(opinions[i], opinions[j])
+                if diff:
+                    differences.append({
+                        "expert1": opinions[i].get("expert_name", f"Expert_{i}"),
+                        "expert2": opinions[j].get("expert_name", f"Expert_{j}"),
+                        "difference": diff
+                    })
+
+        return differences
+
+    def _compare_opinions(self, opinion1: Dict, opinion2: Dict) -> Optional[str]:
+        """比较两个专家意见"""
+        content1 = str(opinion1.get("opinion", ""))
+        content2 = str(opinion2.get("opinion", ""))
+
+        # 简化的差异检测（实际应该使用更复杂的NLP方法）
+        if len(content1) > 100 and len(content2) > 100:
+            # 检查关键观点是否一致
+            key_phrases1 = self._extract_key_phrases(content1)
+            key_phrases2 = self._extract_key_phrases(content2)
+
+            if set(key_phrases1) != set(key_phrases2):
+                return "关键观点存在差异"
+
+        return None
+
+    def _extract_key_phrases(self, text: str) -> List[str]:
+        """提取关键短语（简化版）"""
+        # 这里可以集成更复杂的关键词提取算法
+        words = text.lower().split()
+        key_words = [word for word in words if len(word) > 3]
+        return list(set(key_words))[:5]  # 返回前5个唯一关键词
+
+    def _evaluate_consensus(self, differences: List[Dict], max_differences: int) -> Dict[str, Any]:
+        """评估一致性程度"""
+        if len(differences) == 0:
+            return {
+                "achieved": True,
+                "confidence": "high",
+                "suggestions": ["专家意见高度一致"]
+            }
+        elif len(differences) <= max_differences:
+            return {
+                "achieved": True,
+                "confidence": "medium",
+                "suggestions": ["专家意见基本一致，存在少量差异"]
+            }
+        else:
+            return {
+                "achieved": False,
+                "confidence": "low",
+                "suggestions": ["专家意见分歧较大，需要进一步讨论"]
+            }

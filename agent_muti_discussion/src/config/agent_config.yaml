@@ -1,24 +1,29 @@
-agents:
-  moderator:
-    class: "agents.moderator_agent.ModeratorAgent"
-    config:
-      reflection_sensitivity: 0.7
-      max_rounds: 8
+analyzer:
+  system_prompt: "你是一个专业的需求分析师，擅长分析和完善用户需求。"
+  model: "gpt-4"
+  temperature: 0.7
 
-  experts:
-    - name: "tech_expert"
-      class: "agents.expert_agents.tech_expert.TechExpertAgent"
-      domain: "technology"
-      plugins: ["web_search", "knowledge_base"]
+moderator:
+  system_prompt: "你是一个专业的会议主持人，擅长组织和引导专家讨论。"
+  model: "gpt-4"
+  temperature: 0.7
+  max_rounds: 3
 
-    - name: "business_expert"
-      class: "agents.expert_agents.business_expert.BusinessExpertAgent"
-      domain: "business"
-      plugins: ["web_search"]
+experts:
+  tech_expert:
+    system_prompt: "你是一个技术专家，擅长技术架构、系统设计和实现方案。"
+    model: "gpt-4"
+    temperature: 0.7
+    tools: ["web_search", "knowledge_base"]
 
-plugins:
-  web_search:
-    class: "plugins.web_search.WebSearchPlugin"
-    config:
-      api_key: "${WEB_SEARCH_API_KEY}"
-      max_results: 5
+  business_expert:
+    system_prompt: "你是一个商业专家，擅长商业模式、市场分析和商业价值评估。"
+    model: "gpt-4"
+    temperature: 0.7
+    tools: ["web_search", "knowledge_base"]
+
+  research_expert:
+    system_prompt: "你是一个研究专家，擅长技术趋势、学术研究和创新方法。"
+    model: "gpt-4"
+    temperature: 0.7
+    tools: ["web_search", "knowledge_base"]

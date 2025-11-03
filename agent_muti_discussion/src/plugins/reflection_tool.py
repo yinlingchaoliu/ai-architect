@@ -1,44 +1,75 @@
-from typing import Dict, List, Any
-from .base_plugin import BasePlugin
+from typing import Dict, Any, List
+from ..utils.logger import logger
 
 
-class ReflectionToolPlugin(BasePlugin):
-    def __init__(self, config: Dict[str, Any] = None):
-        super().__init__(config)
-        self.reflection_prompts = {
-            "contradiction": "你刚才的观点与其他专家的观点存在矛盾，请重新思考并澄清你的立场。",
-            "uncertainty": "你表达了一些不确定性，能否提供更具体的证据或数据来支持你的观点？",
-            "assumption": "你的观点基于某些假设，请明确这些假设并验证其合理性。",
-            "completeness": "你的分析似乎不够全面，请考虑其他可能的角度或因素。"
-        }
+class ReflectionToolPlugin:
+    """反思工具插件"""
 
-    async def execute(self, reflection_type: str, context: Dict[str, Any] = None) -> str:
-        """生成反思提示"""
-        base_prompt = self.reflection_prompts.get(reflection_type, "请重新思考你的观点。")
+    def __init__(self):
+        self.name = "reflection_tool"
+        self.description = "帮助智能体进行自我反思和观点调整"
 
-        if context:
-            # 添加上下文相关的具体问题
-            specific_issue = context.get('specific_issue', '')
-            if specific_issue:
-                base_prompt += f"\n具体来说：{specific_issue}"
+    def reflect(self, current_opinion: str, other_opinions: List[str]) -> Dict[str, Any]:
+        """基于其他观点进行反思"""
+        try:
+            logger.info("执行反思过程")
 
-        return base_prompt
+            # 分析观点差异
+            differences = self._analyze_differences(current_opinion, other_opinions)
 
-    async def analyze_for_reflection(self, text: str, history: List[Dict]) -> Dict[str, Any]:
-        """分析文本是否需要反思"""
-        # 简单的关键词分析，实际应该使用更复杂的NLP技术
-        triggers = {
-            "contradiction": ["但是", "然而", "矛盾", "不同意"],
-            "uncertainty": ["可能", "也许", "不确定", "不太清楚"],
-            "assumption": ["假设", "如果", "前提是"],
-            "completeness": ["一方面", "部分", "某些角度"]
-        }
+            # 生成反思结果
+            reflection_result = {
+                "original_opinion": current_opinion,
+                "considered_alternatives": other_opinions,
+                "key_differences": differences,
+                "suggested_adjustments": self._suggest_adjustments(differences),
+                "confidence_level": self._assess_confidence(differences)
+            }
 
-        analysis = {"needs_reflection": False, "types": []}
+            return {
+                "success": True,
+                "reflection": reflection_result
+            }
+        except Exception as e:
+            logger.error(f"反思过程异常: {str(e)}")
+            return {
+                "success": False,
+                "error": f"反思异常: {str(e)}"
+            }
 
-        for reflection_type, keywords in triggers.items():
-            if any(keyword in text for keyword in keywords):
-                analysis["needs_reflection"] = True
-                analysis["types"].append(reflection_type)
+    def _analyze_differences(self, current: str, others: List[str]) -> List[Dict[str, str]]:
+        """分析观点差异"""
+        differences = []
+        for i, other in enumerate(others):
+            # 简化的差异分析（实际应该使用更复杂的方法）
+            if len(current) > 100 and len(other) > 100:
+                # 这里可以添加更复杂的文本比较逻辑
+                differences.append({
+                    "expert": f"Expert_{i + 1}",
+                    "difference_type": "perspective",  # 可以是perspective, evidence, conclusion等
+                    "description": f"观点角度存在差异"
+                })
+        return differences
 
-        return analysis
+    def _suggest_adjustments(self, differences: List[Dict]) -> List[str]:
+        """建议调整"""
+        adjustments = []
+        for diff in differences:
+            if diff["difference_type"] == "perspective":
+                adjustments.append("考虑从多个角度综合分析问题")
+            elif diff["difference_type"] == "evidence":
+                adjustments.append("验证和补充相关证据")
+        return adjustments if adjustments else ["保持原有观点，但考虑其他专家的建议"]
+
+    def _assess_confidence(self, differences: List[Dict]) -> str:
+        """评估置信度"""
+        if not differences:
+            return "high"
+        elif len(differences) <= 2:
+            return "medium"
+        else:
+            return "low"
+
+    def get_tool_description(self) -> str:
+        """获取工具描述"""
+        return "使用此工具基于其他专家的观点进行自我反思和观点调整"
