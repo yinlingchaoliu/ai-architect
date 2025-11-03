@@ -1,10 +1,10 @@
 """core模块初始化 - 包含系统核心组件"""
 
-# 基础代理和响应类
+# 基础组件
 from .base_agent import BaseAgent, AgentResponse
 
 # 会话管理
-from .session_manager import DiscussionSession
+from .session_manager import SessionManager
 
 # 插件管理
 from .plugin_manager import PluginManager

@@ -7,11 +7,17 @@ from ..expert_agents.research_expert import ResearchExpertAgent
 from ..core.consensus_checker import ConsensusChecker
 from ..utils.logger import logger
 
+# 颜色常量定义
+class Colors:
+    RED = '\033[91m'
+    BLUE = '\033[94m'
+    RESET = '\033[0m'
+
 
 class SessionManager:
     """会话管理器"""
 
-    def __init__(self):
+    def __init__(self, max_rounds: int = 10):
         self.analyzer = AnalyzerAgent()
         self.moderator = ModeratorAgent()
         self.consensus_checker = ConsensusChecker()
@@ -23,10 +29,11 @@ class SessionManager:
             "research_expert": ResearchExpertAgent()
         }
 
-        # 讨论状态
+        # 讨论状态和配置
         self.discussion_history: List[Dict[str, Any]] = []
         self.current_round = 0
         self.is_completed = False
+        self.max_rounds = max_rounds  # 最大讨论轮数，默认10次
 
     def process_user_input(self, user_input: str) -> Dict[str, Any]:
         """处理用户输入，启动多轮讨论"""
@@ -62,10 +69,21 @@ class SessionManager:
         while not self.is_completed:
             self.current_round += 1
             logger.info(f"开始第 {self.current_round} 轮讨论")
+            
+            # 检查是否达到最大轮数
+            if self.current_round >= self.max_rounds:
+                logger.info(f"已达到最大讨论轮数 {self.max_rounds}，讨论结束")
+                self.is_completed = True
+                break
 
             # 邀请专家发言
             round_opinions = self._invite_experts(analyzed_requirement, expert_opinions)
             expert_opinions.extend(round_opinions)
+            
+            # 打印专家意见（蓝色）
+            for opinion in round_opinions:
+                print(f"\n{Colors.BLUE}{opinion['expert_name']} 思考/提示词: ...{Colors.RESET}")
+                print(f"{Colors.BLUE}{opinion['expert_name']} 发言: {opinion['opinion']}{Colors.RESET}")
 
             # 主持人引导
             moderator_result = self.moderator.process(
@@ -73,6 +91,10 @@ class SessionManager:
                 expert_opinions=round_opinions
             )
             moderator_decision = moderator_result["moderator_decision"]
+            
+            # 打印主持人决策（红色）
+            print(f"\n{Colors.RED}主持人 需求专家 思考/提示词: ...{Colors.RESET}")
+            print(f"{Colors.RED}主持人 需求专家 发言: {moderator_decision}{Colors.RESET}")
 
             # 记录本轮讨论
             round_record = {

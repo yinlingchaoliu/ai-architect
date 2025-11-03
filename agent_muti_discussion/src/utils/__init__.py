@@ -1,7 +1,7 @@
 """utils模块初始化 - 包含工具函数和辅助组件"""
 
 # 配置管理
-from .config import Config, global_config, ConfigLoader
+from .config import Config, config
 
 # 日志工具
 try:

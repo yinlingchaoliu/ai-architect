@@ -5,16 +5,17 @@ from typing import Dict, Any
 # 添加项目根目录到Python路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from core.session_manager import SessionManager
-from utils.logger import logger
+from src.core.session_manager import SessionManager
+from src.utils.logger import logger
 
 
 class MultiAgentDiscussionSystem:
     """多智能体讨论系统主类"""
 
-    def __init__(self):
-        self.session_manager = SessionManager()
-        logger.info("多智能体讨论系统初始化完成")
+    def __init__(self, max_rounds: int = 10):
+        self.session_manager = SessionManager(max_rounds=max_rounds)
+        self.max_rounds = max_rounds
+        logger.info(f"多智能体讨论系统初始化完成，最大讨论轮数设置为 {max_rounds}")
 
     def process_query(self, user_query: str) -> Dict[str, Any]:
         """处理用户查询"""
@@ -53,7 +54,9 @@ class MultiAgentDiscussionSystem:
 
 def main():
     """主函数"""
-    system = MultiAgentDiscussionSystem()
+    # 可以在这里修改默认的最大讨论轮数，默认为10次
+    max_rounds = 10
+    system = MultiAgentDiscussionSystem(max_rounds=max_rounds)
 
     print("=== 多智能体讨论决策系统 ===")
     print(system.get_system_info())
