@@ -1,0 +1,24 @@
+agents:
+  moderator:
+    class: "agents.moderator_agent.ModeratorAgent"
+    config:
+      reflection_sensitivity: 0.7
+      max_rounds: 8
+
+  experts:
+    - name: "tech_expert"
+      class: "agents.expert_agents.tech_expert.TechExpertAgent"
+      domain: "technology"
+      plugins: ["web_search", "knowledge_base"]
+
+    - name: "business_expert"
+      class: "agents.expert_agents.business_expert.BusinessExpertAgent"
+      domain: "business"
+      plugins: ["web_search"]
+
+plugins:
+  web_search:
+    class: "plugins.web_search.WebSearchPlugin"
+    config:
+      api_key: "${WEB_SEARCH_API_KEY}"
+      max_results: 5

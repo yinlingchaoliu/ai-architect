@@ -1,0 +1,6 @@
+# multi_agent_system/requirements.txt
+openai>=1.0.0
+pyyaml>=6.0
+asyncio
+dataclasses-json>=0.6.0
+prometheus-client>=0.17.0
