@@ -5,6 +5,8 @@ from ..agents.coordinator_agent import EnhancedCoordinatorAgent
 from ..plugins.weather_agent import WeatherAgent
 from ..plugins.transport_agent import TransportAgent
 from ..plugins.budget_agent import BudgetAgent
+from ..plugins.hotel_agent import HotelAgent
+from ..plugins.attraction_agent import AttractionAgent
 from .plugin_manager import AgentPluginManager
 from ..utils.performance_monitor import PerformanceMonitor
 from ..utils.message_bus import MessageBus, MessageType, MessagePriority
@@ -51,6 +53,14 @@ class EnhancedDynamicAgentSystem:
         # 预算 Agent
         budget_agent = BudgetAgent()
         self.coordinator.register_agent(budget_agent)
+        
+        # 酒店选择师 Agent
+        hotel_agent = HotelAgent()
+        self.coordinator.register_agent(hotel_agent)
+        
+        # 景点推荐师 Agent
+        attraction_agent = AttractionAgent()
+        self.coordinator.register_agent(attraction_agent)
 
         print(f"✅ 注册了 {len(self.coordinator.agent_registry)} 个内置Agent (超时: {timeout}秒)")
 

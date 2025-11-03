@@ -12,6 +12,8 @@ class AgentType(Enum):
     WEATHER = "weather"
     TRANSPORT = "transport"
     BUDGET = "budget"
+    HOTEL = "hotel"
+    ATTRACTION = "attraction"
     CUSTOM = "custom"
 
 
