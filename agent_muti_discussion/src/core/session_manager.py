@@ -67,40 +67,60 @@ class DiscussionSession:
 
             # 3. 多轮专家讨论
             round_count = 0
+            # 确保discussion_history中的所有条目都是字典类型
+            self.discussion_history = [entry for entry in self.discussion_history if isinstance(entry, dict)]
+            
             while (round_count < max_rounds and
                    not self.consensus_checker.is_consensus_reached(self.discussion_history)):
 
                 default_logger.info(f"开始第 {round_count + 1} 轮讨论")
 
                 for expert in self.experts:
-                    # 专家发言
-                    expert_response = await expert.process(
-                        self._get_current_context(),
-                        context={'discussion_history': self.discussion_history}
-                    )
-                    self._add_to_history(expert.name, expert_response.content, expert_response.metadata)
-
-                    # 主持人判断是否需要干预
-                    if expert_response.requires_reflection:
-                        moderator_intervention = await self.moderator.process(
-                            expert_response.content,
-                            context={
-                                'discussion_history': self.discussion_history,
-                                'current_speaker': expert.name
-                            }
+                    try:
+                        # 专家发言
+                        expert_response = await expert.process(
+                            self._get_current_context(),
+                            context={'discussion_history': self.discussion_history.copy()}
                         )
-                        self._add_to_history("moderator", moderator_intervention.content,
-                                             moderator_intervention.metadata)
+                        # 确保响应是有效的AgentResponse对象
+                        if hasattr(expert_response, 'content') and hasattr(expert_response, 'metadata'):
+                            self._add_to_history(expert.name, expert_response.content, expert_response.metadata)
+
+                            # 主持人判断是否需要干预
+                            if hasattr(expert_response, 'requires_reflection') and expert_response.requires_reflection:
+                                moderator_intervention = await self.moderator.process(
+                                    expert_response.content,
+                                    context={
+                                        'discussion_history': self.discussion_history.copy(),
+                                        'current_speaker': expert.name
+                                    }
+                                )
+                                # 确保干预响应有效
+                                if hasattr(moderator_intervention, 'content') and hasattr(moderator_intervention, 'metadata'):
+                                    self._add_to_history("moderator", moderator_intervention.content,
+                                                         moderator_intervention.metadata)
+                    except Exception as e:
+                        default_logger.error(f"专家 {expert.name} 处理出错: {e}")
+                        # 确保discussion_history保持有效格式
+                        self.discussion_history = [entry for entry in self.discussion_history if isinstance(entry, dict)]
 
                 round_count += 1
 
+                # 再次确保discussion_history格式正确
+                self.discussion_history = [entry for entry in self.discussion_history if isinstance(entry, dict)]
+                
                 # 每轮结束后检查共识
-                consensus_summary = self.consensus_checker.get_consensus_summary(self.discussion_history)
-                default_logger.info(f"第 {round_count} 轮共识分数: {consensus_summary['consensus_score']:.2f}")
+                try:
+                    consensus_summary = self.consensus_checker.get_consensus_summary(self.discussion_history)
+                    # 检查共识摘要是否是有效的字典
+                    if isinstance(consensus_summary, dict) and 'consensus_score' in consensus_summary:
+                        default_logger.info(f"第 {round_count} 轮共识分数: {consensus_summary['consensus_score']:.2f}")
 
-                if consensus_summary['consensus_reached']:
-                    default_logger.info("达成共识，结束讨论")
-                    break
+                        if 'consensus_reached' in consensus_summary and consensus_summary['consensus_reached']:
+                            default_logger.info("达成共识，结束讨论")
+                            break
+                except Exception as e:
+                    default_logger.error(f"共识检查出错: {e}")
 
             # 4. 生成最终总结
             final_summary = await self.moderator.process(

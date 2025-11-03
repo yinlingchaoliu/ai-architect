@@ -41,3 +41,16 @@ class BaseAgent(ABC):
     def should_reflect(self, response: AgentResponse, discussion_history: List[Dict]) -> bool:
         """判断是否需要反思"""
         return response.requires_reflection
+    
+    async def _call_llm(self, prompt: str, **kwargs) -> str:
+        """调用大语言模型 - 提供简单的模拟实现"""
+        # 这是一个模拟实现，在实际应用中应该替换为真实的LLM API调用
+        # 根据不同类型的代理返回不同的模拟响应
+        if self.role == "分析器":
+            return f"分析结果: 问题 '{prompt}' 需要进一步探讨和专家意见。"
+        elif self.role == "主持人":
+            return f"主持响应: 感谢您的输入，我会协调专家们讨论 '{prompt}' 这个问题。"
+        elif "专家" in self.role:
+            return f"{self.role}意见: 关于 '{prompt}'，我认为这需要从多个角度考虑，包括技术可行性、商业价值和实施策略。"
+        else:
+            return f"模拟响应: 这是对 '{prompt}' 的响应，由 {self.role} 提供。"

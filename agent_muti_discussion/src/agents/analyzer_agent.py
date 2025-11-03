@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-from core.base_agent import BaseAgent, AgentResponse
+from ..core.base_agent import BaseAgent, AgentResponse
 
 # from core.base_agent import AgentResponse,BaseAgent
 

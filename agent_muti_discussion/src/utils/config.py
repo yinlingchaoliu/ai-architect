@@ -64,3 +64,37 @@ class Config:
 
 # 全局配置实例
 global_config = Config()
+
+
+class ConfigLoader:
+    """配置加载器类 - 为main.py提供配置管理功能"""
+    def __init__(self, config_path: Optional[str] = None):
+        self.config = Config(config_path)
+        # 添加插件配置获取方法
+        self._setup_plugin_configs()
+    
+    def _setup_plugin_configs(self):
+        """初始化默认的插件配置"""
+        self._plugin_configs = {
+            'web_search': {'max_results': 5},
+            'knowledge_base': {'db_path': None},
+            'reflection_tool': {'enabled': True}
+        }
+    
+    def get(self, key: str, default: Any = None) -> Any:
+        """获取配置值"""
+        return self.config.get(key, default)
+    
+    def get_plugin_config(self, plugin_name: str) -> Dict[str, Any]:
+        """获取插件配置"""
+        # 尝试从配置文件获取
+        config_value = self.config.get(f'plugins.{plugin_name}', {})
+        # 如果没有，返回默认配置
+        return {**self._plugin_configs.get(plugin_name, {}), **config_value}
+    
+    def set_plugin_config(self, plugin_name: str, config: Dict[str, Any]):
+        """设置插件配置"""
+        if plugin_name not in self._plugin_configs:
+            self._plugin_configs[plugin_name] = {}
+        self._plugin_configs[plugin_name].update(config)
+        self.config.set(f'plugins.{plugin_name}', self._plugin_configs[plugin_name])

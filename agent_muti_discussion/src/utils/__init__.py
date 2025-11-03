@@ -1,37 +1,27 @@
 """utils模块初始化 - 包含工具函数和辅助组件"""
 
 # 配置管理
-from .config import (
-    load_config, 
-    get_config_value, 
-    set_config_value,
-    validate_config
-)
+from .config import Config, global_config, ConfigLoader
 
 # 日志工具
-from .logger import (
-    default_logger,
-    setup_logger,
-    log_debug,
-    log_info,
-    log_warning,
-    log_error
-)
-
-# 网络工具
-from .network_tools import (
-    make_http_request,
-    fetch_json_data,
-    parse_url,
-    validate_url
-)
+try:
+    from .logger import default_logger, setup_logger, log_debug, log_info, log_warning, log_error
+except ImportError:
+    # 如果logger模块不存在，则提供默认实现
+    import logging
+    default_logger = logging.getLogger(__name__)
+    def setup_logger(name):
+        return default_logger
+    def log_debug(msg): pass
+    def log_info(msg): pass
+    def log_warning(msg): pass
+    def log_error(msg): pass
 
 __all__ = [
     # 配置管理
-    "load_config",
-    "get_config_value",
-    "set_config_value",
-    "validate_config",
+    "Config",
+    "global_config",
+    "ConfigLoader",
     
     # 日志工具
     "default_logger",
@@ -39,11 +29,5 @@ __all__ = [
     "log_debug",
     "log_info",
     "log_warning",
-    "log_error",
-    
-    # 网络工具
-    "make_http_request",
-    "fetch_json_data",
-    "parse_url",
-    "validate_url"
+    "log_error"
 ]

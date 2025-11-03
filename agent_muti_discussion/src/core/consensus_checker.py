@@ -30,6 +30,10 @@ class ConsensusChecker:
         viewpoints = []
 
         for entry in discussion:
+            # 添加类型检查，确保entry是字典类型
+            if not isinstance(entry, dict):
+                continue
+                
             content = entry.get('content', '')
             speaker = entry.get('speaker', '')
 
