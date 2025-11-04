@@ -66,3 +66,6 @@ mcp
 httpx
 fastmcp
 langchain_mcp_adapters
+
+
+colorama
