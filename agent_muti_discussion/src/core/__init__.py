@@ -16,9 +16,7 @@ __all__ = [
     # 基础组件
     "BaseAgent",
     "AgentResponse",
-    
-    # 会话管理
-    "DiscussionSession",
+    "SessionManager",
     
     # 插件管理
     "PluginManager",

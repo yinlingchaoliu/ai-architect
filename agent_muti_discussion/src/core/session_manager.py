@@ -82,8 +82,8 @@ class SessionManager:
             
             # 打印专家意见（蓝色）
             for opinion in round_opinions:
-                print(f"\n{Colors.BLUE}{opinion['expert_name']} 思考/提示词: ...{Colors.RESET}")
-                print(f"{Colors.BLUE}{opinion['expert_name']} 发言: {opinion['opinion']}{Colors.RESET}")
+                logger.warning(f"{opinion['expert_name']} 思考/提示词: {opinion['expert_logic']}")
+                logger.warning(f"{opinion['expert_name']} 发言: {opinion['opinion']}")
 
             # 主持人引导
             moderator_result = self.moderator.process(

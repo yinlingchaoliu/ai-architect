@@ -1,5 +1,6 @@
 import os
 import sys
+from logging import Logger
 from typing import Dict, Any
 
 # 添加项目根目录到Python路径
@@ -8,6 +9,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from src.core.session_manager import SessionManager
 from src.utils.logger import logger
 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 class MultiAgentDiscussionSystem:
     """多智能体讨论系统主类"""
@@ -20,7 +23,7 @@ class MultiAgentDiscussionSystem:
     def process_query(self, user_query: str) -> Dict[str, Any]:
         """处理用户查询"""
         try:
-            logger.info(f"处理用户查询: {user_query}")
+            logger.debug(f"处理用户查询: {user_query}")
             result = self.session_manager.process_user_input(user_query)
             return result
         except Exception as e:
@@ -58,9 +61,9 @@ def main():
     max_rounds = 10
     system = MultiAgentDiscussionSystem(max_rounds=max_rounds)
 
-    print("=== 多智能体讨论决策系统 ===")
-    print(system.get_system_info())
-    print("\n系统已就绪，请输入您的问题（输入 'quit' 退出）：")
+    logger.info("=== 多智能体讨论决策系统 ===",color=logger.RED)
+    logger.debug(system.get_system_info())
+    logger.critical("\n系统已就绪，请输入您的问题（输入 'quit' 退出）：")
 
     while True:
         try:
@@ -96,4 +99,8 @@ def main():
 
 
 if __name__ == "__main__":
+    # setup_environment()
+    # 创建必要的目录
+    os.makedirs('logs', exist_ok=True)
+    os.makedirs('data', exist_ok=True)
     main()

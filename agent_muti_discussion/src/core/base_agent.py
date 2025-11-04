@@ -76,7 +76,6 @@ class BaseAgent(ABC):
                 else:
                     # 假设其他消息都是助手消息
                     messages.append({"role": "assistant", "content": msg.content})
-
             # 调用OpenAI API
             response = self.llm.chat.completions.create(
                 model=self.model_name,
@@ -89,8 +88,6 @@ class BaseAgent(ABC):
             # 添加助手消息
             from langchain_core.messages import AIMessage
             self.add_message(AIMessage(content=response_content))
-
-            logger.info(f"Agent {self.name} 生成响应: {response_content}")
             return response_content
         except Exception as e:
             logger.error(f"Agent {self.name} 生成响应异常: {str(e)}")

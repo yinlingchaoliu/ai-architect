@@ -2,7 +2,7 @@ from typing import Dict, Any
 # from langchain.schema import HumanMessage
 
 from ..core.base_agent import BaseAgent
-from ..utils.logger import logger
+from ..utils.logger import logger, Logger
 
 
 class AnalyzerAgent(BaseAgent):
@@ -44,8 +44,10 @@ class AnalyzerAgent(BaseAgent):
 
 请输出完善后的需求描述：
 """
+        logger.info(f"{self.name}思考 {analysis_prompt}", color=Logger.RED)
         # 调用大模型进行分析
         analyzed_requirement = self.generate_response(analysis_prompt)
+        logger.info(f"{self.name}发言 \n{analyzed_requirement}", color=Logger.RED)
 
         result = {
             "original_question": input_data,

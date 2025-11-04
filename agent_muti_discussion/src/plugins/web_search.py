@@ -13,9 +13,9 @@ class WebSearchPlugin:
     def search(self, query: str, max_results: int = 5) -> Dict[str, Any]:
         """执行网页搜索"""
         try:
-            logger.info(f"执行网页搜索: {query}")
+            logger.info(f"执行网页搜索: ")
             result = network_tools.search_web(query, max_results)
-
+            logger.info(f"返回网页搜索: {result}")
             if result["success"]:
                 formatted_results = self._format_search_results(result["results"])
                 return {

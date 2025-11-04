@@ -40,7 +40,7 @@ class KnowledgeBasePlugin:
     def query(self, question: str, domain: str = "all") -> Dict[str, Any]:
         """查询知识库"""
         try:
-            logger.info(f"查询知识库: {question} - 领域: {domain}")
+            logger.info(f"查询知识库: question - 领域: {domain}")
 
             if domain == "all":
                 # 在所有领域搜索
@@ -52,7 +52,7 @@ class KnowledgeBasePlugin:
                 # 在指定领域搜索
                 domain_data = self.knowledge_data.get(domain, {})
                 results = self._search_in_domain(question, domain_data)
-
+            logger.info(f"返回知识库: {results} - 领域: {domain}")
             return {
                 "success": True,
                 "results": results,

@@ -2,6 +2,8 @@ import os
 from typing import Dict, Any
 import yaml
 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 class Config:
     """配置管理类"""

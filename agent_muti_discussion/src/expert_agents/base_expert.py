@@ -22,6 +22,8 @@ class BaseExpertAgent(BaseAgent):
         # 构建专家提示
         expert_prompt = self._build_expert_prompt(input_data, context)
 
+        expert_logic = self._build_expert_prompt(None,context)
+
         # 如果有可用插件，先使用插件获取信息
         plugin_results = self._use_plugins(input_data, context)
 
@@ -31,6 +33,7 @@ class BaseExpertAgent(BaseAgent):
         result = {
             "expert_name": self.name,
             "expertise": self.expertise,
+            "expert_logic": expert_logic,
             "opinion": opinion,
             "plugin_results": plugin_results,
             "context_used": context
