@@ -1,16 +1,15 @@
 # graph/discussion_graph.py
-# from langgraph.graph import Graph
+from langgraph.graph import StateGraph
 from typing import Dict, Any, List
 import asyncio
 from colorama import Fore, Style, init
-from langchain_core.runnables.graph import Graph
 
 init(autoreset=True)  # 初始化colorama
 
 
 class DiscussionGraph:
     def __init__(self):
-        self.graph = Graph()
+        self.graph = StateGraph(dict)  # 使用StateGraph并指定状态类型
         self.agents = {}
         self.logger = self._setup_logger()
 
@@ -27,20 +26,32 @@ class DiscussionGraph:
 
     def build_graph(self):
         """构建讨论流程图"""
-        # 定义流程：分析 -> 主持 -> 专家讨论 -> 总结
+        # 定义流程：分析 -> 主持 -> 专家讨论(通过专家节点) -> 总结
         self.graph.add_edge("analyzer", "moderator")
-        self.graph.add_edge("moderator", "expert_discussion")
+        # 将专家节点连接起来形成讨论环节
+        self.graph.add_edge("moderator", "technical_expert")
+        self.graph.add_edge("technical_expert", "business_expert")
+        self.graph.add_edge("business_expert", "research_expert")
+        # 从最后一个专家节点进行条件判断
         self.graph.add_conditional_edges(
-            "expert_discussion",
+            "research_expert",
             self._should_continue_discussion,
             {
-                "continue": "moderator",
-                "end": "summary"
+                "continue": "moderator",  # 继续讨论
+                "end": "summary"  # 结束讨论
             }
         )
+        # 注册summary节点（简单的总结功能）
+        self.graph.add_node("summary", self._generate_summary)
         self.graph.add_edge("summary", "__end__")
 
         self.graph.set_entry_point("analyzer")
+        
+    def _generate_summary(self, state: Dict[str, Any]) -> Dict[str, Any]:
+        """生成讨论总结"""
+        # 简单实现，实际项目中可以用更复杂的逻辑
+        state["final_summary"] = "根据专家讨论，我们得到了关于问题的综合分析。"
+        return state
 
     def _should_continue_discussion(self, state: Dict[str, Any]) -> str:
         """判断是否继续讨论"""

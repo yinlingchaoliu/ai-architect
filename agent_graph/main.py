@@ -6,8 +6,8 @@ from agents.moderator_agent import ModeratorAgent
 from agents.experts.technical_expert import TechnicalExpert
 from agents.experts.business_expert import BusinessExpert
 from agents.experts.research_expert import ResearchExpert
-from tools.web_search import WebSearchTool
-from tools.rag_system import RAGSystem
+# from tools.web_search import WebSearchTool
+# from tools.rag_system import RAGSystem
 from graph.discussion_graph import DiscussionGraph
 from colorama import Fore, Style
 
@@ -41,15 +41,15 @@ class MultiAgentDiscussionSystem:
 
     def _setup_tools(self):
         """设置工具系统"""
-        web_search = WebSearchTool()
-        rag_system = RAGSystem()
+        # web_search = WebSearchTool()
+        # rag_system = RAGSystem()
 
         # 为专家注册工具
         experts = ["technical_expert", "business_expert", "research_expert"]
         for expert_name in experts:
             expert = self.discussion_graph.agents[expert_name]
-            expert.register_tool("web_search", web_search.search)
-            expert.register_tool("rag_search", rag_system.search)
+            # expert.register_tool("web_search", web_search.search)
+            # expert.register_tool("rag_search", rag_system.search)
 
     async def run(self, user_query: str):
         """运行多智能体讨论"""

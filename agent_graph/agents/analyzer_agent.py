@@ -34,7 +34,7 @@ class AnalyzerAgent(BaseAgent):
             HumanMessage(content=f"请分析以下用户需求：\n\n{user_query}")
         ]
 
-        response = self.llm(messages)
+        response = self.llm.invoke(messages)
 
         return AgentResponse(
             content=response.content,
