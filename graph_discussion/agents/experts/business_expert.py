@@ -57,7 +57,7 @@ class BusinessExpert(BaseExpert):
 请用专业且易懂的语言回答："""
         
         response = self.call_llm(prompt)
-        self.log(f"发言完成: {response}...")
+        self.log(f"发言完成: {response}")
         return response
     
     def _build_context(self, context: List[Dict]) -> str:

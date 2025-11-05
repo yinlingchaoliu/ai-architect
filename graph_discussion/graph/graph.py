@@ -1,6 +1,6 @@
 # 图结构定义
 from langgraph.graph import StateGraph, END
-from graph_discussion.state import ConferenceState
+from graph_discussion.graph.state import ConferenceState
 from graph_discussion.agents.requirement_analyst import RequirementAnalyst
 from graph_discussion.agents.moderator import Moderator
 from graph_discussion.agents.summary_expert import SummaryExpert

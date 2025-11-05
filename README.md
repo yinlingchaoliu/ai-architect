@@ -27,23 +27,46 @@ Python 3.12.6
 
 方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call) + 多agent
 
-目标
+### 业务目标
+#### [多智能体会议讨论](graph_discussion)
+
+-[x] 1、[技术建议](docs/tech.md)
+-[x] 2、[商业建议](docs/business.md)
+-[x] 3、[研究建议](docs/research.md)
+-[x] 4、[总结建议](docs/summary.md)
+-[x] 5、[原始文档](docs/discussion_20251105_13.log)
+
+生成文档来源于[docs](docs)
+
+```shell
+cd graph_discussion & python main.py
+```
+
+先讨论3轮
+```commandline
+提示词 搭建一个AI 多agent股票量化软件并且商用落地
+```
+
+
+### 技术关键目标
 tips
-1) 分层架构
-2) 工具能力抽象 + 动态加载
-3) function_call / MCP
-4) agent支持 扩展 
-5) 多agent
-6) restful - api
-7) 前后端分离
-8) python WebUI
-9) rag外接数据库
-10) 支持监控
-11) 支持项目之间隔离
-12) python库 依赖管理
-13) python jni c++
-14) 支持本地模型
-15) 基础库抽取
+
+-[x] 工具能力抽象 + 动态加载(每个子系项目都考虑扩展问题)
+-[x] function_call / MCP ( 支持 [mcp管理](mcp_client_manager) [mcp服务-天气](mcp_weather) [mcp服务-数学](mcp_server_math) )
+-[x] agent支持 扩展 (支持[agent-mcp](agentmcp)) 
+-[x] 多agent (支持[graph](graph_discussion)/[think-plan-actiob-next](agent_muti))
+-[x] restful - api (支持 [langserve](server)) 
+-[ ] 前后端分离 
+-[x] python WebUI 
+- 1) [webui-chatbot](webui-chatbot)
+- 2) [react前端 deepseek-ui](https://github.com/yinlingchaoliu/deepseek-ui)
+-[x] rag外接数据库
+-[x] 支持监控 (国外 vpn 选langsmith  国内开源 langfuse)
+-[x] 支持项目之间隔离
+-[x] python库 依赖管理
+-[ ] python jni c++
+-[x] 支持本地模型
+-[x] 基础库抽取 [lib_hello](lib_hello) 工程用于快速开发示例
 
 ### 1.[webui](webui-chatbot) : python编写界面
 
@@ -114,6 +137,20 @@ pip install -e lib_request
 -[x]  3、产品场景: 旅游攻略
 
 -[x]  4、[架构设计和产品理念](agent_muti/README.md)
+
+### 7. 多智能体会议讨论 推荐langgraph
+
+-[x]  1、采用智能体传统协作方式开发 [已实现agent_muti_discussion](agent_muti_discussion)
+- 1) 智能体交互 需要设计好提示词 返回result数据
+- 2) 智能体协调关系比较复杂
+- 3) 调整逻辑关系 智能体之间改动比较大
+
+-[x]  2、采用智能体graph协作方式开发 [已实现graph_discussion](graph_discussion)
+- 1) 开发需要先确认智能体 graph 图的关系 面向智能体开发
+- 2) state 作为上下文参数 可以传递 智能体之间信息
+- 3) 智能体之间关系是解耦的 可以独立开发 互不干扰
+
+
 
 ## 启动项目
 

@@ -76,15 +76,6 @@ class Logger:
 
         # 避免重复添加handler
         if not self.logger.handlers:
-            # 获取调用者的文件名
-            caller_frame = sys._getframe(1)
-            caller_filename = os.path.basename(caller_frame.f_code.co_filename)
-            print(caller_filename)
-
-            # 通用格式化器（用于文件）
-            formatter = logging.Formatter(
-                '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s'
-            )
 
             # 控制台handler - 使用彩色格式化器
             console_handler = logging.StreamHandler(sys.stdout)
@@ -94,9 +85,14 @@ class Logger:
             console_handler.setFormatter(console_formatter)
             self.logger.addHandler(console_handler)
 
+            # 通用格式化器（用于文件）
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s'
+            )
+
             # 文件handler - 使用普通格式化器（无颜色）
             file_handler = logging.FileHandler(
-                f'logs/discussion_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+                f'logs/discussion_{datetime.now().strftime("%Y%m%d_%H")}.log'
             )
             file_handler.setFormatter(formatter)
             self.logger.addHandler(file_handler)

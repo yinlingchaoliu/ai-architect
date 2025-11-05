@@ -10,6 +10,9 @@ from graph_discussion.utils.logger import get_logger
 from dotenv import load_dotenv, find_dotenv
 import os
 
+# 创建必要的目录
+os.makedirs('logs', exist_ok=True)
+
 # 首先创建logger
 logger = get_logger("Main")
 
@@ -30,8 +33,8 @@ else:
     else:
         logger.warning("未找到.env文件，请确保已设置必要的环境变量")
 
-from graph_discussion.graph import create_conference_graph
-from graph_discussion.state import ConferenceState
+from graph_discussion.graph.graph import create_conference_graph
+from graph_discussion.graph.state import ConferenceState
 
 def main():
     """主函数"""
@@ -60,7 +63,7 @@ def main():
         "final_summary": "",
         "implementation_plans": {},
         "should_continue": False,
-        "max_rounds": 1
+        "max_rounds": 3
     }
 
     graph_png=graph.get_graph().draw_mermaid_png()
