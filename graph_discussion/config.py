@@ -6,7 +6,7 @@ class Config:
     """配置类"""
     def __init__(self):
         self.openai_api_key = os.getenv("OPENAI_API_KEY", "")
-        self.model_name = "gpt-4"
+        self.model_name = "gpt-3.5-turbo"
         self.max_rounds = 3  # 最大讨论轮次
         
         # 专家配置

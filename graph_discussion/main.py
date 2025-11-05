@@ -60,17 +60,20 @@ def main():
         "final_summary": "",
         "implementation_plans": {},
         "should_continue": False,
-        "max_rounds": 3
+        "max_rounds": 1
     }
-    
+
+    graph_png=graph.get_graph().draw_mermaid_png()
+    with open("graph_discussion.png", "wb") as f:
+        f.write(graph_png)
     # 执行图
     logger.info("开始多智能体讨论决策...", "red")
     final_state = graph.invoke(initial_state)
-    
+
     # 输出结果
     logger.info("\n\n=== 最终结果 ===", "red")
     logger.info(f"最终总结: {final_state['final_summary']}", "white")
-    
+
     logger.info("\n=== 各专家落地方案 ===", "red")
     for expert, plan in final_state['implementation_plans'].items():
         logger.info(f"{expert}: {plan}", "white")

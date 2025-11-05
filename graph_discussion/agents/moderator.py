@@ -7,7 +7,11 @@ class Moderator(BaseAgent):
     
     def __init__(self):
         super().__init__("Moderator", "主持人", "yellow")
-    
+        
+    def process(self, state: Dict[str, Any]) -> Dict[str, Any]:
+        """处理状态 - 实现基类抽象方法"""
+        # 主持人智能体在图中通过特定方法调用，这里返回空状态更新
+        return {}
 
     def start_conference(self, state: Dict[str, Any]) -> Dict[str, Any]:
         """召开会议"""
@@ -70,19 +74,31 @@ class Moderator(BaseAgent):
         # 基于轮次和讨论质量判断
         should_continue = current_round < max_rounds
         
+        if current_round >= max_rounds:
+            self.log("已达到最大讨论轮次，结束会议")
+            return {"should_continue": False}
+        
+        # 分析讨论质量
         prompt = f"""判断当前讨论是否充分，是否需要继续：
 当前轮次：{current_round}/{max_rounds}
 讨论记录：{str(discussions[-len(state['required_experts']):])}
 
-请分析讨论是否深入、问题是否解决，给出是否继续的判断："""
+请分析讨论是否深入、问题是否解决，给出是否继续的判断（只需回答"继续"或"结束"）："""
         
         judgment = self.call_llm(prompt)
         self.log(f"判断结果: {judgment}")
         
-        # 简单逻辑：如果还有轮次且讨论不够深入，继续
-        if "充分" in judgment or "完成" in judgment:
+        # 解析判断结果
+        if "继续" in judgment:
+            should_continue = True
+        elif "结束" in judgment:
             should_continue = False
         
+        # 更新轮次
+        if should_continue:
+            current_round += 1
+        
         return {
-            "should_continue": should_continue and current_round < max_rounds
+            "should_continue": should_continue,
+            "current_round": current_round
         }

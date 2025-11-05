@@ -1,10 +1,17 @@
 """工具模块，包含智能体可用的各种工具"""
 
-# 暂时移除导入以避免循环导入问题
-# 后续可以在需要时动态导入
+# 工具包初始化
+from .base_tool import BaseTool
+from .web_search import WebSearchTool
+from .rag_tool import RAGTool
 
-# 暴露的公共接口
+from .tool_registry import  ToolRegistry, tool_registry
+
+
 __all__ = [
-    # "WebSearchTool",
-    # "RAGTool"
+    "BaseTool",
+    "ToolRegistry",
+    "tool_registry",
+    "WebSearchTool",
+    "RAGTool"
 ]

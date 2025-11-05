@@ -2,16 +2,20 @@
 from .base_expert import BaseExpert
 from typing import Dict, Any, List
 
+from ...tools import tool_registry, WebSearchTool, RAGTool
+
+
 class BusinessExpert(BaseExpert):
     """商业专家"""
     
     def __init__(self):
         super().__init__("BusinessExpert", "商业专家", "green", "商业")
         # 添加工具
-        from ...tools.web_search import WebSearchTool
-        from ...tools.rag_tool import RAGTool
-        self.add_tool(WebSearchTool())
-        self.add_tool(RAGTool())
+        tool_registry.register(WebSearchTool())
+        tool_registry.register(RAGTool())
+        # 智能体注册工具名称
+        self.register_tool("web_search")
+        self.register_tool("rag_tool")
     
     def speak(self, question: str, context: List[Dict]) -> str:
         """商业专家发言"""
@@ -21,13 +25,17 @@ class BusinessExpert(BaseExpert):
         
         # 使用工具获取信息
         tool_insights = []
-        for tool in self.tools:
-            try:
-                insight = tool.execute(question, domain="商业")
-                tool_insights.append(insight)
-            except Exception as e:
-                self.log(f"工具 {tool.name} 执行失败: {str(e)}")
-        
+
+        # 使用网页搜索工具
+        web_result = self.use_tool("web_search", question, domain="技术")
+        if web_result:
+            tool_insights.append(f"网页搜索: {web_result}")
+
+        # 使用RAG工具
+        rag_result = self.use_tool("rag_tool", question, domain="技术")
+        if rag_result:
+            tool_insights.append(f"知识库: {rag_result}")
+
         tools_info = "\n".join(tool_insights) if tool_insights else "暂无工具信息"
         
         prompt = f"""你是一名资深商业专家，负责从商业模式、市场前景、盈利能力、商业风险等角度进行分析。
@@ -49,7 +57,7 @@ class BusinessExpert(BaseExpert):
 请用专业且易懂的语言回答："""
         
         response = self.call_llm(prompt)
-        self.log(f"发言完成: {response[:100]}...")
+        self.log(f"发言完成: {response}...")
         return response
     
     def _build_context(self, context: List[Dict]) -> str:

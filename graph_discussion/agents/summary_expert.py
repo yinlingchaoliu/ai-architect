@@ -33,7 +33,7 @@ class SummaryExpert(BaseAgent):
 确保总结简洁明了："""
         
         summary = self.call_llm(prompt)
-        self.log(f"本轮总结完成: {summary[:100]}...")
+        self.log(f"本轮总结完成: {summary}...")
         
         # 更新轮次总结
         round_summaries = state.get("round_summaries", [])

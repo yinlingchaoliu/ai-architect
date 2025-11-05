@@ -20,7 +20,9 @@ class ColorfulLogger:
         
         if not self.logger.handlers:
             handler = logging.StreamHandler()
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s'
+            )
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
     
@@ -28,7 +30,7 @@ class ColorfulLogger:
         """带颜色的info日志"""
         color_code = self.COLORS.get(color, self.COLORS['white'])
         reset_code = self.COLORS['reset']
-        self.logger.info(f"{color_code}{message}{reset_code}")
+        self.logger.info(f"{color_code}{message}{reset_code}",stacklevel=2)
 
 # 创建全局logger实例
 def get_logger(name: str) -> ColorfulLogger:

@@ -38,7 +38,7 @@ class RequirementAnalyst(BaseAgent):
 请确保分析全面准确："""
         
         analysis_result = self.call_llm(prompt)
-        self.log(f"需求分析完成: {analysis_result[:100]}...")
+        self.log(f"需求分析完成: {analysis_result}...")
         
         # 解析结果
         topics = self._extract_topics(analysis_result)
