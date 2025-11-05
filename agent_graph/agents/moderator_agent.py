@@ -50,7 +50,7 @@ class ModeratorAgent(BaseAgent):
             """)
         ]
 
-        response = self.llm(messages)
+        response = self.llm.invoke(messages)
 
         # 判断是否需要结束讨论
         should_conclude = self._should_conclude_discussion(discussion_history)
@@ -101,7 +101,7 @@ class ModeratorAgent(BaseAgent):
             """)
         ]
 
-        response = self.llm(messages)
+        response = self.llm.invoke(messages)
 
         return AgentResponse(
             content=response.content,

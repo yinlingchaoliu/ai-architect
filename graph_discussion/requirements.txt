@@ -1,0 +1,12 @@
+langgraph==0.0.52
+langchain-core==0.1.42
+langchain-openai==0.0.8
+langchain-community==0.0.24
+pydantic==2.5.3
+typing-extensions==4.9.0
+python-dotenv==1.0.0
+requests==2.31.0
+numpy==1.24.3
+pandas==2.0.3
+faiss-cpu==1.7.4
+sentence-transformers==2.2.2
