@@ -60,7 +60,7 @@ tips
 -[x] python WebUI 
 - 1) [webui-chatbot](webui-chatbot)
 - 2) [react前端 deepseek-ui](https://github.com/yinlingchaoliu/deepseek-ui)
--[x] rag外接数据库
+-[x] rag外接数据库 [rag项目](https://github.com/yinlingchaoliu/rag_ai)
 -[x] 支持监控 (国外 vpn 选langsmith  国内开源 langfuse)
 -[x] 支持项目之间隔离
 -[x] python库 依赖管理
