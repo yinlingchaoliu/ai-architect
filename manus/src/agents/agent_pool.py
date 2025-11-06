@@ -21,6 +21,8 @@ class AgentPool:
         planning_config = self._agent_configs.get("planning_agent", {})
         planning_agent = PlanningAgent("planning_agent", planning_config)
         planning_agent.llm_manager = self.llm_manager
+        # 设置agent_pool引用到planning_agent
+        planning_agent._agent_pool = self
         await planning_agent.initialize()
         self._agents["planning_agent"] = planning_agent
 
@@ -44,6 +46,9 @@ class AgentPool:
             agent = ToolCallAgent(name, config)
 
         agent.llm_manager = self.llm_manager
+        # 设置agent_pool引用到智能体
+        if hasattr(agent, '_agent_pool'):
+            agent._agent_pool = self
         await agent.initialize()
         return agent
 

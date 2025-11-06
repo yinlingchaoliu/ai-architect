@@ -1,8 +1,8 @@
 # src/agents/planning_agent.py
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Set
 import json
 from .base import BaseAgent
-
+from src.tools.tool_registry import tool_registry
 import re
 
 class PlanningAgent(BaseAgent):
@@ -12,6 +12,7 @@ class PlanningAgent(BaseAgent):
         super().__init__(name, config)
         self.available_agents = config.get("available_agents", [])
         self.planning_prompt = config.get("planning_prompt", "")
+        self.agent_pool = None  # 将在初始化后设置
     
     async def initialize(self):
         """初始化规划智能体"""
@@ -20,6 +21,11 @@ class PlanningAgent(BaseAgent):
         # 确保llm_manager被正确设置
         if not self.llm_manager:
             raise ValueError("LLM manager not set for planning agent")
+        
+        # 从llm_manager尝试获取agent_pool引用
+        # 注意：这需要在agent_pool设置llm_manager后进行
+        if hasattr(self, '_agent_pool'):
+            self.agent_pool = self._agent_pool
     
     async def run(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """运行规划过程"""
@@ -49,32 +55,67 @@ class PlanningAgent(BaseAgent):
         # 解析响应为结构化计划 - 从LLMResponse对象中提取content属性
         return self._parse_plan_response(response.content)
     
+    def _get_available_agents_info(self) -> List[Dict[str, Any]]:
+        """获取当前系统中实际可用的智能体信息"""
+        # 优先从agent_pool获取实际注册的智能体
+        if hasattr(self, 'agent_pool') and self.agent_pool and hasattr(self.agent_pool, 'list_agents'):
+            return self.agent_pool.list_agents()
+        
+        # 如果没有agent_pool引用，回退到配置中的智能体
+        if self.available_agents:
+            return self.available_agents
+        
+        # 默认返回基础智能体信息
+        return [
+            {
+                "name": "tool_call_agent",
+                "description": "通用工具调用智能体，可以执行基本任务",
+                "capabilities": ["execute_python", "file_operations", "web_search"]
+            }
+        ]
+    
+    def _get_available_tools_info(self) -> List[Dict[str, Any]]:
+        """获取当前系统中实际可用的工具信息"""
+        # 从工具注册表获取实际注册的工具
+        return tool_registry.list_tools()
+    
     def _build_planning_prompt(self, task: str, context: Dict[str, Any]) -> str:
         """构建规划提示"""
         base_prompt = self.planning_prompt
         
-        # 添加可用智能体信息
-        agents_info = "Available specialized agents:\n"
-        for agent_info in self.available_agents:
-            agents_info += f"- {agent_info['name']}: {agent_info['description']}\n"
-            if 'capabilities' in agent_info:
-                agents_info += f"  Capabilities: {', '.join(agent_info['capabilities'])}\n"
+        # 获取可用智能体信息
+        agents_info = self._get_available_agents_info()
+        # 获取可用工具信息
+        tools_info = self._get_available_tools_info()
         
-        context_info = f"User context: {json.dumps(context, indent=2)}" if context else ""
+        # 格式化智能体信息
+        agents_text = "Available specialized agents:\n"
+        for agent in agents_info:
+            agents_text += f"- {agent['name']}: {agent.get('description', 'No description available')}\n"
+            capabilities = agent.get('capabilities', [])
+            if capabilities:
+                agents_text += f"  Capabilities: {', '.join(capabilities)}\n"
         
+        # 格式化工具信息
+        tools_text = "Available tools:\n"
+        for tool in tools_info:
+            tools_text += f"- {tool.get('name', 'Unknown')}: {tool.get('description', 'No description available')}\n"
+        
+        # 构建提示词
         return f"""{base_prompt}
 
 Task to plan: {task}
 
-{agents_info}
+{agents_text}
 
-{context_info}
+{tools_text}
 
 Please analyze this task and create a detailed execution plan with the following structure:
 1. Break down the main task into clear, actionable subtasks
-2. For each subtask, recommend the most suitable agent
+2. For each subtask, recommend the most suitable agent from the available agents list
 3. Identify any dependencies between subtasks
 4. Estimate the complexity of each subtask
+5. If the task requires capabilities not available in the current agents/tools, identify what additional agents or tools would be needed
 
 Return your response as a JSON object with this structure:
 {{
@@ -89,8 +130,13 @@ Return your response as a JSON object with this structure:
         }}
     ],
     "overall_complexity": "assessment of overall task complexity",
-    "estimated_steps": "estimated number of steps needed"
+    "estimated_steps": "estimated number of steps needed",
+    "missing_resources": {{
+        "agents": ["list of additional agent names that would help"],
+        "tools": ["list of additional tool names that would help"]
+    }}
 }}"""
+
     
     def _parse_plan_response(self, response: str) -> Dict[str, Any]:
         """解析规划响应字符串"""

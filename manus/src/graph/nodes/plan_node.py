@@ -34,8 +34,24 @@ async def plan_node(state: AgentState) -> Dict[str, Any]:
 
     logger.info(f"Planning completed: {len(plan_result.get('subtasks', []))} subtasks")
 
-    return {
+    # 确保在规划节点输出中包含missing_resources信息
+    result = {
         "subtasks": plan_result.get("subtasks", []),
         "plan": plan_result,
-        "execution_path": state["execution_path"] + ["planning"]
+        "execution_path": state["execution_path"] + ["planning"],
+        "missing_resources": plan_result.get("missing_resources", {
+            "agents": [],
+            "tools": [],
+            "errors": []
+        })
     }
+    
+    # 如果有缺少的资源，记录日志提醒
+    missing_agents = result["missing_resources"]["agents"]
+    missing_tools = result["missing_resources"]["tools"]
+    missing_errors = result["missing_resources"]["errors"]
+    if missing_agents or missing_tools or missing_errors:
+        logger.info(f"Missing resources identified: agents={missing_agents}, tools={missing_tools}, errors={missing_errors}")
+        logger.info("建议补充这些资源以提高任务执行效果")
+    
+    return result

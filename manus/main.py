@@ -104,7 +104,76 @@ async def main():
 
             if task:
                 result = await system.run(task)
-                print(f"Result: {result}")
+                
+                # 提取并展示缺失的信息
+                print("\n=== 任务执行结果 ===")
+                
+                # 检查并显示规划阶段识别的缺失资源
+                if result.get('plan') and result['plan'].get('missing_resources'):
+                    missing_resources = result['plan']['missing_resources']
+                    
+                    if any(missing_resources.values()):
+                        print("\n发现缺失的资源:")
+                        
+                        if missing_resources.get('agents'):
+                            print(f"  - 智能体: {', '.join(missing_resources['agents'])}")
+                        
+                        if missing_resources.get('tools'):
+                            print(f"  - 工具: {', '.join(missing_resources['tools'])}")
+                        
+                        if missing_resources.get('errors'):
+                            print(f"  - 错误: {', '.join(missing_resources['errors'])}")
+                
+                # 检查并显示执行过程中的降级信息
+                fallback_info_found = False
+                if result.get('result'):
+                    for tool_result in result['result']:
+                        if isinstance(tool_result, dict):
+                            # 检查是否有缺失信息
+                            if tool_result.get('missing_info'):
+                                missing_info = tool_result['missing_info']
+                                if not fallback_info_found:
+                                    print("\n执行过程中的降级信息:")
+                                    fallback_info_found = True
+                                
+                                print(f"  - 原始任务: {missing_info.get('original_task', 'N/A')}")
+                                print(f"    目标智能体: {missing_info.get('target_agent', 'N/A')}")
+                                print(f"    降级智能体: {missing_info.get('fallback_agent', 'N/A')}")
+                                print(f"    错误类型: {missing_info.get('error_type', 'N/A')}")
+                                print(f"    错误信息: {missing_info.get('message', 'N/A')}")
+                
+                # 如果有子任务，检查子任务中的缺失信息
+                if result.get('plan') and result['plan'].get('subtasks'):
+                    for subtask in result['plan']['subtasks']:
+                        if subtask.get('missing_info'):
+                            if not fallback_info_found:
+                                print("\n执行过程中的降级信息:")
+                                fallback_info_found = True
+                            
+                            missing_info = subtask['missing_info']
+                            print(f"  - 子任务: {subtask.get('description', 'N/A')}")
+                            print(f"    错误类型: {missing_info.get('error_type', 'N/A')}")
+                            print(f"    错误信息: {missing_info.get('message', 'N/A')}")
+                
+                # 如果没有发现任何缺失信息，显示任务执行成功
+                if not (result.get('plan') and any(result['plan']['missing_resources'].values())) and not fallback_info_found:
+                    print("\n任务执行成功，没有发现缺失的资源或降级情况。")
+                
+                # 提供完整结果的简要总结
+                print("\n=== 结果总结 ===")
+                if result.get('plan'):
+                    subtasks = result['plan'].get('subtasks', [])
+                    print(f"执行了 {len(subtasks)} 个子任务")
+                    completed_count = sum(1 for t in subtasks if t.get('completed', False))
+                    print(f"成功完成: {completed_count}")
+                    
+                # 建议补充缺失的资源
+                if result.get('plan') and result['plan'].get('missing_resources'):
+                    missing_resources = result['plan']['missing_resources']
+                    if missing_resources.get('agents'):
+                        print(f"\n建议补充以下智能体: {', '.join(missing_resources['agents'])}")
+                    if missing_resources.get('tools'):
+                        print(f"建议补充以下工具: {', '.join(missing_resources['tools'])}")
 
         except KeyboardInterrupt:
             break
