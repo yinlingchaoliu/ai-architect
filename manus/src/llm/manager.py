@@ -21,22 +21,58 @@ class LLMManager:
 
     def _initialize_models(self):
         """初始化模型配置"""
-        models_config = self.config.get("models", {})
+        # 记录完整的配置结构
+        logger.info(f"Full config structure: {list(self.config.keys())}")
+        
+        # 检查配置中是否有models键
+        if "models" in self.config:
+            # 直接使用根目录的models配置作为默认模型
+            model_config = self.config["models"]
+            
+            # 确保model_config包含name字段
+            model_config_with_name = {**model_config, "name": "default"}
+            config_obj = ModelConfig(**model_config_with_name)
+            self.models["default"] = config_obj
+            self.total_usage["default"] = TokenUsage()
+            
+            # 初始化客户端
+            if config_obj.provider == "openai":
+                self.clients["default"] = AsyncOpenAI(
+                    api_key=config_obj.api_key,
+                    base_url=config_obj.base_url,
+                    timeout=config_obj.timeout if hasattr(config_obj, 'timeout') else 30.0
+                )
+            # 可以扩展其他提供商，如Azure、Anthropic等
+            
+            logger.info("Initialized default model from root models config")
+        
+        # 同时也检查是否有llm配置（兼容旧配置格式）
+        llm_config = self.config.get("llm", {})
+        models_config = llm_config.get("models", {})
+        
         for model_name, model_config in models_config.items():
             # 确保model_config包含name字段
             model_config_with_name = {**model_config, "name": model_name}
             config_obj = ModelConfig(**model_config_with_name)
             self.models[model_name] = config_obj
             self.total_usage[model_name] = TokenUsage()
-
+            
             # 初始化客户端
             if config_obj.provider == "openai":
                 self.clients[model_name] = AsyncOpenAI(
                     api_key=config_obj.api_key,
                     base_url=config_obj.base_url,
-                    timeout=config_obj.timeout
+                    timeout=config_obj.timeout if hasattr(config_obj, 'timeout') else 30.0
                 )
             # 可以扩展其他提供商，如Azure、Anthropic等
+        
+        # 为default模型添加别名指向默认模型（如果还没有默认模型）
+        if "default" not in self.models:
+            default_model_name = llm_config.get("default_model")
+            if default_model_name and default_model_name in self.models:
+                self.models["default"] = self.models[default_model_name]
+        
+        logger.info(f"Initialized {len(self.models)} models: {list(self.models.keys())}")
 
     async def generate(
             self,

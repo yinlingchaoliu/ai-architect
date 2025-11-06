@@ -13,6 +13,14 @@ class PlanningAgent(BaseAgent):
         self.available_agents = config.get("available_agents", [])
         self.planning_prompt = config.get("planning_prompt", "")
     
+    async def initialize(self):
+        """初始化规划智能体"""
+        # 设置初始状态
+        self.state.status = "initialized"
+        # 确保llm_manager被正确设置
+        if not self.llm_manager:
+            raise ValueError("LLM manager not set for planning agent")
+    
     async def run(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """运行规划过程"""
         task = input_data.get("task", "")
@@ -38,8 +46,8 @@ class PlanningAgent(BaseAgent):
             model=self.config.get("model", "default")
         )
         
-        # 解析响应为结构化计划
-        return self._parse_plan_response(response)
+        # 解析响应为结构化计划 - 从LLMResponse对象中提取content属性
+        return self._parse_plan_response(response.content)
     
     def _build_planning_prompt(self, task: str, context: Dict[str, Any]) -> str:
         """构建规划提示"""
@@ -85,7 +93,7 @@ Return your response as a JSON object with this structure:
 }}"""
     
     def _parse_plan_response(self, response: str) -> Dict[str, Any]:
-        """解析规划响应"""
+        """解析规划响应字符串"""
         try:
             # 尝试从响应中提取JSON
             json_match = re.search(r'\{.*\}', response, re.DOTALL)

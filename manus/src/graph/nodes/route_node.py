@@ -32,7 +32,6 @@ async def route_node(state: AgentState) -> Dict[str, Any]:
             "execution_path": state["execution_path"] + ["routing:complete"]
         }
 
-    recommended_agent = current_subtask.get("recommended_agent", "tool_call_agent")
 
     logger.info(f"Routed to agent: {recommended_agent} for subtask: {current_subtask['description']}")
 

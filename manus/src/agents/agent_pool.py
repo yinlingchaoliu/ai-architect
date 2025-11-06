@@ -20,8 +20,8 @@ class AgentPool:
         # 初始化规划智能体
         planning_config = self._agent_configs.get("planning_agent", {})
         planning_agent = PlanningAgent("planning_agent", planning_config)
-        await planning_agent.initialize()
         planning_agent.llm_manager = self.llm_manager
+        await planning_agent.initialize()
         self._agents["planning_agent"] = planning_agent
 
         # 初始化专用智能体
@@ -43,8 +43,8 @@ class AgentPool:
             # 默认使用 ToolCallAgent
             agent = ToolCallAgent(name, config)
 
-        await agent.initialize()
         agent.llm_manager = self.llm_manager
+        await agent.initialize()
         return agent
 
     def get_agent(self, name: str) -> Optional[BaseAgent]:

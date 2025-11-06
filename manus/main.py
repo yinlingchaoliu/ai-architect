@@ -36,6 +36,12 @@ class MultiAgentSystem:
 
         # 初始化智能体池
         await self.agent_pool.initialize()
+        
+        # 设置全局agent_pool引用到plan_node和execute_node
+        from src.graph.nodes.plan_node import set_agent_pool as set_plan_node_agent_pool
+        from src.graph.nodes.execute_node import set_agent_pool as set_execute_node_agent_pool
+        set_plan_node_agent_pool(self.agent_pool)
+        set_execute_node_agent_pool(self.agent_pool)
 
         logger.info("Multi-Agent System initialized successfully")
 
