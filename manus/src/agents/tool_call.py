@@ -3,7 +3,7 @@ import json
 import re
 from typing import Dict, Any, List, Optional
 from .react import ReActAgent
-from ..tools.tool_registry import tool_registry
+from src.tools.tool_registry import tool_registry
 
 class ToolCallAgent(ReActAgent):
     """工具调用智能体"""

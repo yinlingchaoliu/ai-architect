@@ -2,11 +2,13 @@
 import asyncio
 import logging
 from typing import Dict, Any
-from .graph.workflow import workflow
-from .utils.config import ConfigManager
-from .llm.manager import LLMManager
-from .agents.agent_pool import AgentPool
-from .tools.tool_registry import tool_registry
+
+# from agents import AgentPool
+from src.agents import AgentPool
+from src.graph.workflow import workflow
+from src.utils.config import ConfigManager
+from src.llm.manager import LLMManager
+from src.tools.tool_registry import tool_registry
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -39,9 +41,9 @@ class MultiAgentSystem:
 
     async def _register_tools(self):
         """注册工具"""
-        from .tools.python_tool import PythonExecuteTool
-        from .tools.file_tool import FileTool
-        from .tools.search_tool import SearchTool
+        from src.tools.python_tool import PythonExecuteTool
+        from src.tools.file_tool import FileTool
+        from src.tools.search_tool import SearchTool
 
         # 注册内置工具
         tool_registry.register_tool(PythonExecuteTool())

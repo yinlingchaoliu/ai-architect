@@ -1,11 +1,9 @@
 # src/graph/nodes/plan_node.py
-from ..state import AgentState
 from typing import Dict, Any
 import logging
-
-"""规划节点 - 任务拆解和路由"""
-from manus.src.agents.agent_pool import AgentPool
-from manus.src.utils.config import ConfigManager
+from src.agents import AgentPool
+from src.utils.config import ConfigManager
+from src.graph.state import AgentState
 
 logger = logging.getLogger(__name__)
 

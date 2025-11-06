@@ -2,8 +2,6 @@
 from ..state import AgentState
 from typing import Dict, Any
 import logging
-from manus.src.agents.agent_pool import AgentPool
-from manus.src.utils.config import ConfigManager
 logger = logging.getLogger(__name__)
 
 

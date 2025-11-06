@@ -1,7 +1,7 @@
 # run_flow.py
 import asyncio
 import sys
-from src.main import MultiAgentSystem
+from manus.main import MultiAgentSystem
 
 async def run_flow(task: str):
     """运行工作流"""

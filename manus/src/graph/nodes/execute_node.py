@@ -1,10 +1,10 @@
 # src/graph/nodes/execute_node.py
-from ..state import AgentState
 from typing import Dict, Any
 import logging
 
-from manus.src.agents.agent_pool import AgentPool
-from manus.src.utils.config import ConfigManager
+from src.agents import AgentPool
+from src.graph.state import AgentState
+from src.utils.config import ConfigManager
 
 """执行节点 - 智能体执行任务"""
 # from src.agents.agent_pool import AgentPool

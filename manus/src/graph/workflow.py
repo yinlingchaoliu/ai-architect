@@ -1,24 +1,18 @@
+# src/graph/workflow.py
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, List, Dict, Any
 from langchain_core.messages import BaseMessage
-# src/graph/workflow.py
-from langgraph.graph import StateGraph, END
-from .state import AgentState
-from .nodes import plan_node, route_node, execute_node, check_node
+from src.graph.state import AgentState
+from src.graph.nodes.plan_node import plan_node
+from src.graph.nodes.route_node import route_node
+from src.graph.nodes.execute_node import execute_node
+from src.graph.nodes.check_node import check_node
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-class AgentState(TypedDict):
-    """智能体状态定义"""
-    messages: List[BaseMessage]
-    current_task: str
-    subtasks: List[Dict]
-    current_agent: str
-    tool_results: List[Dict]
-    execution_path: List[str]
-    is_complete: bool
+# AgentState is imported from src.graph.state
 
 def create_workflow() -> StateGraph:
     """创建智能体工作流"""

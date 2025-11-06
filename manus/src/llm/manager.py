@@ -23,7 +23,9 @@ class LLMManager:
         """初始化模型配置"""
         models_config = self.config.get("models", {})
         for model_name, model_config in models_config.items():
-            config_obj = ModelConfig(**model_config)
+            # 确保model_config包含name字段
+            model_config_with_name = {**model_config, "name": model_name}
+            config_obj = ModelConfig(**model_config_with_name)
             self.models[model_name] = config_obj
             self.total_usage[model_name] = TokenUsage()
 
