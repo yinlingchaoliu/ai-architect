@@ -1,0 +1,44 @@
+# config/config.toml
+[llm]
+default_model = "gpt-4"
+
+[llm.models.gpt-4]
+provider = "openai"
+model_name = "gpt-3.5-turbo"
+api_key = "${OPENAI_API_KEY}"
+max_tokens = 4096
+temperature = 0.0
+cost_per_input_token = 0.03
+cost_per_output_token = 0.06
+
+[llm.models.gpt-3.5-turbo]
+provider = "openai"
+model_name = "gpt-3.5-turbo"
+api_key = "${OPENAI_API_KEY}"
+max_tokens = 4096
+temperature = 0.0
+cost_per_input_token = 0.0015
+cost_per_output_token = 0.002
+
+[agents.planning_agent]
+type = "planning"
+model = "gpt-4"
+planning_prompt = "You are an expert task planner. Break down complex tasks into executable subtasks."
+
+[agents.specialized_agents.data_agent]
+type = "tool_call"
+model = "gpt-4"
+tools = ["execute_python", "file_operations"]
+
+[agents.specialized_agents.code_agent]
+type = "tool_call"
+model = "gpt-4"
+tools = ["execute_python", "file_operations"]
+
+[agents.specialized_agents.web_agent]
+type = "tool_call"
+model = "gpt-4"
+tools = ["web_search", "file_operations"]
+
+[tools]
+# 工具配置
