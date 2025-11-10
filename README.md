@@ -23,7 +23,9 @@ Python 3.12.6
 
 ## 4.AI 项目架构
 
-先写代码，再画架构图
+![项目架构图](ai-architect.png)
+
+[架构图实时更新](https://hw59jj30i1.feishu.cn/docx/CXHFdYgRvoy8lnxcy2KcVxTInAb?from=from_copylink)
 
 方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call) + 多agent
 
