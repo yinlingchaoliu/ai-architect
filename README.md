@@ -16,27 +16,20 @@ export OPENAI_API_KEY='hk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 1000个token 约为750英文单词 (400汉字)
 
-## 3.环境 python env
-```shell
-Python 3.12.6
-```
 
-## 4.AI 项目架构
-
-![项目架构图](ai-architect.png)
-
-[架构图实时更新](https://hw59jj30i1.feishu.cn/docx/CXHFdYgRvoy8lnxcy2KcVxTInAb?from=from_copylink)
-
-方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call) + 多agent
-
-### 业务目标
+## 3、业务目标
 #### [多智能体会议讨论](graph_discussion)
 
 -[x] 1、[技术建议](docs/tech.md)
+
 -[x] 2、[商业建议](docs/business.md)
+
 -[x] 3、[研究建议](docs/research.md)
+
 -[x] 4、[总结建议](docs/summary.md)
+
 -[x] 5、[原始文档](docs/discussion_20251105_13.log)
+
 
 生成文档来源于[docs](docs)
 
@@ -50,25 +43,60 @@ cd graph_discussion & python main.py
 ```
 
 
+## 4.AI 项目架构
+
+![项目架构图](ai-architect.png)
+
+[架构图实时更新](https://hw59jj30i1.feishu.cn/docx/CXHFdYgRvoy8lnxcy2KcVxTInAb?from=from_copylink)
+
+方向: chatbot + server(restful) + rag + openmanus + (mcp / function_call) + 多agent
+
 ### 技术关键目标
 tips
 
--[x] 工具能力抽象 + 动态加载(每个子系项目都考虑扩展问题)
--[x] function_call / MCP ( 支持 [mcp管理](mcp_client_manager) [mcp服务-天气](mcp_weather) [mcp服务-数学](mcp_server_math) )
--[x] agent支持 扩展 (支持[agent-mcp](agentmcp)) 
--[x] 多agent (支持[graph](graph_discussion)/[think-plan-actiob-next](agent_muti))
--[x] restful - api (支持 [langserve](server)) 
--[ ] 前后端分离 
--[x] python WebUI 
-- 1) [webui-chatbot](webui-chatbot)
-- 2) [react前端 deepseek-ui](https://github.com/yinlingchaoliu/deepseek-ui)
--[x] rag外接数据库 [rag项目](https://github.com/yinlingchaoliu/rag_ai)
--[x] 支持监控 (国外 vpn 选langsmith  国内开源 langfuse)
--[x] 支持项目之间隔离
--[x] python库 依赖管理
--[ ] python jni c++
--[x] 支持本地模型
--[x] 基础库抽取 [lib_hello](lib_hello) 工程用于快速开发示例
+- [x] 工具能力抽象 + 动态加载(每个子系项目都考虑扩展问题)
+
+- [x] function_call / MCP ( 支持 [mcp管理](mcp_client_manager) [mcp服务-天气](mcp_weather) [mcp服务-数学](mcp_server_math) )
+
+- [x] agent支持 扩展 (支持[agent-mcp](agentmcp)) 
+
+- [x] 多agent (支持[graph](graph_discussion)/[think-plan-actiob-next](agent_muti))
+
+- [x] restful - api (支持 [langserve](server)) 
+
+- [ ] 前后端分离 
+
+- [x] python WebUI 
+ - 1) [webui-chatbot](webui-chatbot)
+ - 2) [react前端 deepseek-ui](https://github.com/yinlingchaoliu/deepseek-ui)
+
+- [x] rag外接数据库 [rag项目](https://github.com/yinlingchaoliu/rag_ai)
+
+- [x] 支持监控 (国外 vpn 选langsmith  国内开源 langfuse)
+
+- [x] 支持项目之间隔离
+
+- [x] python库 依赖管理
+
+- [ ] python jni c++
+
+- [x] 支持本地模型
+
+- [x] 基础库抽取 [lib_hello](lib_hello) 工程用于快速开发示例
+
+### AI训练架构图
+![AI训练架构图](ai-architect.png)
+
+- 1、[AI基于huggface模型微调(bert/gpt2)](https://github.com/yinlingchaoliu/huggingface_ft)
+
+- 2、[llama3微调](https://gitee.com/yinlingchaoliu/Chinese-LLaMA-Alpaca-3)
+
+- 3、[MedicalGPT微调范式，基于模型训练4个阶段(预训练, 有监督微调,奖励模型,强化学习)](https://gitee.com/yinlingchaoliu/MedicalGPT)
+
+### 环境 python env
+```shell
+python 3.12.6
+```
 
 ### 1.[webui](webui-chatbot) : python编写界面
 
