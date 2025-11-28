@@ -20,15 +20,15 @@ export OPENAI_API_KEY='hk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 ## 3、业务目标
 #### [多智能体会议讨论](graph_discussion)
 
--[x] 1、[技术建议](docs/tech.md)
+- [x] 1、[技术建议](docs/tech.md)
 
--[x] 2、[商业建议](docs/business.md)
+- [x] 2、[商业建议](docs/business.md)
 
--[x] 3、[研究建议](docs/research.md)
+- [x] 3、[研究建议](docs/research.md)
 
--[x] 4、[总结建议](docs/summary.md)
+- [x] 4、[总结建议](docs/summary.md)
 
--[x] 5、[原始文档](docs/discussion_20251105_13.log)
+- [x] 5、[原始文档](docs/discussion_20251105_13.log)
 
 
 生成文档来源于[docs](docs)
@@ -106,21 +106,21 @@ python 3.12.6
 从界面混合，改成MVC -> 前后端分离
 
 ### 2.[ai服务](server): 提供restful api
--[x]  1、支持动态路由注册
+- [x]  1、支持动态路由注册
 
--[x]  2、服务健康检查 路由配置查询
+- [x]  2、服务健康检查 路由配置查询
 
--[x]  3、支持openai服务 get/post样例
+- [x]  3、支持openai服务 get/post样例
 
--[x] 4、支持playground调试
+- [x] 4、支持playground调试
 
--[x] 5、langserve 可支持 simth (需要申请key)
+- [x] 5、langserve 可支持 simth (需要申请key)
 
--[x] 6、增加[测试用例](client/client)测试用例来测试
+- [x] 6、增加[测试用例](client/client)测试用例来测试
 
--[x] 7、适配支持get 配置路径 服务器默认只支持post
+- [x] 7、适配支持get 配置路径 服务器默认只支持post
 
--[x]  8、支持[shell请求](client/shell/post.sh), 实际场景只需要post
+- [x]  8、支持[shell请求](client/shell/post.sh), 实际场景只需要post
 
 ### 3.[rag外接知识库](rag): 提供rag扩展
 
@@ -130,27 +130,27 @@ python 3.12.6
 2) 以lib_开头
 3) [基础库sdk管理](lib_hello/README.md)
 
--[x] 1、支持依赖库(本地发布,远程发布)
+- [x] 1、支持依赖库(本地发布,远程发布)
 
--[x] 2、lib_request 对openai request简单封装 为复用做准备
+- [x] 2、lib_request 对openai request简单封装 为复用做准备
 
--[x] 3、lib_hello 是基础库的模版代码
+- [x] 3、lib_hello 是基础库的模版代码
 
 ### 5.mcp 协议
 
--[x]  编写 mcp-server [天气服务](mcp_weather)
+- [x]  编写 mcp-server [天气服务](mcp_weather)
 
--[x]  编写 mcp-server [计算服务](mcp_server_math)
+- [x]  编写 mcp-server [计算服务](mcp_server_math)
 
--[x]  编写 mcp-client-manager [mcp客户端管理,支持LLM自主选择 远程MCP tools](mcp_client_manager)
+- [x]  编写 mcp-client-manager [mcp客户端管理,支持LLM自主选择 远程MCP tools](mcp_client_manager)
 
--[x]  编写 mcp-client-manager 支持动态注册 mcp server
+- [x]  编写 mcp-client-manager 支持动态注册 mcp server
 
--[x]  编写 mcp-client-manager 实现 LLM 自主决策 调用与实现隔离
+- [x]  编写 mcp-client-manager 实现 LLM 自主决策 调用与实现隔离
 
--[x]  编写 mcp-client-manager 增加mcp_manager 中间层 用于管理mcp服务 ,给LLM提供tools和调用
+- [x]  编写 mcp-client-manager 增加mcp_manager 中间层 用于管理mcp服务 ,给LLM提供tools和调用
 
--[x]  模型支持调用工具链, 也可以自主回复
+- [x]  模型支持调用工具链, 也可以自主回复
 
 本地引用
 ```shell
@@ -160,22 +160,22 @@ pip install -e lib_request
 
 ### 6. [Think-Plan-Action-Next 模式 多agent协调设计](agent_muti)
 
--[x]  1、增加 Think-Plan-Action-Next 多轮迭代思考 通用化逻辑思考方法论
+- [x]  1、增加 Think-Plan-Action-Next 多轮迭代思考 通用化逻辑思考方法论
 
--[x]  2、支持agent插件平行扩展
+- [x]  2、支持agent插件平行扩展
 
--[x]  3、产品场景: 旅游攻略
+- [x]  3、产品场景: 旅游攻略
 
--[x]  4、[架构设计和产品理念](agent_muti/README.md)
+- [x]  4、[架构设计和产品理念](agent_muti/README.md)
 
 ### 7. 多智能体会议讨论 推荐langgraph
 
--[x]  1、采用智能体传统协作方式开发 [已实现agent_muti_discussion](agent_muti_discussion)
+- [x]  1、采用智能体传统协作方式开发 [已实现agent_muti_discussion](agent_muti_discussion)
 - 1) 智能体交互 需要设计好提示词 返回result数据
 - 2) 智能体协调关系比较复杂
 - 3) 调整逻辑关系 智能体之间改动比较大
 
--[x]  2、采用智能体graph协作方式开发 [已实现graph_discussion](graph_discussion)
+- [x]  2、采用智能体graph协作方式开发 [已实现graph_discussion](graph_discussion)
 - 1) 开发需要先确认智能体 graph 图的关系 面向智能体开发
 - 2) state 作为上下文参数 可以传递 智能体之间信息
 - 3) 智能体之间关系是解耦的 可以独立开发 互不干扰
