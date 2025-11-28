@@ -85,7 +85,7 @@ tips
 - [x] 基础库抽取 [lib_hello](lib_hello) 工程用于快速开发示例
 
 ### AI训练架构图
-![AI训练架构图](ai-architect.png)
+![AI训练架构](ai-train.png)
 
 - 1、[AI基于huggface模型微调(bert/gpt2)](https://github.com/yinlingchaoliu/huggingface_ft)
 
