@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "review_type": "self_review",
+  "source_head": "5e8a52d47357a10767821ebeee8200a44bc3b085",
+  "verdict": "PASS_PLAN_DOCUMENTATION",
+  "checks": {
+    "markdown_files": 13,
+    "key_step_documents": 11,
+    "local_links_checked": 39,
+    "anchors_checked": 5,
+    "missing_links": [],
+    "invalid_anchors": [],
+    "whitespace_errors": [],
+    "step_status_errors": [],
+    "previous_artifact_changes": [],
+    "source_changes": [],
+    "tracked_changes": [],
+    "git_diff_check_passed": true,
+    "mermaid_rendered": true,
+    "mermaid_visual_review": "self_review_pass"
+  },
+  "not_run": [
+    "dependency_resolution",
+    "python_and_business_dependency_upgrade",
+    "pip_check",
+    "application_runtime",
+    "model_calls",
+    "mcp_a2a_interoperability",
+    "code_tests",
+    "fault_and_load_tests",
+    "deployment",
+    "business_acceptance"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/task/01-langchain-upgrade.md",
+      "bytes": 11488,
+      "sha256": "ba044bfdaab56018483bc9b4e6b5e9e413c2ea00e4cd557ac6421b2b3551860e"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton.md",
+      "bytes": 3262,
+      "sha256": "978cd02f57909492690d86aec1275254c67d6bbd3fe0f6ddd4807188968a419b"
+    },
+    {
+      "path": "docs/task/03-resource-and-agent-adapters.md",
+      "bytes": 3434,
+      "sha256": "77c1daa5c3cab071030300cb11c6d2c740563aa996831ae4628781f91ae08481"
+    },
+    {
+      "path": "docs/task/04-runtime-and-persistence.md",
+      "bytes": 3391,
+      "sha256": "ac4edcc7a91a62f6fc11b5635af1d1c3806cf6d358be3ee8a3f0a4b8c2dcf40e"
+    },
+    {
+      "path": "docs/task/05-agent-registry-and-configuration.md",
+      "bytes": 3013,
+      "sha256": "519e82b9da45352bd543b50e93615baf40349787ea55942fdb2280145322b59d"
+    },
+    {
+      "path": "docs/task/06-orchestrator-worker-and-supervisor.md",
+      "bytes": 3049,
+      "sha256": "87e8b98778a44fc89a2934c3868791ed3c88a863c33c42da8c83b3d7d790acd9"
+    },
+    {
+      "path": "docs/task/07-a2a-integration.md",
+      "bytes": 2992,
+      "sha256": "1ad7c66f40b627cca9ea7eda58b1517b249d485597af15fb19a01c4034cb603b"
+    },
+    {
+      "path": "docs/task/08-handoff.md",
+      "bytes": 2568,
+      "sha256": "4c1159270bc4989837ede6205c9da730a0f866825ac9ac3b1aeca8b686d8b85a"
+    },
+    {
+      "path": "docs/task/09-swarm.md",
+      "bytes": 2838,
+      "sha256": "49338607b0b58b50b14563349f13a317581ba19a390320378b148052d0402b79"
+    },
+    {
+      "path": "docs/task/10-console-and-module-migration.md",
+      "bytes": 3290,
+      "sha256": "a42ad930fd007b6f6babdeed7be3f13b57f830244569d3a97baec07d0d245496"
+    },
+    {
+      "path": "docs/task/11-integration-and-rollout.md",
+      "bytes": 3605,
+      "sha256": "e037b80508f3e5c94e74275f0e926bba53d8999066961defd66bd165de4391e7"
+    },
+    {
+      "path": "docs/task/README.md",
+      "bytes": 8181,
+      "sha256": "40e47c6abfcdfc04b22032fea385332c0ce4c97f120552bf865677da62d28b3b"
+    },
+    {
+      "path": "docs/task/validation.md",
+      "bytes": 1744,
+      "sha256": "cd78900fe6760495a9a899cbe157a0672eaca51abb2a8d47c1cde46e6767668b"
+    }
+  ]
+}

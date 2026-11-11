@@ -1,0 +1,24 @@
+flowchart TB
+    A["L1 · 接入与应用<br/>控制台 / Chat / CLI / SDK<br/>FastAPI：管理 API、Run API、SSE、A2A Server"]
+    subgraph CONTROL["控制面"]
+        C["L2 · 定义、注册与治理<br/>Agent Catalog / Discovery / 实例租约<br/>Agent 与配置 Revision / Workflow / 权限与配额"]
+    end
+    subgraph EXECUTION["执行面：共享运行机制，四种策略可插拔"]
+        P["L3 · 协作策略<br/>Orchestrator-worker / Supervisor<br/>Handoff / Swarm"]
+        R["L4 · 运行内核<br/>Run / Task / Attempt / Owner Epoch<br/>调度 / 预算 / 取消 / 恢复<br/>Context / Checkpoint / Artifact"]
+        AD["L5 · Agent 与资源适配<br/>Local Python / LangGraph Adapter / A2A Client<br/>模型网关 / MCP 工具 / RAG / 沙箱"]
+        P -->|决策意图| R
+        R -->|受控执行| AD
+    end
+    I["L6 · 基础设施与横向治理<br/>PostgreSQL：目录、状态、队列、事件<br/>对象存储 / Trace、Metrics、Audit<br/>身份 / Secret / 数据与出站策略"]
+    X["外部系统<br/>远程 A2A Agent<br/>MCP 服务 / 模型 / 知识库"]
+    A -->|定义管理与运行解析| C
+    C -->|固定版本和合格参与者| P
+    AD --> I
+    AD ---|协议和资源连接| X
+    classDef control fill:#eff6ff,stroke:#2563eb
+    classDef execution fill:#f0fdfa,stroke:#0f766e
+    classDef infrastructure fill:#f1f5f9,stroke:#64748b
+    class C control
+    class P,R,AD execution
+    class I,X infrastructure

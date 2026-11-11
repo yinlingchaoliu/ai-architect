@@ -1,0 +1,29 @@
+flowchart LR
+    U["用户 / 开发者<br/>各子项目独立启动"]
+    UI["交互应用：webui-chatbot<br/>Streamlit 页面 → 模型 SDK<br/>PDF / Word → FAISS 检索"]
+    API["HTTP 应用：client → server<br/>FastAPI → 启动时路由注册 → LangServe 链<br/>health / routes；RAG 路由未启用"]
+    AG["四个独立 Agent 应用<br/>graph_discussion：LangGraph 会议图<br/>agent_muti_discussion：SessionManager<br/>agent_muti：协调器 / 迭代 / 本地插件<br/>manus：规划 / 路由 / 执行 / 检查"]
+    MC["MCP 应用<br/>mcp_client_manager：发现与 LLM 工具路由<br/>agentmcp：AgentExecutor + MCP Adapter"]
+    RAG["独立数据应用<br/>rag_llamaindex：本地模型 / 文档索引<br/>csv-search：SQLite / SQLDatabaseChain"]
+    LIB["请求与公共库示例<br/>根 main.py → lib_request<br/>lib_graph：独立 LangGraph 示例<br/>lib_hello：SDK 打包模板"]
+    MODEL["各自访问模型服务<br/>OpenAI 兼容 API / 本地模型<br/>目前没有统一模型网关"]
+    TOOLS["工具和局部状态<br/>各应用自有工具 / 插件 / 内存 / 日志<br/>graph_discussion 搜索与 RAG 为模拟<br/>没有统一 Run / Task 状态库"]
+    MCPS["独立 MCP 工具服务<br/>mcp_weather / mcp_server_math<br/>SSE 协议连接"]
+    U --> UI
+    U --> API
+    U --> AG
+    U --> MC
+    U --> RAG
+    U --> LIB
+    UI --> MODEL
+    API --> MODEL
+    AG --> MODEL
+    RAG --> MODEL
+    LIB --> MODEL
+    MC --> MODEL
+    AG --> TOOLS
+    MC --> MCPS
+    classDef external fill:#f0fdfa,stroke:#0f766e
+    classDef state fill:#f1f5f9,stroke:#64748b
+    class MODEL,MCPS external
+    class TOOLS state

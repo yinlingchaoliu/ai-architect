@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "analysis_date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "repository_head": "5e8a52d47357a10767821ebeee8200a44bc3b085",
+  "initial_worktree_clean": true,
+  "scope": "Static architecture analysis; hashes identify selected source inputs, not runtime verification. Secret values and env files are excluded. Some helper files were inspected by targeted search.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6221,
+      "sha256": "2e7a7e57c5992e50e7e600fdd49a644b407675a34030790302385441d3170b4d"
+    },
+    {
+      "path": "agent_muti/main.py",
+      "bytes": 3756,
+      "sha256": "6205e5d2066329a8fdaa0f1fb26a4ae64edb063f6642e1418d4a086769aade45"
+    },
+    {
+      "path": "agent_muti/src/agents/base_agent.py",
+      "bytes": 4598,
+      "sha256": "fd23113727de4e9819182ed2353bf4c766682ba822cfb907eceb9fbe5df44bc5"
+    },
+    {
+      "path": "agent_muti/src/agents/coordinator_agent.py",
+      "bytes": 4618,
+      "sha256": "e326dc2d527e16d6f0420c33c420dd3550c9909271cfe2efaa42b18a97070cb8"
+    },
+    {
+      "path": "agent_muti/src/core/agent_system.py",
+      "bytes": 10821,
+      "sha256": "3707f68d683cdffa1367d3294694a7469574968e406df30a9762af6e9c9d4d17"
+    },
+    {
+      "path": "agent_muti/src/core/iteration_controller.py",
+      "bytes": 13522,
+      "sha256": "69793e12b76263fd0dfd7e3e9aedddb1f142802c9ebf4ac9bfa18cb2d4e4f754"
+    },
+    {
+      "path": "agent_muti/src/core/planning_engine.py",
+      "bytes": 21896,
+      "sha256": "20371c6b7e2e97ba0ba3f4fdae71e373db3937d3d84bc9fc84e88c96a0459bc6"
+    },
+    {
+      "path": "agent_muti/src/core/plugin_manager.py",
+      "bytes": 2662,
+      "sha256": "5ab2b929d97a9b7ab39e63addfbbf2c79eae9b7a6583e309e5f4c85a301c63e5"
+    },
+    {
+      "path": "agent_muti/src/models/agent_models.py",
+      "bytes": 1812,
+      "sha256": "1b5c27b7a3af3887d45d772ec174b342da076ba2f9febf3c6869491c6e753fad"
+    },
+    {
+      "path": "agent_muti/src/models/capability_models.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "agent_muti/src/utils/message_bus.py",
+      "bytes": 15426,
+      "sha256": "f34c1fb071c73707c6cc5f19365cf1c4593d1c294bc071717b06d9f899107085"
+    },
+    {
+      "path": "agent_muti_discussion/main.py",
+      "bytes": 3524,
+      "sha256": "554335d134498214e60f3b47a18ed2328aa6bce2bda7213f86f60aec62129287"
+    },
+    {
+      "path": "agent_muti_discussion/src/core/base_agent.py",
+      "bytes": 3769,
+      "sha256": "06b36542c507e006c509c5ac794f6eb845c43ce5de1b04b5d4b52264f00f7f47"
+    },
+    {
+      "path": "agent_muti_discussion/src/core/plugin_manager.py",
+      "bytes": 2621,
+      "sha256": "6749de38dfb3ec84844fbc0b48aea14e3be6b1bbe0278ab83727661b29773913"
+    },
+    {
+      "path": "agent_muti_discussion/src/core/session_manager.py",
+      "bytes": 7285,
+      "sha256": "3d7ebcf4a31be3ca404af7027c0bc73666a1d5259126afeff9735a10ed264134"
+    },
+    {
+      "path": "agentmcp/agentmcp.py",
+      "bytes": 1945,
+      "sha256": "b0486353164dd7b5072e9af680672c3635cb3c99aad3aec2471e9c66cf8629d5"
+    },
+    {
+      "path": "csv-search/llm.py",
+      "bytes": 5297,
+      "sha256": "05d6e86bb2d4972b40316228c3fcdf690934b8d13b9fc2ef4df0ac0b1e3eb29f"
+    },
+    {
+      "path": "graph_discussion/agents/base_agent.py",
+      "bytes": 2285,
+      "sha256": "ecd2f9a7bad933f3dd364f0d011077642c59c1aab0fbe8d16895ee9fbd7d0fc9"
+    },
+    {
+      "path": "graph_discussion/agents/experts/tech_expert.py",
+      "bytes": 2433,
+      "sha256": "fa2432b9f90666e4fbea5cad4867ce55bb3119984668d8a679fc8a20b0a406e4"
+    },
+    {
+      "path": "graph_discussion/agents/moderator.py",
+      "bytes": 3719,
+      "sha256": "daef6c0f007631f17f8e5a67b76dae375ffda8e3c1fbc9f2485e071ec4ec44f5"
+    },
+    {
+      "path": "graph_discussion/config.py",
+      "bytes": 846,
+      "sha256": "4c3a0c240fb31c357c7bc877a882d93ea522b22277736f39e938278802016e1e"
+    },
+    {
+      "path": "graph_discussion/graph/graph.py",
+      "bytes": 6369,
+      "sha256": "c792ac0cb287a868fa041fbe15c9a072f7b9bccd81bf1c5c2a92c44a63a441d9"
+    },
+    {
+      "path": "graph_discussion/graph/state.py",
+      "bytes": 985,
+      "sha256": "e22b9b6373ab1a57a54ee748fc9811bcaa4a25bdf91b4bdd752ea0fc25075076"
+    },
+    {
+      "path": "graph_discussion/main.py",
+      "bytes": 2609,
+      "sha256": "e7afca544129d10e228bf2c9a4eed10e99f5180cbb516d49b0f1d2dcf9f1eb83"
+    },
+    {
+      "path": "graph_discussion/requirements.txt",
+      "bytes": 246,
+      "sha256": "a6ce2753f8e274bd055a33e237642b208b93105ab076209400cc619c996e7562"
+    },
+    {
+      "path": "graph_discussion/tools/rag_tool.py",
+      "bytes": 3708,
+      "sha256": "ae8bdc509e78b2963d16e6ed85444a294ce601d2e493491e16f947673837386d"
+    },
+    {
+      "path": "graph_discussion/tools/tool_registry.py",
+      "bytes": 1378,
+      "sha256": "7307aa40db118903f4e2e0025947ddf3706cfa569a87f32e96244ba78d4244e5"
+    },
+    {
+      "path": "graph_discussion/tools/web_search.py",
+      "bytes": 3040,
+      "sha256": "73cde8f34d264690934518c8b12c89cfb69b8dd3fc05b14197e853e52ed786e7"
+    },
+    {
+      "path": "lib_graph/README.md",
+      "bytes": 664,
+      "sha256": "d4ae93f15754241a841f1a97f505b00a6077378be0b9de4a77a25b24d1a3c59c"
+    },
+    {
+      "path": "lib_graph/src/lib_graph/langgraph_hello.py",
+      "bytes": 3423,
+      "sha256": "a51949f58a749f5223abf60764042e20f0882ea6eff444e8ca9477d579a7a329"
+    },
+    {
+      "path": "lib_hello/README.md",
+      "bytes": 664,
+      "sha256": "d4ae93f15754241a841f1a97f505b00a6077378be0b9de4a77a25b24d1a3c59c"
+    },
+    {
+      "path": "lib_request/README.md",
+      "bytes": 664,
+      "sha256": "d4ae93f15754241a841f1a97f505b00a6077378be0b9de4a77a25b24d1a3c59c"
+    },
+    {
+      "path": "main.py",
+      "bytes": 1933,
+      "sha256": "b91d5bbfb066dc1df8af373acd4fb8b5bc5cc7dbcfee2b3b0eae55f595241fce"
+    },
+    {
+      "path": "manus/main.py",
+      "bytes": 7958,
+      "sha256": "64e8678ba8adf4d59879455b9dcd9146f040123a7c8a7125f2ccf3cc562d43fa"
+    },
+    {
+      "path": "manus/run_flow.py",
+      "bytes": 615,
+      "sha256": "7a4b7b6ec4593f91e3030aa9c5f4baf2ee9e64f2d5a0fb92281e0c27e81d7877"
+    },
+    {
+      "path": "manus/src/agents/agent_pool.py",
+      "bytes": 3731,
+      "sha256": "4914702b3798892e536b24139c74996dc6e1e649df7812f8e8c32acfc7617a6b"
+    },
+    {
+      "path": "manus/src/graph/nodes/check_node.py",
+      "bytes": 1221,
+      "sha256": "a784556c3885bb7f6c2377f5b712d87dab0cd9f4cff84ec4ba429f20fef12ba5"
+    },
+    {
+      "path": "manus/src/graph/nodes/execute_node.py",
+      "bytes": 4519,
+      "sha256": "a935277bb79c33b7863d4f6eeec99420014846fd900158a4bdeb0e13c507eb72"
+    },
+    {
+      "path": "manus/src/graph/nodes/plan_node.py",
+      "bytes": 1872,
+      "sha256": "a471c4e77af2e0c4bef20184f7e3437115e972b8182768a1dbb5662b9bef4052"
+    },
+    {
+      "path": "manus/src/graph/nodes/route_node.py",
+      "bytes": 2186,
+      "sha256": "8230c01cb6b8a3b3ff843219fe5c0b3f8811975e7a9111c874576c76cdcaa09b"
+    },
+    {
+      "path": "manus/src/graph/state.py",
+      "bytes": 606,
+      "sha256": "455b415c74e5818501a5a9bd77de06fa330bd29188a6d4dd89e4128f66e7fba1"
+    },
+    {
+      "path": "manus/src/graph/workflow.py",
+      "bytes": 1464,
+      "sha256": "9abfd40f6bceeeb40cfc98c2f9420c4939cae8c355269980d800bdc4b37f4632"
+    },
+    {
+      "path": "manus/src/memory/conversation.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "manus/src/memory/vector_store.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "manus/src/tools/python_tool.py",
+      "bytes": 1591,
+      "sha256": "58acaeb250f1a4190e2a0a607fde5f4931f35f557c176a7696d46e5ef863ddca"
+    },
+    {
+      "path": "manus/src/tools/tool_registry.py",
+      "bytes": 1111,
+      "sha256": "80ada4ded5f8bcb4635f130b58f76d1c8d9a53a21a7312850c83a83968098394"
+    },
+    {
+      "path": "manus/src/utils/config.py",
+      "bytes": 1212,
+      "sha256": "0d0462396611575a2c96fa6b28ab7bc15989b1dfbab6e0b3473efe1f8f977a5e"
+    },
+    {
+      "path": "mcp_client_manager/main.py",
+      "bytes": 2458,
+      "sha256": "ba3998a866d587f3036f28554e71508f11b33805ace4e9dc554a908f556f1b3a"
+    },
+    {
+      "path": "mcp_client_manager/src/core/mcp_client.py",
+      "bytes": 3708,
+      "sha256": "df25b5814c569de79af7ccec88ec9311ad5b72c28793380ec9910c2fbdf6537e"
+    },
+    {
+      "path": "mcp_client_manager/src/core/mcp_manager.py",
+      "bytes": 1450,
+      "sha256": "9fbe6d65edbc87b3e4a5177b5cce347aa6c2fa342cd2020ac8dac473295367e1"
+    },
+    {
+      "path": "mcp_client_manager/src/core/mcp_router.py",
+      "bytes": 3785,
+      "sha256": "375f7b8b1d7295b6e5ffd6d88dbb37c1c81dcd47a29662d02324ff6419417c9d"
+    },
+    {
+      "path": "mcp_server_math/main.py",
+      "bytes": 1125,
+      "sha256": "e106bd00f5a3b6dd4c262a218084222a2c4d1fe8823e83cc1eddfba086b08a77"
+    },
+    {
+      "path": "mcp_weather/main.py",
+      "bytes": 2698,
+      "sha256": "e6c91ffccf330baf944bdd00867856279c890b42d5163f065c687513a732c273"
+    },
+    {
+      "path": "rag_llamaindex/app.py",
+      "bytes": 2806,
+      "sha256": "0f2a2bf89e0eae6759e69c9efca755eb088a4c9fc13f0538635899999e7f939e"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 673,
+      "sha256": "91cbd4b932fe056a6a8060ba62b5fabfc588a52bd40efd3676776d2779e5017c"
+    },
+    {
+      "path": "server/README.md",
+      "bytes": 2239,
+      "sha256": "926d8d4ba0def3c5c01235dfd7ec8745350415b8d2ae938e7acb19d0bd857c7f"
+    },
+    {
+      "path": "server/app/chain/openai_prompt_server.py",
+      "bytes": 859,
+      "sha256": "0f3c35871df4cb5348b674efe9485a656d4a938cb0bd576d2fc2731649c50ff9"
+    },
+    {
+      "path": "server/app/chain/openai_server.py",
+      "bytes": 717,
+      "sha256": "acf82570e8c10b191918b90c6ce36b0522a516e6520fdb4dfda89157d7e9ee67"
+    },
+    {
+      "path": "server/app/routes/init.py",
+      "bytes": 2672,
+      "sha256": "f49d9b3d68f3441f58f80667df0b270c2f72043066afb64e68eecdc631db6000"
+    },
+    {
+      "path": "server/app/routes/routes_config.py",
+      "bytes": 1458,
+      "sha256": "552e94d2ece5cdaade4b9a44c66535073f110dd0f59a25d207cf7d219eac404e"
+    },
+    {
+      "path": "server/app/server.py",
+      "bytes": 1331,
+      "sha256": "d15dd27b3b5c961644fab6a5db57261b8e27e8a9c88288621ef3945a576a6e76"
+    },
+    {
+      "path": "server/pyproject.toml",
+      "bytes": 509,
+      "sha256": "effb1f9fb8343ba48a060340ad5e409fcc52a9f9885b6369db537c678417a0cf"
+    },
+    {
+      "path": "setup.py",
+      "bytes": 108,
+      "sha256": "527b275d6fb12cbcba14daa2809fc541ec6db6beea0ef1c95e4a196667fa3260"
+    },
+    {
+      "path": "webui-chatbot/src/home.py",
+      "bytes": 4813,
+      "sha256": "aba513d6afed9345d202456e6d836f75b31b49ebea0c729a43ee8a9b67d51dac"
+    },
+    {
+      "path": "webui-chatbot/src/pages/chat.py",
+      "bytes": 9636,
+      "sha256": "62c376c488bb7dc3f94cb65dbaf39366be2f16435d32fa85a057ccfd832a6dad"
+    },
+    {
+      "path": "webui-chatbot/src/pages/pdf_search.py",
+      "bytes": 9360,
+      "sha256": "420b9e0c90b25c141032c3d013cdacbc39a2a95bdabcee1dde13c142df765b56"
+    },
+    {
+      "path": "webui-chatbot/src/utils/env.py",
+      "bytes": 739,
+      "sha256": "0126219e573e34abfb39284606959a815e6f1eb1ceec78fea8dba8722c6f7bfe"
+    }
+  ]
+}
