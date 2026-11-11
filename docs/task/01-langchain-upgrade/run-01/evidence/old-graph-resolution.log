@@ -1,0 +1,3 @@
+error: No solution found when resolving dependencies
+  cause: Because langgraph==0.0.52 depends on langchain-core>=0.2,<0.3 and you require langgraph==0.0.52, we can conclude that you require langchain-core>=0.2,<0.3.
+         And because you require langchain-core==0.1.42, we can conclude that your requirements are unsatisfiable.

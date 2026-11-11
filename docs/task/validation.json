@@ -1,24 +1,52 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "revision": "v1.1-current-features",
   "date": "2026-11-12",
   "timezone": "Asia/Shanghai",
   "review_type": "self_review",
-  "source_head": "5e8a52d47357a10767821ebeee8200a44bc3b085",
+  "source_head": "52c497230d4f0d9c0bbc112035b2b9f48039ea74",
   "verdict": "PASS_PLAN_DOCUMENTATION",
   "checks": {
-    "markdown_files": 13,
+    "markdown_files": 14,
     "key_step_documents": 11,
-    "local_links_checked": 39,
-    "anchors_checked": 5,
+    "feature_baseline_document": "docs/task/langchain-feature-baseline.md",
+    "local_links_checked": 50,
+    "anchors_checked": 8,
     "missing_links": [],
     "invalid_anchors": [],
     "whitespace_errors": [],
     "step_status_errors": [],
-    "previous_artifact_changes": [],
+    "architecture_artifact_changes": [],
     "source_changes": [],
-    "tracked_changes": [],
+    "tracked_changes": [
+      "docs/task/01-langchain-upgrade.md",
+      "docs/task/02-platform-contracts-and-skeleton.md",
+      "docs/task/03-resource-and-agent-adapters.md",
+      "docs/task/04-runtime-and-persistence.md",
+      "docs/task/06-orchestrator-worker-and-supervisor.md",
+      "docs/task/08-handoff.md",
+      "docs/task/10-console-and-module-migration.md",
+      "docs/task/11-integration-and-rollout.md",
+      "docs/task/README.md",
+      "docs/task/validation.md"
+    ],
+    "untracked_files": [
+      "docs/task/langchain-feature-baseline.md"
+    ],
+    "changes_outside_docs_task": [],
     "git_diff_check_passed": true,
-    "mermaid_rendered": true,
+    "mermaid_renders": [
+      {
+        "source": "docs/task/README.md",
+        "diagram": 1,
+        "passed": true
+      },
+      {
+        "source": "docs/task/langchain-feature-baseline.md",
+        "diagram": 1,
+        "passed": true
+      }
+    ],
     "mermaid_visual_review": "self_review_pass"
   },
   "not_run": [
@@ -26,6 +54,7 @@
     "python_and_business_dependency_upgrade",
     "pip_check",
     "application_runtime",
+    "new_framework_feature_runtime",
     "model_calls",
     "mcp_a2a_interoperability",
     "code_tests",
@@ -36,23 +65,23 @@
   "artifacts": [
     {
       "path": "docs/task/01-langchain-upgrade.md",
-      "bytes": 11488,
-      "sha256": "ba044bfdaab56018483bc9b4e6b5e9e413c2ea00e4cd557ac6421b2b3551860e"
+      "bytes": 13151,
+      "sha256": "ec04bbba42d07429653144dbae3e38329c7310a3e0e7888095e6d59bac08b086"
     },
     {
       "path": "docs/task/02-platform-contracts-and-skeleton.md",
-      "bytes": 3262,
-      "sha256": "978cd02f57909492690d86aec1275254c67d6bbd3fe0f6ddd4807188968a419b"
+      "bytes": 3525,
+      "sha256": "2bd73243e2df4b75d16b6d4781e3edc03c7d4be5c3968e45a50f0873955c2cb7"
     },
     {
       "path": "docs/task/03-resource-and-agent-adapters.md",
-      "bytes": 3434,
-      "sha256": "77c1daa5c3cab071030300cb11c6d2c740563aa996831ae4628781f91ae08481"
+      "bytes": 4202,
+      "sha256": "9b599f6153c00f0d1d2e9b7201dfe59788fb57610a77b8075ce51ef5fea485c6"
     },
     {
       "path": "docs/task/04-runtime-and-persistence.md",
-      "bytes": 3391,
-      "sha256": "ac4edcc7a91a62f6fc11b5635af1d1c3806cf6d358be3ee8a3f0a4b8c2dcf40e"
+      "bytes": 3824,
+      "sha256": "5effdcd183333b712fd3e03c482e9f59cded9b9e599e0f3632f4efa142edf226"
     },
     {
       "path": "docs/task/05-agent-registry-and-configuration.md",
@@ -61,8 +90,8 @@
     },
     {
       "path": "docs/task/06-orchestrator-worker-and-supervisor.md",
-      "bytes": 3049,
-      "sha256": "87e8b98778a44fc89a2934c3868791ed3c88a863c33c42da8c83b3d7d790acd9"
+      "bytes": 3594,
+      "sha256": "4d89e0058898abee598fc7f089ca6daf0b247cb642cff6d158d8f906fa08eaf8"
     },
     {
       "path": "docs/task/07-a2a-integration.md",
@@ -71,8 +100,8 @@
     },
     {
       "path": "docs/task/08-handoff.md",
-      "bytes": 2568,
-      "sha256": "4c1159270bc4989837ede6205c9da730a0f866825ac9ac3b1aeca8b686d8b85a"
+      "bytes": 2907,
+      "sha256": "8a3c91cdc4c80de42e6c27b33ba3bd1b6ac6a989f7a841651bb5ffd08cc0200d"
     },
     {
       "path": "docs/task/09-swarm.md",
@@ -81,23 +110,28 @@
     },
     {
       "path": "docs/task/10-console-and-module-migration.md",
-      "bytes": 3290,
-      "sha256": "a42ad930fd007b6f6babdeed7be3f13b57f830244569d3a97baec07d0d245496"
+      "bytes": 3716,
+      "sha256": "32443f18a80dd8a7fe04bc114c2cba79f07b4edec691dbb21c8d676b97bb0e21"
     },
     {
       "path": "docs/task/11-integration-and-rollout.md",
-      "bytes": 3605,
-      "sha256": "e037b80508f3e5c94e74275f0e926bba53d8999066961defd66bd165de4391e7"
+      "bytes": 3963,
+      "sha256": "44a82a46147c6dc23231903e1c46616e1dd1ee9d256830c92ee0cefaaced3cda"
     },
     {
       "path": "docs/task/README.md",
-      "bytes": 8181,
-      "sha256": "40e47c6abfcdfc04b22032fea385332c0ce4c97f120552bf865677da62d28b3b"
+      "bytes": 8757,
+      "sha256": "a562e642eb602ef587f8c71c8fedc9aa2e64d411f0371874bca1b074d54c60fc"
+    },
+    {
+      "path": "docs/task/langchain-feature-baseline.md",
+      "bytes": 8708,
+      "sha256": "0d46ea9b2ce9b3f6052ea7a2524d22d1554ce406921e408af53921e8f0cdc366"
     },
     {
       "path": "docs/task/validation.md",
-      "bytes": 1744,
-      "sha256": "cd78900fe6760495a9a899cbe157a0672eaca51abb2a8d47c1cde46e6767668b"
+      "bytes": 2139,
+      "sha256": "ae659ed635cab0111753090d843ad11dce3dded0d3e8d80e9c69ae15ed5d6dbc"
     }
   ]
 }

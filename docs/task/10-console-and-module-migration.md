@@ -13,6 +13,8 @@
 
 前端不直接取得供应商密钥，不绕过平台调用模型/工具；多模态文件经工件接口上传、授权和引用。
 
+Agent Adapter 优先消费 v3 Event Streaming 的消息、工具和子图投影，平台落成自己的版本化事件再供 UI 查询/订阅。标准 content_blocks 保留文本/多模态/引用的类型；UI 不解析 provider 私有块或依赖旧 stream tuple 形状。新平台主路径采用内置 MCPAdapter，S01 遗留 adapters 兼容环境在本步逐项退出。[当前特性基线](01-langchain-upgrade.md)
+
 ## 2. 实施任务与模块去向
 
 | ID | 范围 | 改造和交付（拟） | 验收重点 |

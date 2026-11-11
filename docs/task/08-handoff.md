@@ -25,6 +25,8 @@ A 提议 → Runtime 验权/检查在途动作 → B 准入接受
 
 远程的 prepare/commit 是平台控制流程，不把它伪装成 A2A 标准原生握手。B 的准入阶段只检查能否接收，真正业务 A2A 请求在平台 commit 后发出；发送结果未知沿 S07 规则对账。
 
+本地图的等待与续行复用 LangGraph interrupt/Command resume 和固定 checkpoint，类型化 context 注入已提交的 owner 视图；它们不替代数据库 CAS。MCP elicitation 和工具审批等中断必须作为可续行控制流保留，不触发普通工具重试；仅在业务策略确需时启用审批 middleware。
+
 ## 3. 验收与回滚
 
 测试 B 拒收、prepare 超时、commit 前后崩溃、重复通知、A 的过期回传、B 激活失败和用户消息与转交并发。任何时刻仅一个有效处理 owner；已经发往外部的动作不能靠 epoch 自动撤销，冲突写域必须先排空/对账。

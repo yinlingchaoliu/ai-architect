@@ -1,8 +1,2 @@
-streamlit<1.30
-pandas
-numpy
-openai
-langchain
-langchain-openai
-langchain-experimental
-tiktoken
+# Legacy SQL chain is isolated in the explicit UI/RAG compatibility group.
+-r ../requirements/ui-rag.lock

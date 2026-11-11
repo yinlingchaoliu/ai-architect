@@ -3,8 +3,6 @@ import asyncio
 import json
 from typing import Dict, List, Any, Optional, Callable
 
-from lazy_object_proxy.utils import await_
-
 from .plugin_agent import PluginAgent
 from ..models.agent_models import AgentType, AgentResponse
 from ..core.iteration_controller import IterationController

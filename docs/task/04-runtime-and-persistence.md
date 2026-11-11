@@ -30,6 +30,8 @@ Runtime 是 Task/Attempt 状态唯一写入者。Pattern 只提交意图，Worke
 
 远端或工具调用超时后进入 reconciling，先检查回执和副作用，确认安全才重试。框架 checkpoint 保存计算状态，平台数据库保存目标、任务、归属和回执；禁止两者各自重试同一次业务动作。运行完成、输出 Schema 通过和业务接受分开记录。
 
+LangChain create_agent 直接复用 LangGraph 的运行时、checkpoint/store、interrupt/resume 和子图能力；平台不重新实现它的单 Agent 工具循环。内核补充的是跨 Agent/远端的业务 Task、owner、预算和副作用账本。v3 类型化流转换为持久平台事件，保留原运行关联和最终 usage；原始 token 流不是状态事实源。[新特性采用边界](01-langchain-upgrade.md)
+
 ## 4. 验收与回滚
 
 必须做跨进程故障验证：领取后崩溃、工具已执行但落库前崩溃、重复投递、租约过期后旧 Worker 回传、流连接中断、取消期间子进程继续运行、恢复时旧制品不兼容。结果应可从 DB、工件和真实副作用回读。

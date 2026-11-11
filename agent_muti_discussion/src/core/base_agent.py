@@ -21,7 +21,7 @@ class AgentResponse:
 class BaseAgent(ABC):
     """智能体基类"""
 
-    def __init__(self, name: str, system_prompt: str, model_name: str = "gpt-3.5-turbo", temperature: float = 0.9):
+    def __init__(self, name: str, system_prompt: str, model_name: str = None, temperature: float = 0.9):
         self.name = name
         self.system_prompt = system_prompt
         self.model_name = model_name or config.model_name
@@ -81,7 +81,8 @@ class BaseAgent(ABC):
                 model=self.model_name,
                 messages=messages,
                 temperature=self.temperature,
-                max_tokens=kwargs.get('max_tokens', config.max_tokens)
+                max_tokens=kwargs.get('max_tokens', config.max_tokens),
+                extra_body={"thinking": {"type": "disabled"}} if self.model_name.startswith("deepseek-") else {},
             )
             response_content = response.choices[0].message.content
 

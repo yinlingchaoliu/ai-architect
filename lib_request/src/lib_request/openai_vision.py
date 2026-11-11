@@ -8,6 +8,7 @@ from openai import OpenAI
 
 from .utils import log
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """
@@ -32,7 +33,6 @@ class OpenAIVisionClient:
 
     def vision_image_path(self,input,image_path):
         if self.debug:
-            log(self.openai_api_key)
             log(self.openai_base_url)
 
         # Getting the base64 string
@@ -64,7 +64,6 @@ class OpenAIVisionClient:
 
     def vision_image_url(self,input,image_url):
         if self.debug:
-            log(self.openai_api_key)
             log(self.openai_base_url)
 
         response = self.client.chat.completions.create(

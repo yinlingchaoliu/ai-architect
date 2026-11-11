@@ -34,7 +34,7 @@ class BaseAgent(ABC):
         """调用大模型"""
         try:
             response = self.llm.invoke(prompt)
-            return response.content
+            return response.text
         except Exception as e:
             self.log(f"调用大模型失败: {str(e)}")
             return f"思考中... ({str(e)})"

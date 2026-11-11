@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "comparison": "captured pre-execution worktree + approved link replacement only",
+  "files": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/03-resource-and-agent-adapters.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/04-runtime-and-persistence.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/05-agent-registry-and-configuration.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/06-orchestrator-worker-and-supervisor.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/07-a2a-integration.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/08-handoff.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/09-swarm.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/10-console-and-module-migration.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/11-integration-and-rollout.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/README.md",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/validation.json",
+      "approved_link_replacement_only": true
+    },
+    {
+      "path": "docs/task/validation.md",
+      "approved_link_replacement_only": true
+    }
+  ]
+}

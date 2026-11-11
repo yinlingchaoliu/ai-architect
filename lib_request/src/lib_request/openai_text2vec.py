@@ -7,6 +7,7 @@ from dotenv import load_dotenv, find_dotenv
 from .utils import log
 from openai import OpenAI
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """

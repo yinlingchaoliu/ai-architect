@@ -6,6 +6,8 @@
 
 先把一条现有会议流程接到公共执行合同，再统一模型、MCP、工具、RAG 和沙箱边界。先整图包裹 `graph_discussion`，保留旧结果作为对照；角色拆分与业务策略变化安排在 S06。此阶段本地 Adapter 可以工作，但统一持久调度由 S04 实现。
 
+新单 Agent 统一使用 create_agent，复用其 LangGraph 基础；装配 middleware、context_schema/ToolRuntime 和 response_format。模型/工具/子图事件优先消费 `stream_events(..., version="v3")` 的类型化投影，再映射平台事件。具体能力和验证依据见[当前特性基线](01-langchain-upgrade.md)。
+
 ```text
 旧 CLI → 旧会议图                          （保留对照）
 平台本地调用 → LangGraphAdapter → 同一会议图 （新增入口，隔离测试数据）
@@ -17,8 +19,8 @@
 | ID | 工作 | 主要位置（拟） | 核心要求 |
 |---|---|---|---|
 | S03-A | 实现 LocalAgentAdapter / LangGraphAdapter | `platform/.../adapters/` | 输入投影、进度、工件、错误、查询/取消能力声明 |
-| S03-B | 模型访问收敛 | `resources/models/`；旧 Agent 注入接口 | 模型 profile、secret 引用、超时、stream 和 usage 来源统一 |
-| S03-C | 工具与 MCP 绑定 | `resources/tools/`、`resources/mcp/` | list/call/close、Schema、资源释放、权限和 operation_id |
+| S03-B | 模型访问与 middleware | `resources/models/`；旧 Agent 注入接口 | 当前 provider、动态上下文/工具、usage；ModelRouter/auto mode beta 只在允许候选内验证 |
+| S03-C | 工具与内置 MCP 绑定 | `resources/tools/`、`resources/mcp/` | 采用 langchain.mcp.MCPAdapter + FastMCP 4 候选；工具发现/错误/中断、HTTP transport 和授权 |
 | S03-D | RAG 能力分类 | `resources/retrieval/` | 模拟知识与真实检索使用不同 profile，返回来源和版本 |
 | S03-E | 代码/文件执行边界 | `resources/sandbox/` | 独立工作区、资源和出站限制、可观察进程停止 |
 | S03-F | 去除全局可变资源耦合 | 受迁移的 Agent/子图 | 新入口按上下文注入；并发任务不共享可变 AgentPool/会话 |
@@ -28,6 +30,8 @@ Manus 的失败仍被标 completed、全局 AgentPool，以及图内 LLM 错误�
 ## 3. 重要决定
 
 Adapter 不另开调度器，不自行重试业务写操作；只提交观察和能力。模型输出经 Schema 校验后才进入公共结果；非字符串 content、工具失败和 usage 不可见均保留类型/unknown。
+
+新 MCP 默认走 Streamable HTTP，旧 SSE 仅显式兼容；prompts/resources 需要时经受控 FastMCP Client port 读取。内置 MCPAdapter 当前 beta，封装其版本边界；工具 elicitation 映射为 interrupt/等待输入，不能被 retry middleware 吞成错误。旧独立 adapters 组仅限旧入口隔离过渡。
 
 数学和 Python 工具不把主机进程或 `eval` 当安全沙箱。暂未完成隔离的工具在新平台禁用，保留旧代码为示例，不进入可用能力列表。真实 RAG 的索引/模型不在本步重建，先固定检索 port 和可信来源口径。
 

@@ -1,0 +1,117 @@
+{
+  "checked_at": "2026-11-11T21:36:10.858010+00:00",
+  "review_mode": "self_review",
+  "python_sources_parsed": 70,
+  "python_errors": [],
+  "pyproject_toml_parsed": 5,
+  "documentation_files": 11,
+  "local_links_checked": 70,
+  "broken_links": [],
+  "other_task_documents": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/03-resource-and-agent-adapters.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/04-runtime-and-persistence.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/05-agent-registry-and-configuration.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/06-orchestrator-worker-and-supervisor.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/07-a2a-integration.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/08-handoff.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/09-swarm.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/10-console-and-module-migration.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/11-integration-and-rollout.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/README.md",
+      "passed": true
+    },
+    {
+      "path": "docs/task/validation.json",
+      "passed": true
+    },
+    {
+      "path": "docs/task/validation.md",
+      "passed": true
+    }
+  ],
+  "credential_scan": {
+    "checked": "newly supplied provider key in deliverable bytes; full environment excluded",
+    "leak_paths": [],
+    "private_config_untracked": true,
+    "private_config_ignored": true,
+    "private_config_permissions": "0o600",
+    "tracked_env_unchanged": true
+  },
+  "diff_whitespace": {
+    "exit_code": 0,
+    "scope": "source/docs; original CRLF respected, raw logs and original backups excluded",
+    "output": ""
+  },
+  "locks_match_recorded_hashes": true,
+  "test_summary": {
+    "status": "passed",
+    "total": 31,
+    "groups": [
+      {
+        "group": "agent-tests",
+        "tests": 23,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 6.411
+      },
+      {
+        "group": "langserve-tests",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.594
+      },
+      {
+        "group": "ui-rag-tests",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.305
+      }
+    ],
+    "live_provider": "deepseek-flash",
+    "live_checks": 4,
+    "review_mode": "self_review",
+    "scope": "S01 compatibility subset"
+  },
+  "live_model_status": "passed",
+  "live_mcp_status": "passed",
+  "manifest_sha256": "ef088856a882a21093ddfd2fab71ec1fb6a08a9016526968604e920e67c1eace",
+  "manifest_files": 163,
+  "status": "passed"
+}

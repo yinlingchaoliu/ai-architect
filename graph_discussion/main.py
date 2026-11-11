@@ -16,6 +16,9 @@ os.makedirs('logs', exist_ok=True)
 # 首先创建logger
 logger = get_logger("Main")
 
+# 优先加载不纳入版本控制的本地配置
+load_dotenv(find_dotenv(".env.local"))
+
 # 尝试找到并加载.env文件
 logger.info("尝试加载环境变量...")
 env_path = find_dotenv()

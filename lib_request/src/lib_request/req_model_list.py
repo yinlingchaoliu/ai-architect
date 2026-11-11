@@ -5,6 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 
 from .utils import log
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """
@@ -23,7 +24,6 @@ class DeepSeekModelListClient:
     def model_list(self):
         if self.debug:
             log(self.openai_base_url)
-            log(self.openai_api_key)
 
         url = self.openai_base_url + "/models"
 

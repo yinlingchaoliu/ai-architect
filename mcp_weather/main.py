@@ -1,11 +1,17 @@
+import os
+import sys
+from pathlib import Path
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import datetime
 from typing import Any
 import httpx
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 
-from src.config.settings import DEFAULT_CITY
-from src.utils.utils import datetime_to_str
-from src.weather.service import WeatherService
+from mcp_weather.src.config.settings import DEFAULT_CITY
+from mcp_weather.src.utils.utils import datetime_to_str
+from mcp_weather.src.weather.service import WeatherService
 
 SERVER_NAME = "WeatherTools"
 # 初始化FastMCP服务器
@@ -91,6 +97,11 @@ async def server_info():
 
 if __name__ == "__main__":
     # 初始化并运行服务器
-    # 启动服务器（SSE模式，便于远程连接）
-    mcp.run(transport="sse")
+    # 启动服务器（Streamable HTTP，新客户端使用 /mcp）
+    transport = os.getenv("MCP_TRANSPORT", "http")
+    if transport == "stdio":
+        mcp.run(transport="stdio")
+    else:
+        mcp.run(transport=transport, host=os.getenv("MCP_HOST", "127.0.0.1"),
+                port=int(os.getenv("MCP_PORT", "8000")))
     # host = "127.0.0.1", port = 9000

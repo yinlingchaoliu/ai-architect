@@ -1,0 +1,8 @@
+Using Python 3.12.15 environment at: /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01-ui
+Resolved 1 package in 18ms
+   Building lib-request-sdk @ file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_request
+      Built lib-request-sdk @ file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_request
+Prepared 1 package in 1.56s
+Uninstalled 1 package in 0.93ms
+Installed 1 package in 1ms
+ ~ lib-request-sdk==0.1.0 (from file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_request)

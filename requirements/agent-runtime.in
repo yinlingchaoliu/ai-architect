@@ -1,0 +1,19 @@
+-c constraints-langchain.txt
+langchain[mcp,openai]
+langchain-core
+langgraph
+langchain-openai
+openai
+pydantic
+fastmcp
+mcp
+fastapi
+uvicorn
+requests
+httpx
+python-dotenv
+PyYAML
+toml
+colorama
+tiktoken
+packaging

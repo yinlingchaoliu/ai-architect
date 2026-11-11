@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-11-11T21:27:59.578231+00:00",
+  "packages": [
+    {
+      "package": "langchain",
+      "expected": "1.5.0",
+      "pypi_latest": "1.5.0",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/langchain/json"
+    },
+    {
+      "package": "langchain-core",
+      "expected": "1.8.0",
+      "pypi_latest": "1.8.0",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/langchain-core/json"
+    },
+    {
+      "package": "langgraph",
+      "expected": "1.2.20",
+      "pypi_latest": "1.2.20",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/langgraph/json"
+    },
+    {
+      "package": "langchain-openai",
+      "expected": "1.7.4",
+      "pypi_latest": "1.7.4",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/langchain-openai/json"
+    },
+    {
+      "package": "openai",
+      "expected": "3.49.0",
+      "pypi_latest": "3.49.0",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/openai/json"
+    },
+    {
+      "package": "fastmcp",
+      "expected": "4.1.8",
+      "pypi_latest": "4.1.8",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/fastmcp/json"
+    },
+    {
+      "package": "mcp",
+      "expected": "2.3.0",
+      "pypi_latest": "2.3.0",
+      "matches": true,
+      "yanked": false,
+      "source": "https://pypi.org/pypi/mcp/json"
+    }
+  ]
+}

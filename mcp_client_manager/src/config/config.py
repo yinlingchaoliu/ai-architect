@@ -3,17 +3,18 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 openai_base_url = os.getenv('OPENAI_BASE_URL')
 openai_api_key = os.getenv('OPENAI_API_KEY')
 
 MCP_SERVERS = {
-    "weather_tools": "http://127.0.0.1:8000/sse",
-    "math_tools": "http://127.0.0.1:8001/sse",
+    "weather_tools": "http://127.0.0.1:8000/mcp",
+    "math_tools": "http://127.0.0.1:8001/mcp",
 }
 
 LLM_CONFIG = {
     "api_key": openai_api_key,  # 设置为您的OpenAI API密钥
-    "model": "gpt-3.5-turbo"
+    "model": os.getenv("OPENAI_MODEL", "deepseek-flash")
 }

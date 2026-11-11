@@ -1,0 +1,14 @@
+[
+  {
+    "path": "mcp_server_math/.python-version",
+    "original_text": "3.13\n",
+    "sha256": "02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398",
+    "provenance": "HEAD; clean at captured initial status"
+  },
+  {
+    "path": "mcp_weather/.python-version",
+    "original_text": "3.13\n",
+    "sha256": "02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398",
+    "provenance": "HEAD; clean at captured initial status"
+  }
+]

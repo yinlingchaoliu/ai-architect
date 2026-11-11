@@ -12,6 +12,8 @@ class AgentState(TypedDict):
     subtasks: List[Dict[str, Any]]
     # 当前执行的智能体
     current_agent: str
+    current_subtask: Optional[Dict[str, Any]]
+    missing_resources: Dict[str, Any]
     # 工具执行结果
     tool_results: List[Dict[str, Any]]
     # 执行路径记录

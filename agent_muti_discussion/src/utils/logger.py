@@ -3,6 +3,7 @@ import sys
 from datetime import datetime
 
 import os
+from pathlib import Path
 
 class ColorFormatter(logging.Formatter):
     """彩色日志格式化器 - 支持自定义颜色"""
@@ -91,8 +92,10 @@ class Logger:
             )
 
             # 文件handler - 使用普通格式化器（无颜色）
+            log_dir = Path(os.getenv('AI_ARCHITECT_LOG_DIR', 'logs'))
+            log_dir.mkdir(parents=True, exist_ok=True)
             file_handler = logging.FileHandler(
-                f'logs/discussion_{datetime.now().strftime("%Y%m%d_%H")}.log'
+                log_dir / f'discussion_{datetime.now().strftime("%Y%m%d_%H")}.log'
             )
             file_handler.setFormatter(formatter)
             self.logger.addHandler(file_handler)

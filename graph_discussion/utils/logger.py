@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 # 彩色日志工具
 import logging
 
@@ -78,8 +80,10 @@ class ColorfulLogger:
             )
 
             # 文件handler - 使用普通格式化器（无颜色）
+            log_dir = Path(os.getenv('AI_ARCHITECT_LOG_DIR', 'logs'))
+            log_dir.mkdir(parents=True, exist_ok=True)
             file_handler = logging.FileHandler(
-                f'logs/discussion_{datetime.now().strftime("%Y%m%d_%H")}.log'
+                log_dir / f'discussion_{datetime.now().strftime("%Y%m%d_%H")}.log'
             )
             file_handler.setFormatter(formatter)
             self.logger.addHandler(file_handler)
@@ -87,6 +91,15 @@ class ColorfulLogger:
     def info(self, message: str, color: str = 'white'):
         """带颜色的info日志"""
         self.logger.info(message,extra={'custom_color': color},stacklevel=2)
+
+    def warning(self, message: str, color: str = 'yellow'):
+        self.logger.warning(message, extra={'custom_color': color}, stacklevel=2)
+
+    def error(self, message: str, color: str = 'red'):
+        self.logger.error(message, extra={'custom_color': color}, stacklevel=2)
+
+    def debug(self, message: str):
+        self.logger.debug(message, stacklevel=2)
 
 # 创建全局logger实例
 def get_logger(name: str) -> ColorfulLogger:

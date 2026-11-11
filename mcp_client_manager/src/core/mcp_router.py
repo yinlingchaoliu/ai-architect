@@ -1,16 +1,17 @@
 import json
+import os
 from typing import Dict, Any, List
-from openai import OpenAI
+from openai import AsyncOpenAI
 
-from core.mcp_manager import MCPManager
+from .mcp_manager import MCPManager
 
 class LLMMCP:
     """LLM协议路由器 - 通过LLM决策调用哪个MCP协议工具"""
 
     def __init__(self, mcp_manager:MCPManager, api_key: str = None):
         self.mcp_manager = mcp_manager
-        self.llm_client = OpenAI(api_key=api_key)
-        self.model = "gpt-3.5-turbo"
+        self.llm_client = AsyncOpenAI(api_key=api_key)
+        self.model = os.getenv("OPENAI_MODEL", "deepseek-flash")
 
     async def process_user_request(self, user_input: str) -> str:
         """处理用户请求 - 通过LLM决策使用哪个MCP工具"""
@@ -25,7 +26,7 @@ class LLMMCP:
                 return "错误: 没有可用的MCP工具"
 
             # 使用LLM进行工具调用决策
-            response = self.llm_client.chat.completions.create(
+            response = await self.llm_client.chat.completions.create(
                 model=self.model,
                 messages=[{
                     "role": "system",
@@ -35,7 +36,8 @@ class LLMMCP:
                     "content": user_input
                 }],
                 tools=tools,
-                tool_choice="auto"
+                tool_choice="auto",
+                extra_body={"thinking": {"type": "disabled"}} if self.model.startswith("deepseek-") else {},
             )
 
             message = response.choices[0].message

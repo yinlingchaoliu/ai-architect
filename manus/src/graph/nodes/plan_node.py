@@ -1,7 +1,7 @@
 # src/graph/nodes/plan_node.py
 from typing import Dict, Any
 import logging
-from src.graph.state import AgentState
+from manus.src.graph.state import AgentState
 
 logger = logging.getLogger(__name__)
 

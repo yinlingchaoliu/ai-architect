@@ -1,7 +1,9 @@
+import os
 from fastapi import FastAPI
 from langchain_openai import ChatOpenAI
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 from langserve import add_routes
 
@@ -21,7 +23,7 @@ class OpenAIServer:
     """GET请求示例类 - 使用Pydantic模型处理输入输出"""
 
     def __init__(self):
-        self.chain = ChatOpenAI(model="gpt-4")
+        self.chain = ChatOpenAI(model=os.getenv("OPENAI_MODEL", "deepseek-flash"), use_responses_api=False)
 
     def get_chain(self):
         return self.chain

@@ -1,8 +1,10 @@
+import os
 import sqlite3
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from langchain_openai import OpenAIEmbeddings
-from langchain_openai import OpenAI
+from langchain_openai import ChatOpenAI
 from langchain_community.utilities import SQLDatabase
 from langchain_experimental.sql import SQLDatabaseChain
 
@@ -22,7 +24,7 @@ class RetrievalLLM:
         db_name (str): 用于存储数据的SQLite数据库名称。
         openai_api_key (str): OpenAI API密钥。
         db (SQLDatabase): SQLite数据库连接。
-        llm (OpenAI): OpenAI LLM客户端。
+        llm (ChatOpenAI): OpenAI LLM客户端。
         embeddings (OpenAIEmbeddings): OpenAI嵌入客户端。
         db_chain (SQLDatabaseChain): 与LLM集成的SQL数据库链。
     """
@@ -45,10 +47,13 @@ class RetrievalLLM:
                 df.to_sql(table, local_db, if_exists="replace")
 
         # 创建SQL数据库连接
-        self.db = SQLDatabase.from_uri(f"sqlite:///{self.db_name}")
+        # The legacy SQL chain executes model-generated SQL against a read-only DB.
+        database_path = Path(self.db_name).resolve().as_posix()
+        self.db = SQLDatabase.from_uri(f"sqlite:///file:{database_path}?mode=ro&uri=true")
         # 创建OpenAI LLM客户端
-        self.llm = OpenAI(
-            temperature=0, verbose=True, openai_api_key=self.openai_api_key
+        self.llm = ChatOpenAI(
+            model=os.getenv("OPENAI_MODEL", "deepseek-flash"),
+            temperature=0, openai_api_key=self.openai_api_key, use_responses_api=False
         )
         # 创建OpenAI嵌入客户端
         self.embeddings = OpenAIEmbeddings(openai_api_key=self.openai_api_key)
@@ -66,7 +71,7 @@ class RetrievalLLM:
         """
 
         # 运行SQL数据库链以检索offer
-        retrieved_offers = self.db_chain.run(prompt)
+        retrieved_offers = self.db_chain.invoke({"query": prompt})["result"]
         # 如果retrieved_offers是"None"，则返回None，否则返回检索到的offer
         return None if retrieved_offers == "None" else retrieved_offers
 

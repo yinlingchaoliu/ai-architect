@@ -2,7 +2,7 @@
 from typing import Dict, Any
 import logging
 
-from src.graph.state import AgentState
+from manus.src.graph.state import AgentState
 
 """执行节点 - 智能体执行任务"""
 

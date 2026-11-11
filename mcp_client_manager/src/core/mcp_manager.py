@@ -3,8 +3,8 @@ import asyncio
 import sys
 from typing import Dict, Any
 
-from config.config import MCP_SERVERS
-from core.mcp_client import MCPProtocolClient
+from ..config.config import MCP_SERVERS
+from .mcp_client import MCPProtocolClient
 
 class MCPManager:
     """基于MCP协议的智能应用 - 完全解耦架构"""

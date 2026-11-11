@@ -7,6 +7,7 @@ import base64
 
 from .utils import log
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """
@@ -29,7 +30,6 @@ class ReqVisionClient:
 
     def vision_image_path(self,input,image_path):
         if self.debug:
-            log(self.openai_api_key)
             log(self.openai_base_url)
 
         url = self.openai_base_url + "/chat/completions"
@@ -74,7 +74,6 @@ class ReqVisionClient:
 
     def vision_image_url(self,input,image_url):
         if self.debug:
-            log(self.openai_api_key)
             log(self.openai_base_url)
 
         url = self.openai_base_url + "/chat/completions"

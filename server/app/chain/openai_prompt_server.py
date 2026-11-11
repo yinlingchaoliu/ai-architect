@@ -1,8 +1,10 @@
+import os
 from fastapi import FastAPI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 from langserve import add_routes
 
@@ -21,7 +23,7 @@ class OpenAIPromptServer:
 
     def __init__(self):
         prompt = ChatPromptTemplate.from_template("告诉我一个关于 {topic} 的笑话")
-        self.chain = prompt | ChatOpenAI(model="gpt-4")
+        self.chain = prompt | ChatOpenAI(model=os.getenv("OPENAI_MODEL", "deepseek-flash"), use_responses_api=False)
 
     def get_chain(self):
         return self.chain

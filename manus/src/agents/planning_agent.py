@@ -2,7 +2,7 @@
 from typing import Dict, Any, List, Set
 import json
 from .base import BaseAgent
-from src.tools.tool_registry import tool_registry
+from manus.src.tools.tool_registry import tool_registry
 import re
 
 class PlanningAgent(BaseAgent):

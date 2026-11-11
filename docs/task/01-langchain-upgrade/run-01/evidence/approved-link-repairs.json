@@ -1,0 +1,14 @@
+{
+  "authorization": "用户：其他文档只需要链接到01-langchain-upgrade.md，再由该入口接入目录细节",
+  "files": [
+    "02-platform-contracts-and-skeleton.md",
+    "06-orchestrator-worker-and-supervisor.md",
+    "validation.md",
+    "README.md",
+    "11-integration-and-rollout.md",
+    "03-resource-and-agent-adapters.md",
+    "04-runtime-and-persistence.md",
+    "10-console-and-module-migration.md"
+  ],
+  "scope": "link target replacement only; pre-existing prose preserved"
+}

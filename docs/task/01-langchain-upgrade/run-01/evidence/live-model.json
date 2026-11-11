@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-12",
+  "started_at": "2026-11-11T21:26:37.920794+00:00",
+  "configuration_source": "project .env.local / explicit environment",
+  "provider_host": "api.deepseek.com",
+  "model": "deepseek-flash",
+  "transport": "chat_completions",
+  "max_retries": 0,
+  "thinking": "disabled",
+  "checks": [
+    {
+      "name": "text",
+      "passed": true
+    },
+    {
+      "name": "stream",
+      "passed": true
+    },
+    {
+      "name": "create_agent_structured_tool_strategy",
+      "passed": true
+    }
+  ],
+  "usage": [
+    {
+      "input_tokens": 11,
+      "output_tokens": 3,
+      "total_tokens": 14,
+      "input_token_details": {
+        "cache_read": 0
+      },
+      "output_token_details": {}
+    },
+    {
+      "input_tokens": 276,
+      "output_tokens": 37,
+      "total_tokens": 313,
+      "input_token_details": {
+        "cache_read": 128
+      },
+      "output_token_details": {}
+    }
+  ],
+  "status": "passed",
+  "finished_at": "2026-11-11T21:26:40.399638+00:00"
+}

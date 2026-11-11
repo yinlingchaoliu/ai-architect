@@ -1,6 +1,7 @@
 # multi_agent_system/agents/base_agent.py
 import asyncio
 import json
+import os
 import time
 from abc import ABC, abstractmethod
 from typing import Dict, List, Any, Optional
@@ -10,6 +11,7 @@ from openai import APITimeoutError, APIError, RateLimitError
 from ..models.agent_models import AgentType, AgentResponse, AgentCapability
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 class BaseAgent(ABC):
@@ -20,7 +22,7 @@ class BaseAgent(ABC):
         self.name = name
         self.description = description
         self.capabilities: List[AgentCapability] = []
-        self.model = "gpt-3.5-turbo"
+        self.model = os.getenv("OPENAI_MODEL", "deepseek-flash")
         self.llm_client = AsyncOpenAI()
         self._initialized = False
         self.timeout = 30  # 默认超时时间
@@ -64,7 +66,8 @@ class BaseAgent(ABC):
                             model=self.model,
                             messages=messages,
                             temperature=temperature,
-                            max_tokens=max_tokens
+                            max_tokens=max_tokens,
+                            extra_body={"thinking": {"type": "disabled"}} if self.model.startswith("deepseek-") else {},
                         )
                 content = response.choices[0].message.content
                 print(f" ☑️ {self.name}-{self.agent_type}{f' - {self.step}' if self.step else ''}  返回消息: \n {content}")

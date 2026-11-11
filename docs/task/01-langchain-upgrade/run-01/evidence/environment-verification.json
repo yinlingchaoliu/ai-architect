@@ -1,0 +1,1283 @@
+{
+  "verified_at": "2026-11-11T21:26:37.319860+00:00",
+  "environments": [
+    {
+      "name": "ai-architect-s01",
+      "python": "3.12.15",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01",
+      "dependency_check": {
+        "exit_code": 0,
+        "output": "Using Python 3.12.15 environment at: /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01\nChecked 104 packages in 5ms\nAll installed packages are compatible\n"
+      },
+      "packages": [
+        {
+          "name": "agent-muti-discussion",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/agent_muti_discussion"
+        },
+        {
+          "name": "aiofile",
+          "version": "3.12.3"
+        },
+        {
+          "name": "annotated-doc",
+          "version": "0.0.6"
+        },
+        {
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "name": "anyio",
+          "version": "4.16.0"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "authlib",
+          "version": "1.9.5"
+        },
+        {
+          "name": "beartype",
+          "version": "0.23.1"
+        },
+        {
+          "name": "cachetools",
+          "version": "8.0.0"
+        },
+        {
+          "name": "caio",
+          "version": "0.12.10"
+        },
+        {
+          "name": "certifi",
+          "version": "2026.10.23"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1"
+        },
+        {
+          "name": "charset-normalizer",
+          "version": "3.5.2"
+        },
+        {
+          "name": "click",
+          "version": "8.5.1"
+        },
+        {
+          "name": "colorama",
+          "version": "0.4.6"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2"
+        },
+        {
+          "name": "cyclopts",
+          "version": "5.4.1"
+        },
+        {
+          "name": "distro",
+          "version": "1.9.0"
+        },
+        {
+          "name": "dnspython",
+          "version": "2.9.2"
+        },
+        {
+          "name": "docstring-parser",
+          "version": "0.18.0"
+        },
+        {
+          "name": "email-validator",
+          "version": "2.3.0"
+        },
+        {
+          "name": "exceptiongroup",
+          "version": "1.3.1"
+        },
+        {
+          "name": "fastapi",
+          "version": "0.162.4"
+        },
+        {
+          "name": "fastmcp",
+          "version": "4.1.8"
+        },
+        {
+          "name": "fastmcp-slim",
+          "version": "4.1.8"
+        },
+        {
+          "name": "griffelib",
+          "version": "2.4.1"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "idna",
+          "version": "3.20"
+        },
+        {
+          "name": "iniconfig",
+          "version": "2.3.1"
+        },
+        {
+          "name": "jiter",
+          "version": "0.19.0"
+        },
+        {
+          "name": "joserfc",
+          "version": "1.8.0"
+        },
+        {
+          "name": "jsonpatch",
+          "version": "1.47"
+        },
+        {
+          "name": "jsonpointer",
+          "version": "3.12"
+        },
+        {
+          "name": "jsonref",
+          "version": "1.1.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-path",
+          "version": "0.5.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "langchain",
+          "version": "1.5.0"
+        },
+        {
+          "name": "langchain-core",
+          "version": "1.8.0"
+        },
+        {
+          "name": "langchain-openai",
+          "version": "1.7.4"
+        },
+        {
+          "name": "langchain-protocol",
+          "version": "0.0.21"
+        },
+        {
+          "name": "langgraph",
+          "version": "1.2.20"
+        },
+        {
+          "name": "langgraph-checkpoint",
+          "version": "4.3.1"
+        },
+        {
+          "name": "langgraph-prebuilt",
+          "version": "1.1.1"
+        },
+        {
+          "name": "langgraph-sdk",
+          "version": "0.4.14"
+        },
+        {
+          "name": "langsmith",
+          "version": "0.14.17"
+        },
+        {
+          "name": "lib-graph",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/lib_graph"
+        },
+        {
+          "name": "manus",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/manus"
+        },
+        {
+          "name": "markdown-it-py",
+          "version": "4.3.0"
+        },
+        {
+          "name": "mcp",
+          "version": "2.3.0"
+        },
+        {
+          "name": "mcp-client-manager",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/mcp_client_manager"
+        },
+        {
+          "name": "mcp-types",
+          "version": "2.3.0"
+        },
+        {
+          "name": "mdurl",
+          "version": "0.1.2"
+        },
+        {
+          "name": "mutiagent",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/agent_muti"
+        },
+        {
+          "name": "openai",
+          "version": "3.49.0"
+        },
+        {
+          "name": "openapi-pydantic",
+          "version": "0.6.0"
+        },
+        {
+          "name": "opentelemetry-api",
+          "version": "1.45.2"
+        },
+        {
+          "name": "orjson",
+          "version": "3.13.0"
+        },
+        {
+          "name": "ormsgpack",
+          "version": "1.13.1"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "name": "pathable",
+          "version": "0.6.0"
+        },
+        {
+          "name": "platformdirs",
+          "version": "4.14.5"
+        },
+        {
+          "name": "pluggy",
+          "version": "1.7.0"
+        },
+        {
+          "name": "py-key-value-aio",
+          "version": "0.4.6"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.14.3"
+        },
+        {
+          "name": "pydantic-core",
+          "version": "2.50.4"
+        },
+        {
+          "name": "pydantic-settings",
+          "version": "2.16.2"
+        },
+        {
+          "name": "pygments",
+          "version": "2.21.0"
+        },
+        {
+          "name": "pyjwt",
+          "version": "2.15.1"
+        },
+        {
+          "name": "pyperclip",
+          "version": "1.11.0"
+        },
+        {
+          "name": "pytest",
+          "version": "9.2.0"
+        },
+        {
+          "name": "pytest-asyncio",
+          "version": "1.4.1.post1"
+        },
+        {
+          "name": "python-dotenv",
+          "version": "1.2.4"
+        },
+        {
+          "name": "python-multipart",
+          "version": "0.0.33"
+        },
+        {
+          "name": "pyyaml",
+          "version": "6.0.3"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "regex",
+          "version": "2026.11.9"
+        },
+        {
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "name": "requests-toolbelt",
+          "version": "1.0.0"
+        },
+        {
+          "name": "rich",
+          "version": "15.0.0"
+        },
+        {
+          "name": "rich-rst",
+          "version": "2.2.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "sniffio",
+          "version": "1.3.1"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "3.7.0"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0"
+        },
+        {
+          "name": "tenacity",
+          "version": "9.2.1"
+        },
+        {
+          "name": "tiktoken",
+          "version": "0.14.0"
+        },
+        {
+          "name": "toml",
+          "version": "0.10.2"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5"
+        },
+        {
+          "name": "typing-extensions",
+          "version": "4.16.0"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.5"
+        },
+        {
+          "name": "uncalled-for",
+          "version": "0.6.1"
+        },
+        {
+          "name": "urllib3",
+          "version": "2.8.0"
+        },
+        {
+          "name": "uuid-utils",
+          "version": "0.19.0"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.54.0"
+        },
+        {
+          "name": "watchfiles",
+          "version": "1.3.0"
+        },
+        {
+          "name": "websockets",
+          "version": "17.4"
+        },
+        {
+          "name": "xxhash",
+          "version": "4.1.0"
+        },
+        {
+          "name": "zstandard",
+          "version": "0.25.0"
+        }
+      ]
+    },
+    {
+      "name": "ai-architect-s01-server",
+      "python": "3.12.15",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01-server",
+      "dependency_check": {
+        "exit_code": 0,
+        "output": "Using Python 3.12.15 environment at: /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01-server\nChecked 61 packages in 4ms\nAll installed packages are compatible\n"
+      },
+      "packages": [
+        {
+          "name": "annotated-doc",
+          "version": "0.0.6"
+        },
+        {
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "name": "anyio",
+          "version": "4.16.0"
+        },
+        {
+          "name": "certifi",
+          "version": "2026.10.23"
+        },
+        {
+          "name": "charset-normalizer",
+          "version": "3.5.2"
+        },
+        {
+          "name": "click",
+          "version": "8.5.1"
+        },
+        {
+          "name": "colorama",
+          "version": "0.4.6"
+        },
+        {
+          "name": "distro",
+          "version": "1.9.0"
+        },
+        {
+          "name": "fastapi",
+          "version": "0.162.4"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "idna",
+          "version": "3.20"
+        },
+        {
+          "name": "iniconfig",
+          "version": "2.3.1"
+        },
+        {
+          "name": "jiter",
+          "version": "0.19.0"
+        },
+        {
+          "name": "jsonpatch",
+          "version": "1.47"
+        },
+        {
+          "name": "jsonpointer",
+          "version": "3.12"
+        },
+        {
+          "name": "langchain",
+          "version": "1.5.0"
+        },
+        {
+          "name": "langchain-core",
+          "version": "1.8.0"
+        },
+        {
+          "name": "langchain-openai",
+          "version": "1.7.4"
+        },
+        {
+          "name": "langchain-protocol",
+          "version": "0.0.21"
+        },
+        {
+          "name": "langgraph",
+          "version": "1.2.20"
+        },
+        {
+          "name": "langgraph-checkpoint",
+          "version": "4.3.1"
+        },
+        {
+          "name": "langgraph-prebuilt",
+          "version": "1.1.1"
+        },
+        {
+          "name": "langgraph-sdk",
+          "version": "0.4.14"
+        },
+        {
+          "name": "langserve",
+          "version": "0.3.3"
+        },
+        {
+          "name": "langsmith",
+          "version": "0.14.17"
+        },
+        {
+          "name": "lib-graph",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/lib_graph"
+        },
+        {
+          "name": "openai",
+          "version": "3.49.0"
+        },
+        {
+          "name": "opentelemetry-api",
+          "version": "1.45.2"
+        },
+        {
+          "name": "orjson",
+          "version": "3.13.0"
+        },
+        {
+          "name": "ormsgpack",
+          "version": "1.13.1"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "name": "pluggy",
+          "version": "1.7.0"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.14.3"
+        },
+        {
+          "name": "pydantic-core",
+          "version": "2.50.4"
+        },
+        {
+          "name": "pygments",
+          "version": "2.21.0"
+        },
+        {
+          "name": "pytest",
+          "version": "9.2.0"
+        },
+        {
+          "name": "pytest-asyncio",
+          "version": "1.4.1.post1"
+        },
+        {
+          "name": "python-dotenv",
+          "version": "1.2.4"
+        },
+        {
+          "name": "pyyaml",
+          "version": "6.0.3"
+        },
+        {
+          "name": "regex",
+          "version": "2026.11.9"
+        },
+        {
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "name": "requests-toolbelt",
+          "version": "1.0.0"
+        },
+        {
+          "name": "sniffio",
+          "version": "1.3.1"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "1.8.2"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0"
+        },
+        {
+          "name": "tenacity",
+          "version": "9.2.1"
+        },
+        {
+          "name": "tiktoken",
+          "version": "0.14.0"
+        },
+        {
+          "name": "toml",
+          "version": "0.10.2"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5"
+        },
+        {
+          "name": "typing-extensions",
+          "version": "4.16.0"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.5"
+        },
+        {
+          "name": "urllib3",
+          "version": "2.8.0"
+        },
+        {
+          "name": "uuid-utils",
+          "version": "0.19.0"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.54.0"
+        },
+        {
+          "name": "websockets",
+          "version": "17.4"
+        },
+        {
+          "name": "xxhash",
+          "version": "4.1.0"
+        },
+        {
+          "name": "zstandard",
+          "version": "0.25.0"
+        }
+      ]
+    },
+    {
+      "name": "ai-architect-s01-ui",
+      "python": "3.12.15",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01-ui",
+      "dependency_check": {
+        "exit_code": 0,
+        "output": "Using Python 3.12.15 environment at: /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01-ui\nChecked 136 packages in 1ms\nAll installed packages are compatible\n"
+      },
+      "packages": [
+        {
+          "name": "aiofile",
+          "version": "3.12.3"
+        },
+        {
+          "name": "aiohappyeyeballs",
+          "version": "2.7.1"
+        },
+        {
+          "name": "aiohttp",
+          "version": "3.14.5"
+        },
+        {
+          "name": "aiosignal",
+          "version": "1.4.0"
+        },
+        {
+          "name": "altair",
+          "version": "6.3.0"
+        },
+        {
+          "name": "annotated-doc",
+          "version": "0.0.6"
+        },
+        {
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "name": "anyio",
+          "version": "4.16.0"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "audio-recorder-streamlit",
+          "version": "0.0.8"
+        },
+        {
+          "name": "authlib",
+          "version": "1.9.5"
+        },
+        {
+          "name": "beartype",
+          "version": "0.23.1"
+        },
+        {
+          "name": "beautifulsoup4",
+          "version": "4.15.0"
+        },
+        {
+          "name": "cachetools",
+          "version": "8.0.0"
+        },
+        {
+          "name": "caio",
+          "version": "0.12.10"
+        },
+        {
+          "name": "certifi",
+          "version": "2026.10.23"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1"
+        },
+        {
+          "name": "charset-normalizer",
+          "version": "3.5.2"
+        },
+        {
+          "name": "click",
+          "version": "8.5.1"
+        },
+        {
+          "name": "colorama",
+          "version": "0.4.6"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2"
+        },
+        {
+          "name": "cyclopts",
+          "version": "5.4.1"
+        },
+        {
+          "name": "distro",
+          "version": "1.9.0"
+        },
+        {
+          "name": "dnspython",
+          "version": "2.9.2"
+        },
+        {
+          "name": "docstring-parser",
+          "version": "0.18.0"
+        },
+        {
+          "name": "email-validator",
+          "version": "2.3.0"
+        },
+        {
+          "name": "exceptiongroup",
+          "version": "1.3.1"
+        },
+        {
+          "name": "faiss-cpu",
+          "version": "1.16.0"
+        },
+        {
+          "name": "fastapi",
+          "version": "0.162.4"
+        },
+        {
+          "name": "fastmcp",
+          "version": "4.1.8"
+        },
+        {
+          "name": "fastmcp-slim",
+          "version": "4.1.8"
+        },
+        {
+          "name": "frozenlist",
+          "version": "1.8.0"
+        },
+        {
+          "name": "griffelib",
+          "version": "2.4.1"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "name": "httpx-sse",
+          "version": "0.4.3"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "idna",
+          "version": "3.20"
+        },
+        {
+          "name": "iniconfig",
+          "version": "2.3.1"
+        },
+        {
+          "name": "itsdangerous",
+          "version": "2.2.0"
+        },
+        {
+          "name": "jinja2",
+          "version": "3.1.6"
+        },
+        {
+          "name": "jiter",
+          "version": "0.19.0"
+        },
+        {
+          "name": "joserfc",
+          "version": "1.8.0"
+        },
+        {
+          "name": "jsonpatch",
+          "version": "1.47"
+        },
+        {
+          "name": "jsonpointer",
+          "version": "3.12"
+        },
+        {
+          "name": "jsonref",
+          "version": "1.1.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-path",
+          "version": "0.5.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "langchain",
+          "version": "1.5.0"
+        },
+        {
+          "name": "langchain-classic",
+          "version": "1.0.8"
+        },
+        {
+          "name": "langchain-community",
+          "version": "0.4.2"
+        },
+        {
+          "name": "langchain-core",
+          "version": "1.8.0"
+        },
+        {
+          "name": "langchain-experimental",
+          "version": "0.4.2"
+        },
+        {
+          "name": "langchain-openai",
+          "version": "1.7.4"
+        },
+        {
+          "name": "langchain-protocol",
+          "version": "0.0.21"
+        },
+        {
+          "name": "langchain-text-splitters",
+          "version": "1.1.3"
+        },
+        {
+          "name": "langgraph",
+          "version": "1.2.20"
+        },
+        {
+          "name": "langgraph-checkpoint",
+          "version": "4.3.1"
+        },
+        {
+          "name": "langgraph-prebuilt",
+          "version": "1.1.1"
+        },
+        {
+          "name": "langgraph-sdk",
+          "version": "0.4.14"
+        },
+        {
+          "name": "langsmith",
+          "version": "0.14.17"
+        },
+        {
+          "name": "lib-request-sdk",
+          "version": "0.1.0",
+          "editable_project_location": "/Users/chentong/AI/PatientCare/github/ai-architect/lib_request"
+        },
+        {
+          "name": "lxml",
+          "version": "6.1.3"
+        },
+        {
+          "name": "markdown-it-py",
+          "version": "4.3.0"
+        },
+        {
+          "name": "markupsafe",
+          "version": "3.0.4"
+        },
+        {
+          "name": "mcp",
+          "version": "2.3.0"
+        },
+        {
+          "name": "mcp-types",
+          "version": "2.3.0"
+        },
+        {
+          "name": "mdurl",
+          "version": "0.1.2"
+        },
+        {
+          "name": "multidict",
+          "version": "7.2.1"
+        },
+        {
+          "name": "narwhals",
+          "version": "2.28.0"
+        },
+        {
+          "name": "numpy",
+          "version": "2.5.4"
+        },
+        {
+          "name": "openai",
+          "version": "3.49.0"
+        },
+        {
+          "name": "openapi-pydantic",
+          "version": "0.6.0"
+        },
+        {
+          "name": "opentelemetry-api",
+          "version": "1.45.2"
+        },
+        {
+          "name": "orjson",
+          "version": "3.13.0"
+        },
+        {
+          "name": "ormsgpack",
+          "version": "1.13.1"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "name": "pandas",
+          "version": "3.1.1"
+        },
+        {
+          "name": "pathable",
+          "version": "0.6.0"
+        },
+        {
+          "name": "pillow",
+          "version": "13.0.0"
+        },
+        {
+          "name": "platformdirs",
+          "version": "4.14.5"
+        },
+        {
+          "name": "pluggy",
+          "version": "1.7.0"
+        },
+        {
+          "name": "propcache",
+          "version": "0.5.4"
+        },
+        {
+          "name": "protobuf",
+          "version": "7.36.2"
+        },
+        {
+          "name": "py-key-value-aio",
+          "version": "0.4.6"
+        },
+        {
+          "name": "pyarrow",
+          "version": "26.0.1"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.14.3"
+        },
+        {
+          "name": "pydantic-core",
+          "version": "2.50.4"
+        },
+        {
+          "name": "pydantic-settings",
+          "version": "2.16.2"
+        },
+        {
+          "name": "pydeck",
+          "version": "0.9.3"
+        },
+        {
+          "name": "pygments",
+          "version": "2.21.0"
+        },
+        {
+          "name": "pyjwt",
+          "version": "2.15.1"
+        },
+        {
+          "name": "pypdf2",
+          "version": "3.0.1"
+        },
+        {
+          "name": "pyperclip",
+          "version": "1.11.0"
+        },
+        {
+          "name": "pytest",
+          "version": "9.2.0"
+        },
+        {
+          "name": "pytest-asyncio",
+          "version": "1.4.1.post1"
+        },
+        {
+          "name": "python-dateutil",
+          "version": "4.0.0"
+        },
+        {
+          "name": "python-docx",
+          "version": "1.2.0"
+        },
+        {
+          "name": "python-dotenv",
+          "version": "1.2.4"
+        },
+        {
+          "name": "python-multipart",
+          "version": "0.0.33"
+        },
+        {
+          "name": "pyyaml",
+          "version": "6.0.3"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "regex",
+          "version": "2026.11.9"
+        },
+        {
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "name": "requests-toolbelt",
+          "version": "1.0.0"
+        },
+        {
+          "name": "rich",
+          "version": "15.0.0"
+        },
+        {
+          "name": "rich-rst",
+          "version": "2.2.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "sniffio",
+          "version": "1.3.1"
+        },
+        {
+          "name": "soupsieve",
+          "version": "4.1"
+        },
+        {
+          "name": "sqlalchemy",
+          "version": "2.1.8"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "3.7.0"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0"
+        },
+        {
+          "name": "streamlit",
+          "version": "1.67.0"
+        },
+        {
+          "name": "streamlit-chat",
+          "version": "0.1.1"
+        },
+        {
+          "name": "tenacity",
+          "version": "9.2.1"
+        },
+        {
+          "name": "tiktoken",
+          "version": "0.14.0"
+        },
+        {
+          "name": "toml",
+          "version": "0.10.2"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5"
+        },
+        {
+          "name": "typing-extensions",
+          "version": "4.16.0"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.5"
+        },
+        {
+          "name": "tzdata",
+          "version": "2026.6"
+        },
+        {
+          "name": "uncalled-for",
+          "version": "0.6.1"
+        },
+        {
+          "name": "urllib3",
+          "version": "2.8.0"
+        },
+        {
+          "name": "uuid-utils",
+          "version": "0.19.0"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.54.0"
+        },
+        {
+          "name": "watchfiles",
+          "version": "1.3.0"
+        },
+        {
+          "name": "websockets",
+          "version": "17.4"
+        },
+        {
+          "name": "wikipedia",
+          "version": "1.4.0"
+        },
+        {
+          "name": "xxhash",
+          "version": "4.1.0"
+        },
+        {
+          "name": "yarl",
+          "version": "1.25.1"
+        },
+        {
+          "name": "zstandard",
+          "version": "0.25.0"
+        }
+      ]
+    }
+  ],
+  "locks": [
+    {
+      "path": "requirements/agent-runtime.lock",
+      "sha256": "6a461b4573e28a33a55bcadeeac42a97480030e22cc5adf23907268a687aaf33"
+    },
+    {
+      "path": "requirements/langserve.lock",
+      "sha256": "0def957b6f47753369f05a5ccad70d6e671d4bd746c339c4a75704f4382fac1b"
+    },
+    {
+      "path": "requirements/s01-dev.lock",
+      "sha256": "ab0e6aff7b1b86cc35608482ceb9da7b0a2f538bfc481809855d0cb8037cf4f5"
+    },
+    {
+      "path": "requirements/ui-rag-dev.lock",
+      "sha256": "84698dffc692ede4115526ef5ae4cbad6e1dc0b93e29b99668043026d9a64521"
+    },
+    {
+      "path": "requirements/ui-rag.lock",
+      "sha256": "db757c82c0b4b3cc3158a49eab36ab803190e06ae0bede81f60324d6eeb48ce6"
+    },
+    {
+      "path": "server/poetry.lock",
+      "sha256": "c3f7ab3dcf4b38d31e7111f7403f631c0ccbd3a1131a1dbe9b849544cdce2f25"
+    },
+    {
+      "path": "mcp_weather/uv.lock",
+      "sha256": "024986243a82cc3632761136b8280ab3c26b17e81958f6a5943fed8993cf6041"
+    },
+    {
+      "path": "mcp_server_math/uv.lock",
+      "sha256": "375335b148aa2329aa94d333b78aacf9ab765c8c7b8c8af1903e6862964cbb66"
+    }
+  ]
+}

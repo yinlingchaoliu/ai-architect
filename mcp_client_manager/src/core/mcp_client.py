@@ -1,6 +1,7 @@
 # mcp_client.py
 import asyncio
 import json
+from copy import deepcopy
 from typing import Dict, List, Any, Optional
 from fastmcp import Client
 
@@ -39,7 +40,7 @@ class MCPProtocolClient:
                     "function": {
                         "name": tool_key,
                         "description": tool.description,
-                        "parameters": self._parse_parameters_schema(tool.inputSchema)
+                        "parameters": self._parse_parameters_schema(tool.input_schema)
                     }
                 }
 
@@ -66,12 +67,8 @@ class MCPProtocolClient:
         if not input_schema:
             return {"type": "object", "properties": {}}
 
-        return {
-            "type": "object",
-            "properties": input_schema.get("properties", {}),
-            "required": input_schema.get("required", []),
-            "additionalProperties": False
-        }
+        # Keep $defs/$ref, combinators and nested constraints from MCP SDK v2.
+        return deepcopy(input_schema)
 
     def get_all_tool_schemas(self) -> List[Dict]:
         """获取所有工具的LLM注册模式"""

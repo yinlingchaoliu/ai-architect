@@ -3,8 +3,6 @@ import asyncio
 import inspect
 from typing import Dict, List, Any, Callable
 
-from lazy_object_proxy.utils import await_
-
 from .base_agent import BaseAgent
 from ..models.agent_models import AgentType, AgentResponse, AgentCapability
 

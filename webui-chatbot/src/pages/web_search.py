@@ -4,8 +4,8 @@ import requests
 import streamlit as st
 import wikipedia
 from bs4 import BeautifulSoup
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
-from langchain.text_splitter import CharacterTextSplitter
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_text_splitters import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
@@ -14,10 +14,11 @@ from streamlit_chat import message
 import os
 from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 global doc_search
-from langchain.globals import set_verbose
+from langchain_core.globals import set_verbose
 
 doc_search = None
 
@@ -31,7 +32,7 @@ st.markdown("<h1 style='text-align: center; color: Black;'>基于 Web URL 的问
 buff, col, buff2 = st.columns([1, 3, 1])
 
 # 初始化ChatOpenAI对象，指定使用的模型
-chat = ChatOpenAI(model_name="gpt-4o")
+chat = ChatOpenAI(model=os.getenv("OPENAI_MODEL", "deepseek-flash"), use_responses_api=False)
 
 # 初始化会话状态中的消息列表
 if 'all_messages' not in st.session_state:
@@ -67,7 +68,7 @@ def get_bot_response(user_query):
         main_content += doc.page_content + "\n\n"
     messages.append(HumanMessage(content=main_content))
     # 调用OpenAI接口获取响应
-    ai_response = chat.invoke(messages).content
+    ai_response = chat.invoke(messages).text
     # 将刚刚添加的 HumanMessage 从 messages 列表中移除。这样做的原因是，main_content 包含了用户的原始查询和相似文本内容，
     # 但在实际的对话历史中，我们只希望保留用户的原始查询和 AI 的响应，而不是包含相似文本内容的查询。
     messages.pop()

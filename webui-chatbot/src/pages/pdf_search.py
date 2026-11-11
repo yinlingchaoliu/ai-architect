@@ -1,3 +1,4 @@
+import os
 # 导入Streamlit库，用于创建Web应用
 import streamlit as st
 # 导入递归字符文本分割器，用于将文档分割成小块
@@ -20,6 +21,7 @@ import docx
 from PyPDF2 import PdfReader
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 # 设置页面配置，包括标题、图标和布局
@@ -144,7 +146,7 @@ def get_vectorstore(docs_chunks):
 # 创建对话检索链
 def get_conversation_chain(vectorstore):
     # 创建OpenAI聊天模型
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL", "deepseek-flash"), use_responses_api=False)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         # 使用向量存储作为检索器

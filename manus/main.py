@@ -1,14 +1,19 @@
+import sys
+from pathlib import Path
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 # src/main.py
 import asyncio
 import logging
 from typing import Dict, Any
 
 # from agents import AgentPool
-from src.agents import AgentPool
-from src.graph.workflow import workflow
-from src.utils.config import ConfigManager
-from src.llm.manager import LLMManager
-from src.tools.tool_registry import tool_registry
+from manus.src.agents import AgentPool
+from manus.src.graph.workflow import workflow
+from manus.src.utils.config import ConfigManager
+from manus.src.llm.manager import LLMManager
+from manus.src.tools.tool_registry import tool_registry
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -38,8 +43,8 @@ class MultiAgentSystem:
         await self.agent_pool.initialize()
         
         # 设置全局agent_pool引用到plan_node和execute_node
-        from src.graph.nodes.plan_node import set_agent_pool as set_plan_node_agent_pool
-        from src.graph.nodes.execute_node import set_agent_pool as set_execute_node_agent_pool
+        from manus.src.graph.nodes.plan_node import set_agent_pool as set_plan_node_agent_pool
+        from manus.src.graph.nodes.execute_node import set_agent_pool as set_execute_node_agent_pool
         set_plan_node_agent_pool(self.agent_pool)
         set_execute_node_agent_pool(self.agent_pool)
 
@@ -47,9 +52,9 @@ class MultiAgentSystem:
 
     async def _register_tools(self):
         """注册工具"""
-        from src.tools.python_tool import PythonExecuteTool
-        from src.tools.file_tool import FileTool
-        from src.tools.search_tool import SearchTool
+        from manus.src.tools.python_tool import PythonExecuteTool
+        from manus.src.tools.file_tool import FileTool
+        from manus.src.tools.search_tool import SearchTool
 
         # 注册内置工具
         tool_registry.register_tool(PythonExecuteTool())
@@ -75,7 +80,10 @@ class MultiAgentSystem:
         }
 
         # 执行工作流
-        final_state = await self.workflow.ainvoke(initial_state)
+        final_state = await self.workflow.ainvoke(
+            initial_state, config={"recursion_limit": int(
+                self.config_manager.get("runtime.recursion_limit", 100))}
+        )
 
         logger.info(f"Task completed. Execution path: {final_state['execution_path']}")
 

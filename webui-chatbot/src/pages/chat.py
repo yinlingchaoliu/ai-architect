@@ -82,7 +82,10 @@ def chat_page():
         config_defalut = json.load(f)
 
     # 显示配置项
-    st.session_state['model_list'] = config_defalut["completions"]["models"]
+    configured_model = os.getenv("OPENAI_MODEL", "deepseek-flash")
+    st.session_state['model_list'] = [configured_model] + [
+        name for name in config_defalut["completions"]["models"] if name != configured_model
+    ]
     model_name = st.selectbox('Models', st.session_state.model_list, key='chat_model_name')
 
     # 系统提示词选项

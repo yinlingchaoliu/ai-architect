@@ -1,9 +1,10 @@
-from mcp.server.fastmcp import FastMCP
+import os
+from fastmcp import FastMCP
 import math
 
 SERVER_NAME = "MathTools"
 # 初始化FastMCP服务器
-mcp = FastMCP(SERVER_NAME,port=8001)
+mcp = FastMCP(SERVER_NAME)
 
 @mcp.tool(description="执行数学计算")
 async def calculator(expression: str) -> str:
@@ -39,5 +40,10 @@ async def server_info():
 """
 if __name__ == "__main__":
     # 初始化并运行服务器
-    # 启动服务器（SSE模式，便于远程连接）
-    mcp.run(transport="sse")
+    # 启动服务器（Streamable HTTP，新客户端使用 /mcp）
+    transport = os.getenv("MCP_TRANSPORT", "http")
+    if transport == "stdio":
+        mcp.run(transport="stdio")
+    else:
+        mcp.run(transport=transport, host=os.getenv("MCP_HOST", "127.0.0.1"),
+                port=int(os.getenv("MCP_PORT", "8001")))

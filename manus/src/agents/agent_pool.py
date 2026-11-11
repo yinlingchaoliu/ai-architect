@@ -12,7 +12,7 @@ class AgentPool:
     def __init__(self, config: Dict[str, Any]):
         self.config = config
         self._agents: Dict[str, BaseAgent] = {}
-        self._agent_configs = config.get("agents", {})
+        self._agent_configs = config.get("agents", config)
         self.llm_manager = None
 
     async def initialize(self) -> None:

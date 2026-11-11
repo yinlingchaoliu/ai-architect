@@ -98,6 +98,11 @@ class LLMManager:
             **kwargs
         }
 
+        # This legacy tool loop does not round-trip reasoning_content.
+        # Use the explicitly supported non-thinking protocol for DeepSeek.
+        if model_config.model_name.startswith("deepseek-"):
+            request_params.setdefault("extra_body", {"thinking": {"type": "disabled"}})
+
         if tools:
             request_params["tools"] = tools
             if tool_choice:

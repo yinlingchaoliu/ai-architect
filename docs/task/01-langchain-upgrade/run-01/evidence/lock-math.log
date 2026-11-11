@@ -1,0 +1,52 @@
+Using CPython 3.13.16
+Resolved 72 packages in 8ms
+Added aiofile v3.12.3
+Added authlib v1.9.5
+Added beartype v0.23.1
+Added cachetools v8.0.0
+Added caio v0.12.10
+Updated certifi v2025.10.5 -> v2026.10.23
+Added cffi v2.1.1
+Added charset-normalizer v3.5.2
+Added cryptography v50.0.2
+Added cyclopts v5.4.1
+Added dnspython v2.9.2
+Added docstring-parser v0.18.0
+Added email-validator v2.3.0
+Added exceptiongroup v1.3.1
+Added fastmcp v4.1.8
+Added fastmcp-slim v4.1.8
+Added griffelib v2.4.1
+Added httpcore2 v2.16.0
+Removed httpx-sse v0.4.3
+Added httpx2 v2.16.0
+Added httpx2-jsfetch v1.0
+Updated idna v3.11 -> v3.20
+Added joserfc v1.8.0
+Added jsonref v1.1.0
+Added jsonschema-path v0.5.0
+Added markdown-it-py v4.3.0
+Updated mcp v1.19.0 -> v2.3.0
+Added mcp-types v2.3.0
+Added mdurl v0.1.2
+Added openapi-pydantic v0.6.0
+Added opentelemetry-api v1.45.2
+Added packaging v26.3
+Added pathable v0.6.0
+Added platformdirs v4.14.5
+Added py-key-value-aio v0.4.6
+Added pycparser v3.12
+Added pygments v2.21.0
+Added pyjwt v2.15.1
+Added pyperclip v1.11.0
+Updated python-multipart v0.0.20 -> v0.0.33
+Added pyyaml v6.0.3
+Added requests v2.34.2
+Added rich v15.0.0
+Added rich-rst v2.2.0
+Updated starlette v0.49.0 -> v1.10.0
+Added truststore v0.10.5
+Added uncalled-for v0.6.1
+Added urllib3 v2.8.0
+Added watchfiles v1.3.0
+Added websockets v17.4

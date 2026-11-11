@@ -31,7 +31,10 @@ setup(
     #     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     #     "Topic :: Software Development :: Libraries :: Python Modules",
     # ],
-    # python_requires=">=3.8",
+    python_requires=">=3.11",
+    install_requires=["langchain==1.5.0", "langchain-core==1.8.0",
+                      "langgraph==1.2.20", "langchain-openai==1.7.4",
+                      "python-dotenv>=1", "colorama>=0.4"],
     # install_requires=requirements,
     # extras_require={
     #     "dev": [

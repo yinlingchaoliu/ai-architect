@@ -24,3 +24,9 @@ __pycache__
 lib_hello/src/lib_hello/__pycache__/
 
 agent_muti_discussion/logs/*
+# Local compatibility test outputs
+/.pytest_cache/
+/logs/
+
+# Private per-checkout provider configuration
+.env.local

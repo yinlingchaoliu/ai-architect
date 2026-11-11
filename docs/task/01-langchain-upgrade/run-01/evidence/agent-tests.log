@@ -1,0 +1,28 @@
+/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+.......................                                                  [100%]
+=============================== warnings summary ===============================
+tests/s01/test_mcp.py:7
+  /Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_mcp.py:7: LangChainBetaWarning: `langchain.mcp` is in beta. It is actively being worked on, so the API may change.
+    from langchain.mcp import MCPAdapter
+
+tests/s01/test_native_features.py::test_v3_event_projection_has_text_state_and_final_usage
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3804: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return self._pregel_stream_v3(
+
+tests/s01/test_native_features.py::test_v3_event_projection_has_text_state_and_final_usage
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3646: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return GraphRunStream(graph_iter, mux)
+
+tests/s01/test_native_features.py::test_async_v3_stream
+  /Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_native_features.py:91: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    stream = await agent.astream_events({"messages": [("user", "hello")]}, version="v3",
+
+tests/s01/test_native_features.py::test_async_v3_stream
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3700: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return AsyncGraphRunStream(graph_aiter, mux)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+23 passed, 5 warnings in 6.41s

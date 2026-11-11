@@ -1,0 +1,7 @@
+Using Python 3.12.15 environment at: /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01
+Resolved 1 package in 5ms
+   Building lib-graph @ file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_graph
+      Built lib-graph @ file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_graph
+Prepared 1 package in 2.34s
+Installed 1 package in 0.93ms
+ + lib-graph==0.1.0 (from file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_graph)

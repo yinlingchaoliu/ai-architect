@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import os
 import sys
 from logging import Logger
@@ -6,10 +11,11 @@ from typing import Dict, Any
 # 添加项目根目录到Python路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from src.core.session_manager import SessionManager
-from src.utils.logger import logger
+from agent_muti_discussion.src.core.session_manager import SessionManager
+from agent_muti_discussion.src.utils.logger import logger
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 class MultiAgentDiscussionSystem:

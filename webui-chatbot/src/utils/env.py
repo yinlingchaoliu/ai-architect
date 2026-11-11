@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """

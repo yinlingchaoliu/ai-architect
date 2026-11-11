@@ -6,6 +6,7 @@ from dotenv import load_dotenv, find_dotenv
 
 from .utils import log
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 class OpenAIAssistantClient:
@@ -20,13 +21,12 @@ class OpenAIAssistantClient:
 
     def request(self,content):
         if self.debug:
-            log(self.openai_api_key)
             log(self.openai_base_url)
 
         url = self.openai_base_url + "/chat/completions"
 
         payload = json.dumps({
-            "model": "gpt-4",
+            "model": os.getenv("OPENAI_MODEL", "deepseek-flash"),
             "messages": [
                 {"role": "system", "content": "assistant"},
                 {"role": "user", "content": content}

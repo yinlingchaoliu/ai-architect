@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 # multi_agent_system/main.py
 # !/usr/bin/env python3
 """
@@ -14,9 +19,9 @@ from pathlib import Path
 # 添加当前目录到 Python 路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from src.core.agent_system import EnhancedDynamicAgentSystem
-from src.examples.demo import demo_enhanced_system, demo_iteration_process
-from src.examples.interactive_demo import interactive_demo
+from agent_muti.src.core.agent_system import EnhancedDynamicAgentSystem
+from agent_muti.src.examples.demo import demo_enhanced_system, demo_iteration_process
+from agent_muti.src.examples.interactive_demo import interactive_demo
 
 
 def setup_environment():

@@ -1,0 +1,6 @@
+{
+  "cwd": "outside repository",
+  "exit_code": 0,
+  "stdout": "installed package imports passed\n",
+  "stderr": ""
+}

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="4" time="5.453" timestamp="2026-11-12T05:08:21.865798+08:00" hostname="192.168.0.10"><testcase classname="tests.s01.test_existing_workflows" name="test_conference_graph_runs_original_roles_and_stops" time="2.723" /><testcase classname="tests.s01.test_existing_workflows" name="test_manus_graph_executes_each_subtask_once" time="2.222"><failure message="langgraph.errors.GraphRecursionError: Recursion limit of 10007 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.&#10;For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT">@pytest.mark.asyncio
+    async def test_manus_graph_executes_each_subtask_once():
+        from manus.src.graph.workflow import create_workflow
+        from manus.src.graph.nodes.plan_node import set_agent_pool as set_plan
+        from manus.src.graph.nodes.execute_node import set_agent_pool as set_execute
+        calls = []
+    
+        async def execute(task):
+            calls.append(task["task"])
+            return {"status": "success", "content": task["task"]}
+    
+        planning = SimpleNamespace(run=AsyncMock(return_value={"subtasks": [
+            {"id": 1, "description": "first", "recommended_agent": "worker"},
+            {"id": 2, "description": "second", "recommended_agent": "worker"},
+        ]}))
+        worker = SimpleNamespace(run=execute, llm_manager=object())
+        pool = SimpleNamespace(get_agent=lambda name: planning if name == "planning_agent" else worker)
+        set_plan(pool)
+        set_execute(pool)
+        try:
+            graph = create_workflow().compile()
+&gt;           state = await graph.ainvoke({"messages": [], "current_task": "do work", "subtasks": [],
+                "current_agent": "", "tool_results": [], "execution_path": [], "is_complete": False,
+                "plan": None})
+
+tests/s01/test_existing_workflows.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:4177: in ainvoke
+    async for chunk in self.astream(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;langgraph.graph.state.CompiledStateGraph object at 0x10c312bd0&gt;
+input = {'messages': [], 'current_task': 'do work', 'subtasks': [], 'current_agent': '', ...}
+config = {'tags': [], 'metadata': ChainMap({}), 'callbacks': None, 'recursion_limit': 10007, ...}
+context = None, stream_mode = ['updates', 'values'], print_mode = ()
+output_keys = ['messages', 'current_task', 'subtasks', 'current_agent', 'tool_results', 'execution_path', ...]
+interrupt_before = None, interrupt_after = None, durability = None
+control = None, subgraphs = False, debug = None, version = 'v1', kwargs = {}
+
+    async def astream(
+        self,
+        input: InputT | Command | None,
+        config: RunnableConfig | None = None,
+        *,
+        context: ContextT | None = None,
+        stream_mode: StreamMode | Sequence[StreamMode] | None = None,
+        print_mode: StreamMode | Sequence[StreamMode] = (),
+        output_keys: str | Sequence[str] | None = None,
+        interrupt_before: All | Sequence[str] | None = None,
+        interrupt_after: All | Sequence[str] | None = None,
+        durability: Durability | None = None,
+        control: RunControl | None = None,
+        subgraphs: bool = False,
+        debug: bool | None = None,
+        version: Literal["v1", "v2"] = "v1",
+        **kwargs: Unpack[DeprecatedKwargs],
+    ) -&gt; AsyncIterator[dict[str, Any] | Any]:
+        """Asynchronously stream graph steps for a single input.
+    
+        Args:
+            input: The input to the graph.
+            config: The configuration to use for the run.
+            context: The static context to use for the run.
+                !!! version-added "Added in version 0.6.0"
+            stream_mode: The mode to stream output, defaults to `self.stream_mode`.
+    
+                Options are:
+    
+                - `"values"`: Emit all values in the state after each step, including interrupts.
+                    When used with functional API, values are emitted once at the end of the workflow.
+                - `"updates"`: Emit only the node or task names and updates returned by the nodes or tasks after each step.
+                    If multiple updates are made in the same step (e.g. multiple nodes are run) then those updates are emitted separately.
+                - `"custom"`: Emit custom data from inside nodes or tasks using `StreamWriter`.
+                - `"messages"`: Emit LLM messages token-by-token together with metadata for any LLM invocations inside nodes or tasks.
+                    - Will be emitted as 2-tuples `(LLM token, metadata)`.
+                - `"checkpoints"`: Emit an event when a checkpoint is created, in the same format as returned by `get_state()`.
+                - `"tasks"`: Emit events when tasks start and finish, including their results and errors.
+                - `"debug"`: Emit debug events with as much information as possible for each step.
+    
+                You can pass a list as the `stream_mode` parameter to stream multiple modes at once.
+                The streamed outputs will be tuples of `(mode, data)`.
+    
+                See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.
+            print_mode: Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes.
+    
+                Does not affect the output of the graph in any way.
+            output_keys: The keys to stream, defaults to all non-context channels.
+            interrupt_before: Nodes to interrupt before, defaults to all nodes in the graph.
+            interrupt_after: Nodes to interrupt after, defaults to all nodes in the graph.
+            durability: The durability mode for the graph execution, defaults to `"async"`.
+    
+                Options are:
+    
+                - `"sync"`: Changes are persisted synchronously before the next step starts.
+                - `"async"`: Changes are persisted asynchronously while the next step executes.
+                - `"exit"`: Changes are persisted only when the graph exits.
+            control: Optional run control used to request cooperative drain.
+            subgraphs: Whether to stream events from inside subgraphs, defaults to `False`.
+    
+                If `True`, the events will be emitted as tuples `(namespace, data)`,
+                or `(namespace, mode, data)` if `stream_mode` is a list,
+                where `namespace` is a tuple with the path to the node where a subgraph is invoked,
+                e.g. `("parent_node:&lt;task_id&gt;", "child_node:&lt;task_id&gt;")`.
+    
+                See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.
+    
+        Yields:
+            The output of each step in the graph. The output shape depends on the `stream_mode`.
+        """
+        if (checkpoint_during := kwargs.get("checkpoint_during")) is not None:
+            warnings.warn(
+                "`checkpoint_during` is deprecated and will be removed. Please use `durability` instead.",
+                category=LangGraphDeprecatedSinceV10,
+                stacklevel=2,
+            )
+            if durability is not None:
+                raise ValueError(
+                    "Cannot use both `checkpoint_during` and `durability` parameters. Please use `durability` instead."
+                )
+            durability = "async" if checkpoint_during else "exit"
+    
+        if stream_mode is None:
+            # if being called as a node in another graph, default to values mode
+            # but don't overwrite stream_mode arg if provided
+            stream_mode = (
+                "values"
+                if config is not None and CONFIG_KEY_TASK_ID in config.get(CONF, {})
+                else self.stream_mode
+            )
+        if debug or self.debug:
+            print_mode = ["updates", "values"]
+    
+        stream = AsyncQueue()
+        aioloop = asyncio.get_running_loop()
+        stream_put = cast(
+            Callable[[StreamChunk], None],
+            partial(aioloop.call_soon_threadsafe, stream.put_nowait),
+        )
+    
+        config = ensure_config(self.config, config)
+        run_manager = None
+        try:
+            # assign defaults
+            (
+                stream_modes,
+                output_keys,
+                interrupt_before_,
+                interrupt_after_,
+                checkpointer,
+                store,
+                cache,
+                durability_,
+            ) = self._defaults(
+                config,
+                stream_mode=stream_mode,
+                print_mode=print_mode,
+                output_keys=output_keys,
+                interrupt_before=interrupt_before,
+                interrupt_after=interrupt_after,
+                durability=durability,
+            )
+            callback_manager = get_async_callback_manager_for_config(config)
+            if "messages" in stream_modes and version != "v2":
+                # Strip any inherited v2 messages handler so a v1 stream
+                # does not get routed through the content-block event
+                # protocol. Leave v1 handlers in place — an outer
+                # astream(stream_mode="messages", subgraphs=True) relies
+                # on its inheritable handler to observe events emitted
+                # by inner astream(stream_mode="messages") calls.
+                callback_manager.handlers = [
+                    h
+                    for h in callback_manager.handlers
+                    if not isinstance(h, StreamMessagesHandlerV2)
+                ]
+                callback_manager.inheritable_handlers = [
+                    h
+                    for h in callback_manager.inheritable_handlers
+                    if not isinstance(h, StreamMessagesHandlerV2)
+                ]
+            if CONFIG_KEY_TASK_ID not in config[CONF]:
+                # Not run as a task (a child invoked with its own thread, say),
+                # this graph's namespace starts at the root, so a caller's
+                # handler would take this graph's events for its own graph's.
+                callback_manager.handlers = [
+                    h
+                    for h in callback_manager.handlers
+                    if not _is_stream_mode_handler(h)
+                ]
+                callback_manager.inheritable_handlers = [
+                    h
+                    for h in callback_manager.inheritable_handlers
+                    if not _is_stream_mode_handler(h)
+                ]
+            if "ls_integration" not in callback_manager.metadata:
+                callback_manager.add_metadata({"ls_integration": "langgraph"})
+            run_manager = await callback_manager.on_chain_start(
+                None,
+                input,
+                name=config.get("run_name", self.get_name()),
+                run_id=config.get("run_id"),
+            )
+            graph_callback_manager = get_async_graph_callback_manager_for_config(
+                config,
+                run_id=run_manager.run_id,
+            )
+            # if running from astream_log() run each proc with streaming
+            do_stream = any(
+                _is_stream_handler(h)
+                and not isinstance(h, (StreamMessagesHandler, StreamToolCallHandler))
+                for h in run_manager.handlers
+            )
+            if checkpointer is None and durability is not None:
+                warnings.warn(
+                    "`durability` has no effect when no checkpointer is present.",
+                )
+            # set up subgraph checkpointing
+            config = self._own_checkpoint_config(config)
+            stream_handlers: list[StreamMessagesHandler | StreamToolCallHandler] = []
+            # set up messages stream mode
+            if "messages" in stream_modes:
+                use_stream_messages_v2 = bool(
+                    version == "v2" and config[CONF].get(CONFIG_KEY_STREAM_MESSAGES_V2)
+                )
+                messages_handler_cls = (
+                    StreamMessagesHandlerV2
+                    if use_stream_messages_v2
+                    else StreamMessagesHandler
+                )
+                stream_handlers.append(messages_handler_cls(stream_put, subgraphs))
+    
+            # set up tools stream mode
+            if "tools" in stream_modes:
+                stream_handlers.append(StreamToolCallHandler(stream_put, subgraphs))
+            run_manager.inheritable_handlers.extend(stream_handlers)
+    
+            # set up custom stream mode
+            def stream_writer(c: Any) -&gt; None:
+                aioloop.call_soon_threadsafe(
+                    stream.put_nowait,
+                    (
+                        tuple(
+                            get_config()[CONF][CONFIG_KEY_CHECKPOINT_NS].split(NS_SEP)[
+                                :-1
+                            ]
+                        ),
+                        "custom",
+                        c,
+                    ),
+                )
+    
+            if "custom" in stream_modes:
+    
+                def stream_writer(c: Any) -&gt; None:
+                    aioloop.call_soon_threadsafe(
+                        stream.put_nowait,
+                        (
+                            tuple(
+                                get_config()[CONF][CONFIG_KEY_CHECKPOINT_NS].split(
+                                    NS_SEP
+                                )[:-1]
+                            ),
+                            "custom",
+                            c,
+                        ),
+                    )
+            elif CONFIG_KEY_STREAM in config[CONF]:
+                stream_writer = config[CONF][CONFIG_KEY_RUNTIME].stream_writer
+            else:
+    
+                def stream_writer(c: Any) -&gt; None:
+                    pass
+    
+            # set durability mode for subgraphs
+            if durability is not None:
+                config[CONF][CONFIG_KEY_DURABILITY] = durability_
+    
+            # build server_info from metadata + parent runtime
+            parent_runtime = _coerce_parent_runtime(
+                config[CONF].get(CONFIG_KEY_RUNTIME, DEFAULT_RUNTIME)
+            )
+            server_info = _build_server_info(config, parent_runtime)
+    
+            runtime = Runtime(
+                context=_coerce_context(self.context_schema, context),
+                store=store,
+                stream_writer=stream_writer,
+                previous=None,
+                execution_info=None,
+                server_info=server_info,
+                control=control or parent_runtime.control or RunControl(),
+            )
+            runtime = parent_runtime.merge(runtime)
+            config[CONF][CONFIG_KEY_RUNTIME] = runtime
+    
+            # resolve mappers for v2 stream coercion
+            _output_mapper = self._output_mapper if version == "v2" else None
+            _state_mapper = self._state_mapper if version == "v2" else None
+    
+            async def aemit_graph_lifecycle_events(loop: AsyncPregelLoop) -&gt; None:
+                while (event := loop._pop_lifecycle_event()) is not None:
+                    if isinstance(event, GraphResumeEvent):
+                        await graph_callback_manager.on_resume(
+                            GraphResumeEvent(
+                                run_id=graph_callback_manager.run_id,
+                                status=event.status,
+                                checkpoint_id=event.checkpoint_id,
+                                checkpoint_ns=event.checkpoint_ns,
+                            )
+                        )
+                    else:
+                        await graph_callback_manager.on_interrupt(
+                            GraphInterruptEvent(
+                                run_id=graph_callback_manager.run_id,
+                                status=event.status,
+                                checkpoint_id=event.checkpoint_id,
+                                checkpoint_ns=event.checkpoint_ns,
+                                interrupts=event.interrupts,
+                            )
+                        )
+    
+            async with AsyncPregelLoop(
+                input,
+                stream=StreamProtocol(stream.put_nowait, stream_modes),
+                config=config,
+                store=store,
+                cache=cache,
+                checkpointer=checkpointer,
+                nodes=self.nodes,
+                specs=self.channels,
+                output_keys=output_keys,
+                input_keys=self.input_channels,
+                stream_keys=self.stream_channels_asis,
+                interrupt_before=interrupt_before_,
+                interrupt_after=interrupt_after_,
+                manager=run_manager,
+                durability=durability_,
+                trigger_to_nodes=self.trigger_to_nodes,
+                migrate_checkpoint=self._migrate_checkpoint,
+                retry_policy=self.retry_policy,
+                cache_policy=self.cache_policy,
+                has_graph_lifecycle_callbacks=bool(graph_callback_manager.handlers),
+            ) as loop:
+                # Known only now: the loop numbers the namespace of every
+                # subgraph a task runs after its first.
+                for handler in stream_handlers:
+                    handler.parent_ns = loop.checkpoint_ns
+                await aemit_graph_lifecycle_events(loop)
+                # create runner
+                runner = PregelRunner(
+                    submit=config[CONF].get(
+                        CONFIG_KEY_RUNNER_SUBMIT, weakref.WeakMethod(loop.submit)
+                    ),
+                    put_writes=weakref.WeakMethod(loop.put_writes),
+                    use_astream=do_stream,
+                    node_finished=config[CONF].get(CONFIG_KEY_NODE_FINISHED),
+                    node_error_handler_map=self.node_error_handler_map,
+                    aschedule_error_handler=loop.aschedule_error_handler,
+                )
+                # enable subgraph streaming
+                if subgraphs:
+                    loop.config[CONF][CONFIG_KEY_STREAM] = StreamProtocol(
+                        stream_put, stream_modes
+                    )
+                # enable concurrent streaming
+                get_waiter: Callable[[], asyncio.Task[None]] | None = None
+                _cleanup_waiter: Callable[[], Awaitable[None]] | None = None
+                if (
+                    self.stream_eager
+                    or subgraphs
+                    or "messages" in stream_modes
+                    or "custom" in stream_modes
+                ):
+                    # Keep a single waiter task alive; ensure cleanup on exit.
+                    waiter: asyncio.Task[None] | None = None
+    
+                    def get_waiter() -&gt; asyncio.Task[None]:
+                        nonlocal waiter
+                        if waiter is None or waiter.done():
+                            waiter = aioloop.create_task(stream.wait())
+    
+                            def _clear(t: asyncio.Task[None]) -&gt; None:
+                                nonlocal waiter
+                                if waiter is t:
+                                    waiter = None
+    
+                            waiter.add_done_callback(_clear)
+                        return waiter
+    
+                    async def _cleanup_waiter() -&gt; None:
+                        """Wake pending waiter and/or cancel+await to avoid pending tasks."""
+                        nonlocal waiter
+                        # Try to wake via semaphore like SyncPregelLoop
+                        with contextlib.suppress(Exception):
+                            if hasattr(stream, "_count"):
+                                stream._count.release()
+                        t = waiter
+                        waiter = None
+                        if t is not None and not t.done():
+                            t.cancel()
+                            with contextlib.suppress(asyncio.CancelledError):
+                                await t
+    
+                # Similarly to Bulk Synchronous Parallel / Pregel model
+                # computation proceeds in steps, while there are channel updates
+                # channel updates from step N are only visible in step N+1
+                # channels are guaranteed to be immutable for the duration of the step,
+                # with channel updates applied only at the transition between steps
+                try:
+                    while loop.tick():
+                        for task in await loop.amatch_cached_writes():
+                            loop.put_writes(task.id, task.writes, cached=True)
+                        async for _ in runner.atick(
+                            [t for t in loop.tasks.values() if not t.writes],
+                            timeout=self.step_timeout,
+                            get_waiter=get_waiter,
+                            schedule_task=loop.aaccept_push,
+                        ):
+                            # emit output
+                            for o in _output(
+                                stream_mode,
+                                print_mode,
+                                subgraphs,
+                                stream.get_nowait,
+                                asyncio.QueueEmpty,
+                                version,
+                                _output_mapper,
+                                _state_mapper,
+                            ):
+                                yield o
+                        loop.after_tick()
+                        await aemit_graph_lifecycle_events(loop)
+                        # wait for checkpoint
+                        if durability_ == "sync":
+                            await cast(asyncio.Future, loop._put_checkpoint_fut)
+                finally:
+                    # ensure waiter doesn't remain pending on cancel/shutdown
+                    if _cleanup_waiter is not None:
+                        await _cleanup_waiter()
+    
+            await aemit_graph_lifecycle_events(loop)
+    
+            # emit output
+            for o in _output(
+                stream_mode,
+                print_mode,
+                subgraphs,
+                stream.get_nowait,
+                asyncio.QueueEmpty,
+                version,
+                _output_mapper,
+                _state_mapper,
+            ):
+                yield o
+            # handle exit
+            if loop.status == "out_of_steps":
+                msg = create_error_message(
+                    message=(
+                        f"Recursion limit of {config['recursion_limit']} reached "
+                        "without hitting a stop condition. You can increase the "
+                        "limit by setting the `recursion_limit` config key."
+                    ),
+                    error_code=ErrorCode.GRAPH_RECURSION_LIMIT,
+                )
+&gt;               raise GraphRecursionError(msg)
+E               langgraph.errors.GraphRecursionError: Recursion limit of 10007 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.
+E               For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT
+
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3580: GraphRecursionError</failure></testcase><testcase classname="tests.s01.test_existing_workflows" name="test_raw_sdk_v3_manus_tool_calls_and_usage" time="0.390" /><testcase classname="tests.s01.test_existing_workflows" name="test_travel_coordinator_existing_iteration_contract" time="0.041" /></testsuite></testsuites>

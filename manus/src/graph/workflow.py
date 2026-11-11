@@ -2,17 +2,17 @@
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, List, Dict, Any
 from langchain_core.messages import BaseMessage
-from src.graph.state import AgentState
-from src.graph.nodes.plan_node import plan_node
-from src.graph.nodes.route_node import route_node
-from src.graph.nodes.execute_node import execute_node
-from src.graph.nodes.check_node import check_node
+from manus.src.graph.state import AgentState
+from manus.src.graph.nodes.plan_node import plan_node
+from manus.src.graph.nodes.route_node import route_node
+from manus.src.graph.nodes.execute_node import execute_node
+from manus.src.graph.nodes.check_node import check_node
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-# AgentState is imported from src.graph.state
+# AgentState is imported from manus.src.graph.state
 
 def create_workflow() -> StateGraph:
     """创建智能体工作流"""

@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-12",
+  "started_at": "2026-11-11T21:10:54.185129+00:00",
+  "configuration_source": "project .env / explicit environment",
+  "provider_host": "api.openai-hk.com",
+  "model": "gpt-4o-mini",
+  "transport": "chat_completions",
+  "max_retries": 0,
+  "checks": [
+    {
+      "name": "text",
+      "passed": true
+    },
+    {
+      "name": "stream",
+      "passed": true
+    },
+    {
+      "name": "create_agent_structured_tool_strategy",
+      "passed": true
+    }
+  ],
+  "usage": [
+    {
+      "input_tokens": 14,
+      "output_tokens": 4,
+      "total_tokens": 18,
+      "input_token_details": {
+        "audio": 0,
+        "cache_read": 0
+      },
+      "output_token_details": {
+        "audio": 0,
+        "reasoning": 0
+      }
+    },
+    {
+      "input_tokens": 52,
+      "output_tokens": 8,
+      "total_tokens": 60,
+      "input_token_details": {
+        "audio": 0,
+        "cache_read": 0
+      },
+      "output_token_details": {
+        "audio": 0,
+        "reasoning": 0
+      }
+    }
+  ],
+  "status": "passed",
+  "finished_at": "2026-11-11T21:11:01.198363+00:00"
+}

@@ -45,6 +45,7 @@ if __name__ == "__main__":
     from dotenv import load_dotenv, find_dotenv
     import os
 
+    load_dotenv(find_dotenv(".env.local"))
     load_dotenv(find_dotenv())
     base_url = os.getenv('SERVER_BASE_URL')
     port = os.getenv('SERVER_PORT')

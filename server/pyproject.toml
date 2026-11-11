@@ -9,15 +9,22 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "3.12.6"
-uvicorn = "^0.23.2"
-langserve = {extras = ["server"], version = ">=0.0.30"}
-pydantic = ">2"
-langchain-openai = "^1.0.1"
+python = ">=3.12,<3.13"
+uvicorn = ">=0.23.2"
+langserve = {extras = ["server"], version = "0.3.3"}
+pydantic = "2.14.3"
+langchain-openai = "1.7.4"
+langchain = "1.5.0"
+langchain-core = "1.8.0"
+langgraph = "1.2.20"
+openai = "3.49.0"
+fastapi = "0.162.4"
+python-dotenv = ">=1"
 
 
 [tool.poetry.group.dev.dependencies]
-langchain-cli = ">=0.0.15"
+pytest = "9.2.0"
+pytest-asyncio = "1.4.1.post1"
 
 [build-system]
 requires = ["poetry-core"]

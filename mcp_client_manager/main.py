@@ -2,9 +2,13 @@
 import asyncio
 import sys
 
-from config.config import LLM_CONFIG
-from core.mcp_manager import MCPManager
-from core.mcp_router import LLMMCP
+from pathlib import Path
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from mcp_client_manager.src.config.config import LLM_CONFIG
+from mcp_client_manager.src.core.mcp_manager import MCPManager
+from mcp_client_manager.src.core.mcp_router import LLMMCP
 
 
 class MCPApplication:
@@ -53,7 +57,8 @@ class MCPApplication:
 
     async def cleanup(self):
         """清理协议连接"""
-        await self.mcp_manager.getMCPClient().close_all()
+        await self.mcp_manager.cleanup()
+        await self.llm_mcp.llm_client.close()
 
 
 async def main():

@@ -7,6 +7,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from .utils import log
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """
@@ -24,7 +25,6 @@ class ReqEmbeddingClient:
 
     def get_embedding(self,text)-> List[float]:
         if self.debug:
-            log(self.openai_api_key)
             log(self.openai_base_url)
 
         url = self.openai_base_url + "/embeddings"

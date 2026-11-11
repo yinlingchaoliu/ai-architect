@@ -3,6 +3,7 @@ from typing import Dict, Any
 import yaml
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 class Config:
@@ -13,7 +14,7 @@ class Config:
         if not self.openai_api_key:
             raise ValueError("OPENAI_API_KEY environment variable is required")
 
-        self.model_name = os.getenv("MODEL_NAME", "gpt-4")
+        self.model_name = os.getenv("OPENAI_MODEL") or os.getenv("MODEL_NAME", "deepseek-flash")
         self.temperature = float(os.getenv("TEMPERATURE", "0.7"))
         self.max_tokens = int(os.getenv("MAX_TOKENS", "2000"))
 

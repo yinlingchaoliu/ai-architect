@@ -3,8 +3,13 @@
 # 基础组件
 from .base_agent import BaseAgent, AgentResponse
 
-# 会话管理
-from .session_manager import SessionManager
+# SessionManager imports concrete agents, which also import this package.
+# Load it on demand so either import order works.
+def __getattr__(name):
+    if name == "SessionManager":
+        from .session_manager import SessionManager
+        return SessionManager
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 # 插件管理
 from .plugin_manager import PluginManager

@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "total": 31,
+  "groups": [
+    {
+      "group": "agent-tests",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 6.411
+    },
+    {
+      "group": "langserve-tests",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.594
+    },
+    {
+      "group": "ui-rag-tests",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.305
+    }
+  ],
+  "live_provider": "deepseek-flash",
+  "live_checks": 4,
+  "review_mode": "self_review",
+  "scope": "S01 compatibility subset"
+}

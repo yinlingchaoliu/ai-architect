@@ -28,6 +28,8 @@ Orchestrator 主要围绕子任务图分解和聚合，计划修订有版本并�
 
 模型提出的计划和决策先由 Runtime 校验依赖、目标白名单、预算和当前授权。旧会议图未实际接入的追问需要显式实现和测试，不能通过文案声称已经支持。专家输出必须有 Schema 与来源标记，模拟工具输出不能充当真实研究证据。
 
+专家/监督者由 create_agent + middleware 构建，决策通过 response_format/structured_response 获取；自定义拓扑使用 StateGraph/子图，并通过 v3 事件观察进展。当前模型 profile 决定 ProviderStrategy/ToolStrategy，禁止退回自由文本关键词解析。1.5 的 ModelRouterMiddleware/auto mode 作为 beta 验证项，路由只允许选择本 Run 已固定并获准的模型候选，记录实际选择和费用；失败时切到具名静态路由配置。[当前特性基线](01-langchain-upgrade.md)
+
 ## 4. 验收与回滚
 
 Orchestrator 测试三独立任务并行、下游依赖屏障、必需失败、可选降级、聚合不合格和有界重做。Supervisor 测试发现缺口后再委派、相同决策无进展、非法 Agent、最大修订数和预算停止。两种模式都需通过 Worker 重启、重复事件和取消路径。

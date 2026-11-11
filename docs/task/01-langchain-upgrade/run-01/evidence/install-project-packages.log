@@ -1,0 +1,16 @@
+Using Python 3.12.15 environment at: /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01
+Resolved 4 packages in 385ms
+   Building manus @ file:///Users/chentong/AI/PatientCare/github/ai-architect/manus
+   Building agent-muti-discussion @ file:///Users/chentong/AI/PatientCare/github/ai-architect/agent_muti_discussion
+   Building mcp-client-manager @ file:///Users/chentong/AI/PatientCare/github/ai-architect/mcp_client_manager
+   Building mutiagent @ file:///Users/chentong/AI/PatientCare/github/ai-architect/agent_muti
+      Built mcp-client-manager @ file:///Users/chentong/AI/PatientCare/github/ai-architect/mcp_client_manager
+      Built mutiagent @ file:///Users/chentong/AI/PatientCare/github/ai-architect/agent_muti
+      Built agent-muti-discussion @ file:///Users/chentong/AI/PatientCare/github/ai-architect/agent_muti_discussion
+      Built manus @ file:///Users/chentong/AI/PatientCare/github/ai-architect/manus
+Prepared 4 packages in 129ms
+Installed 4 packages in 1ms
+ + agent-muti-discussion==0.1.0 (from file:///Users/chentong/AI/PatientCare/github/ai-architect/agent_muti_discussion)
+ + manus==0.1.0 (from file:///Users/chentong/AI/PatientCare/github/ai-architect/manus)
+ + mcp-client-manager==0.1.0 (from file:///Users/chentong/AI/PatientCare/github/ai-architect/mcp_client_manager)
+ + mutiagent==0.1.0 (from file:///Users/chentong/AI/PatientCare/github/ai-architect/agent_muti)

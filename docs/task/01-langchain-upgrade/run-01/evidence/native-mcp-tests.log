@@ -1,0 +1,129 @@
+...........F                                                             [100%]
+=================================== FAILURES ===================================
+_______ test_mcp_elicitation_interrupts_and_resumes_without_early_effect _______
+
+model_factory = <function model_factory.<locals>.<lambda> at 0x11546b7e0>
+
+    @pytest.mark.asyncio
+    async def test_mcp_elicitation_interrupts_and_resumes_without_early_effect(model_factory):
+        class Destination(BaseModel):
+            city: str
+    
+        server = FastMCP("elicitation-test")
+        effects = []
+    
+        @server.tool
+        async def choose_city(ctx: Context) -> str | InputRequiredResult:
+            """Ask using the modern input-required protocol before any effect."""
+            answer = ctx.input_responses.get("destination")
+            if answer is None:
+                return InputRequiredResult(inputRequests={
+                    "destination": ElicitRequest(params=ElicitRequestFormParams(
+                        message="Which city?", requestedSchema=Destination.model_json_schema()))
+                })
+            if answer.action != "accept":
+                return "declined"
+            city = Destination.model_validate(answer.content).city
+            effects.append(city)
+            return city
+    
+        async with MCPAdapter(server) as adapter:
+            tools = await adapter.list_tools()
+            model = model_factory([
+                AIMessage(content="", tool_calls=[{"name": "choose_city", "args": {}, "id": "city-1"}]),
+                AIMessage(content="Shanghai"),
+            ])
+            agent = build_agent(model, tools, checkpointer=InMemorySaver())
+            config = {"configurable": {"thread_id": "mcp-input"}}
+            paused = await agent.ainvoke({"messages": [("user", "choose")]}, config,
+                                         context=AgentContext("mcp-input"))
+>           request = paused["__interrupt__"][0].value
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: '__interrupt__'
+
+tests/s01/test_mcp.py:99: KeyError
+----------------------------- Captured stderr call -----------------------------
+[11/12/26 05:06:55] Error calling tool 'choose_city'                            
+                    ╭─────────── Traceback (most recent call last) ────────────╮
+                    │ /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/l │
+                    │ ib/python3.12/site-packages/fastmcp/server/server.py:151 │
+                    │ 0 in call_tool                                           │
+                    │                                                          │
+                    │ /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/l │
+                    │ ib/python3.12/site-packages/fastmcp/tools/base.py:452 in │
+                    │ _run                                                     │
+                    │                                                          │
+                    │                 ... 5 frames hidden ...                  │
+                    │                                                          │
+                    │ /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/l │
+                    │ ib/python3.12/site-packages/fastmcp/tools/function_tool. │
+                    │ py:101 in wrapper                                        │
+                    │                                                          │
+                    │ /Users/chentong/AI/PatientCare/github/ai-architect/tests │
+                    │ /s01/test_mcp.py:77 in choose_city                       │
+                    │                                                          │
+                    │    74 │   @server.tool                                   │
+                    │    75 │   async def choose_city(ctx: Context) -> str | I │
+                    │    76 │   │   """Ask using the modern input-required pro │
+                    │ ❱  77 │   │   answer = ctx.input_responses.get("destinat │
+                    │    78 │   │   if answer is None:                         │
+                    │    79 │   │   │   return InputRequiredResult(inputReques │
+                    │    80 │   │   │   │   "destination": ElicitRequest(param │
+                    ╰──────────────────────────────────────────────────────────╯
+                    AttributeError: 'NoneType' object has no attribute 'get'    
+------------------------------ Captured log call -------------------------------
+ERROR    fastmcp.server.server:server.py:1559 Error calling tool 'choose_city'
+Traceback (most recent call last):
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/server/server.py", line 1510, in call_tool
+    return await tool._run(arguments or {})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/tools/base.py", line 452, in _run
+    return await self.run(arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/tools/function_tool.py", line 448, in run
+    result = await self._run_body(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/tools/function_tool.py", line 499, in _run_body
+    result = await self._execute(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/tools/function_tool.py", line 547, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/tools/function_tool.py", line 101, in wrapper
+    return await fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/server/dependencies.py", line 776, in wrapper
+    result = await fn(**resolved_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/tools/function_tool.py", line 101, in wrapper
+    return await fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_mcp.py", line 77, in choose_city
+    answer = ctx.input_responses.get("destination")
+             ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+=============================== warnings summary ===============================
+tests/s01/test_mcp.py:7
+  /Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_mcp.py:7: LangChainBetaWarning: `langchain.mcp` is in beta. It is actively being worked on, so the API may change.
+    from langchain.mcp import MCPAdapter
+
+tests/s01/test_native_features.py::test_v3_event_projection_has_text_state_and_final_usage
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3804: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return self._pregel_stream_v3(
+
+tests/s01/test_native_features.py::test_v3_event_projection_has_text_state_and_final_usage
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3646: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return GraphRunStream(graph_iter, mux)
+
+tests/s01/test_native_features.py::test_async_v3_stream
+  /Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_native_features.py:91: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    stream = await agent.astream_events({"messages": [("user", "hello")]}, version="v3",
+
+tests/s01/test_native_features.py::test_async_v3_stream
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3700: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return AsyncGraphRunStream(graph_aiter, mux)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/s01/test_mcp.py::test_mcp_elicitation_interrupts_and_resumes_without_early_effect
+1 failed, 11 passed, 5 warnings in 3.19s

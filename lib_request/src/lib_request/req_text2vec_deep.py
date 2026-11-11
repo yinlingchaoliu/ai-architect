@@ -6,6 +6,7 @@ from dotenv import load_dotenv, find_dotenv
 from .deprecated import deprecated
 from .utils import log
 
+load_dotenv(find_dotenv(".env.local"))
 load_dotenv(find_dotenv())
 
 """
@@ -25,7 +26,6 @@ class DeepSeekEmbeddingClient:
     def get_embedding(self,text):
         if self.debug:
             log(self.openai_base_url)
-            log(self.openai_api_key)
 
         url = self.openai_base_url + "/chat/completions"
         log(url)

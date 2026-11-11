@@ -1,57 +1,46 @@
-# 首先安装必要的依赖包：
-# pip install langchain langchain-community langchain-mcp-adapters langchain-openai python-dotenv
-
+"""LangChain create_agent + built-in MCPAdapter, using Streamable HTTP."""
 import asyncio
 import os
+from uuid import uuid4
 
-from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_mcp_adapters.client import MultiServerMCPClient
+from langchain.agents import create_agent
+from langchain.agents.middleware import ModelCallLimitMiddleware
+from langchain.mcp import MCPAdapter
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
 
-load_dotenv()  # 加载环境变量，例如 OPENAI_API_KEY
+
+async def run_query(query: str, *, target=None, model=None, response_format=None):
+    """Discover and execute inside the adapter context; propagate failures."""
+    target = target if target is not None else os.getenv(
+        "MCP_WEATHER_URL", "http://127.0.0.1:8000/mcp"
+    )
+    model = model if model is not None else ChatOpenAI(
+        model=os.getenv("OPENAI_MODEL", "deepseek-flash"), temperature=0,
+        extra_body={"thinking": {"type": "disabled"}} if os.getenv("OPENAI_MODEL", "deepseek-flash").startswith("deepseek-") else {},
+        use_responses_api=False
+    )
+    async with MCPAdapter(target) as adapter:
+        tools = await adapter.list_tools()
+        agent = create_agent(
+            model, tools,
+            system_prompt="Use tools when needed and report their results accurately.",
+            middleware=[ModelCallLimitMiddleware(run_limit=8, exit_behavior="error")],
+            response_format=response_format,
+            name="mcp-assistant",
+        )
+        return await agent.ainvoke(
+            {"messages": [{"role": "user", "content": query}]},
+            config={"run_name": f"mcp-query-{uuid4()}"},
+        )
 
 
 async def main():
-
-    client = MultiServerMCPClient({
-        "weather": {
-            "url": "http://localhost:8000/sse",  # 你的SSE URL
-            "transport": "sse",
-        }
-    })
-
-    tools = await client.get_tools()
-    print("✅ 从MCP服务器获取到的工具:")
-    for tool in tools:
-        print(f"   - {tool.name}: {tool.description}")
-
-    # 4. 设置LLM和Agent
-    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
-
-    # Agent提示词模板，指导其如何使用工具
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "你是一个有用的助手，可以调用工具来获取信息。请根据用户需求使用合适的工具。"),
-        ("human", "{input}"),
-        ("placeholder", "{agent_scratchpad}"),
-    ])
-
-    # 创建能理解工具调用的Agent
-    agent = create_tool_calling_agent(llm=llm, tools=tools, prompt=prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
-    # 5. 使用Agent执行任务（示例：查询天气）
-    print("\n🤖 Agent开始处理用户请求...")
-    try:
-        result = await agent_executor.ainvoke({
-            "input": "今天北京的天气怎么样？"  # 请确保MCP服务提供天气查询工具
-        })
-        print(f"\n📝 最终回答: {result['output']}")
-    except Exception as e:
-        print(f"❌ 执行过程中出现错误: {e}")
+    from dotenv import load_dotenv, find_dotenv
+    load_dotenv(find_dotenv(".env.local"))
+    load_dotenv()
+    result = await run_query("今天北京的天气怎么样？")
+    print(result["messages"][-1].text)
 
 
-# 运行示例
 if __name__ == "__main__":
     asyncio.run(main())

@@ -1,0 +1,421 @@
+/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+.....F..F..F                                                             [100%]
+=================================== FAILURES ===================================
+_____________________________ test_async_v3_stream _____________________________
+
+model_factory = <function model_factory.<locals>.<lambda> at 0x10fa80d60>
+
+    @pytest.mark.asyncio
+    async def test_async_v3_stream(model_factory):
+        agent = build_agent(model_factory([AIMessage(content="async answer")]))
+        stream = await agent.astream_events({"messages": [("user", "hello")]}, version="v3",
+                                            context=AgentContext("async-stream"))
+        texts = []
+        async for message in stream.messages:
+            async for text in message.text:
+                texts.append(text)
+        assert "async answer" in "".join(texts)
+>       assert final_text(await stream.output) == "async answer"
+                          ^^^^^^^^^^^^^^^^^^^
+E       TypeError: object method can't be used in 'await' expression
+
+tests/s01/test_native_features.py:98: TypeError
+______________________ test_native_adapter_stdio_process _______________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/exceptiongroup/_catch.py", line 63, in handle_exception
+  |     raise matched
+  | ExceptionGroup:  (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_mcp.py", line 31, in test_native_adapter_stdio_process
+    |     monkeypatch.setenv("MCP_TRANSPORT", "stdio")
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/mcp/adapter.py", line 208, in __aenter__
+    |     await self._client.__aenter__()
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 992, in __aenter__
+    |     session_task = await self._enter_context()
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 985, in _enter_context
+    |     await self._connect()
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 1142, in _connect
+    |     raise exception
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 1258, in _session_runner
+    |     await stack.enter_async_context(self._context_manager())
+    |   File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 659, in enter_async_context
+    |     result = await _enter(cm)
+    |              ^^^^^^^^^^^^^^^^
+    |   File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 210, in __aenter__
+    |     return await anext(self.gen)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/exceptiongroup/_catch.py", line 65, in handle_exception
+    |     result = handler(matched)
+    |              ^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/utilities/exceptions.py", line 63, in _exception_handler
+    |     raise leaf
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 865, in _context_manager
+    |     await self._negotiate()
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 913, in _negotiate
+    |     await negotiate_auto(self.session)
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/_probe.py", line 81, in negotiate_auto
+    |     await session.initialize()  # every other rpc-error → legacy (the denylist)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/session.py", line 654, in initialize
+    |     result = await self.send_request(
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/session.py", line 586, in send_request
+    |     raw = await self._dispatcher.send_raw_request(method, data.get("params"), opts)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/shared/jsonrpc_dispatcher.py", line 461, in send_raw_request
+    |     raise MCPError(code=outcome.code, message=outcome.message, data=outcome.data)
+    | mcp.shared.exceptions.MCPError: Connection closed
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_mcp.py", line 31, in test_native_adapter_stdio_process
+    monkeypatch.setenv("MCP_TRANSPORT", "stdio")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/mcp/adapter.py", line 208, in __aenter__
+    await self._client.__aenter__()
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 992, in __aenter__
+    session_task = await self._enter_context()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 985, in _enter_context
+    await self._connect()
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 1142, in _connect
+    raise exception
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 1258, in _session_runner
+    await stack.enter_async_context(self._context_manager())
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 659, in enter_async_context
+    result = await _enter(cm)
+             ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/exceptiongroup/_catch.py", line 65, in handle_exception
+    result = handler(matched)
+             ^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/utilities/exceptions.py", line 63, in _exception_handler
+    raise leaf
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 865, in _context_manager
+    await self._negotiate()
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py", line 913, in _negotiate
+    await negotiate_auto(self.session)
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/_probe.py", line 81, in negotiate_auto
+    await session.initialize()  # every other rpc-error → legacy (the denylist)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/session.py", line 654, in initialize
+    result = await self.send_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/session.py", line 586, in send_request
+    raw = await self._dispatcher.send_raw_request(method, data.get("params"), opts)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/shared/jsonrpc_dispatcher.py", line 461, in send_raw_request
+    raise MCPError(code=outcome.code, message=outcome.message, data=outcome.data)
+mcp.shared.exceptions.MCPError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10fac6d80>
+
+    
+    @pytest.mark.asyncio
+    async def test_native_adapter_stdio_process(monkeypatch):
+>       monkeypatch.setenv("MCP_TRANSPORT", "stdio")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/s01/test_mcp.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/mcp/adapter.py:208: in __aenter__
+    await self._client.__aenter__()
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py:992: in __aenter__
+    session_task = await self._enter_context()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py:985: in _enter_context
+    await self._connect()
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py:1142: in _connect
+    raise exception
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py:1258: in _session_runner
+    await stack.enter_async_context(self._context_manager())
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:659: in enter_async_context
+    result = await _enter(cm)
+             ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:210: in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/exceptiongroup/_catch.py:65: in handle_exception
+    result = handler(matched)
+             ^^^^^^^^^^^^^^^^
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/utilities/exceptions.py:63: in _exception_handler
+    raise leaf
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py:865: in _context_manager
+    await self._negotiate()
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/fastmcp/client/client.py:913: in _negotiate
+    await negotiate_auto(self.session)
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/_probe.py:81: in negotiate_auto
+    await session.initialize()  # every other rpc-error → legacy (the denylist)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/session.py:654: in initialize
+    result = await self.send_request(
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/client/session.py:586: in send_request
+    raw = await self._dispatcher.send_raw_request(method, data.get("params"), opts)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <mcp.shared.jsonrpc_dispatcher.JSONRPCDispatcher object at 0x10fc472f0>
+method = 'initialize'
+params = {'protocolVersion': '2025-11-25', 'capabilities': {'elicitation': {'form': {}, 'url': {}}}, 'clientInfo': {'name': 'mcp', 'version': '0.1.0'}}
+opts = {'cancel_on_abandon': False, 'headers': {}}, _related_request_id = None
+
+    async def send_raw_request(
+        self,
+        method: str,
+        params: Mapping[str, Any] | None,
+        opts: CallOptions | None = None,
+        *,
+        _related_request_id: RequestId | None = None,
+    ) -> dict[str, Any]:
+        """Send a JSON-RPC request and await its response.
+    
+        `_related_request_id` is set only by `_JSONRPCDispatchContext` so that
+        mid-handler requests route onto the inbound request's SSE stream.
+    
+        Raises:
+            MCPError: Peer error response; `REQUEST_TIMEOUT` if
+                `opts["timeout"]` elapsed; `CONNECTION_CLOSED` if the
+                transport closed or the dispatcher shut down.
+            RuntimeError: Called before `run()`.
+        """
+        # Post-close sends get the same CONNECTION_CLOSED contract as in-flight waiters.
+        if self._closed:
+            raise MCPError(code=CONNECTION_CLOSED, message="Connection closed")
+        if not self._running:
+            raise RuntimeError("JSONRPCDispatcher.send_raw_request called before run()")
+        opts = opts or {}
+        supplied_id = opts.get("request_id")
+        if supplied_id is not None:
+            request_id: RequestId = supplied_id
+            # The pending key gets the same coercion `_resolve_pending` applies
+            # to inbound response ids, so a supplied "7" still correlates
+            # whether the peer echoes "7" or 7. The wire id stays verbatim.
+            pending_key = coerce_request_id(request_id)
+            if pending_key in self._pending:
+                raise ValueError(f"request id {request_id!r} is already in flight")
+        else:
+            # Mint past any key a supplied id occupies: the collision error is
+            # reserved for the caller who actually chose the id.
+            request_id = self._allocate_id()
+            while request_id in self._pending:
+                request_id = self._allocate_id()
+            pending_key = request_id
+        out_params = dict(params) if params is not None else {}
+        out_meta = dict(out_params.get("_meta") or {})
+        on_progress = opts.get("on_progress")
+        if on_progress is not None:
+            # The request id doubles as the progress token, so `_pending[token]` finds `on_progress` directly.
+            out_meta["progressToken"] = request_id
+    
+        # buffer=1: a close signal can arrive before the waiter parks in receive();
+        # a WouldBlock later just means the waiter already has its one outcome.
+        send, receive = anyio.create_memory_object_stream[dict[str, Any] | ErrorData](1)
+        pending = _Pending(send=send, receive=receive, on_progress=on_progress)
+        self._pending[pending_key] = pending
+    
+        plan = _plan_outbound(_related_request_id, opts)
+        # Spec MUST: only previously-issued requests may be cancelled. A write
+        # interrupted by cancellation may still have delivered (a memory-stream
+        # send can hand its item to the receiver and still raise), so a started
+        # write counts as issued: the peer ignores a cancel for an id it never
+        # saw, while skipping it would leak a delivered request's handler.
+        request_write_started = False
+        timeout_armed = False
+    
+        target = out_params.get("name")
+        span_name = f"MCP send {method}{f' {target}' if isinstance(target, str) else ''}"
+        # TODO(maxisbey): move the otel span + inject into an outbound
+        # middleware once that seam exists; the dispatcher should not own otel.
+        try:
+            with otel_span(
+                span_name,
+                kind=SpanKind.CLIENT,
+                attributes={"mcp.method.name": method, "jsonrpc.request.id": str(request_id)},
+            ) as span:
+                # SEP-414: inject W3C trace context.
+                inject_trace_context(out_meta)
+                if out_meta:
+                    out_params["_meta"] = out_meta
+                else:
+                    out_params.pop("_meta", None)
+                # Leave `params` unset when empty: with `exclude_unset=True` an explicit
+                # None would serialize as `"params": null`, which JSON-RPC 2.0 forbids.
+                if out_params:
+                    msg = JSONRPCRequest(jsonrpc="2.0", id=request_id, method=method, params=out_params)
+                else:
+                    msg = JSONRPCRequest(jsonrpc="2.0", id=request_id, method=method)
+                # Surface a pre-existing cancellation while the request provably
+                # never started; past this point a cancelled write counts as issued.
+                await anyio.lowlevel.checkpoint_if_cancelled()
+                request_write_started = True
+                with request_clock(opts.get("timeout")) as clock:
+                    try:
+                        await self._write(msg, plan.metadata)
+                    except (anyio.BrokenResourceError, anyio.ClosedResourceError):
+                        # Transport tore down before run() noticed EOF; surface the documented contract.
+                        raise MCPError(code=CONNECTION_CLOSED, message="Connection closed") from None
+                    clock.start()
+                    timeout_armed = True
+                    outcome = await receive.receive()
+                if isinstance(outcome, ErrorData) and outcome is not _CLOSED_OUTCOME:
+                    code = str(outcome.code)
+                    span.set_attributes({"error.type": code, "rpc.response.status_code": code})
+                    span.set_status(StatusCode.ERROR, outcome.message)
+        except TimeoutError:
+            if not timeout_armed:
+                # The clock starts only after the write, so this TimeoutError is the
+                # transport's own bounded send() failing - a transport error, not
+                # `opts["timeout"]` elapsing. Propagate it raw (v1 kept the write
+                # outside the timeout-catching try and did the same).
+                raise
+            # Courtesy cancel (spec-recommended, new vs v1) so the peer stops work;
+            # unshielded so an outer caller cancellation can still interrupt the write.
+            if plan.cancel_on_abandon:
+                await self._final_write(
+                    partial(
+                        self._cancel_outbound,
+                        request_id,
+                        f"timed out after {opts.get('timeout')}s",
+                        _related_request_id,
+                    ),
+                    shield=False,
+                    timeout=_ABANDON_WRITE_TIMEOUT,
+                    describe=f"courtesy cancel for timed-out request {request_id!r}",
+                )
+            raise MCPError(code=REQUEST_TIMEOUT, message=f"Request {method!r} timed out") from None
+        except anyio.get_cancelled_exc_class():
+            # Caller cancelled: bare awaits re-raise here, so the shielded helper
+            # lets the courtesy cancel go out before we propagate.
+            if plan.cancel_on_abandon and request_write_started:
+                await self._final_write(
+                    partial(self._cancel_outbound, request_id, "caller cancelled", _related_request_id),
+                    shield=True,
+                    timeout=_ABANDON_WRITE_TIMEOUT,
+                    describe=f"courtesy cancel for caller-cancelled request {request_id!r}",
+                )
+            raise
+        finally:
+            # Remove the waiter on every path so a late response is dropped, not leaked.
+            self._pending.pop(pending_key, None)
+            send.close()
+            receive.close()
+    
+        if isinstance(outcome, ErrorData):
+>           raise MCPError(code=outcome.code, message=outcome.message, data=outcome.data)
+E           mcp.shared.exceptions.MCPError: Connection closed
+
+../../.venvs/ai-architect-s01/lib/python3.12/site-packages/mcp/shared/jsonrpc_dispatcher.py:461: MCPError
+----------------------------- Captured stderr call -----------------------------
+
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│                                                                              │
+│                         ▄▀▀ ▄▀█ █▀▀ ▀█▀ █▀▄▀█ █▀▀ █▀█                        │
+│                         █▀  █▀█ ▄▄█  █  █ ▀ █ █▄▄ █▀▀                        │
+│                                                                              │
+│                                                                              │
+│                                                                              │
+│                                FastMCP 4.1.8                                 │
+│                            https://gofastmcp.com                             │
+│                                                                              │
+│                  🖥  Server:      MathTools, 4.1.8                            │
+│                  🚀 Deploy free: https://horizon.prefect.io                  │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+[11/12/26 05:03:50] INFO     Starting MCP server 'MathTools'    transport.py:358
+                             with transport 'http' on                           
+                             http://127.0.0.1:8001/mcp                          
+INFO:     Started server process [24666]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [24666]
+_______ test_mcp_elicitation_interrupts_and_resumes_without_early_effect _______
+
+model_factory = <function model_factory.<locals>.<lambda> at 0x115d9bba0>
+
+        assert any(isinstance(m, ToolMessage) and "21" in str(m.content) for m in result["messages"])
+    
+    
+    @pytest.mark.asyncio
+    async def test_mcp_elicitation_interrupts_and_resumes_without_early_effect(model_factory):
+        class Destination(BaseModel):
+            city: str
+    
+        server = FastMCP("elicitation-test")
+        effects = []
+    
+        @server.tool
+        async def choose_city(ctx: Context) -> str:
+            """Ask for a city before recording the result."""
+            answer = await ctx.elicit("Which city?", response_type=Destination)
+            if answer.action != "accept":
+                return "declined"
+            effects.append(answer.data.city)
+            return answer.data.city
+    
+        async with MCPAdapter(server) as adapter:
+            tools = await adapter.list_tools()
+            model = model_factory([
+                AIMessage(content="", tool_calls=[{"name": "choose_city", "args": {}, "id": "city-1"}]),
+                AIMessage(content="Shanghai"),
+            ])
+            agent = build_agent(model, tools, checkpointer=InMemorySaver())
+>           config = {"configurable": {"thread_id": "mcp-input"}}
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: '__interrupt__'
+
+tests/s01/test_mcp.py:89: KeyError
+----------------------------- Captured stderr call -----------------------------
+[11/12/26 05:05:26] Error calling tool 'choose_city'                            
+------------------------------ Captured log call -------------------------------
+ERROR    fastmcp.server.server:server.py:1523 Error calling tool 'choose_city'
+=============================== warnings summary ===============================
+tests/s01/test_mcp.py:6
+  /Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_mcp.py:6: LangChainBetaWarning: `langchain.mcp` is in beta. It is actively being worked on, so the API may change.
+    from langchain.mcp import MCPAdapter
+
+tests/s01/test_native_features.py::test_v3_event_projection_has_text_state_and_final_usage
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3804: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return self._pregel_stream_v3(
+
+tests/s01/test_native_features.py::test_v3_event_projection_has_text_state_and_final_usage
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3646: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return GraphRunStream(graph_iter, mux)
+
+tests/s01/test_native_features.py::test_async_v3_stream
+  /Users/chentong/AI/PatientCare/github/ai-architect/tests/s01/test_native_features.py:91: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    stream = await agent.astream_events({"messages": [("user", "hello")]}, version="v3",
+
+tests/s01/test_native_features.py::test_async_v3_stream
+  /Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langgraph/pregel/main.py:3700: LangChainBetaWarning: The v3 streaming protocol on Pregel is experimental.
+    return AsyncGraphRunStream(graph_aiter, mux)
+
+tests/s01/test_mcp.py::test_existing_mcp_client_manager_new_sdk
+  /Users/chentong/AI/PatientCare/github/ai-architect/mcp_client_manager/src/core/mcp_client.py:42: FastMCPDeprecationWarning: Accessing `Tool.inputSchema` is deprecated; MCP SDK v2 renamed this field to `input_schema`. Update your code to read `.input_schema` instead.
+    "parameters": self._parse_parameters_schema(tool.inputSchema)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/s01/test_native_features.py::test_async_v3_stream - TypeError: o...
+FAILED tests/s01/test_mcp.py::test_native_adapter_stdio_process - mcp.shared....
+FAILED tests/s01/test_mcp.py::test_mcp_elicitation_interrupts_and_resumes_without_early_effect
+3 failed, 9 passed, 6 warnings in 101.28s (0:01:41)

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="12" time="3.190" timestamp="2026-11-12T05:06:52.622784+08:00" hostname="192.168.0.10"><testcase classname="tests.s01.test_native_features" name="test_tool_loop_context_middleware_and_structured_output" time="0.014" /><testcase classname="tests.s01.test_native_features" name="test_invalid_structured_output_is_not_reported_as_success" time="0.003" /><testcase classname="tests.s01.test_native_features" name="test_framework_model_call_limit_stops_unbounded_tool_loop" time="0.004" /><testcase classname="tests.s01.test_native_features" name="test_standard_content_blocks_preserve_text" time="0.001" /><testcase classname="tests.s01.test_native_features" name="test_v3_event_projection_has_text_state_and_final_usage" time="0.003" /><testcase classname="tests.s01.test_native_features" name="test_async_v3_stream" time="0.004" /><testcase classname="tests.s01.test_native_features" name="test_interrupt_resume_keeps_checkpoint_and_defers_side_effect" time="0.006" /><testcase classname="tests.s01.test_mcp" name="test_native_adapter_real_http_discovery_call_and_resource" time="0.639" /><testcase classname="tests.s01.test_mcp" name="test_native_adapter_stdio_process" time="0.493" /><testcase classname="tests.s01.test_mcp" name="test_existing_mcp_client_manager_new_sdk" time="0.552" /><testcase classname="tests.s01.test_mcp" name="test_agentmcp_actual_agent_tool_loop" time="0.799" /><testcase classname="tests.s01.test_mcp" name="test_mcp_elicitation_interrupts_and_resumes_without_early_effect" time="0.071"><failure message="KeyError: '__interrupt__'">model_factory = &lt;function model_factory.&lt;locals&gt;.&lt;lambda&gt; at 0x11546b7e0&gt;
+
+    @pytest.mark.asyncio
+    async def test_mcp_elicitation_interrupts_and_resumes_without_early_effect(model_factory):
+        class Destination(BaseModel):
+            city: str
+    
+        server = FastMCP("elicitation-test")
+        effects = []
+    
+        @server.tool
+        async def choose_city(ctx: Context) -&gt; str | InputRequiredResult:
+            """Ask using the modern input-required protocol before any effect."""
+            answer = ctx.input_responses.get("destination")
+            if answer is None:
+                return InputRequiredResult(inputRequests={
+                    "destination": ElicitRequest(params=ElicitRequestFormParams(
+                        message="Which city?", requestedSchema=Destination.model_json_schema()))
+                })
+            if answer.action != "accept":
+                return "declined"
+            city = Destination.model_validate(answer.content).city
+            effects.append(city)
+            return city
+    
+        async with MCPAdapter(server) as adapter:
+            tools = await adapter.list_tools()
+            model = model_factory([
+                AIMessage(content="", tool_calls=[{"name": "choose_city", "args": {}, "id": "city-1"}]),
+                AIMessage(content="Shanghai"),
+            ])
+            agent = build_agent(model, tools, checkpointer=InMemorySaver())
+            config = {"configurable": {"thread_id": "mcp-input"}}
+            paused = await agent.ainvoke({"messages": [("user", "choose")]}, config,
+                                         context=AgentContext("mcp-input"))
+&gt;           request = paused["__interrupt__"][0].value
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: '__interrupt__'
+
+tests/s01/test_mcp.py:99: KeyError</failure></testcase></testsuite></testsuites>

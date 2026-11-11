@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "module": "langchain.agents",
+      "symbol": "create_agent",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langchain.agents.middleware",
+      "symbol": "ModelRouterMiddleware",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langchain.agents.middleware",
+      "symbol": "ModelCallLimitMiddleware",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langchain.agents.structured_output",
+      "symbol": "ToolStrategy",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langchain.agents.structured_output",
+      "symbol": "ProviderStrategy",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langchain.tools",
+      "symbol": "ToolRuntime",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langchain.mcp",
+      "symbol": "MCPAdapter",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langgraph.graph",
+      "symbol": "StateGraph",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langgraph.checkpoint.memory",
+      "symbol": "InMemorySaver",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    },
+    {
+      "module": "langgraph.store.memory",
+      "symbol": "InMemoryStore",
+      "available": true,
+      "scope": "API availability only; behavioral checks recorded separately"
+    }
+  ],
+  "passed": true
+}

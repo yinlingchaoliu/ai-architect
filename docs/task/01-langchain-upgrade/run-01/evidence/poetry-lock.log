@@ -1,0 +1,15 @@
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+Downloading virtualenv (5.4MiB)
+Downloading dulwich (1.4MiB)
+Downloading rapidfuzz (1.2MiB)
+ Downloaded rapidfuzz
+ Downloaded dulwich
+ Downloaded virtualenv
+Installed 49 packages in 41ms
+The currently activated Python version 3.11.15 is not supported by the project (>=3.12,<3.13).
+Trying to find and use a compatible version. 
+Using python3.12 (3.12.15)
+Creating virtualenv server-LdjK5z90-py3.12 in /Users/chentong/Library/Caches/pypoetry/virtualenvs
+Resolving dependencies...
+
+Writing lock file
