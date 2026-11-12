@@ -1,0 +1,19 @@
+flowchart LR
+    P["Provider：一个供应商，多个模型"] --> I["ProviderInstance：租户配置与凭据引用"]
+    I --> CAT["已发布模型目录"]
+    R["ModelRequest：要求能力"] --> TY["ModelType"]
+    TY --> LL["LLM"]
+    TY --> EM["TEXT_EMBEDDING"]
+    TY --> RR["RERANK"]
+    TY --> AS["SPEECH2TEXT"]
+    TY --> MO["MODERATION"]
+    TY --> TT["TTS"]
+    LL --> MATCH["匹配 AIModelEntity / 特性 / 参数 / 权限"]
+    EM --> MATCH
+    RR --> MATCH
+    AS --> MATCH
+    MO --> MATCH
+    TT --> MATCH
+    CAT --> MATCH
+    MATCH --> OK["PreparedCall：固定具体模型和适配器"]
+    MATCH --> NO["能力缺失或未配置：明确拒绝"]

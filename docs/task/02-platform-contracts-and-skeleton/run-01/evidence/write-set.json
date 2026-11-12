@@ -1,0 +1,66 @@
+{
+  "scope": "run-01 analysis and candidate optimization only",
+  "self_excluded": "evidence/write-set.json",
+  "files": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/00-analysis.md",
+      "sha256": "97be028c3d8927362d9fd45fe765afebb9c9fbbb008a5affff5271be99e0e747",
+      "bytes": 9487
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/01-thinking.md",
+      "sha256": "530d0d9583268522278663ff06312266ca306d150ae78f36229de67a232b368e",
+      "bytes": 3517
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/02-actions.md",
+      "sha256": "1f03c9d21f29c52f348f80ff8880edc0960d21c8e395c4dfedf11c5dda26d860",
+      "bytes": 2252
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/03-review.md",
+      "sha256": "05c410b841186d50e231afbffec10892fdfcb12eccda4d880ae4e1fee2bfbd6a",
+      "bytes": 3640
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/04-reflection.md",
+      "sha256": "d44f588a1027aa11c584b1d2998b87f7cadd1420690f766f3f199b1b0cd7605a",
+      "bytes": 2618
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/05-langchain-optimization.md",
+      "sha256": "ce8cdaab10c7a056bfd99881db13c41ceaa032a75b7e34f68d9cf20481a9af61",
+      "bytes": 19291
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/README.md",
+      "sha256": "f70d820d530e977523490084ba92758d09a2081b716b0a448e767ced7b04eeb1",
+      "bytes": 1914
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/diagrams/langchain-native-path.mmd",
+      "sha256": "d219f71539c016435fd1f761774cc0891ae052cbac8afbcab5d865353b3cf423",
+      "bytes": 928
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/baseline.json",
+      "sha256": "84390854ca3ac897a6409e68fafec58c48b3207f144175e746d62e7ca6cc320b",
+      "bytes": 8192
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/document-check.json",
+      "sha256": "4c2a3ae0bb944b400f1493639b46bff6858e3a95a777c439dff0cf884b881678",
+      "bytes": 6560
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/langchain-mechanism-probe.py",
+      "sha256": "0923d26d1617e64062da7c4e27e2146fb7e105166438170af1333b1e8e98263f",
+      "bytes": 7098
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/langchain-mechanism-results.json",
+      "sha256": "f41ade79257bba2742b05c3610281f2bda47f14450438c9bf1e4692567c2615f",
+      "bytes": 2897
+    }
+  ]
+}

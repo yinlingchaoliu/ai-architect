@@ -1,2 +1,0 @@
-# UI/RAG compatibility environment; separate from LangServe.
--r ../requirements/ui-rag.lock

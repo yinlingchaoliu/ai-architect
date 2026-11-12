@@ -1,5 +1,30 @@
 # AI项目架构 用于商业项目实战
 
+## Python 3.12 本地环境与依赖安装
+
+项目统一使用 **Python 3.12**（当前基线 3.12.15），所有当前 Agent/MCP、WebUI/RAG、LangServe、开发测试依赖及本地包均直接列在根 `requirements.txt` 中。在仓库根目录执行：
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip check
+```
+
+每次新开终端后先执行 `source .venv/bin/activate`。PyCharm/其他 IDE 选择仓库内 `.venv/bin/python`。安装时使用 `python -m pip`，避免误用系统 Python 3.9 的 pip；根 `.python-version` 不会自动切换普通 shell 的解释器。
+
+`requirements.txt` 同时包含固定版本的第三方库和 `-e ./...` 本地包，单次安装即可完成，无需分组、锁文件目录或额外安装脚本。新增或修改依赖直接编辑该文件，然后重新安装并执行依赖检查。
+
+LangServe 使用基础包 `langserve`，其所需 FastAPI、SSE 等依赖在根文件显式列出，不启用与 MCP 的 SSE 约束冲突的 `[server]` extra；两者使用同一个环境中的 `sse-starlette==3.7.0`。这一组合以项目离线接口、流式响应和 MCP 回归验证为准。
+
+离线回归（不调用真实模型）：
+
+```bash
+python -m pytest tests/test_environment_installation.py tests/s01/test_native_features.py tests/s01/test_mcp.py tests/s01/test_existing_workflows.py tests/s01/test_langserve.py tests/s01/test_ui_rag.py agent_muti_discussion/src/tests/test_discussion.py -q
+```
+
+直接执行 `python main.py` 会请求真实 Embedding 服务，不属于离线安装检查。`rag_llamaindex/` 是保留自身依赖的独立历史 GPU 实验，不包含在当前 LangChain UI/RAG 安装范围中。S01 文档中的分环境和锁文件路径是历史记录，当前安装方法以本文为准。
+
 ##  1. OpenAI API HK代理
 
 ```bash
@@ -95,7 +120,9 @@ tips
 
 ### 环境 python env
 ```shell
-python 3.12.6
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
 ### 1.[webui](webui-chatbot) : python编写界面
@@ -196,8 +223,7 @@ streamlit run webui-chatbot/src/home.py --server.port 1234
 ```shell
 # 启动项目
 sh port.sh 8008
-cd server
-langchain serve --port 8008
+python -m uvicorn app.server:app --app-dir server --port 8008
 cd ..
 ```
 

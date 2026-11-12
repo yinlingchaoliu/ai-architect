@@ -1,0 +1,12 @@
+stateDiagram-v2
+    [*] --> reserved
+    reserved --> released: 明确未发送或确认不计费
+    reserved --> pending: 已派发，等待可靠计量
+    pending --> settled: 用量与价格维度已核实
+    pending --> unresolved: 截断或缺失回执
+    unresolved --> settled: 补充可信用量证据
+    unresolved --> disputed: 长期未知，人工核对
+    settled --> adjusted: 追加账单差额分录
+    adjusted --> adjusted: 追加新调整，保留历史
+    disputed --> settled: 审核与补充分录
+    released --> [*]

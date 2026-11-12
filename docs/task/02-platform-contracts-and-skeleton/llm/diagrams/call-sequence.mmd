@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant U as 上层统一客户端
+    participant S as ModelService
+    participant R as Provider / Model Registry
+    participant Q as Admission / BudgetAuthority
+    participant A as ModelType Adapter / LangChain
+    U->>S: ainvoke 或 astream，类型化请求与可信 context
+    S->>R: 按 ModelType / alias / 权限解析具体模型
+    R-->>S: ProviderInstance + AIModelEntity + 版本快照
+    S->>S: 参数/特性校验，生成一次性 PreparedCall
+    S->>Q: 队列准入与本次尝试预留
+    Q-->>S: 授权或拒绝
+    S->>A: 单次派发，固定模型/凭据/截止时间
+    A-->>S: 原生结果或增量 + usage / receipt
+    alt 完整可确认
+        S->>S: 规范化结果，保存观察并最终化
+        S-->>U: ModelResult 或 usage 后 finish
+    else 异常 / 取消 / 截断
+        S->>S: 显式失败或未知；费用独立待对账
+        S-->>U: 标准错误或失败 finish
+    end

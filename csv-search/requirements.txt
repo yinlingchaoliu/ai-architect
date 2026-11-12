@@ -1,2 +1,0 @@
-# Legacy SQL chain is isolated in the explicit UI/RAG compatibility group.
--r ../requirements/ui-rag.lock

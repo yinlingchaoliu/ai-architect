@@ -14,7 +14,7 @@
 
 ## 2. 关键技术决定
 
-- Python 包名为 `agent_platform`，与旧项目通用 `src` 包隔离；新增平台 `pyproject.toml/uv.lock`，沿用 S01 已验证的基础依赖版本。
+- `Python` 包名为 `agent_platform`，与旧项目通用 `src` 包隔离；新增平台 `pyproject.toml/uv.lock`，沿用 S01 已验证的基础依赖版本。
 - 领域/应用合同不导入 FastAPI、LangGraph、A2A SDK 或数据库驱动；由 adapters/infrastructure 实现 port，bootstrap 装配。
 - 框架装配采用 create_agent / middleware / context_schema 与 LangGraph 子图；公共合同映射 response_format/structured_response、content_blocks 和 v3 类型化事件。新能力清单及成熟度见[采用基线](01-langchain-upgrade.md)。
 - 先固定版本化对象：AgentDefinition、ConfigRevision、Run、Task、Attempt、Event、Artifact、Decision、AgentEvent，以及统一错误码与状态转换规则。

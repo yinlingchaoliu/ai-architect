@@ -1,0 +1,14 @@
+{
+  "schema": "arch.verification.v1",
+  "date": "{{date}}",
+  "project": "{{project}}",
+  "scope": "{{scope}}",
+  "candidate": null,
+  "mechanical_status": "not_run",
+  "semantic_review": "not_run",
+  "review_mode": "self_review",
+  "checks": [],
+  "not_run": [],
+  "limitations": [],
+  "acceptance": "not_assessed"
+}

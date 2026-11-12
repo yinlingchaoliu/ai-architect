@@ -1,0 +1,1980 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "kind": "design_only",
+  "repo_root": "/Users/chentong/AI/PatientCare/github/ai-architect",
+  "head": "98425ec910407e447c40d5528e84f445d8c38cc8",
+  "git_status": " M .gitignore\n M README.md\n M docs/task/02-platform-contracts-and-skeleton.md\n M requirements.txt\n?? .agents/\n?? .python-version\n?? AGENTS.md\n?? docs/task/02-platform-contracts-and-skeleton/\n",
+  "reference_root": "/Users/chentong/AI/PatientCare/github/deepseek-harness",
+  "reference_head": "47f943859bef60e4160492346772ded9b24f765a",
+  "reference_dirty": "",
+  "excluded_design_source": "docs/task/02-platform-contracts-and-skeleton/llm/**",
+  "allowed_write_prefix": "docs/task/02-platform-contracts-and-skeleton/llmv2/",
+  "outside_files_metadata_only": {
+    ".agents/skills/arch/SKILL.md": {
+      "size": 5248,
+      "mtime_ns": 1794445356534111562
+    },
+    ".agents/skills/arch/agents/openai.yaml": {
+      "size": 291,
+      "mtime_ns": 1794445003212104662
+    },
+    ".agents/skills/arch/assets/catalog.json": {
+      "size": 8937,
+      "mtime_ns": 1794445508509828046
+    },
+    ".agents/skills/arch/assets/mermaid-config.json": {
+      "size": 407,
+      "mtime_ns": 1794445356539995043
+    },
+    ".agents/skills/arch/references/capability-design.md": {
+      "size": 2012,
+      "mtime_ns": 1794445356536157653
+    },
+    ".agents/skills/arch/references/cli.md": {
+      "size": 4144,
+      "mtime_ns": 1794445556738565695
+    },
+    ".agents/skills/arch/references/document-contract.md": {
+      "size": 2585,
+      "mtime_ns": 1794445356536003486
+    },
+    ".agents/skills/arch/references/examples.md": {
+      "size": 2603,
+      "mtime_ns": 1794445356536370862
+    },
+    ".agents/skills/arch/references/layout-and-changes.md": {
+      "size": 2087,
+      "mtime_ns": 1794445356536073861
+    },
+    ".agents/skills/arch/references/semantic-review.md": {
+      "size": 1511,
+      "mtime_ns": 1794445356536229904
+    },
+    ".agents/skills/arch/references/validation-report.json": {
+      "size": 21554,
+      "mtime_ns": 1794446110628768035
+    },
+    ".agents/skills/arch/scripts/archkit.py": {
+      "size": 18276,
+      "mtime_ns": 1794445988663329004
+    },
+    ".agents/skills/arch/scripts/self_test.py": {
+      "size": 8218,
+      "mtime_ns": 1794445988663788922
+    },
+    ".agents/skills/arch/subskills/arch-collaboration/SKILL.md": {
+      "size": 1762,
+      "mtime_ns": 1794445508513387269
+    },
+    ".agents/skills/arch/subskills/arch-collaboration/assets/templates/collaboration-design.md": {
+      "size": 618,
+      "mtime_ns": 1794445356537555867
+    },
+    ".agents/skills/arch/subskills/arch-current/SKILL.md": {
+      "size": 1816,
+      "mtime_ns": 1794445905180969536
+    },
+    ".agents/skills/arch/subskills/arch-current/assets/examples/mcp-slice.md": {
+      "size": 2696,
+      "mtime_ns": 1794445905151310045
+    },
+    ".agents/skills/arch/subskills/arch-current/assets/templates/current-architecture.md": {
+      "size": 559,
+      "mtime_ns": 1794445356536631780
+    },
+    ".agents/skills/arch/subskills/arch-diagram/SKILL.md": {
+      "size": 2264,
+      "mtime_ns": 1794445905181240329
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/architecture.png": {
+      "size": 39853,
+      "mtime_ns": 1794445785325057801
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/architecture.svg": {
+      "size": 16531,
+      "mtime_ns": 1794445784210298054
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/data.svg": {
+      "size": 26972,
+      "mtime_ns": 1794445786377534930
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/dependency.svg": {
+      "size": 16254,
+      "mtime_ns": 1794445787346435896
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/sequence.png": {
+      "size": 42446,
+      "mtime_ns": 1794445789047215733
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/sequence.svg": {
+      "size": 28553,
+      "mtime_ns": 1794445788189030284
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/previews/state.svg": {
+      "size": 43199,
+      "mtime_ns": 1794445790047588574
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/templates/architecture.mmd": {
+      "size": 335,
+      "mtime_ns": 1794445356539105998
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/templates/data.mmd": {
+      "size": 274,
+      "mtime_ns": 1794445356539398499
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/templates/dependency.mmd": {
+      "size": 244,
+      "mtime_ns": 1794445356539185374
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/templates/sequence.mmd": {
+      "size": 447,
+      "mtime_ns": 1794445356539252207
+    },
+    ".agents/skills/arch/subskills/arch-diagram/assets/templates/state.mmd": {
+      "size": 517,
+      "mtime_ns": 1794445356539319666
+    },
+    ".agents/skills/arch/subskills/arch-flow/SKILL.md": {
+      "size": 1545,
+      "mtime_ns": 1794445508512982975
+    },
+    ".agents/skills/arch/subskills/arch-flow/assets/templates/business-flow.md": {
+      "size": 585,
+      "mtime_ns": 1794445356537273866
+    },
+    ".agents/skills/arch/subskills/arch-module/SKILL.md": {
+      "size": 1647,
+      "mtime_ns": 1794445556786374632
+    },
+    ".agents/skills/arch/subskills/arch-module/assets/templates/module-design.md": {
+      "size": 727,
+      "mtime_ns": 1794445356536992240
+    },
+    ".agents/skills/arch/subskills/arch-module/profiles.md": {
+      "size": 1368,
+      "mtime_ns": 1794445356536298695
+    },
+    ".agents/skills/arch/subskills/arch-protocol/SKILL.md": {
+      "size": 1640,
+      "mtime_ns": 1794445508514861025
+    },
+    ".agents/skills/arch/subskills/arch-protocol/assets/templates/protocol-design.md": {
+      "size": 646,
+      "mtime_ns": 1794445356537410492
+    },
+    ".agents/skills/arch/subskills/arch-reflect/SKILL.md": {
+      "size": 1575,
+      "mtime_ns": 1794445508513924146
+    },
+    ".agents/skills/arch/subskills/arch-reflect/assets/templates/reflection.md": {
+      "size": 571,
+      "mtime_ns": 1794445356538971748
+    },
+    ".agents/skills/arch/subskills/arch-review/SKILL.md": {
+      "size": 1847,
+      "mtime_ns": 1794445508511366927
+    },
+    ".agents/skills/arch/subskills/arch-review/assets/templates/review.md": {
+      "size": 514,
+      "mtime_ns": 1794445356538751080
+    },
+    ".agents/skills/arch/subskills/arch-review/assets/templates/validation.md": {
+      "size": 453,
+      "mtime_ns": 1794445356538814830
+    },
+    ".agents/skills/arch/subskills/arch-review/assets/templates/verification.json": {
+      "size": 318,
+      "mtime_ns": 1794445356539487875
+    },
+    ".agents/skills/arch/subskills/arch-roadmap/SKILL.md": {
+      "size": 1673,
+      "mtime_ns": 1794445508514476773
+    },
+    ".agents/skills/arch/subskills/arch-roadmap/assets/templates/roadmap.md": {
+      "size": 613,
+      "mtime_ns": 1794445356537895410
+    },
+    ".agents/skills/arch/subskills/arch-run/SKILL.md": {
+      "size": 1807,
+      "mtime_ns": 1794445508514743732
+    },
+    ".agents/skills/arch/subskills/arch-run/assets/templates/actions.md": {
+      "size": 445,
+      "mtime_ns": 1794445356538577663
+    },
+    ".agents/skills/arch/subskills/arch-run/assets/templates/run-index.md": {
+      "size": 463,
+      "mtime_ns": 1794445356538442912
+    },
+    ".agents/skills/arch/subskills/arch-run/assets/templates/thinking.md": {
+      "size": 455,
+      "mtime_ns": 1794445356538509413
+    },
+    ".agents/skills/arch/subskills/arch-source/SKILL.md": {
+      "size": 1685,
+      "mtime_ns": 1794445508514075813
+    },
+    ".agents/skills/arch/subskills/arch-source/assets/templates/source-audit.md": {
+      "size": 662,
+      "mtime_ns": 1794445356536500446
+    },
+    ".agents/skills/arch/subskills/arch-step/SKILL.md": {
+      "size": 1922,
+      "mtime_ns": 1794445508510599633
+    },
+    ".agents/skills/arch/subskills/arch-step/assets/templates/installation-guide.md": {
+      "size": 416,
+      "mtime_ns": 1794445356538215536
+    },
+    ".agents/skills/arch/subskills/arch-step/assets/templates/rollback.md": {
+      "size": 513,
+      "mtime_ns": 1794445356538296203
+    },
+    ".agents/skills/arch/subskills/arch-step/assets/templates/step-entry.md": {
+      "size": 456,
+      "mtime_ns": 1794445356538018369
+    },
+    ".agents/skills/arch/subskills/arch-step/assets/templates/step-index.md": {
+      "size": 321,
+      "mtime_ns": 1794445356538080452
+    },
+    ".agents/skills/arch/subskills/arch-step/assets/templates/step-plan.md": {
+      "size": 668,
+      "mtime_ns": 1794445356538143203
+    },
+    ".agents/skills/arch/subskills/arch-target/SKILL.md": {
+      "size": 1681,
+      "mtime_ns": 1794445508514344647
+    },
+    ".agents/skills/arch/subskills/arch-target/assets/templates/architecture-index.md": {
+      "size": 472,
+      "mtime_ns": 1794445356536769697
+    },
+    ".agents/skills/arch/subskills/arch-target/assets/templates/target-architecture.md": {
+      "size": 612,
+      "mtime_ns": 1794445356536851489
+    },
+    ".agents/skills/arch/subskills/arch-technology/SKILL.md": {
+      "size": 1750,
+      "mtime_ns": 1794445508513186810
+    },
+    ".agents/skills/arch/subskills/arch-technology/assets/templates/decision.md": {
+      "size": 436,
+      "mtime_ns": 1794445356537738868
+    },
+    ".agents/skills/arch/subskills/arch-technology/assets/templates/technology-baseline.md": {
+      "size": 671,
+      "mtime_ns": 1794445356537678201
+    },
+    ".python-version": {
+      "size": 8,
+      "mtime_ns": 1794451796944134186
+    },
+    "AGENTS.md": {
+      "size": 936,
+      "mtime_ns": 1794445356540294086
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/01-architecture.md": {
+      "size": 10744,
+      "mtime_ns": 1794451693499903008
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/02-contracts-and-configuration.md": {
+      "size": 13927,
+      "mtime_ns": 1794451693502576359
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/03-usage-and-billing.md": {
+      "size": 9179,
+      "mtime_ns": 1794451693499580214
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/04-concurrency-and-reliability.md": {
+      "size": 9739,
+      "mtime_ns": 1794451187417952854
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/05-open-source-reference.md": {
+      "size": 5607,
+      "mtime_ns": 1794450833715086510
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/06-project-integration.md": {
+      "size": 10561,
+      "mtime_ns": 1794451749229630922
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/07-acceptance-and-review.md": {
+      "size": 9481,
+      "mtime_ns": 1794451187417309975
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/08-model-types-and-api.md": {
+      "size": 9437,
+      "mtime_ns": 1794451413545167249
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/README.md": {
+      "size": 4415,
+      "mtime_ns": 1794451749229302044
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/design-manifest.json": {
+      "size": 2638,
+      "mtime_ns": 1794451749425243141
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/design-validation.json": {
+      "size": 1647,
+      "mtime_ns": 1794451749424549678
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/architecture.mmd": {
+      "size": 1026,
+      "mtime_ns": 1794450136903358533
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/call-sequence.mmd": {
+      "size": 951,
+      "mtime_ns": 1794450136903515992
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/deployment.mmd": {
+      "size": 423,
+      "mtime_ns": 1794450136903563159
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/settlement-state.mmd": {
+      "size": 549,
+      "mtime_ns": 1794450136903608117
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/type-routing.mmd": {
+      "size": 668,
+      "mtime_ns": 1794450136903472658
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/examples/unified-model-requests.json": {
+      "size": 2093,
+      "mtime_ns": 1794451693502449024
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/reference-snapshot.json": {
+      "size": 13971,
+      "mtime_ns": 1794451259306062513
+    },
+    "docs/task/02-platform-contracts-and-skeleton/llm/source-baseline.json": {
+      "size": 8875,
+      "mtime_ns": 1794451569263783135
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/00-analysis.md": {
+      "size": 9487,
+      "mtime_ns": 1794447698119372898
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/01-thinking.md": {
+      "size": 3517,
+      "mtime_ns": 1794447698119451232
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/02-actions.md": {
+      "size": 2252,
+      "mtime_ns": 1794448065199300991
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/03-review.md": {
+      "size": 3640,
+      "mtime_ns": 1794448065199134198
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/04-reflection.md": {
+      "size": 2618,
+      "mtime_ns": 1794447937507797567
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/05-langchain-optimization.md": {
+      "size": 19291,
+      "mtime_ns": 1794448065198917697
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/README.md": {
+      "size": 2290,
+      "mtime_ns": 1794451413544515743
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/diagrams/langchain-native-path.mmd": {
+      "size": 928,
+      "mtime_ns": 1794447698119086647
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/baseline.json": {
+      "size": 8192,
+      "mtime_ns": 1794447417270686537
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/document-check.json": {
+      "size": 6560,
+      "mtime_ns": 1794448108303156804
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/langchain-mechanism-probe.py": {
+      "size": 7098,
+      "mtime_ns": 1794447995218233575
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/langchain-mechanism-results.json": {
+      "size": 2897,
+      "mtime_ns": 1794447995778160054
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/evidence/write-set.json": {
+      "size": 2640,
+      "mtime_ns": 1794448108304033183
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/01-thinking.md": {
+      "size": 2914,
+      "mtime_ns": 1794451413544077169
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/02-actions.md": {
+      "size": 2648,
+      "mtime_ns": 1794451749229835423
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/03-review.md": {
+      "size": 2492,
+      "mtime_ns": 1794451413544220721
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/04-reflection.md": {
+      "size": 1923,
+      "mtime_ns": 1794451413544283559
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/README.md": {
+      "size": 2107,
+      "mtime_ns": 1794451413543985079
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/baseline.json": {
+      "size": 10823,
+      "mtime_ns": 1794449825456604042
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/check-documents.py": {
+      "size": 10964,
+      "mtime_ns": 1794451521743405736
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/dify-reference.json": {
+      "size": 2282,
+      "mtime_ns": 1794449896378659568
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/document-check.json": {
+      "size": 1831,
+      "mtime_ns": 1794451749425432600
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/framework-sources.json": {
+      "size": 4254,
+      "mtime_ns": 1794451259173049510
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/llm-before.tar.gz": {
+      "size": 40670,
+      "mtime_ns": 1794449895322657902
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/outside-write-set-observations.json": {
+      "size": 1871,
+      "mtime_ns": 1794451259192141797
+    },
+    "docs/task/02-platform-contracts-and-skeleton/run-01/rewrite-01/evidence/write-set.json": {
+      "size": 6423,
+      "mtime_ns": 1794451749426474524
+    },
+    ".gitignore": {
+      "size": 515,
+      "mtime_ns": 1794451796944403063
+    },
+    "README.md": {
+      "size": 8144,
+      "mtime_ns": 1794451827047862046
+    },
+    "agent_muti/README.md": {
+      "size": 9727,
+      "mtime_ns": 1794405051516227914
+    },
+    "agent_muti/__init__.py": {
+      "size": 38,
+      "mtime_ns": 1794431672973425128
+    },
+    "agent_muti/config.yaml": {
+      "size": 2339,
+      "mtime_ns": 1794405051516356873
+    },
+    "agent_muti/main.py": {
+      "size": 3921,
+      "mtime_ns": 1794430900890578393
+    },
+    "agent_muti/requirements.txt": {
+      "size": 111,
+      "mtime_ns": 1794430900886026363
+    },
+    "agent_muti/setup.py": {
+      "size": 379,
+      "mtime_ns": 1794431672973627838
+    },
+    "agent_muti/src/agents/__init__.py": {
+      "size": 235,
+      "mtime_ns": 1794405051516952625
+    },
+    "agent_muti/src/agents/base_agent.py": {
+      "size": 4798,
+      "mtime_ns": 1794432905297982065
+    },
+    "agent_muti/src/agents/coordinator_agent.py": {
+      "size": 4575,
+      "mtime_ns": 1794430775627270356
+    },
+    "agent_muti/src/agents/plugin_agent.py": {
+      "size": 1258,
+      "mtime_ns": 1794430775627847860
+    },
+    "agent_muti/src/core/__init__.py": {
+      "size": 470,
+      "mtime_ns": 1794405051517524502
+    },
+    "agent_muti/src/core/agent_system.py": {
+      "size": 10821,
+      "mtime_ns": 1794405051517685169
+    },
+    "agent_muti/src/core/iteration_controller.py": {
+      "size": 13522,
+      "mtime_ns": 1794405051517929378
+    },
+    "agent_muti/src/core/planning_engine.py": {
+      "size": 21896,
+      "mtime_ns": 1794405051518100629
+    },
+    "agent_muti/src/core/plugin_manager.py": {
+      "size": 2662,
+      "mtime_ns": 1794405051518289671
+    },
+    "agent_muti/src/examples/demo.py": {
+      "size": 4364,
+      "mtime_ns": 1794405051518503672
+    },
+    "agent_muti/src/examples/interactive_demo.py": {
+      "size": 4373,
+      "mtime_ns": 1794405051518635631
+    },
+    "agent_muti/src/models/__init__.py": {
+      "size": 200,
+      "mtime_ns": 1794405051518807423
+    },
+    "agent_muti/src/models/agent_models.py": {
+      "size": 1812,
+      "mtime_ns": 1794405051518933298
+    },
+    "agent_muti/src/models/capability_models.py": {
+      "size": 0,
+      "mtime_ns": 1794405051518988715
+    },
+    "agent_muti/src/plugins/__init__.py": {
+      "size": 223,
+      "mtime_ns": 1794405051519159758
+    },
+    "agent_muti/src/plugins/attraction_agent.py": {
+      "size": 9278,
+      "mtime_ns": 1794405051519283717
+    },
+    "agent_muti/src/plugins/budget_agent.py": {
+      "size": 4602,
+      "mtime_ns": 1794405051519412884
+    },
+    "agent_muti/src/plugins/custom_agent.py": {
+      "size": 9466,
+      "mtime_ns": 1794405051519561093
+    },
+    "agent_muti/src/plugins/hotel_agent.py": {
+      "size": 5083,
+      "mtime_ns": 1794405051519683968
+    },
+    "agent_muti/src/plugins/transport_agent.py": {
+      "size": 3978,
+      "mtime_ns": 1794405051519816593
+    },
+    "agent_muti/src/plugins/weather_agent.py": {
+      "size": 3034,
+      "mtime_ns": 1794405051519924552
+    },
+    "agent_muti/src/prompt/constants.py": {
+      "size": 3035,
+      "mtime_ns": 1794405051520098636
+    },
+    "agent_muti/src/utils/__init__.py": {
+      "size": 389,
+      "mtime_ns": 1794405051520234803
+    },
+    "agent_muti/src/utils/config_manager.py": {
+      "size": 16186,
+      "mtime_ns": 1794405051520372387
+    },
+    "agent_muti/src/utils/message_bus.py": {
+      "size": 15426,
+      "mtime_ns": 1794405051520532388
+    },
+    "agent_muti/src/utils/performance_monitor.py": {
+      "size": 11482,
+      "mtime_ns": 1794405051520647763
+    },
+    "agent_muti_discussion/README.md": {
+      "size": 6818,
+      "mtime_ns": 1794405051520897556
+    },
+    "agent_muti_discussion/__init__.py": {
+      "size": 49,
+      "mtime_ns": 1794431672973769922
+    },
+    "agent_muti_discussion/main.py": {
+      "size": 3739,
+      "mtime_ns": 1794432269383581541
+    },
+    "agent_muti_discussion/requirements.txt": {
+      "size": 111,
+      "mtime_ns": 1794430900886197614
+    },
+    "agent_muti_discussion/run.py": {
+      "size": 999,
+      "mtime_ns": 1794405051521199765
+    },
+    "agent_muti_discussion/setup.py": {
+      "size": 462,
+      "mtime_ns": 1794431672974325175
+    },
+    "agent_muti_discussion/src/agents/__init__.py": {
+      "size": 189,
+      "mtime_ns": 1794405051521544891
+    },
+    "agent_muti_discussion/src/agents/analyzer_agent.py": {
+      "size": 1881,
+      "mtime_ns": 1794405051521665100
+    },
+    "agent_muti_discussion/src/agents/moderator_agent.py": {
+      "size": 4086,
+      "mtime_ns": 1794405051521794601
+    },
+    "agent_muti_discussion/src/config/agent_config.yaml": {
+      "size": 922,
+      "mtime_ns": 1794405051521961935
+    },
+    "agent_muti_discussion/src/config/discussion_flow.yaml": {
+      "size": 0,
+      "mtime_ns": 1794405051522023685
+    },
+    "agent_muti_discussion/src/core/__init__.py": {
+      "size": 764,
+      "mtime_ns": 1794432057858998040
+    },
+    "agent_muti_discussion/src/core/base_agent.py": {
+      "size": 3873,
+      "mtime_ns": 1794432905298229858
+    },
+    "agent_muti_discussion/src/core/consensus_checker.py": {
+      "size": 3988,
+      "mtime_ns": 1794405051522463353
+    },
+    "agent_muti_discussion/src/core/plugin_manager.py": {
+      "size": 2621,
+      "mtime_ns": 1794405051522573270
+    },
+    "agent_muti_discussion/src/core/session_manager.py": {
+      "size": 7285,
+      "mtime_ns": 1794405051522696479
+    },
+    "agent_muti_discussion/src/expert_agents/__init__.py": {
+      "size": 442,
+      "mtime_ns": 1794405051522859813
+    },
+    "agent_muti_discussion/src/expert_agents/base_expert.py": {
+      "size": 2869,
+      "mtime_ns": 1794405051522972438
+    },
+    "agent_muti_discussion/src/expert_agents/business_expert.py": {
+      "size": 749,
+      "mtime_ns": 1794405051523073105
+    },
+    "agent_muti_discussion/src/expert_agents/research_expert.py": {
+      "size": 740,
+      "mtime_ns": 1794405051523167731
+    },
+    "agent_muti_discussion/src/expert_agents/tech_expert.py": {
+      "size": 745,
+      "mtime_ns": 1794405051523280564
+    },
+    "agent_muti_discussion/src/plugins/__init__.py": {
+      "size": 229,
+      "mtime_ns": 1794405051523459523
+    },
+    "agent_muti_discussion/src/plugins/base_plugin.py": {
+      "size": 436,
+      "mtime_ns": 1794405051523560690
+    },
+    "agent_muti_discussion/src/plugins/knowledge_base.py": {
+      "size": 4225,
+      "mtime_ns": 1794405051523670274
+    },
+    "agent_muti_discussion/src/plugins/reflection_tool.py": {
+      "size": 2942,
+      "mtime_ns": 1794405051523782399
+    },
+    "agent_muti_discussion/src/plugins/web_search.py": {
+      "size": 1911,
+      "mtime_ns": 1794405051523910483
+    },
+    "agent_muti_discussion/src/tests/integration_test.py": {
+      "size": 2373,
+      "mtime_ns": 1794405051524078984
+    },
+    "agent_muti_discussion/src/tests/performance_test.py": {
+      "size": 1753,
+      "mtime_ns": 1794405051524186443
+    },
+    "agent_muti_discussion/src/tests/quick_start.py": {
+      "size": 1612,
+      "mtime_ns": 1794405051524291568
+    },
+    "agent_muti_discussion/src/tests/test_discussion.py": {
+      "size": 2002,
+      "mtime_ns": 1794431574104454548
+    },
+    "agent_muti_discussion/src/utils/__init__.py": {
+      "size": 203,
+      "mtime_ns": 1794405051524584652
+    },
+    "agent_muti_discussion/src/utils/config.py": {
+      "size": 2243,
+      "mtime_ns": 1794432269385581971
+    },
+    "agent_muti_discussion/src/utils/logger.py": {
+      "size": 4825,
+      "mtime_ns": 1794431746789983915
+    },
+    "agent_muti_discussion/src/utils/network_tools.py": {
+      "size": 1885,
+      "mtime_ns": 1794405051524891487
+    },
+    "agentmcp/agentmcp.py": {
+      "size": 1756,
+      "mtime_ns": 1794432269398743142
+    },
+    "agentmcp/requirements.txt": {
+      "size": 38,
+      "mtime_ns": 1794430900886487241
+    },
+    "ai-architect.png": {
+      "size": 214817,
+      "mtime_ns": 1794405051526566326
+    },
+    "ai-train.png": {
+      "size": 112666,
+      "mtime_ns": 1794405051527130120
+    },
+    "apifox/OpenAI.apifox.json": {
+      "size": 225925,
+      "mtime_ns": 1794405051527701830
+    },
+    "client/client/client_openai.py": {
+      "size": 2085,
+      "mtime_ns": 1794405051527964915
+    },
+    "client/client/client_req_ext.py": {
+      "size": 1066,
+      "mtime_ns": 1794405051528083582
+    },
+    "client/client/client_req_get_json.py": {
+      "size": 1103,
+      "mtime_ns": 1794405051528176790
+    },
+    "client/client/client_req_get_query.py": {
+      "size": 1086,
+      "mtime_ns": 1794405051528257457
+    },
+    "client/client/client_req_post.py": {
+      "size": 473,
+      "mtime_ns": 1794405051528339749
+    },
+    "client/client/utils.py": {
+      "size": 249,
+      "mtime_ns": 1794405051528419375
+    },
+    "client/shell/post.sh": {
+      "size": 108,
+      "mtime_ns": 1794405051528574792
+    },
+    "client/shell/temp_data.json": {
+      "size": 48,
+      "mtime_ns": 1794405051528663750
+    },
+    "csv-search/csv_search.py": {
+      "size": 3595,
+      "mtime_ns": 1794405051528824376
+    },
+    "csv-search/data/brand_category.csv": {
+      "size": 280058,
+      "mtime_ns": 1794405051529600712
+    },
+    "csv-search/data/categories.csv": {
+      "size": 7424,
+      "mtime_ns": 1794405051529742671
+    },
+    "csv-search/data/offer_retailer.csv": {
+      "size": 24327,
+      "mtime_ns": 1794405051529879130
+    },
+    "csv-search/llm.py": {
+      "size": 5618,
+      "mtime_ns": 1794432844550567524
+    },
+    "csv-search/offer_db.sqlite": {
+      "size": 1933312,
+      "mtime_ns": 1794405051535431650
+    },
+    "csv-search/requirements.txt": {
+      "size": 106,
+      "mtime_ns": 1794430900886416074
+    },
+    "docs/README.md": {
+      "size": 826,
+      "mtime_ns": 1794425470317000813
+    },
+    "docs/ai-archtect/01-platform-architecture.md": {
+      "size": 8738,
+      "mtime_ns": 1794425470319725784
+    },
+    "docs/ai-archtect/02-agent-registry-and-configuration.md": {
+      "size": 9766,
+      "mtime_ns": 1794425602525670400
+    },
+    "docs/ai-archtect/03-a2a-protocol.md": {
+      "size": 10300,
+      "mtime_ns": 1794425602526373971
+    },
+    "docs/ai-archtect/04-collaboration-patterns.md": {
+      "size": 11592,
+      "mtime_ns": 1794425878897720846
+    },
+    "docs/ai-archtect/05-runtime-and-reliability.md": {
+      "size": 9781,
+      "mtime_ns": 1794425878898396558
+    },
+    "docs/ai-archtect/06-project-roadmap.md": {
+      "size": 12027,
+      "mtime_ns": 1794425878898888061
+    },
+    "docs/ai-archtect/README.md": {
+      "size": 5500,
+      "mtime_ns": 1794425470319059739
+    },
+    "docs/ai-archtect/diagrams/platform-architecture.mmd": {
+      "size": 1467,
+      "mtime_ns": 1794426167389274477
+    },
+    "docs/ai-archtect/diagrams/platform-architecture.png": {
+      "size": 136267,
+      "mtime_ns": 1794426172275383888
+    },
+    "docs/ai-archtect/diagrams/platform-architecture.svg": {
+      "size": 22518,
+      "mtime_ns": 1794426171282614217
+    },
+    "docs/ai-archtect/source-snapshot.json": {
+      "size": 11448,
+      "mtime_ns": 1794425956552616148
+    },
+    "docs/ai-archtect/validation.json": {
+      "size": 8058,
+      "mtime_ns": 1794426249235357988
+    },
+    "docs/ai-archtect/validation.md": {
+      "size": 3128,
+      "mtime_ns": 1794426249004493297
+    },
+    "docs/business.md": {
+      "size": 10732,
+      "mtime_ns": 1794405051535809818
+    },
+    "docs/current-architecture.md": {
+      "size": 9792,
+      "mtime_ns": 1794426167390041814
+    },
+    "docs/diagrams/README.md": {
+      "size": 1524,
+      "mtime_ns": 1794425956389081870
+    },
+    "docs/diagrams/current-architecture.mmd": {
+      "size": 1656,
+      "mtime_ns": 1794426167389456644
+    },
+    "docs/diagrams/current-architecture.png": {
+      "size": 115009,
+      "mtime_ns": 1794426169945384904
+    },
+    "docs/diagrams/current-architecture.svg": {
+      "size": 27544,
+      "mtime_ns": 1794426168832249075
+    },
+    "docs/diagrams/mermaid-config.json": {
+      "size": 616,
+      "mtime_ns": 1794426167389016058
+    },
+    "docs/discussion_20251105_13.log": {
+      "size": 79731,
+      "mtime_ns": 1794405051535922944
+    },
+    "docs/research.md": {
+      "size": 12840,
+      "mtime_ns": 1794405051536060402
+    },
+    "docs/summary.md": {
+      "size": 9400,
+      "mtime_ns": 1794405051536143861
+    },
+    "docs/task/01-langchain-upgrade.md": {
+      "size": 1408,
+      "mtime_ns": 1794432716491462129
+    },
+    "docs/task/01-langchain-upgrade/README.md": {
+      "size": 948,
+      "mtime_ns": 1794432716490633290
+    },
+    "docs/task/01-langchain-upgrade/langchain-feature-baseline.md": {
+      "size": 9159,
+      "mtime_ns": 1794432716491227794
+    },
+    "docs/task/01-langchain-upgrade/plan.md": {
+      "size": 13601,
+      "mtime_ns": 1794432716490928667
+    },
+    "docs/task/01-langchain-upgrade/rollback.md": {
+      "size": 3247,
+      "mtime_ns": 1794432716490199996
+    },
+    "docs/task/01-langchain-upgrade/run-01/01-thinking.md": {
+      "size": 3267,
+      "mtime_ns": 1794432716490293163
+    },
+    "docs/task/01-langchain-upgrade/run-01/02-actions.md": {
+      "size": 3603,
+      "mtime_ns": 1794432970642393441
+    },
+    "docs/task/01-langchain-upgrade/run-01/03-review.md": {
+      "size": 6846,
+      "mtime_ns": 1794432716490422205
+    },
+    "docs/task/01-langchain-upgrade/run-01/04-reflection.md": {
+      "size": 3083,
+      "mtime_ns": 1794432716490481122
+    },
+    "docs/task/01-langchain-upgrade/run-01/README.md": {
+      "size": 1205,
+      "mtime_ns": 1794432716490688374
+    },
+    "docs/task/01-langchain-upgrade/run-01/backups/docs/task/01-langchain-upgrade.md": {
+      "size": 13151,
+      "mtime_ns": 1794428349072192603
+    },
+    "docs/task/01-langchain-upgrade/run-01/backups/docs/task/langchain-feature-baseline.md": {
+      "size": 8708,
+      "mtime_ns": 1794428349070706802
+    },
+    "docs/task/01-langchain-upgrade/run-01/backups/python-versions-before.json": {
+      "size": 455,
+      "mtime_ns": 1794432466717772166
+    },
+    "docs/task/01-langchain-upgrade/run-01/backups/source-before.tar.gz": {
+      "size": 243000,
+      "mtime_ns": 1794430464303841933
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/agent-tests.log": {
+      "size": 2442,
+      "mtime_ns": 1794432912394669699
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/agent-tests.xml": {
+      "size": 3089,
+      "mtime_ns": 1794432912334120059
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/api-availability.json": {
+      "size": 1971,
+      "mtime_ns": 1794432467655421647
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/approved-link-repairs.json": {
+      "size": 502,
+      "mtime_ns": 1794430464305591028
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/baseline.json": {
+      "size": 25884,
+      "mtime_ns": 1794430354658220253
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/environment-verification.json": {
+      "size": 28049,
+      "mtime_ns": 1794432397547921208
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/existing-workflow-tests.log": {
+      "size": 23341,
+      "mtime_ns": 1794431307365542883
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/existing-workflow-tests.xml": {
+      "size": 24018,
+      "mtime_ns": 1794431307318783415
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/final-verification.json": {
+      "size": 2812,
+      "mtime_ns": 1794432970858217369
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-agent.log": {
+      "size": 2355,
+      "mtime_ns": 1794430617013438971
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-local-request-sdk.log": {
+      "size": 512,
+      "mtime_ns": 1794431854336766671
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-local-sdk-server.log": {
+      "size": 462,
+      "mtime_ns": 1794430901312949164
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-local-sdk.log": {
+      "size": 455,
+      "mtime_ns": 1794430778124329995
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-project-packages.log": {
+      "size": 1399,
+      "mtime_ns": 1794431673612883509
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-server.log": {
+      "size": 1630,
+      "mtime_ns": 1794430616972306164
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/install-ui.log": {
+      "size": 3808,
+      "mtime_ns": 1794431104126741700
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/langserve-tests.log": {
+      "size": 1391,
+      "mtime_ns": 1794432341942889550
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/langserve-tests.xml": {
+      "size": 567,
+      "mtime_ns": 1794432341872203971
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/latest-version-recheck.json": {
+      "size": 1488,
+      "mtime_ns": 1794432479578955276
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/live-mcp-model.json": {
+      "size": 760,
+      "mtime_ns": 1794432344017311775
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/live-model-before-deepseek.json": {
+      "size": 1094,
+      "mtime_ns": 1794431461198539292
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/live-model.json": {
+      "size": 993,
+      "mtime_ns": 1794432400400127814
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/lock-math-check.log": {
+      "size": 111,
+      "mtime_ns": 1794432417114865820
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/lock-math.log": {
+      "size": 1313,
+      "mtime_ns": 1794431164289036674
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/lock-weather-check.log": {
+      "size": 111,
+      "mtime_ns": 1794432417114863986
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/lock-weather.log": {
+      "size": 1500,
+      "mtime_ns": 1794431164192519092
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/native-mcp-first-attempt.log": {
+      "size": 27106,
+      "mtime_ns": 1794431212142088464
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/native-mcp-tests.log": {
+      "size": 8785,
+      "mtime_ns": 1794431215871187067
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/native-mcp-tests.xml": {
+      "size": 3603,
+      "mtime_ns": 1794431215812540188
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/old-graph-resolution.log": {
+      "size": 333,
+      "mtime_ns": 1794430473540395276
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/other-task-scope-check.json": {
+      "size": 1562,
+      "mtime_ns": 1794432417092197591
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/package-imports.json": {
+      "size": 118,
+      "mtime_ns": 1794431748521095187
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/poetry-check.log": {
+      "size": 1056,
+      "mtime_ns": 1794432408775203711
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/poetry-lock.log": {
+      "size": 646,
+      "mtime_ns": 1794431021370891858
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/pypi-candidates.json": {
+      "size": 37629,
+      "mtime_ns": 1794430365881519176
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/rollback-check.json": {
+      "size": 42368,
+      "mtime_ns": 1794432466718520879
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/test-summary.json": {
+      "size": 624,
+      "mtime_ns": 1794432970641917604
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/ui-rag-tests.log": {
+      "size": 2093,
+      "mtime_ns": 1794432832598667548
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/ui-rag-tests.xml": {
+      "size": 834,
+      "mtime_ns": 1794432832532858290
+    },
+    "docs/task/01-langchain-upgrade/run-01/evidence/write-set.json": {
+      "size": 44412,
+      "mtime_ns": 1794432970764794102
+    },
+    "docs/task/01-langchain-upgrade/upgrade-guide.md": {
+      "size": 8096,
+      "mtime_ns": 1794432970642230898
+    },
+    "docs/task/02-platform-contracts-and-skeleton.md": {
+      "size": 3521,
+      "mtime_ns": 1794450602844342508
+    },
+    "docs/task/03-resource-and-agent-adapters.md": {
+      "size": 4196,
+      "mtime_ns": 1794430464305163400
+    },
+    "docs/task/04-runtime-and-persistence.md": {
+      "size": 3818,
+      "mtime_ns": 1794430464305309276
+    },
+    "docs/task/05-agent-registry-and-configuration.md": {
+      "size": 3013,
+      "mtime_ns": 1794427232806791358
+    },
+    "docs/task/06-orchestrator-worker-and-supervisor.md": {
+      "size": 3588,
+      "mtime_ns": 1794430464304682355
+    },
+    "docs/task/07-a2a-integration.md": {
+      "size": 2992,
+      "mtime_ns": 1794427232807560279
+    },
+    "docs/task/08-handoff.md": {
+      "size": 2907,
+      "mtime_ns": 1794428409616071627
+    },
+    "docs/task/09-swarm.md": {
+      "size": 2838,
+      "mtime_ns": 1794427331172181932
+    },
+    "docs/task/10-console-and-module-migration.md": {
+      "size": 3710,
+      "mtime_ns": 1794430464305387318
+    },
+    "docs/task/11-integration-and-rollout.md": {
+      "size": 3957,
+      "mtime_ns": 1794430464305069024
+    },
+    "docs/task/README.md": {
+      "size": 8745,
+      "mtime_ns": 1794430464304968732
+    },
+    "docs/task/validation.json": {
+      "size": 4315,
+      "mtime_ns": 1794428477852144770
+    },
+    "docs/task/validation.md": {
+      "size": 2133,
+      "mtime_ns": 1794430464304770689
+    },
+    "docs/tech.md": {
+      "size": 12556,
+      "mtime_ns": 1794405051536233320
+    },
+    "docs/主持人.md": {
+      "size": 2364,
+      "mtime_ns": 1794405051536320778
+    },
+    "docs/需求分析.md": {
+      "size": 1208,
+      "mtime_ns": 1794405051536402737
+    },
+    "graph_discussion/README.md": {
+      "size": 4718,
+      "mtime_ns": 1794405051536539237
+    },
+    "graph_discussion/__init__.py": {
+      "size": 217,
+      "mtime_ns": 1794405051536609529
+    },
+    "graph_discussion/agents/__init__.py": {
+      "size": 479,
+      "mtime_ns": 1794405051536727738
+    },
+    "graph_discussion/agents/base_agent.py": {
+      "size": 2283,
+      "mtime_ns": 1794430775625984139
+    },
+    "graph_discussion/agents/experts/__init__.py": {
+      "size": 318,
+      "mtime_ns": 1794405051536931656
+    },
+    "graph_discussion/agents/experts/base_expert.py": {
+      "size": 520,
+      "mtime_ns": 1794405051537003656
+    },
+    "graph_discussion/agents/experts/business_expert.py": {
+      "size": 2360,
+      "mtime_ns": 1794405051537087906
+    },
+    "graph_discussion/agents/experts/research_expert.py": {
+      "size": 2359,
+      "mtime_ns": 1794405051537165615
+    },
+    "graph_discussion/agents/experts/tech_expert.py": {
+      "size": 2433,
+      "mtime_ns": 1794405051537238365
+    },
+    "graph_discussion/agents/moderator.py": {
+      "size": 3719,
+      "mtime_ns": 1794405051537335574
+    },
+    "graph_discussion/agents/requirement_analyst.py": {
+      "size": 2610,
+      "mtime_ns": 1794405051537429616
+    },
+    "graph_discussion/agents/summary_expert.py": {
+      "size": 1283,
+      "mtime_ns": 1794405051537509908
+    },
+    "graph_discussion/config.py": {
+      "size": 874,
+      "mtime_ns": 1794432116032104369
+    },
+    "graph_discussion/graph/graph.py": {
+      "size": 6369,
+      "mtime_ns": 1794405051537729575
+    },
+    "graph_discussion/graph/state.py": {
+      "size": 985,
+      "mtime_ns": 1794405051537832242
+    },
+    "graph_discussion/graph_discussion.png": {
+      "size": 27338,
+      "mtime_ns": 1794405051538018743
+    },
+    "graph_discussion/logs/discussion_20251105_13.log": {
+      "size": 79731,
+      "mtime_ns": 1794405051538204285
+    },
+    "graph_discussion/main.py": {
+      "size": 2700,
+      "mtime_ns": 1794432269398959686
+    },
+    "graph_discussion/requirements.txt": {
+      "size": 111,
+      "mtime_ns": 1794430900885949321
+    },
+    "graph_discussion/setup.py": {
+      "size": 2797,
+      "mtime_ns": 1794430900895860510
+    },
+    "graph_discussion/tools/__init__.py": {
+      "size": 344,
+      "mtime_ns": 1794405051538591245
+    },
+    "graph_discussion/tools/base_tool.py": {
+      "size": 3653,
+      "mtime_ns": 1794405051538678620
+    },
+    "graph_discussion/tools/rag_tool.py": {
+      "size": 3708,
+      "mtime_ns": 1794405051538776329
+    },
+    "graph_discussion/tools/tool_registry.py": {
+      "size": 1378,
+      "mtime_ns": 1794405051538857246
+    },
+    "graph_discussion/tools/web_search.py": {
+      "size": 3040,
+      "mtime_ns": 1794405051538932288
+    },
+    "graph_discussion/utils/__init__.py": {
+      "size": 439,
+      "mtime_ns": 1794405051539047455
+    },
+    "graph_discussion/utils/logger.py": {
+      "size": 3761,
+      "mtime_ns": 1794430775685708150
+    },
+    "lib_graph/README.md": {
+      "size": 664,
+      "mtime_ns": 1794405051539256289
+    },
+    "lib_graph/publish.sh": {
+      "size": 676,
+      "mtime_ns": 1794405051539337081
+    },
+    "lib_graph/pyproject.toml": {
+      "size": 632,
+      "mtime_ns": 1794430775625637304
+    },
+    "lib_graph/setup.py": {
+      "size": 113,
+      "mtime_ns": 1794430775684308433
+    },
+    "lib_graph/src/lib_graph/__init__.py": {
+      "size": 183,
+      "mtime_ns": 1794430775624569797
+    },
+    "lib_graph/src/lib_graph/langgraph_hello.py": {
+      "size": 1800,
+      "mtime_ns": 1794432844551027485
+    },
+    "lib_graph/src/lib_graph/runtime.py": {
+      "size": 1885,
+      "mtime_ns": 1794430775625112842
+    },
+    "lib_hello/README.md": {
+      "size": 664,
+      "mtime_ns": 1794405051539968208
+    },
+    "lib_hello/publish.sh": {
+      "size": 676,
+      "mtime_ns": 1794405051540047833
+    },
+    "lib_hello/pyproject.toml": {
+      "size": 462,
+      "mtime_ns": 1794405051540130084
+    },
+    "lib_hello/setup.py": {
+      "size": 1317,
+      "mtime_ns": 1794405051540229293
+    },
+    "lib_hello/src/lib_hello/__init__.py": {
+      "size": 179,
+      "mtime_ns": 1794405051540445085
+    },
+    "lib_hello/src/lib_hello/core.py": {
+      "size": 1165,
+      "mtime_ns": 1794405051540539877
+    },
+    "lib_hello/src/lib_hello/utils.py": {
+      "size": 451,
+      "mtime_ns": 1794405051540626419
+    },
+    "lib_request/README.md": {
+      "size": 664,
+      "mtime_ns": 1794405051540769378
+    },
+    "lib_request/publish.sh": {
+      "size": 676,
+      "mtime_ns": 1794405051540853712
+    },
+    "lib_request/pyproject.toml": {
+      "size": 578,
+      "mtime_ns": 1794431852620711041
+    },
+    "lib_request/setup.py": {
+      "size": 110,
+      "mtime_ns": 1794431852620914042
+    },
+    "lib_request/src/lib_request/__init__.py": {
+      "size": 883,
+      "mtime_ns": 1794405051541230088
+    },
+    "lib_request/src/lib_request/count_token.py": {
+      "size": 506,
+      "mtime_ns": 1794405051541316421
+    },
+    "lib_request/src/lib_request/deprecated.py": {
+      "size": 1257,
+      "mtime_ns": 1794405051541459339
+    },
+    "lib_request/src/lib_request/openai_text2vec.py": {
+      "size": 880,
+      "mtime_ns": 1794432269390748797
+    },
+    "lib_request/src/lib_request/openai_vision.py": {
+      "size": 2545,
+      "mtime_ns": 1794432269391562136
+    },
+    "lib_request/src/lib_request/req_call.py": {
+      "size": 1156,
+      "mtime_ns": 1794432269391365718
+    },
+    "lib_request/src/lib_request/req_model_list.py": {
+      "size": 943,
+      "mtime_ns": 1794432269391743596
+    },
+    "lib_request/src/lib_request/req_text2vec.py": {
+      "size": 1169,
+      "mtime_ns": 1794432269390882298
+    },
+    "lib_request/src/lib_request/req_text2vec_deep.py": {
+      "size": 1516,
+      "mtime_ns": 1794432269391462177
+    },
+    "lib_request/src/lib_request/req_vision.py": {
+      "size": 3022,
+      "mtime_ns": 1794432269391088758
+    },
+    "lib_request/src/lib_request/sim_search.py": {
+      "size": 1907,
+      "mtime_ns": 1794405051542066758
+    },
+    "lib_request/src/lib_request/sim_search_openai.py": {
+      "size": 454,
+      "mtime_ns": 1794405051542150174
+    },
+    "lib_request/src/lib_request/sim_search_req.py": {
+      "size": 445,
+      "mtime_ns": 1794405051542225258
+    },
+    "lib_request/src/lib_request/utils.py": {
+      "size": 163,
+      "mtime_ns": 1794405051542295842
+    },
+    "main.py": {
+      "size": 1933,
+      "mtime_ns": 1794405051542363133
+    },
+    "manus/__init__.py": {
+      "size": 33,
+      "mtime_ns": 1794431672972888374
+    },
+    "manus/config/config.toml": {
+      "size": 861,
+      "mtime_ns": 1794405051542541551
+    },
+    "manus/config/prompts/planning_prompt.txt": {
+      "size": 0,
+      "mtime_ns": 1794405051542630426
+    },
+    "manus/config/prompts/react_prompt.txt": {
+      "size": 0,
+      "mtime_ns": 1794405051542682635
+    },
+    "manus/main.py": {
+      "size": 8279,
+      "mtime_ns": 1794431395958728632
+    },
+    "manus/requirements.txt": {
+      "size": 38,
+      "mtime_ns": 1794430900886293240
+    },
+    "manus/run_flow.py": {
+      "size": 615,
+      "mtime_ns": 1794405051542868844
+    },
+    "manus/setup.py": {
+      "size": 438,
+      "mtime_ns": 1794431672973192460
+    },
+    "manus/src/agents/__init__.py": {
+      "size": 558,
+      "mtime_ns": 1794405051543136386
+    },
+    "manus/src/agents/agent_pool.py": {
+      "size": 3735,
+      "mtime_ns": 1794430900895730051
+    },
+    "manus/src/agents/base.py": {
+      "size": 1200,
+      "mtime_ns": 1794405051543301720
+    },
+    "manus/src/agents/planning_agent.py": {
+      "size": 7346,
+      "mtime_ns": 1794430900889847930
+    },
+    "manus/src/agents/react.py": {
+      "size": 2815,
+      "mtime_ns": 1794405051543480304
+    },
+    "manus/src/agents/specialized/code_agent.py": {
+      "size": 334,
+      "mtime_ns": 1794405051543606388
+    },
+    "manus/src/agents/specialized/data_agent.py": {
+      "size": 442,
+      "mtime_ns": 1794405051543701430
+    },
+    "manus/src/agents/specialized/web_agent.py": {
+      "size": 327,
+      "mtime_ns": 1794405051543791930
+    },
+    "manus/src/agents/tool_call.py": {
+      "size": 4382,
+      "mtime_ns": 1794430900889957347
+    },
+    "manus/src/graph/__init__.py": {
+      "size": 435,
+      "mtime_ns": 1794405051544026806
+    },
+    "manus/src/graph/nodes/check_node.py": {
+      "size": 1221,
+      "mtime_ns": 1794405051544158515
+    },
+    "manus/src/graph/nodes/execute_node.py": {
+      "size": 4525,
+      "mtime_ns": 1794430900889330051
+    },
+    "manus/src/graph/nodes/plan_node.py": {
+      "size": 1878,
+      "mtime_ns": 1794430900889136258
+    },
+    "manus/src/graph/nodes/route_node.py": {
+      "size": 2186,
+      "mtime_ns": 1794405051544444599
+    },
+    "manus/src/graph/state.py": {
+      "size": 690,
+      "mtime_ns": 1794431395958622465
+    },
+    "manus/src/graph/workflow.py": {
+      "size": 1500,
+      "mtime_ns": 1794430900888949674
+    },
+    "manus/src/llm/__init__.py": {
+      "size": 298,
+      "mtime_ns": 1794405051544749559
+    },
+    "manus/src/llm/manager.py": {
+      "size": 7089,
+      "mtime_ns": 1794432905297672688
+    },
+    "manus/src/llm/models.py": {
+      "size": 840,
+      "mtime_ns": 1794405051544936643
+    },
+    "manus/src/llm/token_counter.py": {
+      "size": 1498,
+      "mtime_ns": 1794405051545023477
+    },
+    "manus/src/memory/conversation.py": {
+      "size": 0,
+      "mtime_ns": 1794405051545130935
+    },
+    "manus/src/memory/vector_store.py": {
+      "size": 0,
+      "mtime_ns": 1794405051545194644
+    },
+    "manus/src/tools/__init__.py": {
+      "size": 411,
+      "mtime_ns": 1794405051545334436
+    },
+    "manus/src/tools/base.py": {
+      "size": 2326,
+      "mtime_ns": 1794405051545414728
+    },
+    "manus/src/tools/file_tool.py": {
+      "size": 1633,
+      "mtime_ns": 1794405051545487978
+    },
+    "manus/src/tools/python_tool.py": {
+      "size": 1591,
+      "mtime_ns": 1794405051545561895
+    },
+    "manus/src/tools/search_tool.py": {
+      "size": 2100,
+      "mtime_ns": 1794405051545639270
+    },
+    "manus/src/tools/tool_registry.py": {
+      "size": 1111,
+      "mtime_ns": 1794405051545708146
+    },
+    "manus/src/utils/__init__.py": {
+      "size": 95,
+      "mtime_ns": 1794405051545830104
+    },
+    "manus/src/utils/config.py": {
+      "size": 1983,
+      "mtime_ns": 1794432269399098312
+    },
+    "manus/src/utils/logger.py": {
+      "size": 2028,
+      "mtime_ns": 1794405051545997105
+    },
+    "mcp_client_manager/__init__.py": {
+      "size": 46,
+      "mtime_ns": 1794431672974564760
+    },
+    "mcp_client_manager/main.py": {
+      "size": 2677,
+      "mtime_ns": 1794431395958936967
+    },
+    "mcp_client_manager/requirements.txt": {
+      "size": 38,
+      "mtime_ns": 1794430900886555367
+    },
+    "mcp_client_manager/setup.py": {
+      "size": 438,
+      "mtime_ns": 1794431672974760678
+    },
+    "mcp_client_manager/src/config/config.py": {
+      "size": 522,
+      "mtime_ns": 1794432269395817540
+    },
+    "mcp_client_manager/src/core/mcp_client.py": {
+      "size": 3633,
+      "mtime_ns": 1794431746790290875
+    },
+    "mcp_client_manager/src/core/mcp_manager.py": {
+      "size": 1448,
+      "mtime_ns": 1794430775684709602
+    },
+    "mcp_client_manager/src/core/mcp_router.py": {
+      "size": 3946,
+      "mtime_ns": 1794432905298433526
+    },
+    "mcp_server_math/.python-version": {
+      "size": 8,
+      "mtime_ns": 1794432397301702689
+    },
+    "mcp_server_math/README.md": {
+      "size": 334,
+      "mtime_ns": 1794405051546847983
+    },
+    "mcp_server_math/main.py": {
+      "size": 1356,
+      "mtime_ns": 1794430900886928411
+    },
+    "mcp_server_math/pyproject.toml": {
+      "size": 265,
+      "mtime_ns": 1794430775685556274
+    },
+    "mcp_server_math/setup.py": {
+      "size": 195,
+      "mtime_ns": 1794405051547040359
+    },
+    "mcp_server_math/uv.lock": {
+      "size": 252286,
+      "mtime_ns": 1794431164288544129
+    },
+    "mcp_weather/.python-version": {
+      "size": 8,
+      "mtime_ns": 1794432397301777773
+    },
+    "mcp_weather/README.md": {
+      "size": 334,
+      "mtime_ns": 1794405051547427819
+    },
+    "mcp_weather/main.py": {
+      "size": 3107,
+      "mtime_ns": 1794430900886765910
+    },
+    "mcp_weather/pyproject.toml": {
+      "size": 272,
+      "mtime_ns": 1794430775685253314
+    },
+    "mcp_weather/setup.py": {
+      "size": 205,
+      "mtime_ns": 1794405051547643528
+    },
+    "mcp_weather/src/config/__init__.py": {
+      "size": 0,
+      "mtime_ns": 1794405051547761487
+    },
+    "mcp_weather/src/config/settings.py": {
+      "size": 415,
+      "mtime_ns": 1794405051547834445
+    },
+    "mcp_weather/src/utils/utils.py": {
+      "size": 491,
+      "mtime_ns": 1794405051547938362
+    },
+    "mcp_weather/src/weather/__init__.py": {
+      "size": 0,
+      "mtime_ns": 1794405051548024279
+    },
+    "mcp_weather/src/weather/api.py": {
+      "size": 1518,
+      "mtime_ns": 1794405051548111404
+    },
+    "mcp_weather/src/weather/service.py": {
+      "size": 2494,
+      "mtime_ns": 1794405051548192405
+    },
+    "mcp_weather/uv.lock": {
+      "size": 252293,
+      "mtime_ns": 1794431164190129493
+    },
+    "port.sh": {
+      "size": 204,
+      "mtime_ns": 1794405051548423364
+    },
+    "rag_llamaindex/app.py": {
+      "size": 2806,
+      "mtime_ns": 1794405051548529989
+    },
+    "rag_llamaindex/data/RAG.md": {
+      "size": 1290,
+      "mtime_ns": 1794405051548635906
+    },
+    "rag_llamaindex/data/README_zh-CN.md": {
+      "size": 14846,
+      "mtime_ns": 1794405051548740823
+    },
+    "rag_llamaindex/download_hf.py": {
+      "size": 231,
+      "mtime_ns": 1794405051548803782
+    },
+    "rag_llamaindex/download_internlm1.8_chat.py": {
+      "size": 249,
+      "mtime_ns": 1794405051548862990
+    },
+    "rag_llamaindex/llamaindex_RAG.py": {
+      "size": 1714,
+      "mtime_ns": 1794405051548931407
+    },
+    "rag_llamaindex/llamaindex_internlm.py": {
+      "size": 453,
+      "mtime_ns": 1794405051549003658
+    },
+    "rag_llamaindex/requirements.txt": {
+      "size": 2490,
+      "mtime_ns": 1794405051549077575
+    },
+    "requirements.txt": {
+      "size": 476,
+      "mtime_ns": 1794451796944986566
+    },
+    "requirements/agent-runtime.in": {
+      "size": 206,
+      "mtime_ns": 1794430578581864787
+    },
+    "requirements/agent-runtime.lock": {
+      "size": 162464,
+      "mtime_ns": 1794430586773804064
+    },
+    "requirements/constraints-langchain.txt": {
+      "size": 461,
+      "mtime_ns": 1794430464305959905
+    },
+    "requirements/langserve.in": {
+      "size": 303,
+      "mtime_ns": 1794430578581970704
+    },
+    "requirements/langserve.lock": {
+      "size": 124118,
+      "mtime_ns": 1794430585236375337
+    },
+    "requirements/s01-dev.in": {
+      "size": 42,
+      "mtime_ns": 1794430464306069740
+    },
+    "requirements/s01-dev.lock": {
+      "size": 163505,
+      "mtime_ns": 1794430586743919538
+    },
+    "requirements/ui-rag-dev.in": {
+      "size": 35,
+      "mtime_ns": 1794430941185884844
+    },
+    "requirements/ui-rag-dev.lock": {
+      "size": 289081,
+      "mtime_ns": 1794430941242009511
+    },
+    "requirements/ui-rag.in": {
+      "size": 223,
+      "mtime_ns": 1794430464306121948
+    },
+    "requirements/ui-rag.lock": {
+      "size": 288014,
+      "mtime_ns": 1794430608312628860
+    },
+    "server/.gitignore": {
+      "size": 13,
+      "mtime_ns": 1794405051549274659
+    },
+    "server/Dockerfile": {
+      "size": 412,
+      "mtime_ns": 1794405051549342242
+    },
+    "server/README.md": {
+      "size": 2239,
+      "mtime_ns": 1794405051549413576
+    },
+    "server/app/__init__.py": {
+      "size": 0,
+      "mtime_ns": 1794405051549494243
+    },
+    "server/app/chain/openai_prompt_server.py": {
+      "size": 969,
+      "mtime_ns": 1794432269393740109
+    },
+    "server/app/chain/openai_server.py": {
+      "size": 827,
+      "mtime_ns": 1794432269393646650
+    },
+    "server/app/client.py": {
+      "size": 2254,
+      "mtime_ns": 1794432844552140367
+    },
+    "server/app/client_req.py": {
+      "size": 155,
+      "mtime_ns": 1794405051549846869
+    },
+    "server/app/demo/bean.py": {
+      "size": 235,
+      "mtime_ns": 1794405051549955953
+    },
+    "server/app/demo/get_demo_server.py": {
+      "size": 2113,
+      "mtime_ns": 1794405051550032745
+    },
+    "server/app/demo/post_demo_server.py": {
+      "size": 1598,
+      "mtime_ns": 1794405051550102578
+    },
+    "server/app/routes/init.py": {
+      "size": 2672,
+      "mtime_ns": 1794405051550212662
+    },
+    "server/app/routes/routes_config.py": {
+      "size": 1458,
+      "mtime_ns": 1794405051550277579
+    },
+    "server/app/server.py": {
+      "size": 1377,
+      "mtime_ns": 1794432844552242535
+    },
+    "server/app/utils/utils.py": {
+      "size": 5136,
+      "mtime_ns": 1794405051550469413
+    },
+    "server/packages/README.md": {
+      "size": 0,
+      "mtime_ns": 1794405051550552705
+    },
+    "server/poetry.lock": {
+      "size": 236162,
+      "mtime_ns": 1794431021370020644
+    },
+    "server/port.sh": {
+      "size": 204,
+      "mtime_ns": 1794405051550969081
+    },
+    "server/pyproject.toml": {
+      "size": 639,
+      "mtime_ns": 1794430900896063470
+    },
+    "server/setup.py": {
+      "size": 193,
+      "mtime_ns": 1794405051551087082
+    },
+    "setup.py": {
+      "size": 108,
+      "mtime_ns": 1794405051551143541
+    },
+    "test_import.py": {
+      "size": 644,
+      "mtime_ns": 1794405051551210749
+    },
+    "tests/s01/conftest.py": {
+      "size": 2317,
+      "mtime_ns": 1794431024209016788
+    },
+    "tests/s01/live_mcp_smoke.py": {
+      "size": 3857,
+      "mtime_ns": 1794432330372788611
+    },
+    "tests/s01/live_smoke.py": {
+      "size": 3836,
+      "mtime_ns": 1794432269399301313
+    },
+    "tests/s01/test_existing_workflows.py": {
+      "size": 8563,
+      "mtime_ns": 1794432905298665944
+    },
+    "tests/s01/test_langserve.py": {
+      "size": 2086,
+      "mtime_ns": 1794431395958295462
+    },
+    "tests/s01/test_mcp.py": {
+      "size": 7113,
+      "mtime_ns": 1794431746793853441
+    },
+    "tests/s01/test_native_features.py": {
+      "size": 5165,
+      "mtime_ns": 1794431212176886898
+    },
+    "tests/s01/test_ui_rag.py": {
+      "size": 5343,
+      "mtime_ns": 1794432830690432376
+    },
+    "webui-chatbot/.gitignore": {
+      "size": 3280,
+      "mtime_ns": 1794405051551317208
+    },
+    "webui-chatbot/README.md": {
+      "size": 1526,
+      "mtime_ns": 1794405051551372083
+    },
+    "webui-chatbot/requirements.txt": {
+      "size": 92,
+      "mtime_ns": 1794430900886353282
+    },
+    "webui-chatbot/setup.py": {
+      "size": 194,
+      "mtime_ns": 1794405051551486792
+    },
+    "webui-chatbot/src/config/default.json": {
+      "size": 338,
+      "mtime_ns": 1794405051551629792
+    },
+    "webui-chatbot/src/config/prompt.json": {
+      "size": 1458,
+      "mtime_ns": 1794405051551690667
+    },
+    "webui-chatbot/src/home.py": {
+      "size": 4813,
+      "mtime_ns": 1794405051551770543
+    },
+    "webui-chatbot/src/pages/chat.py": {
+      "size": 9788,
+      "mtime_ns": 1794432844552595370
+    },
+    "webui-chatbot/src/pages/drawing.py": {
+      "size": 2440,
+      "mtime_ns": 1794405051551968502
+    },
+    "webui-chatbot/src/pages/gpt-4o.py": {
+      "size": 5614,
+      "mtime_ns": 1794405051552048669
+    },
+    "webui-chatbot/src/pages/pdf_search.py": {
+      "size": 9471,
+      "mtime_ns": 1794432844552734579
+    },
+    "webui-chatbot/src/pages/speech_to_text.py": {
+      "size": 5795,
+      "mtime_ns": 1794405051552205211
+    },
+    "webui-chatbot/src/pages/text_to_speech.py": {
+      "size": 4220,
+      "mtime_ns": 1794405051552278836
+    },
+    "webui-chatbot/src/pages/vision.py": {
+      "size": 4035,
+      "mtime_ns": 1794405051552342878
+    },
+    "webui-chatbot/src/pages/web_search.py": {
+      "size": 6164,
+      "mtime_ns": 1794432844552850497
+    },
+    "webui-chatbot/src/resource/chatgpt.pdf": {
+      "size": 903635,
+      "mtime_ns": 1794405051554035343
+    },
+    "webui-chatbot/src/resource/knowledge.txt": {
+      "size": 24363,
+      "mtime_ns": 1794405051554158218
+    },
+    "webui-chatbot/src/resource/news.docx": {
+      "size": 21407,
+      "mtime_ns": 1794405051554278302
+    },
+    "webui-chatbot/src/utils/__init__.py": {
+      "size": 155,
+      "mtime_ns": 1794405051554376802
+    },
+    "webui-chatbot/src/utils/env.py": {
+      "size": 778,
+      "mtime_ns": 1794432269396381668
+    },
+    "webui-chatbot/streamlit-debug/streamlit": {
+      "size": 224,
+      "mtime_ns": 1794405051554526344
+    }
+  },
+  "external_model_calls": "not_run"
+}

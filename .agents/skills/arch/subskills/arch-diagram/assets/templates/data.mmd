@@ -1,0 +1,10 @@
+erDiagram
+    EXAMPLE_RUN ||--o{ EXAMPLE_TASK : contains
+    EXAMPLE_TASK ||--o{ EXAMPLE_ATTEMPT : retries
+    EXAMPLE_ATTEMPT ||--o{ EXAMPLE_ARTIFACT : produces
+    EXAMPLE_TASK {
+        string id PK
+        string run_id FK
+        string state
+        int version
+    }

@@ -1,0 +1,9 @@
+flowchart LR
+    API["应用 API / 入口"] --> W1["Worker 1：LLMRuntime / 本地连接池"]
+    API --> W2["Worker 2：LLMRuntime / 本地连接池"]
+    W1 --> P["Provider Account / 远端模型"]
+    W2 --> P
+    W1 --> Q["共享 QuotaBackend / BudgetPort"]
+    W2 --> Q
+    C["配置发布方"] -. "catalog revision" .-> W1
+    C -. "catalog revision" .-> W2

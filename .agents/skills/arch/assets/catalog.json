@@ -1,0 +1,333 @@
+{
+  "schema": "arch.catalog.v1",
+  "version": "1.0.0",
+  "subskills": [
+    {
+      "id": "arch-source",
+      "entry": "subskills/arch-source/SKILL.md",
+      "role": "源码分析师"
+    },
+    {
+      "id": "arch-current",
+      "entry": "subskills/arch-current/SKILL.md",
+      "role": "现状架构师"
+    },
+    {
+      "id": "arch-target",
+      "entry": "subskills/arch-target/SKILL.md",
+      "role": "系统架构师"
+    },
+    {
+      "id": "arch-module",
+      "entry": "subskills/arch-module/SKILL.md",
+      "role": "模块架构师"
+    },
+    {
+      "id": "arch-flow",
+      "entry": "subskills/arch-flow/SKILL.md",
+      "role": "业务流程分析师"
+    },
+    {
+      "id": "arch-protocol",
+      "entry": "subskills/arch-protocol/SKILL.md",
+      "role": "接口与协议架构师"
+    },
+    {
+      "id": "arch-collaboration",
+      "entry": "subskills/arch-collaboration/SKILL.md",
+      "role": "多智能体协作架构师"
+    },
+    {
+      "id": "arch-technology",
+      "entry": "subskills/arch-technology/SKILL.md",
+      "role": "技术选型与依赖专家"
+    },
+    {
+      "id": "arch-roadmap",
+      "entry": "subskills/arch-roadmap/SKILL.md",
+      "role": "迁移与工程规划师"
+    },
+    {
+      "id": "arch-step",
+      "entry": "subskills/arch-step/SKILL.md",
+      "role": "步骤方案设计师"
+    },
+    {
+      "id": "arch-run",
+      "entry": "subskills/arch-run/SKILL.md",
+      "role": "执行记录员"
+    },
+    {
+      "id": "arch-review",
+      "entry": "subskills/arch-review/SKILL.md",
+      "role": "架构与交付审阅者"
+    },
+    {
+      "id": "arch-reflect",
+      "entry": "subskills/arch-reflect/SKILL.md",
+      "role": "过程反思与改进者"
+    },
+    {
+      "id": "arch-diagram",
+      "entry": "subskills/arch-diagram/SKILL.md",
+      "role": "架构图与流程图设计师"
+    }
+  ],
+  "types": {
+    "source": {
+      "owner": "arch-source",
+      "files": [
+        {
+          "template": "subskills/arch-source/assets/templates/source-audit.md",
+          "path": "{{architecture_dir}}/source-analysis.md"
+        }
+      ]
+    },
+    "current": {
+      "owner": "arch-current",
+      "files": [
+        {
+          "template": "subskills/arch-current/assets/templates/current-architecture.md",
+          "path": "{{current_doc}}"
+        }
+      ]
+    },
+    "architecture": {
+      "owner": "arch-target",
+      "files": [
+        {
+          "template": "subskills/arch-target/assets/templates/architecture-index.md",
+          "path": "{{architecture_dir}}/README.md"
+        },
+        {
+          "template": "subskills/arch-target/assets/templates/target-architecture.md",
+          "path": "{{architecture_dir}}/01-target-architecture.md"
+        }
+      ]
+    },
+    "module": {
+      "owner": "arch-module",
+      "files": [
+        {
+          "template": "subskills/arch-module/assets/templates/module-design.md",
+          "path": "{{architecture_dir}}/modules/{{name}}.md"
+        }
+      ]
+    },
+    "flow": {
+      "owner": "arch-flow",
+      "files": [
+        {
+          "template": "subskills/arch-flow/assets/templates/business-flow.md",
+          "path": "{{architecture_dir}}/flows/{{name}}.md"
+        }
+      ]
+    },
+    "protocol": {
+      "owner": "arch-protocol",
+      "files": [
+        {
+          "template": "subskills/arch-protocol/assets/templates/protocol-design.md",
+          "path": "{{architecture_dir}}/protocols/{{name}}.md"
+        }
+      ]
+    },
+    "collaboration": {
+      "owner": "arch-collaboration",
+      "files": [
+        {
+          "template": "subskills/arch-collaboration/assets/templates/collaboration-design.md",
+          "path": "{{architecture_dir}}/collaboration.md"
+        }
+      ]
+    },
+    "technology": {
+      "owner": "arch-technology",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-technology/assets/templates/technology-baseline.md",
+          "path": "{{task_dir}}/{{step}}/technology-baseline.md"
+        }
+      ]
+    },
+    "decision": {
+      "owner": "arch-technology",
+      "files": [
+        {
+          "template": "subskills/arch-technology/assets/templates/decision.md",
+          "path": "{{architecture_dir}}/decisions/{{name}}.md"
+        }
+      ]
+    },
+    "roadmap": {
+      "owner": "arch-roadmap",
+      "files": [
+        {
+          "template": "subskills/arch-roadmap/assets/templates/roadmap.md",
+          "path": "{{task_dir}}/README.md"
+        }
+      ]
+    },
+    "step": {
+      "owner": "arch-step",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-step/assets/templates/step-entry.md",
+          "path": "{{task_dir}}/{{step}}.md"
+        },
+        {
+          "template": "subskills/arch-step/assets/templates/step-index.md",
+          "path": "{{task_dir}}/{{step}}/README.md"
+        },
+        {
+          "template": "subskills/arch-step/assets/templates/step-plan.md",
+          "path": "{{task_dir}}/{{step}}/plan.md"
+        }
+      ]
+    },
+    "guide": {
+      "owner": "arch-step",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-step/assets/templates/installation-guide.md",
+          "path": "{{task_dir}}/{{step}}/upgrade-guide.md"
+        }
+      ]
+    },
+    "rollback": {
+      "owner": "arch-step",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-step/assets/templates/rollback.md",
+          "path": "{{task_dir}}/{{step}}/rollback.md"
+        }
+      ]
+    },
+    "run": {
+      "owner": "arch-run",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-run/assets/templates/run-index.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/README.md"
+        },
+        {
+          "template": "subskills/arch-run/assets/templates/thinking.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/01-thinking.md"
+        },
+        {
+          "template": "subskills/arch-run/assets/templates/actions.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/02-actions.md"
+        },
+        {
+          "template": "subskills/arch-review/assets/templates/review.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/03-review.md"
+        },
+        {
+          "template": "subskills/arch-reflect/assets/templates/reflection.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/04-reflection.md"
+        }
+      ],
+      "contributors": [
+        "arch-review",
+        "arch-reflect"
+      ]
+    },
+    "review": {
+      "owner": "arch-review",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-review/assets/templates/review.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/03-review.md"
+        }
+      ]
+    },
+    "reflection": {
+      "owner": "arch-reflect",
+      "requires": [
+        "step"
+      ],
+      "files": [
+        {
+          "template": "subskills/arch-reflect/assets/templates/reflection.md",
+          "path": "{{task_dir}}/{{step}}/run-{{run_id}}/04-reflection.md"
+        }
+      ]
+    },
+    "validation": {
+      "owner": "arch-review",
+      "files": [
+        {
+          "template": "subskills/arch-review/assets/templates/validation.md",
+          "path": "{{architecture_dir}}/validation.md"
+        },
+        {
+          "template": "subskills/arch-review/assets/templates/verification.json",
+          "path": "{{architecture_dir}}/validation.json"
+        }
+      ]
+    },
+    "diagram-architecture": {
+      "owner": "arch-diagram",
+      "files": [
+        {
+          "template": "subskills/arch-diagram/assets/templates/architecture.mmd",
+          "path": "{{architecture_dir}}/diagrams/{{name}}-architecture.mmd"
+        }
+      ]
+    },
+    "diagram-dependency": {
+      "owner": "arch-diagram",
+      "files": [
+        {
+          "template": "subskills/arch-diagram/assets/templates/dependency.mmd",
+          "path": "{{architecture_dir}}/diagrams/{{name}}-dependency.mmd"
+        }
+      ]
+    },
+    "diagram-sequence": {
+      "owner": "arch-diagram",
+      "files": [
+        {
+          "template": "subskills/arch-diagram/assets/templates/sequence.mmd",
+          "path": "{{architecture_dir}}/diagrams/{{name}}-sequence.mmd"
+        }
+      ]
+    },
+    "diagram-state": {
+      "owner": "arch-diagram",
+      "files": [
+        {
+          "template": "subskills/arch-diagram/assets/templates/state.mmd",
+          "path": "{{architecture_dir}}/diagrams/{{name}}-state.mmd"
+        }
+      ]
+    },
+    "diagram-data": {
+      "owner": "arch-diagram",
+      "files": [
+        {
+          "template": "subskills/arch-diagram/assets/templates/data.mmd",
+          "path": "{{architecture_dir}}/diagrams/{{name}}-data.mmd"
+        }
+      ]
+    }
+  }
+}

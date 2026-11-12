@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-12",
+  "status": "passed",
+  "scope": "offline mechanism observations, not performance or provider validation",
+  "versions": {
+    "langchain": "1.5.0",
+    "langchain-core": "1.8.0",
+    "langchain-openai": "1.7.4",
+    "langgraph": "1.2.20"
+  },
+  "async_method_same_as_event_loop_thread": {
+    "sync_generate": false,
+    "sync_stream": false,
+    "native_generate": true,
+    "native_stream": true
+  },
+  "cumulative_chunk_mis_mapping": {
+    "snapshots": [
+      11,
+      14
+    ],
+    "framework_additive_total": 25,
+    "correct_final_snapshot_total": 14
+  },
+  "middleware_and_usage": {
+    "events": [
+      "outer_before",
+      "inner_before",
+      "provider_llm_end",
+      "inner_error:StructuredOutputValidationError",
+      "outer_error:StructuredOutputValidationError"
+    ],
+    "error": "StructuredOutputValidationError",
+    "provider_usage_observed_before_schema_error": [
+      {
+        "input_tokens": 3,
+        "output_tokens": 2,
+        "total_tokens": 5
+      }
+    ],
+    "async_callback_attempt_scope": [
+      "attempt-probe"
+    ],
+    "scope_reset_after_error": true
+  },
+  "source_fingerprints": [
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py",
+      "sha256": "6b37dd84a34a49b932983ec92e5dc826fefdd1a047424a014a251a0ed0e2d507"
+    },
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/messages/ai.py",
+      "sha256": "6aa23c2e260d8c3c1a78ce75852219c145ce74afca3c970c0ac2eb41610574f1"
+    },
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/runnables/base.py",
+      "sha256": "407284bddbe9616352ad9d3dd8dab4f3dd197aa31a5c9fc253e57e4265839242"
+    },
+    {
+      "package": "langchain",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/factory.py",
+      "sha256": "22c48a3478de99dabb06b413085e0e388e74ddb3681bd9892a373faa757cf8fe"
+    },
+    {
+      "package": "langchain",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/middleware/types.py",
+      "sha256": "d9a5ae88cc2dd6bcdc3030ce2e1b55f876d2af88c02c27f5b630dadad350fb75"
+    },
+    {
+      "package": "langchain-openai",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/chat_models/base.py",
+      "sha256": "1311fb3487aa309c8b649440ae07a3c1c472e6bdf913408fb979549877579e30"
+    }
+  ],
+  "network_calls": 0,
+  "not_run": [
+    "TypeScript reference tests",
+    "live provider",
+    "load test",
+    "billing ledger test"
+  ]
+}

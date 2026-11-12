@@ -1,0 +1,203 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "workspace": "/Users/chentong/AI/PatientCare/github/ai-architect",
+  "head": "98425ec910407e447c40d5528e84f445d8c38cc8",
+  "initial_status": "?? .agents/\n?? AGENTS.md\n?? docs/task/02-platform-contracts-and-skeleton/\n",
+  "reference_repo": "/Users/chentong/AI/PatientCare/github/deepseek-harness",
+  "reference_head": "47f943859bef60e4160492346772ded9b24f765a",
+  "reference_status": "",
+  "reference_sources": [
+    {
+      "path": "packages/llm/llm/src/index.ts",
+      "sha256": "71c03b10d948a2dc2403db5c544ee9a2d6db7a45eb0b97d2b0bb2f733507526f"
+    },
+    {
+      "path": "packages/llm/llm/src/types.ts",
+      "sha256": "055b7efeb5cb5bb17379cad419ed6259c2ab9a8ba9d897796cc97c8505bc4ada"
+    },
+    {
+      "path": "packages/llm/llm/src/message.ts",
+      "sha256": "5b95dab5facbd284c5bc3534323386aedfdd60e30c17a0012376a2d492fa6c9a"
+    },
+    {
+      "path": "packages/llm/llm/src/call-config.ts",
+      "sha256": "383a04a9f41c63bb6fcc644452e2d8327c363a55d74d8c25e8c773cacf787205"
+    },
+    {
+      "path": "packages/llm/llm/src/assembler.ts",
+      "sha256": "05143f05f50f35722172b0a132194d6e1773c185bf83c6dc78108644724caf7e"
+    },
+    {
+      "path": "packages/llm/llm/src/retry-policy.ts",
+      "sha256": "80eba94599cfb49bc58f331407aa54fc56b8f3cbcfc9149e9c140b5eb29e3b9f"
+    },
+    {
+      "path": "packages/llm/llm/src/adapter-failure.ts",
+      "sha256": "7132ce407d433eedf94304f342fd703de60f80190431e2be707948b0c5104d54"
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/adapter.ts",
+      "sha256": "a51cadf34acab317a422c56bc12da107fb62b383919d698e7b15256651a4505d"
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/serialize.ts",
+      "sha256": "3a81f80bafb739192b81cabfca98ac3335a2664c05a0e5cf5a3327be1d702600"
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/translate.ts",
+      "sha256": "69d9b348778fc657fef33262727b64f11c9afde81119302ad80b2a3d1dec5602"
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/sse.ts",
+      "sha256": "621f53b6641a9fb5c652a755f477045f0616f42d5a559b9bea4754836552d705"
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/index.ts",
+      "sha256": "05f74d10c9bea019743559006b9d3669949adf0e47d9ad8853ae68a77a73388b"
+    },
+    {
+      "path": "packages/llm/llm-pi-ai/src/adapter.ts",
+      "sha256": "1f10fceb19caa574795cbcc39710f73bb6c31c557e3a5f8b681f2ea171e6a6ad"
+    },
+    {
+      "path": "packages/llm/llm-pi-ai/src/stream.ts",
+      "sha256": "e5be47e5586b8ec33dd7d25f7733b81ce584e2f67e2bb6fc4c5d0af47b9bf42a"
+    },
+    {
+      "path": "packages/llm/llm-pi-ai/src/replay.ts",
+      "sha256": "dce40d6cb86ff5bee51edbe70901c9765464f558b64dda1e682e6cabe9f1f5fd"
+    },
+    {
+      "path": "packages/llm/token-meter/src/index.ts",
+      "sha256": "bbc45ac18017f2000c2021e170eadcbe1535454a88064f7a610ce95d390c0a6c"
+    },
+    {
+      "path": "packages/llm/token-meter/src/usage-projection.ts",
+      "sha256": "11207f66668008840e4994be9ff819a7c58b4f791d89cbe4b958af47b80bb81a"
+    },
+    {
+      "path": "packages/llm/token-meter/src/estimate.ts",
+      "sha256": "0602d0ef294143290a327a4d4d393cf9807b3a40902079c32b5eca3c236fed3f"
+    },
+    {
+      "path": "packages/llm/llm-retry/src/index.ts",
+      "sha256": "73a3f4cee1e3c4a315f41f38d12ea1676661f0475dd6f367901b22b6e23dfd72"
+    },
+    {
+      "path": "packages/llm/llm/tests/service.spec.ts",
+      "sha256": "aeff7be7b5cbf09bb1cf93e0e21295167d893d06ba6c8deb0efc52c38c2cb8f5"
+    },
+    {
+      "path": "packages/llm/llm/tests/topology.spec.ts",
+      "sha256": "9331018b480aa167d404ebe42cfc7b95f193493ffa78dfcb79a8254ac2fbef09"
+    },
+    {
+      "path": "packages/llm/llm-deepseek/tests/dynamic-config.spec.ts",
+      "sha256": "18a1639c50793de5a6a33078f186fda0ed8b66afa5c7c2a37d18d55c4f8d1045"
+    },
+    {
+      "path": "packages/llm/token-meter/tests/token-usage-projection.spec.ts",
+      "sha256": "1858e177091452bbc760f9cc075c6d00551079e3fe713d95f0fd7c617fcc2c12"
+    }
+  ],
+  "protected_llm_files": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/01-architecture.md",
+      "sha256": "1159860215f8d6d6fa0d3736cbac37037a4b26298f8b0b7397df14d23c886013"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/02-contracts-and-configuration.md",
+      "sha256": "46a0b5781c1bd5c3aa3895146238ccefdc41813ae5f24888dedf90b0727a00ea"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/03-usage-and-billing.md",
+      "sha256": "95a174bc4eab97fddafa6bea164257b9c31c5803253225b37a8a1aa33bf1772a"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/04-concurrency-and-reliability.md",
+      "sha256": "da785065e4d17368a404d516abf8f679ace45e2bf5fd4a35b83e3878cc465690"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/05-open-source-reference.md",
+      "sha256": "1d1024402f81e93f8659dbfba4c9999af495aff9181d907af5fb6a704024bc8a"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/06-project-integration.md",
+      "sha256": "ee302f6de54ad010bd3110315c8e3fe2c7a6533a388a5f4ff6b539b9846aaa0f"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/07-acceptance-and-review.md",
+      "sha256": "b0a5341c8ea199fb11cb9857ba31239f7cfd3ddb9180f896a0a1e6bd8d07cbc5"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/README.md",
+      "sha256": "e7b7b81d970f2c02cbe2eb10dc01f72a37e7d77876d010f39374ed4473a524c6"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/design-manifest.json",
+      "sha256": "38c3b0a125de9d99891d867a1672a3346b702a3ca51b1f69e15e2f75dc2c3891"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/design-validation.json",
+      "sha256": "298eaea8f8d983f45f27a89e1ab4fd048fceaf4e924a0068268c5def6237d28c"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/architecture.mmd",
+      "sha256": "a48092992d302b85d7da227e1b0d81d2dea77b35da8e2d77bd36aa19a09765e3"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/call-sequence.mmd",
+      "sha256": "a2a08363c8e3b0df8e56233159878829b18d5734c1c7f3a6e789f353713b198e"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/deployment.mmd",
+      "sha256": "05427ff18ef6405006f7add784dcda26378bd36b856532e3073e99fe62241867"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/settlement-state.mmd",
+      "sha256": "1931efd919d1f71e6ebda947f92a72f788274b515fd43361ffc512ac63ac5881"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/reference-snapshot.json",
+      "sha256": "90ed0fa67e6dcd527e86c39312b2bd49408185b9e8c6a983bc948f9e0a516a47"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/source-baseline.json",
+      "sha256": "066bf8fd51a7b155550da72c72c12acdf1e3b12cd2f0cb0d50d29a3000f4714b"
+    }
+  ],
+  "workspace_source_files": [
+    {
+      "path": "lib_graph/src/lib_graph/runtime.py",
+      "sha256": "faddf609fa0f69c24158e06dd86f03ba0ef69a7f97020a914f933c486331e70b"
+    },
+    {
+      "path": "agentmcp/agentmcp.py",
+      "sha256": "9c3081025a1b2ddc7dc5bbc2fd54f448b07a88769858cd550b664478ba12e394"
+    },
+    {
+      "path": "graph_discussion/agents/base_agent.py",
+      "sha256": "f02a5627504e7ecab4d2a47adb830bf0ee7b571be72266a3c85c1467b5e956c6"
+    },
+    {
+      "path": "manus/src/llm/manager.py",
+      "sha256": "6cd9e286f5b2bc96300da2f95e42480f95d742c1cb8473f484073abf88aa9bbd"
+    },
+    {
+      "path": "agent_muti/src/agents/base_agent.py",
+      "sha256": "5c315894458282144df78db0fc11adf91eb1cdd0b84a64c6f9073a663cc635af"
+    },
+    {
+      "path": "requirements/constraints-langchain.txt",
+      "sha256": "9844f0658ce1e8abb1cb063c07f048f9c845652a2a85664287581cc8f2f312a7"
+    }
+  ],
+  "authorization": "analysis and optimization candidates only; writes under run-01; llm proposal immutable until user approval",
+  "not_run": [
+    "reference TypeScript tests",
+    "real provider calls",
+    "load/performance tests",
+    "production implementation"
+  ]
+}

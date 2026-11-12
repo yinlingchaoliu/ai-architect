@@ -1,0 +1,14 @@
+stateDiagram-v2
+    [*] --> Preparing
+    Preparing --> Queued: 校验和快照固定
+    Preparing --> Finalizing: 输入拒绝 / 取消
+    Queued --> Dispatched: 预算与配额许可
+    Queued --> Finalizing: 排队超时 / 取消
+    Dispatched --> Streaming: 对外输出首个 chunk
+    Dispatched --> Backoff: 允许的未公开失败
+    Backoff --> Queued: 新 attempt / 原 deadline
+    Backoff --> Finalizing: 截止 / 耗尽 / 取消
+    Dispatched --> Finalizing: 非流结果 / 错误
+    Streaming --> Finalizing: 完成 / partial / 取消
+    Finalizing --> Terminal: 关闭和结算结果固定
+    Terminal --> [*]

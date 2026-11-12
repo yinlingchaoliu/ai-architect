@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-12",
+  "design_version": "0.2",
+  "status": "passed",
+  "scope": "documentation consistency and source/backup integrity only",
+  "review_mode": "self_review",
+  "checks": {
+    "markdown_files": 15,
+    "local_links_checked": 73,
+    "python_examples_ast_only": 8,
+    "json_files_parsed": 11,
+    "diagram_sources_equal_inline": 5,
+    "model_type_examples": 6,
+    "formal_design_files": 19,
+    "project_source_files": 30,
+    "reference_source_files": 23,
+    "framework_source_files": 9,
+    "archive_files_verified": 16,
+    "future_extension_reference_mentions": 1,
+    "credential_pattern_hits": 0,
+    "protected_docs_checked": 26,
+    "protected_docs_unchanged": 25
+  },
+  "outside_write_set_observations": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton.md",
+      "before_sha256": "c6386290e5dc9968d24c0a7e31f5a07013792e45569d3c99f2e8ad97f64cbc68",
+      "observed_sha256": "e5d86a285d6e31257478bbca17147e25b331c03e8fdae07ced551aeb807b2568"
+    }
+  ],
+  "outside_observation_action": "preserved; writer not determined; this run did not write/revert those paths",
+  "errors": [],
+  "not_run": [
+    "API imports/execution of proposed model service",
+    "new product tests",
+    "new provider calls",
+    "reference TypeScript tests",
+    "load/concurrency tests",
+    "billing/persistence/fault tests",
+    "Mermaid render/visual review",
+    "independent review",
+    "production or business validation"
+  ],
+  "historical_probe": {
+    "path": "../run-01/evidence/langchain-mechanism-results.json",
+    "rerun": false,
+    "scope": "three offline framework mechanism observations only"
+  },
+  "formal_manifest_sha256": "2599653252b1325fed83da8b214d0f2a638ee45627db7baf511c9c7a84adf5c3",
+  "checker_sha256": "f5e2b9a7a3d11df6799a7eb6fb29d08a04fe1abeb218e8b48b13ea389eb78f26"
+}

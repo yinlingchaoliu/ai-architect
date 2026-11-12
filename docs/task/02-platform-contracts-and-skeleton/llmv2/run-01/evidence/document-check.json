@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-11-12T03:36:18.538821+00:00",
+  "status": "passed",
+  "kind": "design_review_only",
+  "archkit_structural": {
+    "status": "passed",
+    "structural_only": true,
+    "documents_checked": 26,
+    "failures": [],
+    "stale_sources": [],
+    "semantic_review": "required",
+    "mermaid_syntax_and_visual_review": "not_run"
+  },
+  "selected_source_fingerprints": {
+    "count": 32,
+    "drift": []
+  },
+  "python_sources_ast_only": [
+    "docs/task/02-platform-contracts-and-skeleton/llmv2/examples/contracts.py",
+    "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/check-design.py"
+  ],
+  "markdown_python_examples_ast_only": 6,
+  "yaml": {
+    "parsed": true,
+    "references_checked": true,
+    "mode": "development",
+    "production_ready": false
+  },
+  "mermaid_embedded_sources": [
+    {
+      "name": "layers",
+      "embedded_source_matches": true
+    },
+    {
+      "name": "deployment",
+      "embedded_source_matches": true
+    },
+    {
+      "name": "invocation",
+      "embedded_source_matches": true
+    },
+    {
+      "name": "call-state",
+      "embedded_source_matches": true
+    },
+    {
+      "name": "config-lifecycle",
+      "embedded_source_matches": true
+    }
+  ],
+  "mermaid_parser_render_visual": "not_run; mmdc unavailable; manual semantic review only",
+  "new_secret_pattern_scan": {
+    "matches": [],
+    "private_files_read": false
+  },
+  "parallel_outside_metadata_observations": 28,
+  "repository_write_prefix": "docs/task/02-platform-contracts-and-skeleton/llmv2/",
+  "manifest_sha256": "fab26bb7ed8ff1e91b440bff5dbb3e11bcfdfb23943995b05823760d581b0bb2",
+  "semantic_review": {
+    "mode": "self_review",
+    "status": "completed",
+    "independent_review": "not_run",
+    "user_acceptance": "pending"
+  },
+  "implementation": "not_run",
+  "runtime_regression_tests": "not_run",
+  "provider_calls": "not_run",
+  "performance_load_tests": "not_run",
+  "errors": []
+}

@@ -1,0 +1,146 @@
+{
+  "kind": "design_artifact_write_set",
+  "allowed_repository_prefix": "docs/task/02-platform-contracts-and-skeleton/llmv2/",
+  "scope": "only these design artifacts were written; parallel work is listed separately",
+  "self_excluded": [
+    "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/write-set.json",
+    "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/document-check.json"
+  ],
+  "files": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/01-source-reference.md",
+      "sha256": "123772bc16330d018021eda9a72a1b4007d3542cdef475e6a6496d57c172c91e",
+      "bytes": 9716
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/02-layered-architecture.md",
+      "sha256": "ecb406a8b7eb930da85754139f41993a017f10b7386448a2e68bd28a5a59473b",
+      "bytes": 8989
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/03-contracts-and-api.md",
+      "sha256": "387e21a02ea6b234cfc8e6fa3af5258f22463ef1f59ceb2a82dd76eede946023",
+      "bytes": 12824
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/04-langchain-and-provider.md",
+      "sha256": "548766c0cf62e0168c29fa54b458b611da98cc29ebc97fd4b0ec168fa68bffd6",
+      "bytes": 10870
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/05-concurrency-and-reliability.md",
+      "sha256": "b9792aed89d1f04470449f9943510d3bbcfddefe93c55001762ea806542823de",
+      "bytes": 12963
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/06-config-and-lifecycle.md",
+      "sha256": "973d0534046158ba75088ea542055ddee17ac8d7eb36f36e053301beef0eefd2",
+      "bytes": 9134
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/07-integration-and-migration.md",
+      "sha256": "9bb031c58ce5b82c2a1b73535d62b333511e4e4f24fa331afe77f61112ddf89c",
+      "bytes": 8498
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/08-validation-and-decisions.md",
+      "sha256": "f750da5339f2cdaa06aa19811479c8b71a9e5c5e666a0980f13f096b85342547",
+      "bytes": 9725
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/README.md",
+      "sha256": "1911bfa8fd691b5d616eb06d2e9909aa0b4c3a8ee1638ff42a628ef96fad3721",
+      "bytes": 5066
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/diagrams/call-state.mmd",
+      "sha256": "cef270dc91aa4be9449e43f16a4b33ee54ad9f65532b0c905d71134b22adaaac",
+      "bytes": 635
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/diagrams/config-lifecycle.mmd",
+      "sha256": "d196f66488ce6af33a7081a580e92f41f4cf7f459f7034f20ccc7cdd3d7484d6",
+      "bytes": 542
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/diagrams/deployment.mmd",
+      "sha256": "a5152a1d8510af1c5871c0219741ce6095e7518ee3182093e06284c8ac3636c3",
+      "bytes": 364
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/diagrams/invocation.mmd",
+      "sha256": "39996e83bf23fc2fb6518372eb3b1ec808adfd7a885c68d2b56228f2e682ca3a",
+      "bytes": 938
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/diagrams/layers.mmd",
+      "sha256": "d0b6e9030018bc5c74376263648c3bf9ef0f24f25c64460ffaaac6ab4aeefbc8",
+      "bytes": 564
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/examples/contracts.py",
+      "sha256": "cde0c2cf5de05f34920034dfc72b21c7d42ae6790f2075ddc759c909c165f6d4",
+      "bytes": 5573
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/examples/profiles.yaml",
+      "sha256": "aa316f4c150c1b2d0ef7910563d38990d90226fa58cf14bd3eb71a6f8cec28f0",
+      "bytes": 2529
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/01-thinking.md",
+      "sha256": "50dc9701c08b3702061a0e7757bf6c2c309471d31e6da39f673653a2d6b54f4c",
+      "bytes": 1778
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/02-actions.md",
+      "sha256": "2f2d8fc2cdda0b055f58dd20935fcbcba8d4cf02872cba1bbcba557b4d243888",
+      "bytes": 2297
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/03-review.md",
+      "sha256": "2950d732ed973c7a929efe315fb1a74016e8952c7bfeec95f867e6e6f7927747",
+      "bytes": 4460
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/04-reflection.md",
+      "sha256": "c1b95590f402dad8ae192417aeb5afb7e463754bee1cb33e0e638203c9faa5cc",
+      "bytes": 1367
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/README.md",
+      "sha256": "270d72bdb675013a7f568674c0d00df65374db11a36c74c77b9f837a985ac5c9",
+      "bytes": 943
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/baseline.json",
+      "sha256": "40c57735071c3476542f9c6fc87fcf4a33a6eb3bef6e03ff0792c9b3a8904843",
+      "bytes": 58955
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/check-design.py",
+      "sha256": "3e0a0d3c21b58445422340d89a8dce34075b1bb0c890326f08a83ffad12616e8",
+      "bytes": 8065
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/langchain-deepseek-candidate.json",
+      "sha256": "d3821468c34cd905444765c52b8066ebe001e53eeda7084028f509b2216e14e9",
+      "bytes": 616
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/langchain-payload-probe.json",
+      "sha256": "61acc76453484d6922bbd024e7facb30abb05152f973d761008cdb014307e735",
+      "bytes": 406
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/outside-observations.json",
+      "sha256": "7335979699073d4abfbed00b85570b2242387f5a9ef648a0493ebe4790f0d1d8",
+      "bytes": 3174
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llmv2/run-01/evidence/sources.json",
+      "sha256": "4479d4dc3f43eeb963e4887f62cf49bad703f1992bb59b281d78e3e3f4aab45e",
+      "bytes": 14834
+    }
+  ]
+}

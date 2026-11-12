@@ -1,0 +1,92 @@
+{
+  "status": "design_examples_only",
+  "note": "Aliases, artifact references and voice are symbolic; not published models or executable configuration",
+  "requests": [
+    {
+      "model_type": "llm",
+      "model_ref": "chat.general@r1",
+      "messages": [
+        {
+          "role": "user",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "请概括需求"
+            }
+          ]
+        }
+      ],
+      "parameters": {
+        "max_output_tokens": 512,
+        "reasoning": "disabled"
+      },
+      "contract_version": "models.v1"
+    },
+    {
+      "model_type": "text-embedding",
+      "model_ref": "embedding.knowledge@r1",
+      "texts": [
+        "需求A",
+        "需求B"
+      ],
+      "purpose": "document",
+      "parameters": {},
+      "contract_version": "models.v1"
+    },
+    {
+      "model_type": "rerank",
+      "model_ref": "rerank.knowledge@r1",
+      "query": "模型层设计",
+      "documents": [
+        {
+          "id": "d1",
+          "text": "统一模型服务"
+        },
+        {
+          "id": "d2",
+          "text": "界面配色"
+        }
+      ],
+      "parameters": {
+        "top_n": 1
+      },
+      "contract_version": "models.v1"
+    },
+    {
+      "model_type": "speech2text",
+      "model_ref": "speech.input@r1",
+      "audio_ref": "artifact://example/input-audio",
+      "parameters": {
+        "language": "zh"
+      },
+      "contract_version": "models.v1"
+    },
+    {
+      "model_type": "moderation",
+      "model_ref": "moderation.content@r1",
+      "items": [
+        {
+          "id": "item-1",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "待审核示例"
+            }
+          ]
+        }
+      ],
+      "parameters": {},
+      "contract_version": "models.v1"
+    },
+    {
+      "model_type": "tts",
+      "model_ref": "speech.output@r1",
+      "text": "你好，欢迎使用模型服务。",
+      "parameters": {
+        "voice": "configured-default",
+        "format": "mp3"
+      },
+      "contract_version": "models.v1"
+    }
+  ]
+}

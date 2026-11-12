@@ -23,7 +23,9 @@
 ### 直接运行
 
 ```bash
-pip install -r requirements.txt
+# 在仓库根目录、已激活 Python 3.12 的 .venv 中执行
+python -m pip install -r requirements.txt
+# 以下启动命令在 webui-chatbot 目录中执行
 #命令行启动
 streamlit run ./src/home.py --server.port 1234
 #PyCharm debug启动

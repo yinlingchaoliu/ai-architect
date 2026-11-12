@@ -1,0 +1,11 @@
+flowchart TB
+    H["Agent Harness：Run、授权、上下文、累计预算"] --> G["Graph / create_agent：状态与工具循环"]
+    H --> F["LLM Facade / ManagedChatModel"]
+    G --> F
+    F --> K["Invocation Kernel：单逻辑调用 / 物理尝试"]
+    K --> A["Provider Adapter：能力、兼容、错误、usage"]
+    A --> L["LangChain 原生 provider 模型"]
+    L --> T["HTTP 连接池"]
+    T --> P["模型服务"]
+    C["控制面：Registry / 不可变配置"] -. "prepare 固定 revision" .-> K
+    K --> B["BudgetPort / QuotaBackend / UsageSink"]

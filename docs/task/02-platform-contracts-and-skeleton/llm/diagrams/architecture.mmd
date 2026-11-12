@@ -1,0 +1,20 @@
+flowchart TB
+    U["业务 / Agent / RAG / 语音节点"] --> C["ModelClient：ainvoke / astream"]
+    G["LangChain create_agent / LangGraph"] --> B["薄 ChatModel / Embeddings Bridge"]
+    B --> S
+    C --> S["ModelService：唯一服务契约与调用生命周期"]
+    P["ProviderRegistry：供应商与凭据实例"] --> PRE
+    M["AIModelEntity：ModelType / features / parameters"] --> PRE
+    S --> PRE["prepare_call：固定版本 / 能力 / context / 预算"]
+    PRE --> RUN["InvocationRunner：唯一尝试与有限重试 owner"]
+    RUN --> T["ModelType AdapterRegistry"]
+    T --> LLM["LLM：LangChain BaseChatModel"]
+    T --> EMB["TEXT_EMBEDDING：LangChain Embeddings"]
+    T --> ETC["RERANK / SPEECH2TEXT / MODERATION / TTS：类型化 Runnable 适配"]
+    LLM --> IO["厂商原生异步集成与连接池"]
+    EMB --> IO
+    ETC --> IO
+    IO --> O["UsageObservation / 协议回放元数据"]
+    O --> S
+    RUN --> A["共享配额与 BudgetAuthority"]
+    S --> F["结果 / 流事件 / 用量最终化"]

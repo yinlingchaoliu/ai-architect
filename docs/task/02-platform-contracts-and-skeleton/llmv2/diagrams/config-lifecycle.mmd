@@ -1,0 +1,11 @@
+flowchart LR
+    D["配置 Draft"] --> V["Schema / 依赖 / 权限 / 能力校验"]
+    V --> W["预热候选 handle"]
+    W --> C["CAS 发布不可变 CatalogSnapshot"]
+    C --> N["新 direct 调用 / 新 binding"]
+    C -. "通知 Graph owner" .-> G["新图预编译 / 新 Run 切换"]
+    O["旧 binding / 在途 PreparedCall"] --> R["完成或有界 drain"]
+    R --> X["引用归零 / 关闭旧连接"]
+    V -. "失败保留旧快照" .-> O
+    S["紧急撤销"] -. "发网前拒绝 / 取消活跃请求" .-> N
+    S -. "取消" .-> O

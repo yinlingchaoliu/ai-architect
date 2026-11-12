@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-12",
+  "design_version": "0.2",
+  "scope": "current formal llm design; manifest itself excluded",
+  "files": [
+    {
+      "path": "01-architecture.md",
+      "sha256": "361dc387afa8cc32aa04ef85b79b14f5fb663f8c3b523d8dd59044e1ceaa8393"
+    },
+    {
+      "path": "02-contracts-and-configuration.md",
+      "sha256": "64eb9c93b3627e8ef94ec4b3815b88eb2e1a447fce23061310122956905c3cb1"
+    },
+    {
+      "path": "03-usage-and-billing.md",
+      "sha256": "6e7ff813e2131b88956d550a27ca246e098e1d4fd01c06249fb7c80756e66662"
+    },
+    {
+      "path": "04-concurrency-and-reliability.md",
+      "sha256": "905161a663b309cf722d62cf93f8b106f7d34e268f9d34e257ba6944b76e6a26"
+    },
+    {
+      "path": "05-open-source-reference.md",
+      "sha256": "564a75ede503f33d1264c759a571d173d900bc25d895fde83e27619babdd9f72"
+    },
+    {
+      "path": "06-project-integration.md",
+      "sha256": "348775693d328b39e2a6c170c26b29a5e05896e36262919c8358058df84a0c5a"
+    },
+    {
+      "path": "07-acceptance-and-review.md",
+      "sha256": "5eebccca241aff855b92406cd3267c3505aa178b93a8ac69ae65e822fe82638c"
+    },
+    {
+      "path": "08-model-types-and-api.md",
+      "sha256": "99ad92e7216ade304a60772d80699464232f3d05af5f63833fbd0d01a229b329"
+    },
+    {
+      "path": "README.md",
+      "sha256": "70967083bed41274897e5d98cb6e95618314d76d594930baa802c3ea42b2626e"
+    },
+    {
+      "path": "design-validation.json",
+      "sha256": "d577585ce9ac7365138386166061a5da817b94a065c69fef8e1631d88a8212dd"
+    },
+    {
+      "path": "diagrams/architecture.mmd",
+      "sha256": "911d18ae992d2374fd37942534c890ca375a44d8be2bf0ec3ffeec144a59a8b7"
+    },
+    {
+      "path": "diagrams/call-sequence.mmd",
+      "sha256": "f9902cf156dfba5d41bb4d31e7328af53b0ad546355d3f1c88be3638806d92db"
+    },
+    {
+      "path": "diagrams/deployment.mmd",
+      "sha256": "3588920c959d8e4549b76a706fe4ffbac4397b16d752f74b7fc9d6a74c40d494"
+    },
+    {
+      "path": "diagrams/settlement-state.mmd",
+      "sha256": "e78c4e6d5739fc28476ec80109fada8f55f3c77443daf51b04432f3dd24343f1"
+    },
+    {
+      "path": "diagrams/type-routing.mmd",
+      "sha256": "e0cd2ee86ffe3b3152da095ea52dd118953dc8a077fc31165159ae5a38d26779"
+    },
+    {
+      "path": "examples/unified-model-requests.json",
+      "sha256": "f037b91b79f72921869fb33606473ca08f91bf2f65324e036bae4a5be705b2c9"
+    },
+    {
+      "path": "reference-snapshot.json",
+      "sha256": "a1e4613e1fe35bd0a976713bc8141fea4049872bedbf3248fe66451cb2304658"
+    },
+    {
+      "path": "source-baseline.json",
+      "sha256": "6828a4631c47d993660a0dfb925861ed3ff90bb787c35b748bcd64550366151f"
+    }
+  ]
+}

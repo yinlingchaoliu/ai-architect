@@ -1,0 +1,15 @@
+stateDiagram-v2
+    [*] --> pending
+    pending --> running: 允许执行
+    running --> waiting: 等待输入
+    waiting --> running: 合法续答
+    running --> reconciling: 结果未知
+    reconciling --> succeeded: 对账确认
+    reconciling --> failed: 确认失败
+    running --> succeeded: 输出合同通过
+    running --> failed: 明确失败
+    running --> cancel_requested: 请求取消
+    cancel_requested --> canceled: 确认停止
+    succeeded --> [*]
+    failed --> [*]
+    canceled --> [*]

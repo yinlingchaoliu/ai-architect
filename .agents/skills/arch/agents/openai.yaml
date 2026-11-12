@@ -1,0 +1,4 @@
+interface:
+  display_name: "Arch 架构专家"
+  short_description: "从源码梳理架构与业务流，设计分层方案，拆解迁移任务并记录验证和复盘"
+  default_prompt: "使用 $arch 阅读当前项目源码，按需要生成架构、业务流和渐进式改造文档。"

@@ -1,0 +1,302 @@
+{
+  "date": "2026-11-12",
+  "design_version": "0.2",
+  "adoption": {
+    "main": "DeepSeek Harness llm service seam and lifecycle",
+    "organization_reference": "Dify Provider / ModelType / AIModelEntity",
+    "implementation_framework": "LangChain capability integrations and thin framework bridges"
+  },
+  "deepseek_harness": {
+    "root": "/Users/chentong/AI/PatientCare/github/deepseek-harness",
+    "head": "47f943859bef60e4160492346772ded9b24f765a",
+    "current_head": "47f943859bef60e4160492346772ded9b24f765a",
+    "current_status": "",
+    "files": [
+      {
+        "path": "packages/llm/llm/src/index.ts",
+        "sha256": "71c03b10d948a2dc2403db5c544ee9a2d6db7a45eb0b97d2b0bb2f733507526f",
+        "current_sha256": "71c03b10d948a2dc2403db5c544ee9a2d6db7a45eb0b97d2b0bb2f733507526f"
+      },
+      {
+        "path": "packages/llm/llm/src/types.ts",
+        "sha256": "055b7efeb5cb5bb17379cad419ed6259c2ab9a8ba9d897796cc97c8505bc4ada",
+        "current_sha256": "055b7efeb5cb5bb17379cad419ed6259c2ab9a8ba9d897796cc97c8505bc4ada"
+      },
+      {
+        "path": "packages/llm/llm/src/message.ts",
+        "sha256": "5b95dab5facbd284c5bc3534323386aedfdd60e30c17a0012376a2d492fa6c9a",
+        "current_sha256": "5b95dab5facbd284c5bc3534323386aedfdd60e30c17a0012376a2d492fa6c9a"
+      },
+      {
+        "path": "packages/llm/llm/src/call-config.ts",
+        "sha256": "383a04a9f41c63bb6fcc644452e2d8327c363a55d74d8c25e8c773cacf787205",
+        "current_sha256": "383a04a9f41c63bb6fcc644452e2d8327c363a55d74d8c25e8c773cacf787205"
+      },
+      {
+        "path": "packages/llm/llm/src/assembler.ts",
+        "sha256": "05143f05f50f35722172b0a132194d6e1773c185bf83c6dc78108644724caf7e",
+        "current_sha256": "05143f05f50f35722172b0a132194d6e1773c185bf83c6dc78108644724caf7e"
+      },
+      {
+        "path": "packages/llm/llm/src/retry-policy.ts",
+        "sha256": "80eba94599cfb49bc58f331407aa54fc56b8f3cbcfc9149e9c140b5eb29e3b9f",
+        "current_sha256": "80eba94599cfb49bc58f331407aa54fc56b8f3cbcfc9149e9c140b5eb29e3b9f"
+      },
+      {
+        "path": "packages/llm/llm/src/adapter-failure.ts",
+        "sha256": "7132ce407d433eedf94304f342fd703de60f80190431e2be707948b0c5104d54",
+        "current_sha256": "7132ce407d433eedf94304f342fd703de60f80190431e2be707948b0c5104d54"
+      },
+      {
+        "path": "packages/llm/llm-deepseek/src/adapter.ts",
+        "sha256": "a51cadf34acab317a422c56bc12da107fb62b383919d698e7b15256651a4505d",
+        "current_sha256": "a51cadf34acab317a422c56bc12da107fb62b383919d698e7b15256651a4505d"
+      },
+      {
+        "path": "packages/llm/llm-deepseek/src/serialize.ts",
+        "sha256": "3a81f80bafb739192b81cabfca98ac3335a2664c05a0e5cf5a3327be1d702600",
+        "current_sha256": "3a81f80bafb739192b81cabfca98ac3335a2664c05a0e5cf5a3327be1d702600"
+      },
+      {
+        "path": "packages/llm/llm-deepseek/src/translate.ts",
+        "sha256": "69d9b348778fc657fef33262727b64f11c9afde81119302ad80b2a3d1dec5602",
+        "current_sha256": "69d9b348778fc657fef33262727b64f11c9afde81119302ad80b2a3d1dec5602"
+      },
+      {
+        "path": "packages/llm/llm-deepseek/src/sse.ts",
+        "sha256": "621f53b6641a9fb5c652a755f477045f0616f42d5a559b9bea4754836552d705",
+        "current_sha256": "621f53b6641a9fb5c652a755f477045f0616f42d5a559b9bea4754836552d705"
+      },
+      {
+        "path": "packages/llm/llm-deepseek/src/index.ts",
+        "sha256": "05f74d10c9bea019743559006b9d3669949adf0e47d9ad8853ae68a77a73388b",
+        "current_sha256": "05f74d10c9bea019743559006b9d3669949adf0e47d9ad8853ae68a77a73388b"
+      },
+      {
+        "path": "packages/llm/llm-pi-ai/src/adapter.ts",
+        "sha256": "1f10fceb19caa574795cbcc39710f73bb6c31c557e3a5f8b681f2ea171e6a6ad",
+        "current_sha256": "1f10fceb19caa574795cbcc39710f73bb6c31c557e3a5f8b681f2ea171e6a6ad"
+      },
+      {
+        "path": "packages/llm/llm-pi-ai/src/stream.ts",
+        "sha256": "e5be47e5586b8ec33dd7d25f7733b81ce584e2f67e2bb6fc4c5d0af47b9bf42a",
+        "current_sha256": "e5be47e5586b8ec33dd7d25f7733b81ce584e2f67e2bb6fc4c5d0af47b9bf42a"
+      },
+      {
+        "path": "packages/llm/llm-pi-ai/src/replay.ts",
+        "sha256": "dce40d6cb86ff5bee51edbe70901c9765464f558b64dda1e682e6cabe9f1f5fd",
+        "current_sha256": "dce40d6cb86ff5bee51edbe70901c9765464f558b64dda1e682e6cabe9f1f5fd"
+      },
+      {
+        "path": "packages/llm/token-meter/src/index.ts",
+        "sha256": "bbc45ac18017f2000c2021e170eadcbe1535454a88064f7a610ce95d390c0a6c",
+        "current_sha256": "bbc45ac18017f2000c2021e170eadcbe1535454a88064f7a610ce95d390c0a6c"
+      },
+      {
+        "path": "packages/llm/token-meter/src/usage-projection.ts",
+        "sha256": "11207f66668008840e4994be9ff819a7c58b4f791d89cbe4b958af47b80bb81a",
+        "current_sha256": "11207f66668008840e4994be9ff819a7c58b4f791d89cbe4b958af47b80bb81a"
+      },
+      {
+        "path": "packages/llm/token-meter/src/estimate.ts",
+        "sha256": "0602d0ef294143290a327a4d4d393cf9807b3a40902079c32b5eca3c236fed3f",
+        "current_sha256": "0602d0ef294143290a327a4d4d393cf9807b3a40902079c32b5eca3c236fed3f"
+      },
+      {
+        "path": "packages/llm/llm-retry/src/index.ts",
+        "sha256": "73a3f4cee1e3c4a315f41f38d12ea1676661f0475dd6f367901b22b6e23dfd72",
+        "current_sha256": "73a3f4cee1e3c4a315f41f38d12ea1676661f0475dd6f367901b22b6e23dfd72"
+      },
+      {
+        "path": "packages/llm/llm/tests/service.spec.ts",
+        "sha256": "aeff7be7b5cbf09bb1cf93e0e21295167d893d06ba6c8deb0efc52c38c2cb8f5",
+        "current_sha256": "aeff7be7b5cbf09bb1cf93e0e21295167d893d06ba6c8deb0efc52c38c2cb8f5"
+      },
+      {
+        "path": "packages/llm/llm/tests/topology.spec.ts",
+        "sha256": "9331018b480aa167d404ebe42cfc7b95f193493ffa78dfcb79a8254ac2fbef09",
+        "current_sha256": "9331018b480aa167d404ebe42cfc7b95f193493ffa78dfcb79a8254ac2fbef09"
+      },
+      {
+        "path": "packages/llm/llm-deepseek/tests/dynamic-config.spec.ts",
+        "sha256": "18a1639c50793de5a6a33078f186fda0ed8b66afa5c7c2a37d18d55c4f8d1045",
+        "current_sha256": "18a1639c50793de5a6a33078f186fda0ed8b66afa5c7c2a37d18d55c4f8d1045"
+      },
+      {
+        "path": "packages/llm/token-meter/tests/token-usage-projection.spec.ts",
+        "sha256": "1858e177091452bbc760f9cc075c6d00551079e3fe713d95f0fd7c617fcc2c12",
+        "current_sha256": "1858e177091452bbc760f9cc075c6d00551079e3fe713d95f0fd7c617fcc2c12"
+      }
+    ],
+    "tests": "read_only_not_run"
+  },
+  "dify": {
+    "date": "2026-11-12",
+    "repo": "langgenius/dify-plugin-sdks",
+    "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+    "files": [
+      {
+        "repo": "langgenius/dify-plugin-sdks",
+        "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+        "path": "src/dify_plugin/entities/model/provider.py",
+        "sha256": "a2df8b5503ec1736f4eb6c487941490e9bbba439f4b4c4ba1a59a9b69dfa7811",
+        "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/entities/model/provider.py"
+      },
+      {
+        "repo": "langgenius/dify-plugin-sdks",
+        "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+        "path": "src/dify_plugin/entities/model/schema.py",
+        "sha256": "bc434a267b2dea51d2f9393927537ca35981f189dacdfe3eeb7b39af641cee65",
+        "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/entities/model/schema.py"
+      },
+      {
+        "repo": "langgenius/dify-plugin-sdks",
+        "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+        "path": "src/dify_plugin/interfaces/model/openai_compatible/provider.py",
+        "sha256": "be911b64ea4e1e6b6960f58f7ded842ee609a33d697d41c75f3bf028b6c2c7cf",
+        "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/interfaces/model/openai_compatible/provider.py"
+      },
+      {
+        "repo": "langgenius/dify-plugin-sdks",
+        "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+        "path": "src/dify_plugin/interfaces/model/provider.py",
+        "sha256": "a990df1b072038e5327c1210e52bee24b05609069f25a8f8dccd08b10dead077",
+        "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/interfaces/model/provider.py"
+      },
+      {
+        "repo": "langgenius/dify-plugin-sdks",
+        "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+        "path": "src/dify_plugin/interfaces/model/ai_model.py",
+        "sha256": "baab7101fb6f0a840e050aa4f200fb81f346eb95003287bf6ac22d2322a21952",
+        "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/interfaces/model/ai_model.py"
+      }
+    ],
+    "package_installed": false,
+    "scope": "concepts and current source metadata; no Dify runtime dependency"
+  },
+  "langchain": {
+    "environment": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01",
+    "versions": {
+      "langchain": "1.5.0",
+      "langchain-core": "1.8.0",
+      "langchain-openai": "1.7.4",
+      "langgraph": "1.2.20"
+    },
+    "files": [
+      {
+        "package": "langchain-core",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py",
+        "sha256": "6b37dd84a34a49b932983ec92e5dc826fefdd1a047424a014a251a0ed0e2d507",
+        "current_sha256": "6b37dd84a34a49b932983ec92e5dc826fefdd1a047424a014a251a0ed0e2d507"
+      },
+      {
+        "package": "langchain-core",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/messages/ai.py",
+        "sha256": "6aa23c2e260d8c3c1a78ce75852219c145ce74afca3c970c0ac2eb41610574f1",
+        "current_sha256": "6aa23c2e260d8c3c1a78ce75852219c145ce74afca3c970c0ac2eb41610574f1"
+      },
+      {
+        "package": "langchain-core",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/runnables/base.py",
+        "sha256": "407284bddbe9616352ad9d3dd8dab4f3dd197aa31a5c9fc253e57e4265839242",
+        "current_sha256": "407284bddbe9616352ad9d3dd8dab4f3dd197aa31a5c9fc253e57e4265839242"
+      },
+      {
+        "package": "langchain",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/factory.py",
+        "sha256": "22c48a3478de99dabb06b413085e0e388e74ddb3681bd9892a373faa757cf8fe",
+        "current_sha256": "22c48a3478de99dabb06b413085e0e388e74ddb3681bd9892a373faa757cf8fe"
+      },
+      {
+        "package": "langchain",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/middleware/types.py",
+        "sha256": "d9a5ae88cc2dd6bcdc3030ce2e1b55f876d2af88c02c27f5b630dadad350fb75",
+        "current_sha256": "d9a5ae88cc2dd6bcdc3030ce2e1b55f876d2af88c02c27f5b630dadad350fb75"
+      },
+      {
+        "package": "langchain-openai",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/chat_models/base.py",
+        "sha256": "1311fb3487aa309c8b649440ae07a3c1c472e6bdf913408fb979549877579e30",
+        "current_sha256": "1311fb3487aa309c8b649440ae07a3c1c472e6bdf913408fb979549877579e30"
+      },
+      {
+        "package": "langchain-core",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/embeddings/embeddings.py",
+        "sha256": "bb9d13d95c4b2f27c604229c56d59f4a266bb4ab9af2c3921f04921d12ad727a",
+        "symbols": [
+          {
+            "name": "aembed_documents",
+            "line": 58,
+            "end_line": 67
+          },
+          {
+            "name": "aembed_query",
+            "line": 69,
+            "end_line": 78
+          }
+        ]
+      },
+      {
+        "package": "langchain-core",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/documents/compressor.py",
+        "sha256": "db2f95c9ff70a0ee2b489d96f2671d1395c300d5607e4594d292c626698fbe1c",
+        "symbols": [
+          {
+            "name": "acompress_documents",
+            "line": 55,
+            "end_line": 74
+          }
+        ]
+      },
+      {
+        "package": "langchain-openai",
+        "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/embeddings/base.py",
+        "sha256": "2d0435473e4f88cd2179a22a4a31042b3331ab5e2151f81bcaac47d4850914bb",
+        "symbols": [
+          {
+            "name": "_aget_len_safe_embeddings",
+            "line": 649,
+            "end_line": 723
+          },
+          {
+            "name": "aembed_documents",
+            "line": 761,
+            "end_line": 794
+          },
+          {
+            "name": "aembed_query",
+            "line": 809,
+            "end_line": 820
+          }
+        ]
+      }
+    ],
+    "previous_probe_result": "../run-01/evidence/langchain-mechanism-results.json",
+    "probe_rerun_in_this_rewrite": false
+  },
+  "official_references": [
+    {
+      "title": "Dify Model Specs",
+      "url": "https://docs.dify.ai/en/develop-plugin/features-and-specs/plugin-types/model-designing-rules"
+    },
+    {
+      "title": "LangChain Models",
+      "url": "https://docs.langchain.com/oss/python/langchain/models"
+    },
+    {
+      "title": "LangChain Embedding integrations",
+      "url": "https://docs.langchain.com/oss/python/integrations/embeddings"
+    },
+    {
+      "title": "LangChain InMemoryRateLimiter",
+      "url": "https://reference.langchain.com/python/langchain-core/rate_limiters/InMemoryRateLimiter"
+    }
+  ],
+  "not_run": [
+    "reference TypeScript tests",
+    "new model calls",
+    "performance tests",
+    "billing persistence tests",
+    "deployment"
+  ]
+}

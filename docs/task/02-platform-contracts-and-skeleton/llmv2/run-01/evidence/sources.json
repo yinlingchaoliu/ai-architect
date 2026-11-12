@@ -1,0 +1,272 @@
+{
+  "project_head": "98425ec910407e447c40d5528e84f445d8c38cc8",
+  "reference_head": "47f943859bef60e4160492346772ded9b24f765a",
+  "selected_sources": [
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/lib_graph/src/lib_graph/runtime.py",
+      "relative_path": "lib_graph/src/lib_graph/runtime.py",
+      "sha256": "faddf609fa0f69c24158e06dd86f03ba0ef69a7f97020a914f933c486331e70b",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/lib_graph/src/lib_graph/langgraph_hello.py",
+      "relative_path": "lib_graph/src/lib_graph/langgraph_hello.py",
+      "sha256": "d7c58a9ad172150490a5cba8882f4171aa1277b6b833d887fd7d78faf5ef153b",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/agentmcp/agentmcp.py",
+      "relative_path": "agentmcp/agentmcp.py",
+      "sha256": "9c3081025a1b2ddc7dc5bbc2fd54f448b07a88769858cd550b664478ba12e394",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/manus/src/llm/manager.py",
+      "relative_path": "manus/src/llm/manager.py",
+      "sha256": "6cd9e286f5b2bc96300da2f95e42480f95d742c1cb8473f484073abf88aa9bbd",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/manus/src/llm/models.py",
+      "relative_path": "manus/src/llm/models.py",
+      "sha256": "be2ff9c327dfd56e25bc13298a09a3f9de10b58b12e4741011900ba6962397cb",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/graph_discussion/config.py",
+      "relative_path": "graph_discussion/config.py",
+      "sha256": "c8d82b283746004adddef0adb05b5a7f8aa272f2145d636a5c963c23b2b753db",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/graph_discussion/agents/base_agent.py",
+      "relative_path": "graph_discussion/agents/base_agent.py",
+      "sha256": "f02a5627504e7ecab4d2a47adb830bf0ee7b571be72266a3c85c1467b5e956c6",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/agent_muti/src/agents/base_agent.py",
+      "relative_path": "agent_muti/src/agents/base_agent.py",
+      "sha256": "5c315894458282144df78db0fc11adf91eb1cdd0b84a64c6f9073a663cc635af",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/agent_muti_discussion/src/core/base_agent.py",
+      "relative_path": "agent_muti_discussion/src/core/base_agent.py",
+      "sha256": "15ec84169d12d722dee2238087c68b084f9cd3f2deb233aa6449c3272425e19d",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/server/app/chain/openai_server.py",
+      "relative_path": "server/app/chain/openai_server.py",
+      "sha256": "b93949495204919d56b4c3e12b4e6c03c06a611dd302bec7e02e37c53193d627",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/mcp_client_manager/src/core/mcp_router.py",
+      "relative_path": "mcp_client_manager/src/core/mcp_router.py",
+      "sha256": "7c0868896f47e6e8fe88e12fccf6aef351b5f6198268383c6a077065eb7ed2b9",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/requirements.txt",
+      "relative_path": "requirements.txt",
+      "sha256": "f207be3934fe8030ba343d9ab11b061a5dfa92f2c91435fd8a906afbf94ef328",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "project_source",
+      "path": "/Users/chentong/AI/PatientCare/github/ai-architect/lib_graph/pyproject.toml",
+      "relative_path": "lib_graph/pyproject.toml",
+      "sha256": "7407b8a15e95c1660864d47e9db3d9ec10fa8a875cf41f23ba2544cb5c74c48e",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/index.ts",
+      "relative_path": "packages/llm/llm/src/index.ts",
+      "sha256": "71c03b10d948a2dc2403db5c544ee9a2d6db7a45eb0b97d2b0bb2f733507526f",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/types.ts",
+      "relative_path": "packages/llm/llm/src/types.ts",
+      "sha256": "055b7efeb5cb5bb17379cad419ed6259c2ab9a8ba9d897796cc97c8505bc4ada",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/assembler.ts",
+      "relative_path": "packages/llm/llm/src/assembler.ts",
+      "sha256": "05143f05f50f35722172b0a132194d6e1773c185bf83c6dc78108644724caf7e",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/message.ts",
+      "relative_path": "packages/llm/llm/src/message.ts",
+      "sha256": "5b95dab5facbd284c5bc3534323386aedfdd60e30c17a0012376a2d492fa6c9a",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/call-config.ts",
+      "relative_path": "packages/llm/llm/src/call-config.ts",
+      "sha256": "383a04a9f41c63bb6fcc644452e2d8327c363a55d74d8c25e8c773cacf787205",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/retry-policy.ts",
+      "relative_path": "packages/llm/llm/src/retry-policy.ts",
+      "sha256": "80eba94599cfb49bc58f331407aa54fc56b8f3cbcfc9149e9c140b5eb29e3b9f",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/src/adapter-failure.ts",
+      "relative_path": "packages/llm/llm/src/adapter-failure.ts",
+      "sha256": "7132ce407d433eedf94304f342fd703de60f80190431e2be707948b0c5104d54",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm-deepseek/src/adapter.ts",
+      "relative_path": "packages/llm/llm-deepseek/src/adapter.ts",
+      "sha256": "a51cadf34acab317a422c56bc12da107fb62b383919d698e7b15256651a4505d",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm-deepseek/src/serialize.ts",
+      "relative_path": "packages/llm/llm-deepseek/src/serialize.ts",
+      "sha256": "3a81f80bafb739192b81cabfca98ac3335a2664c05a0e5cf5a3327be1d702600",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm-deepseek/src/translate.ts",
+      "relative_path": "packages/llm/llm-deepseek/src/translate.ts",
+      "sha256": "69d9b348778fc657fef33262727b64f11c9afde81119302ad80b2a3d1dec5602",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm-retry/src/index.ts",
+      "relative_path": "packages/llm/llm-retry/src/index.ts",
+      "sha256": "73a3f4cee1e3c4a315f41f38d12ea1676661f0475dd6f367901b22b6e23dfd72",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/token-meter/src/estimate.ts",
+      "relative_path": "packages/llm/token-meter/src/estimate.ts",
+      "sha256": "0602d0ef294143290a327a4d4d393cf9807b3a40902079c32b5eca3c236fed3f",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm-pi-ai/src/adapter.ts",
+      "relative_path": "packages/llm/llm-pi-ai/src/adapter.ts",
+      "sha256": "1f10fceb19caa574795cbcc39710f73bb6c31c557e3a5f8b681f2ea171e6a6ad",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/core/agent-loop/src/agent.ts",
+      "relative_path": "packages/core/agent-loop/src/agent.ts",
+      "sha256": "e775e59f3761240ee571a9b997d0d29deb97a283b6c2fc3a071091b2743d22b4",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/tests/topology.spec.ts",
+      "relative_path": "packages/llm/llm/tests/topology.spec.ts",
+      "sha256": "9331018b480aa167d404ebe42cfc7b95f193493ffa78dfcb79a8254ac2fbef09",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "reference_source",
+      "path": "/Users/chentong/AI/PatientCare/github/deepseek-harness/packages/llm/llm/tests/adapter-failure.spec.ts",
+      "relative_path": "packages/llm/llm/tests/adapter-failure.spec.ts",
+      "sha256": "93b6dcb6394a679d1d005b54f2954d1c540189e90e827803f363a57b12420006",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "installed_framework_source",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py",
+      "relative_path": "langchain_core/language_models/chat_models.py",
+      "sha256": "6b37dd84a34a49b932983ec92e5dc826fefdd1a047424a014a251a0ed0e2d507",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "installed_framework_source",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/chat_models/base.py",
+      "relative_path": "langchain_openai/chat_models/base.py",
+      "sha256": "1311fb3487aa309c8b649440ae07a3c1c472e6bdf913408fb979549877579e30",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    },
+    {
+      "kind": "installed_framework_source",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/factory.py",
+      "relative_path": "langchain/agents/factory.py",
+      "sha256": "22c48a3478de99dabb06b413085e0e388e74ddb3681bd9892a373faa757cf8fe",
+      "read_scope": "selected symbols and sections; hash is entire file, not a claim of full-file audit"
+    }
+  ],
+  "installed_packages": {
+    "langchain": "1.5.0",
+    "langchain-core": "1.8.0",
+    "langgraph": "1.2.20",
+    "langchain-openai": "1.7.4",
+    "httpx": "0.28.1"
+  },
+  "candidate_package_status": "langchain-deepseek 1.1.1 source inspected only, not installed",
+  "excluded_source": "docs/task/02-platform-contracts-and-skeleton/llm/**",
+  "concurrent_dependency_change": "The previously read requirements/constraints-langchain.txt was removed during this task; final source selection uses current root requirements.txt. Existing S01 environment is only the local probe environment.",
+  "official_sources": [
+    {
+      "url": "https://docs.langchain.com/oss/python/langchain/models",
+      "checked_date": "2026-11-12",
+      "purpose": "native model API and composition"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/langchain/structured-output",
+      "checked_date": "2026-11-12",
+      "purpose": "ToolStrategy and ProviderStrategy"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/integrations/chat/deepseek",
+      "checked_date": "2026-11-12",
+      "purpose": "provider integration; old-model table not used as Flash capability proof"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "checked_date": "2026-11-12",
+      "purpose": "current thinking and tool-history requirements"
+    },
+    {
+      "url": "https://www.python-httpx.org/advanced/resource-limits/",
+      "checked_date": "2026-11-12",
+      "purpose": "pool/keepalive controls"
+    },
+    {
+      "url": "https://www.python-httpx.org/async/",
+      "checked_date": "2026-11-12",
+      "purpose": "async reuse and close lifecycle"
+    }
+  ]
+}

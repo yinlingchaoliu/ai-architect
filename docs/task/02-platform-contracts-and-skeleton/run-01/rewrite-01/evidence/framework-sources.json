@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-12",
+  "versions": {
+    "langchain": "1.5.0",
+    "langchain-core": "1.8.0",
+    "langchain-openai": "1.7.4",
+    "langgraph": "1.2.20"
+  },
+  "source_read_only": true,
+  "network_calls_in_this_check": 0,
+  "historical_probe_rerun": false,
+  "files": [
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py",
+      "sha256": "6b37dd84a34a49b932983ec92e5dc826fefdd1a047424a014a251a0ed0e2d507",
+      "current_sha256": "6b37dd84a34a49b932983ec92e5dc826fefdd1a047424a014a251a0ed0e2d507"
+    },
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/messages/ai.py",
+      "sha256": "6aa23c2e260d8c3c1a78ce75852219c145ce74afca3c970c0ac2eb41610574f1",
+      "current_sha256": "6aa23c2e260d8c3c1a78ce75852219c145ce74afca3c970c0ac2eb41610574f1"
+    },
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/runnables/base.py",
+      "sha256": "407284bddbe9616352ad9d3dd8dab4f3dd197aa31a5c9fc253e57e4265839242",
+      "current_sha256": "407284bddbe9616352ad9d3dd8dab4f3dd197aa31a5c9fc253e57e4265839242"
+    },
+    {
+      "package": "langchain",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/factory.py",
+      "sha256": "22c48a3478de99dabb06b413085e0e388e74ddb3681bd9892a373faa757cf8fe",
+      "current_sha256": "22c48a3478de99dabb06b413085e0e388e74ddb3681bd9892a373faa757cf8fe"
+    },
+    {
+      "package": "langchain",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/middleware/types.py",
+      "sha256": "d9a5ae88cc2dd6bcdc3030ce2e1b55f876d2af88c02c27f5b630dadad350fb75",
+      "current_sha256": "d9a5ae88cc2dd6bcdc3030ce2e1b55f876d2af88c02c27f5b630dadad350fb75"
+    },
+    {
+      "package": "langchain-openai",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/chat_models/base.py",
+      "sha256": "1311fb3487aa309c8b649440ae07a3c1c472e6bdf913408fb979549877579e30",
+      "current_sha256": "1311fb3487aa309c8b649440ae07a3c1c472e6bdf913408fb979549877579e30"
+    },
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/embeddings/embeddings.py",
+      "sha256": "bb9d13d95c4b2f27c604229c56d59f4a266bb4ab9af2c3921f04921d12ad727a",
+      "symbols": [
+        {
+          "name": "aembed_documents",
+          "line": 58,
+          "end_line": 67
+        },
+        {
+          "name": "aembed_query",
+          "line": 69,
+          "end_line": 78
+        }
+      ]
+    },
+    {
+      "package": "langchain-core",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/documents/compressor.py",
+      "sha256": "db2f95c9ff70a0ee2b489d96f2671d1395c300d5607e4594d292c626698fbe1c",
+      "symbols": [
+        {
+          "name": "acompress_documents",
+          "line": 55,
+          "end_line": 74
+        }
+      ]
+    },
+    {
+      "package": "langchain-openai",
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/embeddings/base.py",
+      "sha256": "2d0435473e4f88cd2179a22a4a31042b3331ab5e2151f81bcaac47d4850914bb",
+      "symbols": [
+        {
+          "name": "_aget_len_safe_embeddings",
+          "line": 649,
+          "end_line": 723
+        },
+        {
+          "name": "aembed_documents",
+          "line": 761,
+          "end_line": 794
+        },
+        {
+          "name": "aembed_query",
+          "line": 809,
+          "end_line": 820
+        }
+      ]
+    }
+  ],
+  "observations": [
+    "Embeddings and Compressor base async methods delegate to executor",
+    "OpenAIEmbeddings native async returns vectors and does not expose complete provider usage in public result",
+    "Explicit batch observation is needed in a future usage-aware adapter"
+  ]
+}

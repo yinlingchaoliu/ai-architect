@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "review_mode": "self_review",
+  "protected_llm_files": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/01-architecture.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/02-contracts-and-configuration.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/03-usage-and-billing.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/04-concurrency-and-reliability.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/05-open-source-reference.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/06-project-integration.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/07-acceptance-and-review.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/design-manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/design-validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/architecture.mmd",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/call-sequence.mmd",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/deployment.mmd",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/settlement-state.mmd",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/reference-snapshot.json",
+      "unchanged": true
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/source-baseline.json",
+      "unchanged": true
+    }
+  ],
+  "reference_sources": [
+    {
+      "path": "packages/llm/llm/src/index.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/src/types.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/src/message.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/src/call-config.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/src/assembler.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/src/retry-policy.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/src/adapter-failure.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/adapter.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/serialize.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/translate.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/sse.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-deepseek/src/index.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-pi-ai/src/adapter.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-pi-ai/src/stream.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-pi-ai/src/replay.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/token-meter/src/index.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/token-meter/src/usage-projection.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/token-meter/src/estimate.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-retry/src/index.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/tests/service.spec.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm/tests/topology.spec.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/llm-deepseek/tests/dynamic-config.spec.ts",
+      "unchanged": true
+    },
+    {
+      "path": "packages/llm/token-meter/tests/token-usage-projection.spec.ts",
+      "unchanged": true
+    }
+  ],
+  "workspace_sources": [
+    {
+      "path": "lib_graph/src/lib_graph/runtime.py",
+      "unchanged": true
+    },
+    {
+      "path": "agentmcp/agentmcp.py",
+      "unchanged": true
+    },
+    {
+      "path": "graph_discussion/agents/base_agent.py",
+      "unchanged": true
+    },
+    {
+      "path": "manus/src/llm/manager.py",
+      "unchanged": true
+    },
+    {
+      "path": "agent_muti/src/agents/base_agent.py",
+      "unchanged": true
+    },
+    {
+      "path": "requirements/constraints-langchain.txt",
+      "unchanged": true
+    }
+  ],
+  "installed_framework_sources": [
+    {
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/messages/ai.py",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_core/runnables/base.py",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/factory.py",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain/agents/middleware/types.py",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/chentong/AI/PatientCare/.venvs/ai-architect-s01/lib/python3.12/site-packages/langchain_openai/chat_models/base.py",
+      "unchanged": true
+    }
+  ],
+  "local_links_checked": 36,
+  "broken_links": [],
+  "unbalanced_fences": [],
+  "trailing_whitespace": [],
+  "credential_pattern_findings": [],
+  "diagram_source_embedded": true,
+  "reference_head_unchanged": true,
+  "reference_status_unchanged": true,
+  "tracked_changes_outside_run": [],
+  "mechanism_probe": "passed",
+  "network_calls_in_probe": 0,
+  "render": "not_run",
+  "live_provider": "not_run",
+  "reference_tests": "not_run",
+  "load_tests": "not_run",
+  "billing_tests": "not_run",
+  "formal_proposal_update": "not_run; pending user confirmation",
+  "status": "passed"
+}

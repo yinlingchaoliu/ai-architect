@@ -74,7 +74,6 @@ multi_agent_system/
 ├── 📁 examples/
 │   ├── demo.py
 │   └── interactive_demo.py
-├── requirements.txt
 ├── config.yaml
 └── main.py
 ```

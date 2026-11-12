@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-12",
+  "repo": "langgenius/dify-plugin-sdks",
+  "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+  "files": [
+    {
+      "repo": "langgenius/dify-plugin-sdks",
+      "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+      "path": "src/dify_plugin/entities/model/provider.py",
+      "sha256": "a2df8b5503ec1736f4eb6c487941490e9bbba439f4b4c4ba1a59a9b69dfa7811",
+      "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/entities/model/provider.py"
+    },
+    {
+      "repo": "langgenius/dify-plugin-sdks",
+      "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+      "path": "src/dify_plugin/entities/model/schema.py",
+      "sha256": "bc434a267b2dea51d2f9393927537ca35981f189dacdfe3eeb7b39af641cee65",
+      "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/entities/model/schema.py"
+    },
+    {
+      "repo": "langgenius/dify-plugin-sdks",
+      "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+      "path": "src/dify_plugin/interfaces/model/openai_compatible/provider.py",
+      "sha256": "be911b64ea4e1e6b6960f58f7ded842ee609a33d697d41c75f3bf028b6c2c7cf",
+      "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/interfaces/model/openai_compatible/provider.py"
+    },
+    {
+      "repo": "langgenius/dify-plugin-sdks",
+      "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+      "path": "src/dify_plugin/interfaces/model/provider.py",
+      "sha256": "a990df1b072038e5327c1210e52bee24b05609069f25a8f8dccd08b10dead077",
+      "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/interfaces/model/provider.py"
+    },
+    {
+      "repo": "langgenius/dify-plugin-sdks",
+      "sha": "8ae50c7a8d53915303ffb4fad0902e4114720ad8",
+      "path": "src/dify_plugin/interfaces/model/ai_model.py",
+      "sha256": "baab7101fb6f0a840e050aa4f200fb81f346eb95003287bf6ac22d2322a21952",
+      "url": "https://raw.githubusercontent.com/langgenius/dify-plugin-sdks/8ae50c7a8d53915303ffb4fad0902e4114720ad8/src/dify_plugin/interfaces/model/ai_model.py"
+    }
+  ]
+}

@@ -1,2 +1,0 @@
-# Python 3.12; shared current LangChain/LangGraph Agent/MCP environment.
--r ../requirements/agent-runtime.lock

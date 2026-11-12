@@ -1,0 +1,643 @@
+{
+  "schema": "arch.skill-validation.v1",
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "version": "1.0.0",
+  "status": "passed",
+  "review_mode": "self_review",
+  "initial_head": "98425ec910407e447c40d5528e84f445d8c38cc8",
+  "requirements": [
+    {
+      "requirement": "从当前完整聊天流程抽象源码分析与架构技能",
+      "artifacts": [
+        "SKILL.md",
+        "references/examples.md",
+        "subskills/arch-current/assets/examples/mcp-slice.md"
+      ]
+    },
+    {
+      "requirement": "按专业责任拆分子技能",
+      "artifacts": [
+        "references/capability-design.md",
+        "subskills/arch-module/profiles.md",
+        "assets/catalog.json"
+      ]
+    },
+    {
+      "requirement": "各文档类型有拥有者与模板",
+      "artifact": "assets/catalog.json",
+      "subskills": 14,
+      "templates": 28,
+      "scaffold_types": 22
+    },
+    {
+      "requirement": "当前项目空间可调用",
+      "project_entry": "AGENTS.md",
+      "skill_entry": ".agents/skills/arch/SKILL.md",
+      "ui": "agents/openai.yaml",
+      "host_discovery_refresh": "not_tested; explicit project entry and physical package verified"
+    },
+    {
+      "requirement": "规范模板全部内置可搬运",
+      "proof": "copied package tested with unrelated empty non-Git projects",
+      "external_document_dependencies": []
+    }
+  ],
+  "official_skill_validation": [
+    {
+      "skill": "arch",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-collaboration",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-current",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-diagram",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-flow",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-module",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-protocol",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-reflect",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-review",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-roadmap",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-run",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-source",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-step",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-target",
+      "passed": true,
+      "message": "Skill is valid!"
+    },
+    {
+      "skill": "arch-technology",
+      "passed": true,
+      "message": "Skill is valid!"
+    }
+  ],
+  "package_check": {
+    "status": "passed",
+    "subskills": 14,
+    "templates": 28,
+    "scaffold_types": 22,
+    "failures": [],
+    "external_document_dependencies": [],
+    "structural_only": true,
+    "semantic_review": "required"
+  },
+  "portable_self_tests": {
+    "status": "passed",
+    "checks": [
+      {
+        "name": "copied_package_closed_without_original_project",
+        "status": "passed"
+      },
+      {
+        "name": "typed_routes_and_template_owners_available",
+        "status": "passed"
+      },
+      {
+        "name": "dry_run_has_no_file_effects",
+        "status": "passed"
+      },
+      {
+        "name": "all_document_types_scaffold_in_independent_empty_projects",
+        "status": "passed"
+      },
+      {
+        "name": "json_variables_escaped_and_invalid_date_rejected",
+        "status": "passed"
+      },
+      {
+        "name": "step_gateway_and_four_run_records_with_draft_rejection",
+        "status": "passed"
+      },
+      {
+        "name": "group_collision_preserves_user_file_and_writes_nothing",
+        "status": "passed"
+      },
+      {
+        "name": "traversal_and_symlink_escape_rejected",
+        "status": "passed"
+      },
+      {
+        "name": "non_git_snapshot_excludes_secrets_and_keeps_hash_only_scope",
+        "status": "passed"
+      },
+      {
+        "name": "source_change_invalidates_snapshot",
+        "status": "passed"
+      },
+      {
+        "name": "missing_file_and_heading_links_fail",
+        "status": "passed"
+      },
+      {
+        "name": "empty_document_check_cannot_pass",
+        "status": "passed"
+      },
+      {
+        "name": "missing_renderer_reports_not_run_without_fake_image",
+        "status": "passed"
+      },
+      {
+        "name": "missing_owned_template_detected",
+        "status": "passed"
+      }
+    ],
+    "count": 14,
+    "scope": "stdlib helpers, filesystem boundaries and copied-package portability",
+    "independent_model_evaluation": "not_run"
+  },
+  "source_based_authoring_trial": {
+    "status": "passed",
+    "review_mode": "self_review",
+    "case": "current MCP slice vs historical architecture snapshot",
+    "sources": [
+      {
+        "path": "agentmcp/agentmcp.py",
+        "sha256": "9c3081025a1b2ddc7dc5bbc2fd54f448b07a88769858cd550b664478ba12e394",
+        "inspection": "targeted content read",
+        "lines": [
+          22,
+          24
+        ]
+      },
+      {
+        "path": "mcp_server_math/main.py",
+        "sha256": "5c42db27ac4828cd6b5c8541faa9122be00f3ebe7707e549a3e1cfd277fca112",
+        "inspection": "targeted content read",
+        "lines": [
+          44,
+          46,
+          48
+        ]
+      },
+      {
+        "path": "docs/current-architecture.md",
+        "sha256": "5638fe841c158e2baf1c8a877948bc202986a97b7cc757bc3576f2b34056f1f7",
+        "inspection": "targeted content read",
+        "lines": [
+          30,
+          31
+        ]
+      }
+    ],
+    "output": "subskills/arch-current/assets/examples/mcp-slice.md",
+    "output_sha256": "bab98efacc79bec007c5c17294e06c1f11a996e373ffeb368f668159d7b20525",
+    "structural_check": {
+      "status": "passed",
+      "structural_only": true,
+      "documents_checked": 1,
+      "failures": [],
+      "stale_sources": [],
+      "semantic_review": "required",
+      "mermaid_syntax_and_visual_review": "not_run"
+    },
+    "external_calls": "not_run",
+    "independent_review": "not_run"
+  },
+  "mermaid_validation": {
+    "tool": "locally available Mermaid CLI; no new project/global dependency installed",
+    "render_count": 7,
+    "visual_read_backs": 2,
+    "results": [
+      {
+        "source": "subskills/arch-diagram/assets/templates/architecture.mmd",
+        "output": "subskills/arch-diagram/assets/previews/architecture.svg",
+        "status": "passed",
+        "source_sha256": "b7ec441b70d524f31cfbf21bd8d3f223ef19158089f6d97a086ecb69d08690ec",
+        "output_sha256": "c5c6c8753613427c2e8c42317a42084d0ea695d9e8ab9748f0d02875292f9a7c",
+        "visual_review": "not_run"
+      },
+      {
+        "source": "subskills/arch-diagram/assets/templates/architecture.mmd",
+        "output": "subskills/arch-diagram/assets/previews/architecture.png",
+        "status": "passed",
+        "source_sha256": "b7ec441b70d524f31cfbf21bd8d3f223ef19158089f6d97a086ecb69d08690ec",
+        "output_sha256": "3adfcc7fbd544886877d7af21ba2fe3b631c592c4a05fef4745b37c644b1ffd3",
+        "visual_review": "passed; read back Chinese labels, arrows and clipping"
+      },
+      {
+        "source": "subskills/arch-diagram/assets/templates/data.mmd",
+        "output": "subskills/arch-diagram/assets/previews/data.svg",
+        "status": "passed",
+        "source_sha256": "481b40d981ca357bff1a249e553d478ffca77d7e89e842e87509cb5e40006b22",
+        "output_sha256": "43ad6f219964e127605e4a5557e019b03b09d288ad34cc76e81eaaac6f1ad5d6",
+        "visual_review": "not_run"
+      },
+      {
+        "source": "subskills/arch-diagram/assets/templates/dependency.mmd",
+        "output": "subskills/arch-diagram/assets/previews/dependency.svg",
+        "status": "passed",
+        "source_sha256": "21e896ab4f1b07b9f23116cad5443563ca7edda5feaa14a3f178dee839a20ef8",
+        "output_sha256": "aae1839326dd1c7a3721a913a4cfde3008e86717feaabd0f5e856ea5feeb48c7",
+        "visual_review": "not_run"
+      },
+      {
+        "source": "subskills/arch-diagram/assets/templates/sequence.mmd",
+        "output": "subskills/arch-diagram/assets/previews/sequence.svg",
+        "status": "passed",
+        "source_sha256": "56797af2017054200d089f0d931d1d354f7ac2a2a5744a2e4cf52f7721df74f8",
+        "output_sha256": "2bc5af0279b6f86ab162436eb6c75a843116f41815d51d35074cb01f4c75ff8a",
+        "visual_review": "not_run"
+      },
+      {
+        "source": "subskills/arch-diagram/assets/templates/sequence.mmd",
+        "output": "subskills/arch-diagram/assets/previews/sequence.png",
+        "status": "passed",
+        "source_sha256": "56797af2017054200d089f0d931d1d354f7ac2a2a5744a2e4cf52f7721df74f8",
+        "output_sha256": "f5c6e7b5c15759369adbaf3068f354cfddca7b0a58cb8702d23f4d34c51df56d",
+        "visual_review": "passed; read back Chinese labels, arrows and clipping"
+      },
+      {
+        "source": "subskills/arch-diagram/assets/templates/state.mmd",
+        "output": "subskills/arch-diagram/assets/previews/state.svg",
+        "status": "passed",
+        "source_sha256": "ff8b314c9e45e66d6f68f3dbe145c75c8a8caef07cc17b2e017a24fd15a808df",
+        "output_sha256": "5ac32a66d1c868060f86564565735e07a4ab729ac611c7ab4ae91b4500506788",
+        "visual_review": "not_run"
+      }
+    ]
+  },
+  "protected_existing_worktree": {
+    "tracked_files_checked": 382,
+    "changed_existing_files": [],
+    "scope": "new .agents/skills/arch files and new project AGENTS.md only; concurrent unrelated new files are not modified"
+  },
+  "text_checks": {
+    "trailing_whitespace": [],
+    "external_local_normative_paths": [],
+    "literal_key_patterns": []
+  },
+  "project_binding_sha256": "778579df577c6727699e84826ba8c9ad3cbd1529ca78f7c4ed0848601b639d81",
+  "inventory_self_excluded": "references/validation-report.json",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "8ab525bd600a76c8d7c507036232f8762e7e8df191ff5d6ffdc34c799955d6b8",
+      "bytes": 5248
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "6d3806153144d54e16b86220024ce820d50fc1c2babcd5b692a8e6564b4a8f97",
+      "bytes": 291
+    },
+    {
+      "path": "assets/catalog.json",
+      "sha256": "3f22ef9d27ef6154a9235b594f2e4be7e8c278d649a523918148e4b22e1cee49",
+      "bytes": 8937
+    },
+    {
+      "path": "assets/mermaid-config.json",
+      "sha256": "cee00af1e9b9c2d6e12bcd1bd0b4a5b461286be1a9e01cb0c5c40e7becea1a48",
+      "bytes": 407
+    },
+    {
+      "path": "references/capability-design.md",
+      "sha256": "45c8692ab9fd7d79f8dd6dcea7010a78785dc426ab066dca0b6b1f3976078cf2",
+      "bytes": 2012
+    },
+    {
+      "path": "references/cli.md",
+      "sha256": "db4474c8006f67247e7b6d9e7052a63cd4e5e31445f22c1824832a8a747241fb",
+      "bytes": 4144
+    },
+    {
+      "path": "references/document-contract.md",
+      "sha256": "c603aaf5b8082ad8509bde3e1ab0fc3233c36d940b8e1f50fde36a61394ab073",
+      "bytes": 2585
+    },
+    {
+      "path": "references/examples.md",
+      "sha256": "adcf74fae3c6f32c9a9e2a9e0bab4c9ec124a2020ffdafdc59afcfc2b5f9a19d",
+      "bytes": 2603
+    },
+    {
+      "path": "references/layout-and-changes.md",
+      "sha256": "98ce7787893289fa2e223e3d8716bdcfb683e676d20a74247ff63ed04b0e8370",
+      "bytes": 2087
+    },
+    {
+      "path": "references/semantic-review.md",
+      "sha256": "269ff103034178875f6e8bfdb92839aeba3b142882b8611d6fa499c751f0bf41",
+      "bytes": 1511
+    },
+    {
+      "path": "scripts/archkit.py",
+      "sha256": "c0846f8e057ba10d462435dce42fe934e132e6a6b09e223065627da72a31ffdb",
+      "bytes": 18276
+    },
+    {
+      "path": "scripts/self_test.py",
+      "sha256": "2a459334127d087fc7210920ba3e0c231d4cf8374884545866fa1175e57b9fb2",
+      "bytes": 8218
+    },
+    {
+      "path": "subskills/arch-collaboration/SKILL.md",
+      "sha256": "b31b5f27261d1da1eba98341ad4048fc47fc224cac89ac5588985a6d8db580c8",
+      "bytes": 1762
+    },
+    {
+      "path": "subskills/arch-collaboration/assets/templates/collaboration-design.md",
+      "sha256": "95aa3678962b878a0fead2d2dee801f83909f3337286b1f2fd2fac450455d9ea",
+      "bytes": 618
+    },
+    {
+      "path": "subskills/arch-current/SKILL.md",
+      "sha256": "687594fe3881e7a7c29c1609a773798d8f9dbde2743b7acb590a9b1e745e7881",
+      "bytes": 1816
+    },
+    {
+      "path": "subskills/arch-current/assets/examples/mcp-slice.md",
+      "sha256": "bab98efacc79bec007c5c17294e06c1f11a996e373ffeb368f668159d7b20525",
+      "bytes": 2696
+    },
+    {
+      "path": "subskills/arch-current/assets/templates/current-architecture.md",
+      "sha256": "bc8cac087d6903b624515552c144dac16bc2cf2285868368a65a29eb1987e05c",
+      "bytes": 559
+    },
+    {
+      "path": "subskills/arch-diagram/SKILL.md",
+      "sha256": "6bc50b41b3b883593d6051d3843ee5e41783808c50164db5c814230866dfa26d",
+      "bytes": 2264
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/architecture.png",
+      "sha256": "3adfcc7fbd544886877d7af21ba2fe3b631c592c4a05fef4745b37c644b1ffd3",
+      "bytes": 39853
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/architecture.svg",
+      "sha256": "c5c6c8753613427c2e8c42317a42084d0ea695d9e8ab9748f0d02875292f9a7c",
+      "bytes": 16531
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/data.svg",
+      "sha256": "43ad6f219964e127605e4a5557e019b03b09d288ad34cc76e81eaaac6f1ad5d6",
+      "bytes": 26972
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/dependency.svg",
+      "sha256": "aae1839326dd1c7a3721a913a4cfde3008e86717feaabd0f5e856ea5feeb48c7",
+      "bytes": 16254
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/sequence.png",
+      "sha256": "f5c6e7b5c15759369adbaf3068f354cfddca7b0a58cb8702d23f4d34c51df56d",
+      "bytes": 42446
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/sequence.svg",
+      "sha256": "2bc5af0279b6f86ab162436eb6c75a843116f41815d51d35074cb01f4c75ff8a",
+      "bytes": 28553
+    },
+    {
+      "path": "subskills/arch-diagram/assets/previews/state.svg",
+      "sha256": "5ac32a66d1c868060f86564565735e07a4ab729ac611c7ab4ae91b4500506788",
+      "bytes": 43199
+    },
+    {
+      "path": "subskills/arch-diagram/assets/templates/architecture.mmd",
+      "sha256": "b7ec441b70d524f31cfbf21bd8d3f223ef19158089f6d97a086ecb69d08690ec",
+      "bytes": 335
+    },
+    {
+      "path": "subskills/arch-diagram/assets/templates/data.mmd",
+      "sha256": "481b40d981ca357bff1a249e553d478ffca77d7e89e842e87509cb5e40006b22",
+      "bytes": 274
+    },
+    {
+      "path": "subskills/arch-diagram/assets/templates/dependency.mmd",
+      "sha256": "21e896ab4f1b07b9f23116cad5443563ca7edda5feaa14a3f178dee839a20ef8",
+      "bytes": 244
+    },
+    {
+      "path": "subskills/arch-diagram/assets/templates/sequence.mmd",
+      "sha256": "56797af2017054200d089f0d931d1d354f7ac2a2a5744a2e4cf52f7721df74f8",
+      "bytes": 447
+    },
+    {
+      "path": "subskills/arch-diagram/assets/templates/state.mmd",
+      "sha256": "ff8b314c9e45e66d6f68f3dbe145c75c8a8caef07cc17b2e017a24fd15a808df",
+      "bytes": 517
+    },
+    {
+      "path": "subskills/arch-flow/SKILL.md",
+      "sha256": "51913e58c6b0372cffcdcf010c65b3bd6d1d88ce5a526b52e67228d26a1ad9f6",
+      "bytes": 1545
+    },
+    {
+      "path": "subskills/arch-flow/assets/templates/business-flow.md",
+      "sha256": "b0d24cec10a6a2d09a2606f8397fa2e4753a491d62f3ee9428d8b480c9a24a52",
+      "bytes": 585
+    },
+    {
+      "path": "subskills/arch-module/SKILL.md",
+      "sha256": "ee0e14da1ece6f5744b6dafae54c833501321c3998d2b9c980559b373413be2e",
+      "bytes": 1647
+    },
+    {
+      "path": "subskills/arch-module/assets/templates/module-design.md",
+      "sha256": "2af4a6b007546c541e11468a4ae0fbda35ec923c7a174d476d6c0244c6fdb6ca",
+      "bytes": 727
+    },
+    {
+      "path": "subskills/arch-module/profiles.md",
+      "sha256": "293c804d09e0da87ec14fa9fc5c9bbff74609a83e184343e8cd204bde4687964",
+      "bytes": 1368
+    },
+    {
+      "path": "subskills/arch-protocol/SKILL.md",
+      "sha256": "1e840b5443ea7dd9d8d1d697ad31cf9439c2917fe544c56c63e2ad504485bde9",
+      "bytes": 1640
+    },
+    {
+      "path": "subskills/arch-protocol/assets/templates/protocol-design.md",
+      "sha256": "ce138beabccf822d4975cf53845cca7e2ee6f95597b2e043caafec60e3d6b680",
+      "bytes": 646
+    },
+    {
+      "path": "subskills/arch-reflect/SKILL.md",
+      "sha256": "e6c5fdab4526be2551acaf5e5634880ad3e6392986cd66732576a98be5aa26f0",
+      "bytes": 1575
+    },
+    {
+      "path": "subskills/arch-reflect/assets/templates/reflection.md",
+      "sha256": "dc85a39dd2b5a4c5cb3e6630471d7d5950a8cb77e07db2b64fffc3ec07762498",
+      "bytes": 571
+    },
+    {
+      "path": "subskills/arch-review/SKILL.md",
+      "sha256": "140e8994d996e540a05efa935ea29216fa00929d3a961f101123ed20c0db0c3d",
+      "bytes": 1847
+    },
+    {
+      "path": "subskills/arch-review/assets/templates/review.md",
+      "sha256": "44fff4416d513773be9b305fac18db4ac55dcd9afbfd2ad54dcec15e4d4a3a9b",
+      "bytes": 514
+    },
+    {
+      "path": "subskills/arch-review/assets/templates/validation.md",
+      "sha256": "2adb84be010c02d8a968a5f3248a3d6c04eadb76ec12798fe1c8be4df515165a",
+      "bytes": 453
+    },
+    {
+      "path": "subskills/arch-review/assets/templates/verification.json",
+      "sha256": "de8cf85a2084253b31049b04b85cc91ee6f3aa930b3a2349eca37c9f1819a360",
+      "bytes": 318
+    },
+    {
+      "path": "subskills/arch-roadmap/SKILL.md",
+      "sha256": "b45c5a7d7c54055261334f85aa234bd09512b7853b21638f70695f9c70c985d8",
+      "bytes": 1673
+    },
+    {
+      "path": "subskills/arch-roadmap/assets/templates/roadmap.md",
+      "sha256": "ee0e2810878779c844ec7da2c6831d15f8f656525038215aee878d86cf5b95d6",
+      "bytes": 613
+    },
+    {
+      "path": "subskills/arch-run/SKILL.md",
+      "sha256": "8b96a2e21cda426a74f73acbc7fdb7d3361db02328f4e8d77828568080d14940",
+      "bytes": 1807
+    },
+    {
+      "path": "subskills/arch-run/assets/templates/actions.md",
+      "sha256": "86cf5d26bcbf1d84f14996cbb3463f01689a7268ae31236b83d5d91741aac7d1",
+      "bytes": 445
+    },
+    {
+      "path": "subskills/arch-run/assets/templates/run-index.md",
+      "sha256": "e26f1cf043cad8905df1461130daae3a9edaa7f36fc2b34d16b33a7abeb774e6",
+      "bytes": 463
+    },
+    {
+      "path": "subskills/arch-run/assets/templates/thinking.md",
+      "sha256": "24cd1c0f2314d5e5e7d1470557e62643da0f938099b6221807e43bf84c4972e4",
+      "bytes": 455
+    },
+    {
+      "path": "subskills/arch-source/SKILL.md",
+      "sha256": "b1326480e027097e1491a53a324339d9817f85f6ac6f3c1d7de68476a6d5bbba",
+      "bytes": 1685
+    },
+    {
+      "path": "subskills/arch-source/assets/templates/source-audit.md",
+      "sha256": "4228d98a714bffa1d46db7a4d1a2d04891ec2ffc6fbb08c7296ebebc8ae32027",
+      "bytes": 662
+    },
+    {
+      "path": "subskills/arch-step/SKILL.md",
+      "sha256": "48b964aaabd4a0fd9ca6886a4d3ae6b1a48f0ed17af97b87470600804c7d574c",
+      "bytes": 1922
+    },
+    {
+      "path": "subskills/arch-step/assets/templates/installation-guide.md",
+      "sha256": "197cb80ce5f2c5eb1ac2225279ca652b89d85a141e4cff60f6e74a07e844f915",
+      "bytes": 416
+    },
+    {
+      "path": "subskills/arch-step/assets/templates/rollback.md",
+      "sha256": "2ce66438529d2ddba40478dec6cfe2e83135354f03aafa454ac24271e692e4c9",
+      "bytes": 513
+    },
+    {
+      "path": "subskills/arch-step/assets/templates/step-entry.md",
+      "sha256": "da323e6538779ff36286572ad9ad51c984fd9899dc409e644dfeabe42ecfed1a",
+      "bytes": 456
+    },
+    {
+      "path": "subskills/arch-step/assets/templates/step-index.md",
+      "sha256": "4108a3a995aafb2b6a694273bda431317a94a099b153b29f22084edf6074cfd3",
+      "bytes": 321
+    },
+    {
+      "path": "subskills/arch-step/assets/templates/step-plan.md",
+      "sha256": "d5e142ec4e894840d1745758c5693c10868f4f22034727c209dc2ea887d3566b",
+      "bytes": 668
+    },
+    {
+      "path": "subskills/arch-target/SKILL.md",
+      "sha256": "4795da07e45be04a8bf4facdde978c54e57a88e8f870f5a250067b11da7fca9f",
+      "bytes": 1681
+    },
+    {
+      "path": "subskills/arch-target/assets/templates/architecture-index.md",
+      "sha256": "7e8c4a63bc3aae33aebe8d2a0836fb6f20936af4e7f62c60b14a2515a2cf1acf",
+      "bytes": 472
+    },
+    {
+      "path": "subskills/arch-target/assets/templates/target-architecture.md",
+      "sha256": "5560031932ac5cdf297f1f909b6b8d7528830ef1572c37c4481fed00fe2764da",
+      "bytes": 612
+    },
+    {
+      "path": "subskills/arch-technology/SKILL.md",
+      "sha256": "e0d7f55f40307063a774661d83f042b32e1045f91daede7128b7dc4ccec549b5",
+      "bytes": 1750
+    },
+    {
+      "path": "subskills/arch-technology/assets/templates/decision.md",
+      "sha256": "ee160ec133ec3875d92f984eeb8d414a082d598a1c420692baeb445c64b3dcf2",
+      "bytes": 436
+    },
+    {
+      "path": "subskills/arch-technology/assets/templates/technology-baseline.md",
+      "sha256": "9fcb4f47441edd75487577332818687a26feebc2d51b02d3dba01430ce189ff3",
+      "bytes": 671
+    }
+  ],
+  "limitations": [
+    "No independent agent or model forward-evaluation performed",
+    "Host native skill-list refresh not exercised; project AGENTS binding verified",
+    "Mechanical checks do not judge architecture correctness or grant implementation authority",
+    "Business source, existing architecture documents and task plans were not rewritten"
+  ]
+}

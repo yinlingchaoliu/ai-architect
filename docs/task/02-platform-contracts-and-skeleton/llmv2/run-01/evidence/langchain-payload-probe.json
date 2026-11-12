@@ -1,0 +1,10 @@
+{
+  "kind": "local_no_network_payload_probe",
+  "provider_called": false,
+  "class": "ChatOpenAI",
+  "model": "deepseek-flash",
+  "input_has_reasoning_content": true,
+  "payload_has_reasoning_content": false,
+  "payload_has_tool_call": true,
+  "conclusion": "Current generic ChatOpenAI serialization does not preserve the synthetic reasoning field; thinking-tool replay needs a tested provider adapter."
+}

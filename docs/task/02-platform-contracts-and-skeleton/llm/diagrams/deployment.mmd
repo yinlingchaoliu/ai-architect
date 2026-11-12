@@ -1,0 +1,12 @@
+flowchart LR
+    API["API / Agent Worker"] --> M1["ModelService 副本 A"]
+    API --> M2["ModelService 副本 B"]
+    M1 --> P["供应商模型 API"]
+    M2 --> P
+    M1 --> DB["PostgreSQL：预算 / 调用 / usage / 账本"]
+    M2 --> DB
+    M1 --> RD["Redis：共享配额 / 并发许可"]
+    M2 --> RD
+    SEC["SecretResolver / 已发布配置"] --> M1
+    SEC --> M2
+    DB --> REC["用量对账 / outbox / 报表"]

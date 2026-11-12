@@ -1,0 +1,84 @@
+# PROPOSED development configuration only; not a production deployment manifest.
+schema_version: llm.catalog.v2
+mode: development
+adapters:
+  - id: langchain.openai_compatible.v1
+    implementation_revision: planned-v1
+    protocol: openai_chat_completions
+providers:
+  - id: deepseek-main
+    revision: provider-r1
+    adapter_id: langchain.openai_compatible.v1
+    endpoint: https://api.deepseek.com
+    protocol: openai_chat_completions
+    credential_ref: env:DEEPSEEK_API_KEY
+    credential_scope: deepseek-account-main
+    quota_group: deepseek-account-main
+    transport_policy: transport-r1
+models:
+  - provider_id: deepseek-main
+    id: deepseek-flash
+    context_window: null   # UNKNOWN until the exact route metadata is verified
+    provider_output_limit: null
+    capability_revision: caps-r1
+    declared_capabilities:
+      text: supported
+      streaming: supported
+      tool_calling: supported
+      native_json_schema: unknown
+      thinking_tool_replay: unknown
+      image_input: unknown
+    verification_status: planned   # must be verified for the LLM v2 adapter
+profiles:
+  - id: deepseek.flash.chat
+    revision: profile-r1
+    provider_revision: provider-r1
+    model_id: deepseek-flash
+    reasoning:
+      mode: "off"
+    defaults:
+      max_output_tokens: 2048
+      temperature: null
+      require_complete: true
+    allowed_overrides: [max_output_tokens, temperature, stop]
+    policy_revision: policy-r1
+aliases:
+  default: profile-r1
+policies:
+  - revision: policy-r1
+    attempts:
+      max_attempts: 2
+      allow_duplicate_generation: false
+      backoff_initial_ms: 250
+      backoff_max_ms: 2000
+    timeouts:
+      total_ms: 90000
+      queue_ms: 2000
+      connect_ms: 3000
+      pool_ms: 1000
+      first_semantic_chunk_ms: 30000
+      content_idle_ms: 30000
+      consumer_stall_ms: 10000
+      cleanup_grace_ms: 2000
+    admission:
+      mode: local
+      quota_group: deepseek-account-main
+      max_inflight: 32      # local candidate, NOT verified provider capacity
+      max_queue_items: 64
+      max_queue_bytes: 4194304
+      tenant_queue_items: 16
+      rpm: null            # UNKNOWN; production startup must resolve
+      tpm: null
+    limits:
+      max_input_bytes: 65536
+      max_output_bytes: 1048576
+      max_tool_arguments_bytes: 65536
+      stream_buffer_items: 32
+      stream_buffer_bytes: 262144
+transports:
+  - revision: transport-r1
+    max_connections: 40
+    max_keepalive_connections: 32
+    keepalive_expiry_seconds: 30
+    http2: false
+    sdk_max_retries: 0

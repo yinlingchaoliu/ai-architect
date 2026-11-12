@@ -1,3 +1,0 @@
--r ui-rag.in
-pytest
-pytest-asyncio

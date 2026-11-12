@@ -104,7 +104,8 @@ graph_discussion/
 
 1. 安装依赖：
 ```bash
-pip install -r requirements.txt
+# 在仓库根目录、已激活 Python 3.12 的 .venv 中执行
+python -m pip install -r requirements.txt
 ```
 
 2. 配置环境变量：

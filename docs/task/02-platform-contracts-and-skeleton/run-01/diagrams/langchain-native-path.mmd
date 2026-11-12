@@ -1,0 +1,17 @@
+flowchart TB
+    A["Agent / Harness / LangGraph"] --> MW["ModelAccessMiddleware：原生模型调用治理"]
+    C["普通业务 / 远程调用"] --> F["ModelClient：边界 DTO Facade"]
+    MW --> I["InvocationCoordinator：准备、授权、预算、尝试、最终化"]
+    F --> I
+    R["BackendRegistry / ModelFactory"] --> S["PreparedInvocation：固定模型与配置快照"]
+    S --> I
+    MW --> LC["LangChain 原生 ModelRequest / BaseMessage"]
+    I --> EX["受控 executor：框架 handler 或独立调用"]
+    EX --> M["LangChain 原生 BaseChatModel 厂商集成"]
+    M --> P["厂商异步 SDK / HTTP 连接池"]
+    M --> OB["UsageObservationCollector：按尝试采集"]
+    OB --> I
+    I --> LED["持久预算 / usage / 账本，按阶段落地"]
+    M --> ST["LangChain 原生流 / AIMessageChunk"]
+    ST --> EDGE["边界事件投影 / SSE / UI"]
+    OPT["特殊协议薄适配器 / 可选网关"] -.-> M

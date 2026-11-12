@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant U as 请求者
+    participant A as 接入
+    participant R as 运行者
+    participant X as 资源
+    U->>A: 示例请求
+    A->>R: 校验后派发
+    R->>X: 带稳定操作标识调用
+    alt 有明确结果
+        X-->>R: 结果与回执
+        R-->>A: 已验证结果
+        A-->>U: 返回
+    else 超时且写效果未知
+        R-->>A: 待对账状态
+        A-->>U: 尚不能确认结果
+    end

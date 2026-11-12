@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-12",
+  "all_observed_changes": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton.md",
+      "before_sha256": "c6386290e5dc9968d24c0a7e31f5a07013792e45569d3c99f2e8ad97f64cbc68",
+      "observed_sha256": "e5d86a285d6e31257478bbca17147e25b331c03e8fdae07ced551aeb807b2568",
+      "classification": "outside_this_run_write_set; writer_not_determined; preserved",
+      "diff": "diff --git a/docs/task/02-platform-contracts-and-skeleton.md b/docs/task/02-platform-contracts-and-skeleton.md\nindex 2fc1d1a..e66f41e 100644\n--- a/docs/task/02-platform-contracts-and-skeleton.md\n+++ b/docs/task/02-platform-contracts-and-skeleton.md\n@@ -14,7 +14,7 @@\n \n ## 2. 关键技术决定\n \n-- Python 包名为 `agent_platform`，与旧项目通用 `src` 包隔离；新增平台 `pyproject.toml/uv.lock`，沿用 S01 已验证的基础依赖版本。\n+- `Python` 包名为 `agent_platform`，与旧项目通用 `src` 包隔离；新增平台 `pyproject.toml/uv.lock`，沿用 S01 已验证的基础依赖版本。\n - 领域/应用合同不导入 FastAPI、LangGraph、A2A SDK 或数据库驱动；由 adapters/infrastructure 实现 port，bootstrap 装配。\n - 框架装配采用 create_agent / middleware / context_schema 与 LangGraph 子图；公共合同映射 response_format/structured_response、content_blocks 和 v3 类型化事件。新能力清单及成熟度见[采用基线](01-langchain-upgrade.md)。\n - 先固定版本化对象：AgentDefinition、ConfigRevision、Run、Task、Attempt、Event、Artifact、Decision、AgentEvent，以及统一错误码与状态转换规则。\n"
+    }
+  ],
+  "action": "preserved without writing or reverting; not incorporated into task planning",
+  "warning": "The whole workspace cannot be described as byte-identical outside the authorized write set because this drift was observed."
+}

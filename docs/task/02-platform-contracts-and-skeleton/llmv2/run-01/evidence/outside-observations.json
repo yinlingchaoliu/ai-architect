@@ -1,0 +1,118 @@
+{
+  "scope": "metadata only; no attribution from metadata",
+  "handled": "observed parallel work preserved; dependency declarations reread; no restore performed",
+  "paths": [
+    {
+      "path": "README.md",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "agent_muti/README.md",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "agent_muti/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "agent_muti_discussion/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "agentmcp/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "csv-search/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "graph_discussion/README.md",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "graph_discussion/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "graph_discussion/setup.py",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "lib_request/src/lib_request/count_token.py",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "manus/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "mcp_client_manager/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements.txt",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "requirements/agent-runtime.in",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/agent-runtime.lock",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/constraints-langchain.txt",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/langserve.in",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/langserve.lock",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/s01-dev.in",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/s01-dev.lock",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/ui-rag-dev.in",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/ui-rag-dev.lock",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/ui-rag.in",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "requirements/ui-rag.lock",
+      "observation": "missing_since_initial_metadata"
+    },
+    {
+      "path": "server/README.md",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "tests/s01/test_langserve.py",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "webui-chatbot/README.md",
+      "observation": "metadata_changed"
+    },
+    {
+      "path": "webui-chatbot/requirements.txt",
+      "observation": "missing_since_initial_metadata"
+    }
+  ]
+}

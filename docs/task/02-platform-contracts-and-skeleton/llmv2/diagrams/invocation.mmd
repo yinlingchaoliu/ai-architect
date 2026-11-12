@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant C as 调用方 / ManagedChatModel
+    participant K as Invocation Kernel
+    participant R as Catalog / Adapter Registry
+    participant B as BudgetPort
+    participant Q as Admission Governor
+    participant P as LangChain Provider
+    C->>K: messages + binding/profile + context
+    K->>R: 固定 revision 与 provider handle
+    R-->>K: PreparedCall 快照
+    K->>B: reserve attempt（幂等 id）
+    B-->>K: reservation
+    K->>Q: 有界等待并联合准入
+    Q-->>K: lease
+    K->>P: ainvoke / astream（SDK retry=0）
+    loop 模型内容增量
+        P-->>K: AIMessageChunk
+        K-->>C: 原生 chunk（公开后禁止透明重试）
+    end
+    P-->>K: finish + 尾部 usage / iterator 完成
+    K->>B: settle 或 mark_unknown
+    K->>Q: release lease
+    K-->>C: 完整结果 / 类型化错误
+    Note over C,P: 消费者取消或早退也执行 finally 关闭 transport、归还许可

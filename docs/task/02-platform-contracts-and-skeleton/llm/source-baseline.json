@@ -1,0 +1,226 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "design_version": "0.2",
+  "workspace": "/Users/chentong/AI/PatientCare/github/ai-architect",
+  "head": "98425ec910407e447c40d5528e84f445d8c38cc8",
+  "authorization": "User approved DeepSeek Harness as main design; rewrite llm documents using LangChain and Provider/ModelType capability families; later transparent extension stays reference-only; no product implementation authorized",
+  "initial_status": "?? .agents/\n?? AGENTS.md\n?? docs/task/02-platform-contracts-and-skeleton/\n",
+  "files": [
+    {
+      "path": "agent_muti/src/agents/base_agent.py",
+      "sha256": "5c315894458282144df78db0fc11adf91eb1cdd0b84a64c6f9073a663cc635af"
+    },
+    {
+      "path": "agent_muti_discussion/src/core/base_agent.py",
+      "sha256": "15ec84169d12d722dee2238087c68b084f9cd3f2deb233aa6449c3272425e19d"
+    },
+    {
+      "path": "agentmcp/agentmcp.py",
+      "sha256": "9c3081025a1b2ddc7dc5bbc2fd54f448b07a88769858cd550b664478ba12e394"
+    },
+    {
+      "path": "csv-search/llm.py",
+      "sha256": "cfe61d2d5f5ec7060e2442718f8610bb33c84522ed8924536cbff5092c33c3ac"
+    },
+    {
+      "path": "graph_discussion/agents/base_agent.py",
+      "sha256": "f02a5627504e7ecab4d2a47adb830bf0ee7b571be72266a3c85c1467b5e956c6"
+    },
+    {
+      "path": "lib_graph/src/lib_graph/runtime.py",
+      "sha256": "faddf609fa0f69c24158e06dd86f03ba0ef69a7f97020a914f933c486331e70b"
+    },
+    {
+      "path": "lib_request/README.md",
+      "sha256": "d4ae93f15754241a841f1a97f505b00a6077378be0b9de4a77a25b24d1a3c59c"
+    },
+    {
+      "path": "lib_request/pyproject.toml",
+      "sha256": "e0af298b77b2707408b076fbcdd8d0f3d95b5540d4fccbe86fa35869f4be6491"
+    },
+    {
+      "path": "lib_request/setup.py",
+      "sha256": "2b5ae2fdcb8d5b151f8273e58d7edf37567a94ee517d3301828698acc5ad8f8b"
+    },
+    {
+      "path": "lib_request/src/lib_request/__init__.py",
+      "sha256": "515d614ada3ee748cf73bf925220c82f6fcdea8b4581c83fb7c66cb824ace0f4"
+    },
+    {
+      "path": "lib_request/src/lib_request/count_token.py",
+      "sha256": "fba5b5530ee997aac97b46d439d0fa7752eaacbdaaa7dfab7a451effb1a5430d"
+    },
+    {
+      "path": "lib_request/src/lib_request/deprecated.py",
+      "sha256": "12f013b0dcf711ddfd7a7518b7d30418ac528e205b0e4887a8280d54dc632ecc"
+    },
+    {
+      "path": "lib_request/src/lib_request/openai_text2vec.py",
+      "sha256": "4442228790560d6ee485716b0c9480e61a92b98e4cf107ca5f12ab307897bd7a"
+    },
+    {
+      "path": "lib_request/src/lib_request/openai_vision.py",
+      "sha256": "f03e0e7ab955cdf26b6e65925d90ea836dc69f526196a83064c269238735679d"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_call.py",
+      "sha256": "c596961fd8fb4cf08a6d9efc31cfe11aad3933691e31c2318ea159fe31af0626"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_model_list.py",
+      "sha256": "66aa63e2990bbd3a778255210ca91874b5b6f750c319b3ba4cffe19fba088728"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_text2vec.py",
+      "sha256": "88db4cd8b64bfb2fdb138db5b16cd50ebdc44a4d6008d303b909b3e1cd5bb46d"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_text2vec_deep.py",
+      "sha256": "54787672593b91c59722ada1a77df2b1542ab7babda4c0a4056486e219e6e75c"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_vision.py",
+      "sha256": "4aff76f330aad0cf1621252d8c2ffcf74faacc6743880915ed6d203dc7792582"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search.py",
+      "sha256": "8cedf678660bc4f8f5fadac782a1543e0f0d32d0c88f2d1085c198e2199da7fb"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search_openai.py",
+      "sha256": "ad77e513d38f092e6107281e0dcd7955077faa879306ce84abce8b68e4707c7d"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search_req.py",
+      "sha256": "56d8b6cf93eae10d9319133d2557ae3d7cecb5e970c7a5d83b9b563765afe5c9"
+    },
+    {
+      "path": "lib_request/src/lib_request/utils.py",
+      "sha256": "4fa7307953090c75a86ace6d9d5525e06d8f60efb3ebd8eacbfe0873004e2ea7"
+    },
+    {
+      "path": "main.py",
+      "sha256": "b91d5bbfb066dc1df8af373acd4fb8b5bc5cc7dbcfee2b3b0eae55f595241fce"
+    },
+    {
+      "path": "manus/src/llm/manager.py",
+      "sha256": "6cd9e286f5b2bc96300da2f95e42480f95d742c1cb8473f484073abf88aa9bbd"
+    },
+    {
+      "path": "manus/src/llm/models.py",
+      "sha256": "be2ff9c327dfd56e25bc13298a09a3f9de10b58b12e4741011900ba6962397cb"
+    },
+    {
+      "path": "mcp_client_manager/src/core/mcp_router.py",
+      "sha256": "7c0868896f47e6e8fe88e12fccf6aef351b5f6198268383c6a077065eb7ed2b9"
+    },
+    {
+      "path": "requirements/constraints-langchain.txt",
+      "sha256": "9844f0658ce1e8abb1cb063c07f048f9c845652a2a85664287581cc8f2f312a7"
+    },
+    {
+      "path": "server/app/chain/openai_server.py",
+      "sha256": "b93949495204919d56b4c3e12b4e6c03c06a611dd302bec7e02e37c53193d627"
+    },
+    {
+      "path": "webui-chatbot/src/pages/pdf_search.py",
+      "sha256": "f1933d9314e622ee3cbf5afb8a4c64f4161c52b5a4f187d688bdddc0d212dc92"
+    }
+  ],
+  "source_integrity_start": [
+    {
+      "path": "agentmcp/agentmcp.py",
+      "sha256": "9c3081025a1b2ddc7dc5bbc2fd54f448b07a88769858cd550b664478ba12e394"
+    },
+    {
+      "path": "lib_graph/src/lib_graph/runtime.py",
+      "sha256": "faddf609fa0f69c24158e06dd86f03ba0ef69a7f97020a914f933c486331e70b"
+    },
+    {
+      "path": "lib_request/README.md",
+      "sha256": "d4ae93f15754241a841f1a97f505b00a6077378be0b9de4a77a25b24d1a3c59c"
+    },
+    {
+      "path": "lib_request/pyproject.toml",
+      "sha256": "e0af298b77b2707408b076fbcdd8d0f3d95b5540d4fccbe86fa35869f4be6491"
+    },
+    {
+      "path": "lib_request/setup.py",
+      "sha256": "2b5ae2fdcb8d5b151f8273e58d7edf37567a94ee517d3301828698acc5ad8f8b"
+    },
+    {
+      "path": "lib_request/src/lib_request/__init__.py",
+      "sha256": "515d614ada3ee748cf73bf925220c82f6fcdea8b4581c83fb7c66cb824ace0f4"
+    },
+    {
+      "path": "lib_request/src/lib_request/count_token.py",
+      "sha256": "fba5b5530ee997aac97b46d439d0fa7752eaacbdaaa7dfab7a451effb1a5430d"
+    },
+    {
+      "path": "lib_request/src/lib_request/deprecated.py",
+      "sha256": "12f013b0dcf711ddfd7a7518b7d30418ac528e205b0e4887a8280d54dc632ecc"
+    },
+    {
+      "path": "lib_request/src/lib_request/openai_text2vec.py",
+      "sha256": "4442228790560d6ee485716b0c9480e61a92b98e4cf107ca5f12ab307897bd7a"
+    },
+    {
+      "path": "lib_request/src/lib_request/openai_vision.py",
+      "sha256": "f03e0e7ab955cdf26b6e65925d90ea836dc69f526196a83064c269238735679d"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_call.py",
+      "sha256": "c596961fd8fb4cf08a6d9efc31cfe11aad3933691e31c2318ea159fe31af0626"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_model_list.py",
+      "sha256": "66aa63e2990bbd3a778255210ca91874b5b6f750c319b3ba4cffe19fba088728"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_text2vec.py",
+      "sha256": "88db4cd8b64bfb2fdb138db5b16cd50ebdc44a4d6008d303b909b3e1cd5bb46d"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_text2vec_deep.py",
+      "sha256": "54787672593b91c59722ada1a77df2b1542ab7babda4c0a4056486e219e6e75c"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_vision.py",
+      "sha256": "4aff76f330aad0cf1621252d8c2ffcf74faacc6743880915ed6d203dc7792582"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search.py",
+      "sha256": "8cedf678660bc4f8f5fadac782a1543e0f0d32d0c88f2d1085c198e2199da7fb"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search_openai.py",
+      "sha256": "ad77e513d38f092e6107281e0dcd7955077faa879306ce84abce8b68e4707c7d"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search_req.py",
+      "sha256": "56d8b6cf93eae10d9319133d2557ae3d7cecb5e970c7a5d83b9b563765afe5c9"
+    },
+    {
+      "path": "lib_request/src/lib_request/utils.py",
+      "sha256": "4fa7307953090c75a86ace6d9d5525e06d8f60efb3ebd8eacbfe0873004e2ea7"
+    },
+    {
+      "path": "main.py",
+      "sha256": "b91d5bbfb066dc1df8af373acd4fb8b5bc5cc7dbcfee2b3b0eae55f595241fce"
+    },
+    {
+      "path": "requirements/constraints-langchain.txt",
+      "sha256": "9844f0658ce1e8abb1cb063c07f048f9c845652a2a85664287581cc8f2f312a7"
+    }
+  ],
+  "earlier_source_evidence": "../run-01/evidence/baseline.json",
+  "protected_plan_baseline": "../run-01/rewrite-01/evidence/baseline.json",
+  "outside_write_set_observations": "../run-01/rewrite-01/evidence/outside-write-set-observations.json",
+  "old_design_archive": "../run-01/rewrite-01/evidence/llm-before.tar.gz",
+  "old_design_archive_sha256": "34a0459a4bea1ddeed6965b7fe0929c6173e97f6b9c4e912413b7c7131f7901a",
+  "s01_results": "historical receipts only, not rerun",
+  "implementation": "not_run",
+  "new_model_calls": "not_run",
+  "skill_policy": "independent design as directed by user; project arch generators/validators not used"
+}

@@ -4,9 +4,6 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
-
 setup(
     name="graph_discussion",
     version="1.0.0",
@@ -35,7 +32,6 @@ setup(
     install_requires=["langchain==1.5.0", "langchain-core==1.8.0",
                       "langgraph==1.2.20", "langchain-openai==1.7.4",
                       "python-dotenv>=1", "colorama>=0.4"],
-    # install_requires=requirements,
     # extras_require={
     #     "dev": [
     #         "pytest>=7.0.0",

@@ -1,4 +1,4 @@
-"""Run only in the separately locked LangServe environment."""
+"""Run in the unified Python 3.12 project environment."""
 import json
 import sys
 from pathlib import Path

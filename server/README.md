@@ -1,98 +1,29 @@
-# my-app
+# LangServe 服务
 
-## Installation
-
-Install the LangChain CLI if you haven't yet
+本服务使用仓库统一的 Python 3.12 `.venv`。依赖及本地包全部从仓库根 `requirements.txt` 安装：
 
 ```bash
-pip install -U langchain-cli
+# 在仓库根目录执行
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip check
 ```
 
-## Adding packages
+配置文本模型所需环境变量后，从仓库根目录启动：
 
 ```bash
-# adding packages from 
-# https://github.com/langchain-ai/langchain/tree/master/templates
-langchain app add $PROJECT_NAME
-
-# adding custom GitHub repo packages
-langchain app add --repo $OWNER/$REPO
-# or with whole git string (supports other git providers):
-# langchain app add git+https://github.com/hwchase17/chain-of-verification
-
-# with a custom api mount point (defaults to `/{package_name}`)
-langchain app add $PROJECT_NAME --api_path=/my/custom/path/rag
+python -m uvicorn app.server:app --app-dir server --port 8001
 ```
 
-Note: you remove packages by their api path
+- 健康检查：`http://localhost:8001/health`
+- API 文档：`http://localhost:8001/docs`
+- Playground：`http://localhost:8001/openai/playground/`
+
+依赖修改统一维护根 `requirements.txt`。当前 venv 流程不需要安装 LangChain CLI 或 Poetry。`pyproject.toml`、`poetry.lock`、Dockerfile 保留为原独立工程材料，不作为当前统一 venv 的安装入口。
+
+离线验证使用 fake 模型，不调用外部模型：
 
 ```bash
-langchain app remove my/custom/path/rag
-```
-
-## Setup LangSmith (Optional)
-LangSmith will help us trace, monitor and debug LangChain applications. 
-You can sign up for LangSmith [here](https://smith.langchain.com/). 
-If you don't have access, you can skip this section
-
-
-```shell
-export LANGCHAIN_TRACING_V2=true
-export LANGCHAIN_API_KEY=<your-api-key>
-export LANGCHAIN_PROJECT=<your-project>  # if not specified, defaults to "default"
-```
-
-## 安装依赖
-python 3.12.6
-
-```shell
-pip install poetry 
-#添加库
-poetry add langchain-openai
-```
-
-## Launch LangServe
-
-```bash
-langchain serve --port 8001
-```
-
-```shell
-poetry run langchain serve --port=8001
-```
-
-## playground
-
-```shell
-http://localhost:8001/openai/playground/
-```
-
-## Running in Docker
-
-This project folder includes a Dockerfile that allows you to easily build and host your LangServe app.
-
-### Building the Image
-
-To build the image, you simply:
-
-```shell
-docker build . -t my-langserve-app
-```
-
-If you tag your image with something other than `my-langserve-app`,
-note it for use in the next step.
-
-### Running the Image Locally
-
-To run the image, you'll need to include any environment variables
-necessary for your application.
-
-In the below example, we inject the `OPENAI_API_KEY` environment
-variable with the value set in my local environment
-(`$OPENAI_API_KEY`)
-
-We also expose port 8080 with the `-p 8080:8080` option.
-
-```shell
-docker run -e OPENAI_API_KEY=$OPENAI_API_KEY -p 8080:8080 my-langserve-app
+python -m pytest tests/s01/test_langserve.py -q
 ```

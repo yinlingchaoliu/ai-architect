@@ -1,0 +1,272 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "authorization": "User approved DeepSeek Harness as main design; rewrite llm documents, use LangChain and Provider/ModelType capability families; LiteLLM future transparent extension only; no product implementation authorized",
+  "head": "98425ec910407e447c40d5528e84f445d8c38cc8",
+  "initial_status": "?? .agents/\n?? AGENTS.md\n?? docs/task/02-platform-contracts-and-skeleton/\n",
+  "llm_before": [
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/01-architecture.md",
+      "sha256": "1159860215f8d6d6fa0d3736cbac37037a4b26298f8b0b7397df14d23c886013"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/02-contracts-and-configuration.md",
+      "sha256": "46a0b5781c1bd5c3aa3895146238ccefdc41813ae5f24888dedf90b0727a00ea"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/03-usage-and-billing.md",
+      "sha256": "95a174bc4eab97fddafa6bea164257b9c31c5803253225b37a8a1aa33bf1772a"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/04-concurrency-and-reliability.md",
+      "sha256": "da785065e4d17368a404d516abf8f679ace45e2bf5fd4a35b83e3878cc465690"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/05-open-source-reference.md",
+      "sha256": "1d1024402f81e93f8659dbfba4c9999af495aff9181d907af5fb6a704024bc8a"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/06-project-integration.md",
+      "sha256": "ee302f6de54ad010bd3110315c8e3fe2c7a6533a388a5f4ff6b539b9846aaa0f"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/07-acceptance-and-review.md",
+      "sha256": "b0a5341c8ea199fb11cb9857ba31239f7cfd3ddb9180f896a0a1e6bd8d07cbc5"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/README.md",
+      "sha256": "e7b7b81d970f2c02cbe2eb10dc01f72a37e7d77876d010f39374ed4473a524c6"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/design-manifest.json",
+      "sha256": "38c3b0a125de9d99891d867a1672a3346b702a3ca51b1f69e15e2f75dc2c3891"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/design-validation.json",
+      "sha256": "298eaea8f8d983f45f27a89e1ab4fd048fceaf4e924a0068268c5def6237d28c"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/architecture.mmd",
+      "sha256": "a48092992d302b85d7da227e1b0d81d2dea77b35da8e2d77bd36aa19a09765e3"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/call-sequence.mmd",
+      "sha256": "a2a08363c8e3b0df8e56233159878829b18d5734c1c7f3a6e789f353713b198e"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/deployment.mmd",
+      "sha256": "05427ff18ef6405006f7add784dcda26378bd36b856532e3073e99fe62241867"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/diagrams/settlement-state.mmd",
+      "sha256": "1931efd919d1f71e6ebda947f92a72f788274b515fd43361ffc512ac63ac5881"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/reference-snapshot.json",
+      "sha256": "90ed0fa67e6dcd527e86c39312b2bd49408185b9e8c6a983bc948f9e0a516a47"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton/llm/source-baseline.json",
+      "sha256": "066bf8fd51a7b155550da72c72c12acdf1e3b12cd2f0cb0d50d29a3000f4714b"
+    }
+  ],
+  "sources": [
+    {
+      "path": "agentmcp/agentmcp.py",
+      "sha256": "9c3081025a1b2ddc7dc5bbc2fd54f448b07a88769858cd550b664478ba12e394"
+    },
+    {
+      "path": "lib_graph/src/lib_graph/runtime.py",
+      "sha256": "faddf609fa0f69c24158e06dd86f03ba0ef69a7f97020a914f933c486331e70b"
+    },
+    {
+      "path": "lib_request/README.md",
+      "sha256": "d4ae93f15754241a841f1a97f505b00a6077378be0b9de4a77a25b24d1a3c59c"
+    },
+    {
+      "path": "lib_request/pyproject.toml",
+      "sha256": "e0af298b77b2707408b076fbcdd8d0f3d95b5540d4fccbe86fa35869f4be6491"
+    },
+    {
+      "path": "lib_request/setup.py",
+      "sha256": "2b5ae2fdcb8d5b151f8273e58d7edf37567a94ee517d3301828698acc5ad8f8b"
+    },
+    {
+      "path": "lib_request/src/lib_request/__init__.py",
+      "sha256": "515d614ada3ee748cf73bf925220c82f6fcdea8b4581c83fb7c66cb824ace0f4"
+    },
+    {
+      "path": "lib_request/src/lib_request/count_token.py",
+      "sha256": "fba5b5530ee997aac97b46d439d0fa7752eaacbdaaa7dfab7a451effb1a5430d"
+    },
+    {
+      "path": "lib_request/src/lib_request/deprecated.py",
+      "sha256": "12f013b0dcf711ddfd7a7518b7d30418ac528e205b0e4887a8280d54dc632ecc"
+    },
+    {
+      "path": "lib_request/src/lib_request/openai_text2vec.py",
+      "sha256": "4442228790560d6ee485716b0c9480e61a92b98e4cf107ca5f12ab307897bd7a"
+    },
+    {
+      "path": "lib_request/src/lib_request/openai_vision.py",
+      "sha256": "f03e0e7ab955cdf26b6e65925d90ea836dc69f526196a83064c269238735679d"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_call.py",
+      "sha256": "c596961fd8fb4cf08a6d9efc31cfe11aad3933691e31c2318ea159fe31af0626"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_model_list.py",
+      "sha256": "66aa63e2990bbd3a778255210ca91874b5b6f750c319b3ba4cffe19fba088728"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_text2vec.py",
+      "sha256": "88db4cd8b64bfb2fdb138db5b16cd50ebdc44a4d6008d303b909b3e1cd5bb46d"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_text2vec_deep.py",
+      "sha256": "54787672593b91c59722ada1a77df2b1542ab7babda4c0a4056486e219e6e75c"
+    },
+    {
+      "path": "lib_request/src/lib_request/req_vision.py",
+      "sha256": "4aff76f330aad0cf1621252d8c2ffcf74faacc6743880915ed6d203dc7792582"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search.py",
+      "sha256": "8cedf678660bc4f8f5fadac782a1543e0f0d32d0c88f2d1085c198e2199da7fb"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search_openai.py",
+      "sha256": "ad77e513d38f092e6107281e0dcd7955077faa879306ce84abce8b68e4707c7d"
+    },
+    {
+      "path": "lib_request/src/lib_request/sim_search_req.py",
+      "sha256": "56d8b6cf93eae10d9319133d2557ae3d7cecb5e970c7a5d83b9b563765afe5c9"
+    },
+    {
+      "path": "lib_request/src/lib_request/utils.py",
+      "sha256": "4fa7307953090c75a86ace6d9d5525e06d8f60efb3ebd8eacbfe0873004e2ea7"
+    },
+    {
+      "path": "main.py",
+      "sha256": "b91d5bbfb066dc1df8af373acd4fb8b5bc5cc7dbcfee2b3b0eae55f595241fce"
+    },
+    {
+      "path": "requirements/constraints-langchain.txt",
+      "sha256": "9844f0658ce1e8abb1cb063c07f048f9c845652a2a85664287581cc8f2f312a7"
+    }
+  ],
+  "protected_other_docs": [
+    {
+      "path": "docs/ai-archtect/01-platform-architecture.md",
+      "sha256": "b50189a8f17cfa8e15a5c4e522be7410aaeae4879b52f4b22e3d1702a7abda12"
+    },
+    {
+      "path": "docs/ai-archtect/02-agent-registry-and-configuration.md",
+      "sha256": "b3deb37ae9cebc68edbc4a8458cecee4d28047205cd0035d96db9b9e2750e8b8"
+    },
+    {
+      "path": "docs/ai-archtect/03-a2a-protocol.md",
+      "sha256": "1de939ab184edc8c23ea5f5f49770f42ccbb93f926f8d57c15abc28a635bf262"
+    },
+    {
+      "path": "docs/ai-archtect/04-collaboration-patterns.md",
+      "sha256": "96d8302f4665e83edb762fe94137427c9f385b368837050651393808c2aaccdf"
+    },
+    {
+      "path": "docs/ai-archtect/05-runtime-and-reliability.md",
+      "sha256": "8a7892bbaf3f709856f2dc15a16a6564befb9fa61d5e74fbea8d9450e44faa3c"
+    },
+    {
+      "path": "docs/ai-archtect/06-project-roadmap.md",
+      "sha256": "19be6bd3407a249cbb139cad1bf95f25fe6c204564a2994004cbe8b856cceebc"
+    },
+    {
+      "path": "docs/ai-archtect/README.md",
+      "sha256": "2f6d634b484d13f05be7412dcc529d1f185faa80c1d36fe2a8858a048842b775"
+    },
+    {
+      "path": "docs/ai-archtect/diagrams/platform-architecture.mmd",
+      "sha256": "11c213054ca79f47c80e6bfb48f9290b8cdc99a6173c83c8a9e542301ae96bb2"
+    },
+    {
+      "path": "docs/ai-archtect/diagrams/platform-architecture.png",
+      "sha256": "6542011abf66d2cda19330a2a7aeddde5fb3ba6595592641b94b835cbd96448d"
+    },
+    {
+      "path": "docs/ai-archtect/diagrams/platform-architecture.svg",
+      "sha256": "e90c09930413ba9cdbfe45c505217709d017122dc5390a58d4b5f0af4cf224a6"
+    },
+    {
+      "path": "docs/ai-archtect/source-snapshot.json",
+      "sha256": "2cec9e0ef8a709d183c334824681dd94a5d10edaca660f60482f36af359f4cec"
+    },
+    {
+      "path": "docs/ai-archtect/validation.json",
+      "sha256": "1e0cb06f286ccf2f5187c547629b6739997b04db7f2af103fc352018d75fccb7"
+    },
+    {
+      "path": "docs/ai-archtect/validation.md",
+      "sha256": "3d43ca2a8ea484e18a1c3c253b262ac779b33e5e7cef2997d0e096e2d25c5f7f"
+    },
+    {
+      "path": "docs/task/01-langchain-upgrade.md",
+      "sha256": "f63d114f043347fe2098fb05912327e1ba40e56fa3274e6ffaa3844aa21a02a5"
+    },
+    {
+      "path": "docs/task/02-platform-contracts-and-skeleton.md",
+      "sha256": "c6386290e5dc9968d24c0a7e31f5a07013792e45569d3c99f2e8ad97f64cbc68"
+    },
+    {
+      "path": "docs/task/03-resource-and-agent-adapters.md",
+      "sha256": "8bf1475c39a5db9c5cf75fe275d931765c7c2be5988a60a9fe3e78fcf5f79819"
+    },
+    {
+      "path": "docs/task/04-runtime-and-persistence.md",
+      "sha256": "d089aea4c2ff8ffa03fe17ddd33d891e22f90e014d08789da8c08ebb3076e264"
+    },
+    {
+      "path": "docs/task/05-agent-registry-and-configuration.md",
+      "sha256": "519e82b9da45352bd543b50e93615baf40349787ea55942fdb2280145322b59d"
+    },
+    {
+      "path": "docs/task/06-orchestrator-worker-and-supervisor.md",
+      "sha256": "589232688c72ba2cbf2af1894a055aa1c0cfcb79b12011170dc25154ba3cbae3"
+    },
+    {
+      "path": "docs/task/07-a2a-integration.md",
+      "sha256": "1ad7c66f40b627cca9ea7eda58b1517b249d485597af15fb19a01c4034cb603b"
+    },
+    {
+      "path": "docs/task/08-handoff.md",
+      "sha256": "8a3c91cdc4c80de42e6c27b33ba3bd1b6ac6a989f7a841651bb5ffd08cc0200d"
+    },
+    {
+      "path": "docs/task/09-swarm.md",
+      "sha256": "49338607b0b58b50b14563349f13a317581ba19a390320378b148052d0402b79"
+    },
+    {
+      "path": "docs/task/10-console-and-module-migration.md",
+      "sha256": "eb85c274a3b5c1e74a43f74812b15bed45a66a782a95a782d56f28c70b1bc120"
+    },
+    {
+      "path": "docs/task/11-integration-and-rollout.md",
+      "sha256": "47a5ff862c448ae132162ea1af55f82a075e8002153f43e0f495c319213517e8"
+    },
+    {
+      "path": "docs/task/README.md",
+      "sha256": "37f6dcaa6b0f2f8a06f3dd7a982a50b60915071e52443c0fac63ba8d2bc42e0b"
+    },
+    {
+      "path": "docs/task/validation.md",
+      "sha256": "8b601042895b91017b17ec6d72fd7fe627ed5913639bdad4d46a2e0627a2a012"
+    }
+  ],
+  "reference_head": "47f943859bef60e4160492346772ded9b24f765a",
+  "not_run": [
+    "product implementation",
+    "provider tests",
+    "performance tests",
+    "billing persistence tests"
+  ]
+}
