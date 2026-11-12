@@ -1,0 +1,217 @@
+.FFFF......                                                              [100%]
+=================================== FAILURES ===================================
+_________________________ test_lcel_and_managed_model __________________________
+
+runtime_factory = <function runtime_factory.<locals>.build at 0x10cf9b380>
+
+    @pytest.mark.asyncio
+    async def test_lcel_and_managed_model(runtime_factory):
+        rt, requests = runtime_factory()
+        chain = ChatPromptTemplate.from_template("Question: {q}") | rt.chat_model() | StrOutputParser()
+>       assert await chain.ainvoke({"q": "sample"}) == "reply"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib_llm/tests/test_calls.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py:3515: in ainvoke
+    input_ = await coro_with_context(part(), context, create_task=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:552: in ainvoke
+    llm_result = await self.agenerate_prompt(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1931: in agenerate_prompt
+    return await self.agenerate(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1889: in agenerate
+    raise exceptions[0]
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:2222: in _agenerate_with_cache
+    result = await self._agenerate(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ManagedChatModel(cache=False, metadata={'lc_versions': {'langchain-core': '1.8.0', 'langchain': '1.5.0'}}, profile={'tool_calling': True, 'structured_output': False}, model_name='deepseek-flash', bound_options={})
+messages = [HumanMessage(content='Question: sample', additional_kwargs={}, response_metadata={})]
+stop = None
+run_manager = <langchain_core.callbacks.manager.AsyncCallbackManagerForLLMRun object at 0x10cf76f60>
+kwargs = {}
+
+    async def _agenerate(self, messages, stop=None, run_manager=None, **kwargs):
+>       config = {"callbacks": run_manager.get_child()} if run_manager else None
+                               ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'AsyncCallbackManagerForLLMRun' object has no attribute 'get_child'
+
+lib_llm/src/lib_llm/chat_model.py:52: AttributeError
+_________________ test_native_create_agent_tool_loop_and_scope _________________
+
+runtime_factory = <function runtime_factory.<locals>.build at 0x10d2b4fe0>
+
+    @pytest.mark.asyncio
+    async def test_native_create_agent_tool_loop_and_scope(runtime_factory):
+        calls = []
+        def handler(request):
+            body = json.loads(request.content)
+            if not any(m["role"] == "tool" for m in body["messages"]):
+                return httpx.Response(200, json=completion("", tools=[{"id": "sum-1", "type": "function", "function": {"name": "add", "arguments": '{"a":2,"b":3}'}}], finish="tool_calls"))
+            return httpx.Response(200, json=completion("5"))
+        rt, requests = runtime_factory(handler)
+        @tool
+        def add(a: int, b: int) -> int:
+            """Add two integers."""
+            calls.append((a, b))
+            return a + b
+        agent = create_agent(rt.chat_model(), tools=[add])
+        async with rt.scope(CallContext(tenant_id="tenant-a", allowed_profiles=("default",))):
+>           result = await agent.ainvoke({"messages": [("user", "add 2 and 3")]})
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib_llm/tests/test_calls.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/langgraph/pregel/main.py:4177: in ainvoke
+    async for chunk in self.astream(
+.venv/lib/python3.12/site-packages/langgraph/pregel/main.py:3528: in astream
+    async for _ in runner.atick(
+.venv/lib/python3.12/site-packages/langgraph/pregel/_runner.py:395: in atick
+    await arun_with_retry(
+.venv/lib/python3.12/site-packages/langgraph/pregel/_retry.py:758: in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langgraph/_internal/_runnable.py:836: in ainvoke
+    input = await asyncio.create_task(
+.venv/lib/python3.12/site-packages/langgraph/_internal/_runnable.py:554: in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain/agents/factory.py:1598: in amodel_node
+    model_response = await _execute_model_async(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain/agents/factory.py:1568: in _execute_model_async
+    output = await model_.ainvoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:552: in ainvoke
+    llm_result = await self.agenerate_prompt(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1931: in agenerate_prompt
+    return await self.agenerate(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1889: in agenerate
+    raise exceptions[0]
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:2222: in _agenerate_with_cache
+    result = await self._agenerate(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ManagedChatModel(cache=False, metadata={'lc_versions': {'langchain-core': '1.8.0', 'langchain': '1.5.0'}}, profile={'t...s': {'properties': {'a': {'type': 'integer'}, 'b': {'type': 'integer'}}, 'required': ['a', 'b'], 'type': 'object'}}}]})
+messages = [HumanMessage(content='add 2 and 3', additional_kwargs={}, response_metadata={}, id='8db9eeab-9d24-4d8f-b175-ac556f8e8ced')]
+stop = None
+run_manager = <langchain_core.callbacks.manager.AsyncCallbackManagerForLLMRun object at 0x10d2c0980>
+kwargs = {}
+
+    async def _agenerate(self, messages, stop=None, run_manager=None, **kwargs):
+>       config = {"callbacks": run_manager.get_child()} if run_manager else None
+                               ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'AsyncCallbackManagerForLLMRun' object has no attribute 'get_child'
+E       During task with name 'model' and id '7837bf64-caf0-cf89-7845-dcb9d232cf3a'
+
+lib_llm/src/lib_llm/chat_model.py:52: AttributeError
+_______________ test_structured_output_keeps_managed_governance ________________
+
+runtime_factory = <function runtime_factory.<locals>.build at 0x10d2b6340>
+
+    @pytest.mark.asyncio
+    async def test_structured_output_keeps_managed_governance(runtime_factory):
+        def handler(request):
+            body = json.loads(request.content)
+            name = body["tools"][0]["function"]["name"]
+            return httpx.Response(200, json=completion("", tools=[{"id": "schema-1", "type": "function", "function": {"name": name, "arguments": '{"marker":"ok"}'}}], finish="tool_calls"))
+        rt, requests = runtime_factory(handler)
+>       parsed = await rt.structured(Report, "return marker")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib_llm/tests/test_calls.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib_llm/src/lib_llm/runtime.py:309: in structured
+    return await self.chat_model(profile).with_structured_output(schema).ainvoke(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py:3515: in ainvoke
+    input_ = await coro_with_context(part(), context, create_task=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:552: in ainvoke
+    llm_result = await self.agenerate_prompt(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1931: in agenerate_prompt
+    return await self.agenerate(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1889: in agenerate
+    raise exceptions[0]
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:2222: in _agenerate_with_cache
+    result = await self._agenerate(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ManagedChatModel(cache=False, metadata={'lc_versions': {'langchain-core': '1.8.0', 'langchain': '1.5.0'}}, profile={'t...s': {'properties': {'marker': {'type': 'string'}}, 'required': ['marker'], 'type': 'object'}}}], 'tool_choice': 'any'})
+messages = [HumanMessage(content='return marker', additional_kwargs={}, response_metadata={})]
+stop = None
+run_manager = <langchain_core.callbacks.manager.AsyncCallbackManagerForLLMRun object at 0x10d2c16d0>
+kwargs = {}
+
+    async def _agenerate(self, messages, stop=None, run_manager=None, **kwargs):
+>       config = {"callbacks": run_manager.get_child()} if run_manager else None
+                               ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'AsyncCallbackManagerForLLMRun' object has no attribute 'get_child'
+
+lib_llm/src/lib_llm/chat_model.py:52: AttributeError
+___________________________ test_agent_tool_strategy ___________________________
+
+runtime_factory = <function runtime_factory.<locals>.build at 0x10d2b7740>
+
+    @pytest.mark.asyncio
+    async def test_agent_tool_strategy(runtime_factory):
+        def handler(request):
+            body = json.loads(request.content)
+            name = body["tools"][0]["function"]["name"]
+            return httpx.Response(200, json=completion("", tools=[{"id": "format-1", "type": "function", "function": {"name": name, "arguments": '{"marker":"agent-ok"}'}}], finish="tool_calls"))
+        rt, requests = runtime_factory(handler)
+>       result = await create_agent(rt.chat_model(), response_format=ToolStrategy(Report, handle_errors=False)).ainvoke({"messages": [("user", "sample")]})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib_llm/tests/test_calls.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/langgraph/pregel/main.py:4177: in ainvoke
+    async for chunk in self.astream(
+.venv/lib/python3.12/site-packages/langgraph/pregel/main.py:3528: in astream
+    async for _ in runner.atick(
+.venv/lib/python3.12/site-packages/langgraph/pregel/_runner.py:395: in atick
+    await arun_with_retry(
+.venv/lib/python3.12/site-packages/langgraph/pregel/_retry.py:758: in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langgraph/_internal/_runnable.py:836: in ainvoke
+    input = await asyncio.create_task(
+.venv/lib/python3.12/site-packages/langgraph/_internal/_runnable.py:554: in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain/agents/factory.py:1598: in amodel_node
+    model_response = await _execute_model_async(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain/agents/factory.py:1568: in _execute_model_async
+    output = await model_.ainvoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:552: in ainvoke
+    llm_result = await self.agenerate_prompt(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1931: in agenerate_prompt
+    return await self.agenerate(
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1889: in agenerate
+    raise exceptions[0]
+.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:2222: in _agenerate_with_cache
+    result = await self._agenerate(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ManagedChatModel(cache=False, metadata={'lc_versions': {'langchain-core': '1.8.0', 'langchain': '1.5.0'}}, profile={'t...s': {'properties': {'marker': {'type': 'string'}}, 'required': ['marker'], 'type': 'object'}}}], 'tool_choice': 'any'})
+messages = [HumanMessage(content='sample', additional_kwargs={}, response_metadata={}, id='2c97d7f3-e3b1-4084-adde-a5ec344e3178')]
+stop = None
+run_manager = <langchain_core.callbacks.manager.AsyncCallbackManagerForLLMRun object at 0x10d3d0ec0>
+kwargs = {}
+
+    async def _agenerate(self, messages, stop=None, run_manager=None, **kwargs):
+>       config = {"callbacks": run_manager.get_child()} if run_manager else None
+                               ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'AsyncCallbackManagerForLLMRun' object has no attribute 'get_child'
+E       During task with name 'model' and id 'e0b2cf7e-cd76-ba1f-7ed1-d0471c7b233f'
+
+lib_llm/src/lib_llm/chat_model.py:52: AttributeError
+=========================== short test summary info ============================
+FAILED lib_llm/tests/test_calls.py::test_lcel_and_managed_model - AttributeEr...
+FAILED lib_llm/tests/test_calls.py::test_native_create_agent_tool_loop_and_scope
+FAILED lib_llm/tests/test_calls.py::test_structured_output_keeps_managed_governance
+FAILED lib_llm/tests/test_calls.py::test_agent_tool_strategy - AttributeError...
+4 failed, 7 passed in 0.54s

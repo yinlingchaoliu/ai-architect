@@ -1,0 +1,84 @@
+{
+  "started_at": "2026-11-12T04:33:12.762373+00:00",
+  "provider_host": "api.deepseek.com",
+  "model": "deepseek-flash",
+  "checks": [
+    {
+      "name": "lib_request_to_lib_llm_text",
+      "passed": true
+    },
+    {
+      "name": "lib_llm_stream",
+      "passed": true
+    },
+    {
+      "name": "managed_structured",
+      "passed": true
+    }
+  ],
+  "usage": [
+    {
+      "input_tokens": 14,
+      "output_tokens": 3,
+      "total_tokens": 17,
+      "cache_read_tokens": 0,
+      "reasoning_tokens": null,
+      "source": "provider"
+    },
+    {
+      "input_tokens": 11,
+      "output_tokens": 3,
+      "total_tokens": 14,
+      "cache_read_tokens": 0,
+      "reasoning_tokens": null,
+      "source": "provider"
+    },
+    {
+      "input_tokens": 276,
+      "output_tokens": 36,
+      "total_tokens": 312,
+      "cache_read_tokens": 128,
+      "reasoning_tokens": null,
+      "source": "provider"
+    }
+  ],
+  "max_attempts": 1,
+  "output_cap_per_request": 64,
+  "configuration_owner": "lib_llm",
+  "runtime_connection_pools": 1,
+  "attempt_outcomes": [
+    "success",
+    "success",
+    "success"
+  ],
+  "status": "passed",
+  "runtime_closed": true,
+  "finished_at": "2026-11-12T04:33:15.444509+00:00",
+  "candidate_sources": {
+    "lib_llm/src/lib_llm/sync.py": "e546d102bd1ef170659ab712c951e4bbaecf048c0bf94b6308d795efd5890545",
+    "lib_llm/src/lib_llm/config.py": "e584c4efe8c44b2a832e7bbb61a436f829272df3e58031a97d9fdd860aee3492",
+    "lib_llm/src/lib_llm/compat.py": "6055a42d89202b63936fe7bf9323f18e4b244044d517bbacd989bbb7470949cc",
+    "lib_llm/src/lib_llm/provider.py": "5001a9345f026b5b526cca8035627f9aabb4a23bfffaa6b5fb6ec0e24ecb79d7",
+    "lib_llm/src/lib_llm/__init__.py": "76bbac60e7921739d4ea4f271fb46dcb0ffa59ca351414c7d39c21a57cbe3449",
+    "lib_llm/src/lib_llm/runtime.py": "71ab6d7a899d9de8bc00a6860956decbc9438d8f0c4457285fad1017cd62c6a0",
+    "lib_llm/src/lib_llm/stream.py": "cbbede4982067aa169e8e185e926aa4b8c34289fa7094f3efebf37eac777d9b8",
+    "lib_llm/src/lib_llm/governor.py": "f9ab05652bf46764364cb7f90b7510cb5137d5a3c8d3fefed9e4274720dece1f",
+    "lib_llm/src/lib_llm/contracts.py": "7d8098bbc1aee9068a8bdc85e08c0f2c80d8e90dd158cff0587098c0bb6ba2b8",
+    "lib_llm/src/lib_llm/chat_model.py": "82ee92c97197699a10f194fb9f0026922823f5c82ef7cf857b631c7e24234035",
+    "lib_request/src/lib_request/_base.py": "e84455829ba545e39d7593481f6b99925786852a1ed0056661cdeb6bb9fcb2fa",
+    "lib_request/src/lib_request/openai_text2vec.py": "dc1aff7524d47ac47517e6712f48f08aa213ac8b4d5367b5e2d619b90dc593d2",
+    "lib_request/src/lib_request/req_text2vec.py": "b61fbef7aa1865ad0ed2f33fda3f6f8caccd9e40d151fc39473c1e42e541fe3b",
+    "lib_request/src/lib_request/count_token.py": "9785f1ac069445f753f860af0f5f756f30ea28de6fd8cae9fbe781a65506558e",
+    "lib_request/src/lib_request/req_vision.py": "05986bbe052bbb7c65b6c0fc934bab5b4e96c5c443873b08e8b997340ce9b05e",
+    "lib_request/src/lib_request/sim_search_req.py": "82eabee66e607a541c2e42a1fe7757ed0390835be147154fc322888f0811cf38",
+    "lib_request/src/lib_request/deprecated.py": "12f013b0dcf711ddfd7a7518b7d30418ac528e205b0e4887a8280d54dc632ecc",
+    "lib_request/src/lib_request/__init__.py": "24c4323b06a40a38fbc06577da49e57910d3c46ae9daa434d8c9c421eee1ee3c",
+    "lib_request/src/lib_request/sim_search.py": "8cedf678660bc4f8f5fadac782a1543e0f0d32d0c88f2d1085c198e2199da7fb",
+    "lib_request/src/lib_request/utils.py": "bb4b2e06da2731edc613d93cd125d843920e64f5b0440f92ed8772f78de54ea4",
+    "lib_request/src/lib_request/req_call.py": "372c3ee146cca6967698b6c7b1102d4454d9d8bbe922b62e14178664f488f199",
+    "lib_request/src/lib_request/req_text2vec_deep.py": "aa02c59b60c540a3a4c0dc9939040ba298e309bb616e909fdb1c89e706338755",
+    "lib_request/src/lib_request/openai_vision.py": "29093c5adca679556e13dbc249ac459e5052e168ec5f2c14349d800e09cb360e",
+    "lib_request/src/lib_request/sim_search_openai.py": "3fd2e9562d5ab2eb80880b73fa4775ab293b396bebb74c08da3e438803f8bec7",
+    "lib_request/src/lib_request/req_model_list.py": "40d10203f50c07a23619522a8687cbc3bd6e2232b69c1c867dd6fb085d0ccc74"
+  }
+}

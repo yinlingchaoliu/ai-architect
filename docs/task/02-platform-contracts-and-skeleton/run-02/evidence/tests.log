@@ -1,0 +1,16 @@
+........................................................                 [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/PyPDF2/__init__.py:21
+  /Users/chentong/AI/PatientCare/github/ai-architect/.venv/lib/python3.12/site-packages/PyPDF2/__init__.py:21: DeprecationWarning: PyPDF2 is deprecated. Please move to the pypdf library instead.
+    warnings.warn(
+
+tests/s01/test_ui_rag.py::test_pdf_word_text_retrieval_and_legacy_chain
+  /Users/chentong/AI/PatientCare/github/ai-architect/webui-chatbot/src/pages/pdf_search.py:8: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+    from langchain_community.vectorstores import FAISS
+
+tests/s01/test_ui_rag.py::test_csv_sql_chain_reads_and_database_rejects_write
+  /Users/chentong/AI/PatientCare/github/ai-architect/csv-search/llm.py:9: DeprecationWarning: `langchain-experimental` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-experimental/issues/87 for details.
+    from langchain_experimental.sql import SQLDatabaseChain
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+56 passed, 3 warnings in 3.58s

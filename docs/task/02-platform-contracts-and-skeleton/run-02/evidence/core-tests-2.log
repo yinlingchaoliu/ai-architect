@@ -1,0 +1,43 @@
+............F.....................                                       [100%]
+=================================== FAILURES ===================================
+________________ test_queue_overload_cancel_and_tenant_fairness ________________
+
+runtime_factory = <function runtime_factory.<locals>.build at 0x10ba15080>
+
+    @pytest.mark.asyncio
+    async def test_queue_overload_cancel_and_tenant_fairness(runtime_factory):
+        release = asyncio.Event()
+        entered = asyncio.Event()
+        order = []
+        async def handler(req):
+            value = json.loads(req.content)['messages'][0]['content']
+            order.append(value)
+            if value == 'first':
+                entered.set()
+                await release.wait()
+            return httpx.Response(200, json=completion())
+        rt, _ = runtime_factory(handler, max_inflight=1, max_queue=3, tenant_queue=2)
+        first = asyncio.create_task(rt.achat('first', context=CallContext(tenant_id='a')))
+        await entered.wait()
+        a1 = asyncio.create_task(rt.achat('a1', context=CallContext(tenant_id='a')))
+        a2 = asyncio.create_task(rt.achat('a2', context=CallContext(tenant_id='a')))
+        b1 = asyncio.create_task(rt.achat('b1', context=CallContext(tenant_id='b')))
+        await asyncio.sleep(0.01)
+        with pytest.raises(LLMError) as raised:
+            await rt.achat('overflow')
+        assert raised.value.code == 'OVERLOADED'
+        a2.cancel()
+        with pytest.raises(asyncio.CancelledError):
+            await a2
+        release.set()
+        await asyncio.gather(first, a1, b1)
+>       assert order == ['first', 'a1', 'b1']
+E       AssertionError: assert ['first', 'b1', 'a1'] == ['first', 'a1', 'b1']
+E         
+E         At index 1 diff: 'b1' != 'a1'
+E         Use -v to get more diff
+
+lib_llm/tests/test_concurrency.py:58: AssertionError
+=========================== short test summary info ============================
+FAILED lib_llm/tests/test_concurrency.py::test_queue_overload_cancel_and_tenant_fairness
+1 failed, 33 passed in 1.16s

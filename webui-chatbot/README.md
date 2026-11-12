@@ -29,9 +29,9 @@ python -m pip install -r requirements.txt
 #命令行启动
 streamlit run ./src/home.py --server.port 1234
 #PyCharm debug启动
-script：D:/software/python/python-3.12.4/.venv/Scripts/streamlit
+script：仓库根目录的 .venv/bin/streamlit（Windows 为 .venv/Scripts/streamlit.exe）
 script parameters：run ./src/home.py --server.port 1234
-Working directory：./chatbot-app
+Working directory：./webui-chatbot
 ```
 
 ## 2. 配置文件

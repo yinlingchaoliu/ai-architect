@@ -1,0 +1,40 @@
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 'A' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 'B' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 'A' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 'B' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8ac2-701d-8504-4d54933693e4 '' model
+STREAM_DIAGNOSTIC AIMessageChunk lc_run--01a1cdff-8aa3-7572-86c7-359200f062f6 '' model
+F
+=================================== FAILURES ===================================
+__________ test_create_agent_messages_stream_has_no_duplicate_tokens ___________
+
+runtime_factory = <function runtime_factory.<locals>.build at 0x10e7fc540>
+
+    @pytest.mark.asyncio
+    async def test_create_agent_messages_stream_has_no_duplicate_tokens(runtime_factory):
+        from langchain.agents import create_agent
+        rt, requests = runtime_factory(lambda req: httpx.Response(200, headers={'content-type':'text/event-stream'}, stream=ProviderStream()))
+        agent = create_agent(rt.chat_model())
+        tokens = []
+        async for message, metadata in agent.astream({'messages': [('user', 'hello')]}, stream_mode='messages'):
+            print('STREAM_DIAGNOSTIC', type(message).__name__, message.id, repr(message.text), metadata.get('langgraph_node'))
+            if message.text:
+                tokens.append(message.text)
+>       assert ''.join(tokens) == 'AB'
+E       AssertionError: assert 'ABAB' == 'AB'
+E         
+E         - AB
+E         + ABAB
+
+lib_llm/tests/test_streams.py:168: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  langchain_openai.chat_models._client_utils:_client_utils.py:328 langchain-openai injected a custom httpx transport to apply `http_socket_options`, which disables httpx's proxy auto-detection (system proxy configuration detected). Set `LANGCHAIN_OPENAI_TCP_KEEPALIVE=0` or pass `http_socket_options=()` to restore default proxy behavior, or supply `openai_proxy` / your own `http_client` / `http_async_client` to take full control.
+=========================== short test summary info ============================
+FAILED lib_llm/tests/test_streams.py::test_create_agent_messages_stream_has_no_duplicate_tokens
+1 failed in 0.21s

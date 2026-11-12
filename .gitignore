@@ -17,8 +17,6 @@ __pycache__
 *.egg-info/
 /myenv3.12
 /.venv/
-/.venv-server/
-/.venv-ui/
 /notebook/course
 /db/vector_store
 /db
@@ -33,3 +31,14 @@ agent_muti_discussion/logs/*
 
 # Private per-checkout provider configuration
 .env.local
+.omx/
+.omx-state-locks/
+.omx-state-locks.identity.json
+.codex/*
+!.codex/agents/
+!.codex/agents/**
+!.codex/skills/
+!.codex/skills/**
+.codex/skills/.system/**
+!.codex/prompts/
+!.codex/prompts/**

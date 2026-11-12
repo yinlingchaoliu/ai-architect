@@ -143,6 +143,7 @@ zstandard==0.25.0
 
 # Local source packages (installed by the same pip command).
 -e ./lib_graph
+-e ./lib_llm
 -e ./lib_request
 -e ./agent_muti
 -e ./agent_muti_discussion

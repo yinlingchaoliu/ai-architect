@@ -1,0 +1,143 @@
+{
+  "lib-llm": {
+    "version": "0.1.0",
+    "requires": [
+      "langchain-core<2,>=1.8",
+      "langchain-openai<2,>=1.7.4",
+      "langsmith<1,>=0.14.17",
+      "httpx<1,>=0.28",
+      "openai<4,>=3.49",
+      "pydantic<3,>=2.14",
+      "python-dotenv<2,>=1.2",
+      "pytest>=9; extra == \"test\"",
+      "pytest-asyncio>=1; extra == \"test\""
+    ],
+    "direct_url": {
+      "dir_info": {
+        "editable": true
+      },
+      "url": "file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_llm"
+    }
+  },
+  "lib_request-sdk": {
+    "version": "0.1.0",
+    "requires": [
+      "lib-llm<0.2,>=0.1",
+      "numpy>=1.26",
+      "tiktoken>=0.7",
+      "pytest; extra == \"dev\"",
+      "black; extra == \"dev\"",
+      "flake8; extra == \"dev\""
+    ],
+    "direct_url": {
+      "dir_info": {
+        "editable": true
+      },
+      "url": "file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_request"
+    }
+  },
+  "langchain": {
+    "version": "1.5.0",
+    "requires": [
+      "langchain-core<2.0.0,>=1.8.0",
+      "langgraph<1.3.0,>=1.2.12",
+      "pydantic>=2.7.4",
+      "langchain-anthropic; extra == 'anthropic'",
+      "langchain-aws; extra == 'aws'",
+      "langchain-azure-ai; extra == 'azure-ai'",
+      "langchain-baseten>=0.2.0; extra == 'baseten'",
+      "langchain-community; extra == 'community'",
+      "langchain-deepseek; extra == 'deepseek'",
+      "langchain-fireworks; extra == 'fireworks'",
+      "langchain-google-genai; extra == 'google-genai'",
+      "langchain-google-vertexai; extra == 'google-vertexai'",
+      "langchain-groq; extra == 'groq'",
+      "langchain-huggingface; extra == 'huggingface'",
+      "fastmcp>=4.0.11; extra == 'mcp'",
+      "langchain-meta; extra == 'meta'",
+      "langchain-mistralai; extra == 'mistralai'",
+      "langchain-ollama; extra == 'ollama'",
+      "langchain-openai; extra == 'openai'",
+      "langchain-perplexity; extra == 'perplexity'",
+      "langchain-together; extra == 'together'",
+      "langchain-xai; extra == 'xai'"
+    ]
+  },
+  "langchain-core": {
+    "version": "1.8.0",
+    "requires": [
+      "certifi>=2026.10.19",
+      "httpx>=0.23.0",
+      "jsonpatch>=1.33.0",
+      "langchain-protocol>=0.0.20",
+      "langsmith<1.0.0,>=0.14.9",
+      "packaging>=23.2.0",
+      "pydantic<3.0.0,>=2.7.4",
+      "pyyaml>=5.3.0",
+      "tenacity!=8.4.0,>=8.1.0",
+      "typing-extensions>=4.7.0",
+      "uuid-utils>=0.12.0"
+    ]
+  },
+  "langchain-openai": {
+    "version": "1.7.4",
+    "requires": [
+      "certifi>=2024.6.2",
+      "langchain-core<2.0.0,>=1.7.5",
+      "openai>=2.45.0",
+      "tiktoken>=0.7.0",
+      "aiohttp>=3.11.0; extra == 'azure-identity'",
+      "azure-identity>=1.25.0; extra == 'azure-identity'"
+    ]
+  },
+  "langgraph": {
+    "version": "1.2.20",
+    "requires": [
+      "langchain-core<2,>=1.4.7",
+      "langgraph-checkpoint<5.0.0,>=4.3.0",
+      "langgraph-prebuilt<1.2.0,>=1.1.0",
+      "langgraph-sdk<0.5.0,>=0.4.6",
+      "pydantic>=2.7.4",
+      "xxhash>=3.5.0"
+    ]
+  },
+  "openai": {
+    "version": "3.49.0",
+    "requires": [
+      "anyio<5,>=4.10.0",
+      "httpx2<3,>=2.12.0",
+      "jiter<1,>=0.16.0",
+      "pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13",
+      "sniffio",
+      "typing-extensions<5,>=4.14",
+      "aiohttp>=3.14.4; extra == 'aiohttp'",
+      "multidict>=6.9.1; extra == 'aiohttp'",
+      "yarl>=1.25.1; extra == 'aiohttp'",
+      "botocore<2,>=1.40.0; extra == 'bedrock'",
+      "urllib3<3,>=2.7.0; extra == 'bedrock'",
+      "numpy>=1; extra == 'datalib'",
+      "pandas>=1.2.3; extra == 'datalib'",
+      "websockets<16,>=13; extra == 'realtime'",
+      "google-auth[requests]<3,>=2.36; extra == 'vertex'",
+      "numpy>=2.0.2; extra == 'voice-helpers'",
+      "sounddevice>=0.5.1; extra == 'voice-helpers'"
+    ]
+  },
+  "httpx": {
+    "version": "0.28.1",
+    "requires": [
+      "anyio",
+      "certifi",
+      "httpcore==1.*",
+      "idna",
+      "brotli; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+      "brotlicffi; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+      "click==8.*; extra == 'cli'",
+      "pygments==2.*; extra == 'cli'",
+      "rich<14,>=10; extra == 'cli'",
+      "h2<5,>=3; extra == 'http2'",
+      "socksio==1.*; extra == 'socks'",
+      "zstandard>=0.18.0; extra == 'zstd'"
+    ]
+  }
+}

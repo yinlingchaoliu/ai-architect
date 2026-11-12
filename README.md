@@ -11,7 +11,7 @@ python -m pip install -r requirements.txt
 python -m pip check
 ```
 
-每次新开终端后先执行 `source .venv/bin/activate`。PyCharm/其他 IDE 选择仓库内 `.venv/bin/python`。安装时使用 `python -m pip`，避免误用系统 Python 3.9 的 pip；根 `.python-version` 不会自动切换普通 shell 的解释器。
+整个仓库只保留根目录这一个 `.venv`，所有子模块共享它，不在子目录中创建环境。每次新开终端后先执行 `source .venv/bin/activate`。PyCharm/其他 IDE 的项目解释器选择根 `.venv/bin/python`，各模块设为继承项目解释器。安装时使用 `python -m pip`，避免误用系统 Python 3.9 的 pip；根 `.python-version` 不会自动切换普通 shell 的解释器。
 
 `requirements.txt` 同时包含固定版本的第三方库和 `-e ./...` 本地包，单次安装即可完成，无需分组、锁文件目录或额外安装脚本。新增或修改依赖直接编辑该文件，然后重新安装并执行依赖检查。
 

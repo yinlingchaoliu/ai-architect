@@ -99,22 +99,29 @@ def test_public_request_sdk_and_root_entrypoint_import():
     assert callable(root.search_openai)
 
 
-def test_request_sdk_uses_configured_model_without_logging_credentials(monkeypatch):
-    import lib_request.req_call as module
+def test_request_sdk_uses_configured_model_without_logging_credentials(monkeypatch, caplog):
+    import httpx
     import json
-    from types import SimpleNamespace
-    logs, requests = [], []
-    monkeypatch.setenv("OPENAI_MODEL", "deepseek-flash")
-    monkeypatch.setenv("OPENAI_BASE_URL", "https://api.deepseek.com")
-    monkeypatch.setattr(module, "log", logs.append)
+    from pydantic import SecretStr
+    from lib_llm import LLMRuntime, ModelProfile, ProviderConfig, RuntimeSettings
+    from lib_request import OpenAIAssistantClient
+    seen = []
 
-    def respond(*args, **kwargs):
-        requests.append(kwargs)
-        return SimpleNamespace(text='{"ok":true}')
+    def respond(request):
+        seen.append(json.loads(request.content))
+        return httpx.Response(200, json={"id": "sdk-test", "object": "chat.completion",
+            "created": 1, "model": "deepseek-flash", "choices": [{"index": 0,
+                "message": {"role": "assistant", "content": "ok"}, "finish_reason": "stop"}]})
 
-    monkeypatch.setattr(module.requests, "request", respond)
-    client = module.OpenAIAssistantClient()
-    client.enableDebug(True)
-    assert client.request("sample") == '{"ok":true}'
-    assert json.loads(requests[0]["data"])["model"] == "deepseek-flash"
-    assert all("s01-offline-test-key" not in str(value) for value in logs)
+    provider = ProviderConfig(base_url="https://api.deepseek.com", kind="deepseek",
+                              api_key=SecretStr("s01-offline-test-key"))
+    runtime = LLMRuntime(RuntimeSettings(profiles=(ModelProfile(provider=provider, model="deepseek-flash"),)),
+                         transport=httpx.MockTransport(respond))
+    try:
+        client = OpenAIAssistantClient(runtime=runtime)
+        client.enableDebug(True)
+        assert json.loads(client.request("sample"))["choices"][0]["message"]["content"] == "ok"
+        assert seen[0]["model"] == "deepseek-flash"
+        assert "s01-offline-test-key" not in caplog.text
+    finally:
+        runtime.sync_client().close()

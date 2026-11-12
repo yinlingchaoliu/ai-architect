@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "checked_at": "2026-11-12T04:36:52.181462+00:00",
+  "checks": {
+    "approved_design_unchanged": true,
+    "approved_design_files": 29,
+    "requirements_only_local_entry": true,
+    "s01_only_affected_test_changed": true,
+    "python_source_parsed": 25,
+    "source_dependency_boundary": true,
+    "package_toml_parsed": true,
+    "editable_install_source_parity": true,
+    "pip_check": true,
+    "regression": true,
+    "live_candidate_sources_match": true,
+    "live_three_checks": true,
+    "rollback_restore": {
+      "status": "passed",
+      "method": "HEAD blobs restored in temporary directory only",
+      "files": [
+        "lib_request/README.md",
+        "lib_request/pyproject.toml",
+        "lib_request/src/lib_request/__init__.py",
+        "lib_request/src/lib_request/openai_text2vec.py",
+        "lib_request/src/lib_request/openai_vision.py",
+        "lib_request/src/lib_request/req_call.py",
+        "lib_request/src/lib_request/req_model_list.py",
+        "lib_request/src/lib_request/req_text2vec.py",
+        "lib_request/src/lib_request/req_text2vec_deep.py",
+        "lib_request/src/lib_request/req_vision.py",
+        "lib_request/src/lib_request/sim_search_openai.py",
+        "lib_request/src/lib_request/sim_search_req.py",
+        "lib_request/src/lib_request/utils.py",
+        "requirements.txt",
+        "tests/s01/test_ui_rag.py"
+      ],
+      "working_tree_rolled_back": false
+    },
+    "credential_pattern_scan": true,
+    "tracked_diff_whitespace": true,
+    "document_structure": true
+  },
+  "failures": [],
+  "test_summary": {
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "outside_scope_changes_preserved": [
+    ".gitignore",
+    "AGENTS.md",
+    "README.md",
+    "webui-chatbot/README.md"
+  ],
+  "private_configuration": "not opened or hashed",
+  "semantic_review": "current executing Agent self-review, see 03-review.md",
+  "production_validation": "not_run",
+  "independent_review": "not_run"
+}

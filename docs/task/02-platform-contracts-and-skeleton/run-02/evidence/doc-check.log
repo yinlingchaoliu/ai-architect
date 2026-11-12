@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "structural_only": true,
+  "documents_checked": 15,
+  "failures": [],
+  "stale_sources": [],
+  "semantic_review": "required",
+  "mermaid_syntax_and_visual_review": "not_run"
+}

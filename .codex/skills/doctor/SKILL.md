@@ -1,0 +1,137 @@
+---
+name: doctor
+description: "[OMX] Diagnose and fix oh-my-codex installation issues"
+---
+
+# OMX Doctor
+
+Use this task card to diagnose installation/discovery problems. Shared safety, lifecycle, hook, team, autonomy, and cancellation rules live in `templates/AGENTS.md`. `~/.codex` means `${CODEX_HOME:-~/.codex}` when `CODEX_HOME` is set.
+
+## Run diagnostics
+
+```bash
+omx doctor
+omx doctor --team             # include Team runtime checks
+omx doctor --verbose          # include detailed check evidence
+```
+
+For a local source checkout, build first and invoke `node dist/cli/omx.js doctor`. Keep command output and exact paths for the report.
+
+### Plugin cache and version
+
+```bash
+PLUGIN_CACHE_ROOT="${CODEX_HOME:-$HOME/.codex}/plugins/cache"
+CACHE_ENTRIES=$(find "$PLUGIN_CACHE_ROOT" -path "*/oh-my-codex/*" -mindepth 3 -maxdepth 3 -type d 2>/dev/null)
+if [[ -z "$CACHE_ENTRIES" ]]; then
+  echo "Installed plugin cache: none"
+else
+  while IFS= read -r d; do
+    m=$(basename "$(dirname "$(dirname "$d")")"); v=$(basename "$d")
+    printf 'Installed plugin cache: marketplace=%s version=%s path=%s\n' "$m" "$v" "$d"
+  done <<<"$CACHE_ENTRIES"
+fi
+LATEST=$(npm view oh-my-codex version 2>/dev/null)
+echo "Latest npm: $LATEST"
+```
+
+Report npm `LATEST` as the published stable channel, not proof that a local/development build is stale. Multiple cache versions may still have active consumers; version order alone does not establish a defect or authorize pruning. Use `omx doctor`'s actual check results and paths. Plugin discovery does not replace npm installation plus scoped `omx setup`; native/runtime wiring remains setup-owned.
+
+### Hooks, AGENTS, and skill roots
+
+```bash
+CODEX_DIR="${CODEX_HOME:-$HOME/.codex}"
+ls -la "$CODEX_DIR/config.toml" "$CODEX_DIR/settings.json" 2>/dev/null
+rg 'keyword-detector|persistent-mode|session-start|stop-continuation' "$CODEX_DIR/config.toml" "$CODEX_DIR/settings.json" 2>/dev/null || true
+ls -la "$CODEX_DIR/hooks"/*.sh 2>/dev/null
+rg -n 'OMX:AGENTS:START|omx:generated:agents-md' "$CODEX_DIR/AGENTS.md" ./AGENTS.md 2>/dev/null || true
+ls -la "$CODEX_DIR/agents" ./.codex/agents "$CODEX_DIR/commands" "$CODEX_DIR/skills" "$HOME/.agents/skills" 2>/dev/null
+omx agents list
+```
+
+Check whether legacy hook references are active registrations before reporting duplicate execution; a script's presence alone does not prove it runs. Resolve the expected persistent AGENTS path from the selected setup scope (`$CODEX_DIR/AGENTS.md` for user scope, project-root `AGENTS.md` for project scope) and report the CLI's status rather than assigning a blanket severity.
+
+`${CODEX_HOME:-~/.codex}/skills` is OMX's canonical user skill root. Codex may also discover `~/.agents/skills`; inspect overlapping names without treating that whole tree as disposable. Current setup-owned native TOMLs are expected in both plugin and legacy setup modes: user scope uses `$CODEX_DIR/agents/`, while project scope uses `<project>/.codex/agents/`. Run project checks from the intended project root; `omx agents list` shows both scopes by default. Check their catalog status and generated ownership markers; do not classify the directory itself as legacy. See the [plugin bundle ownership contract](https://github.com/Yeachan-Heo/oh-my-codex/blob/dev/docs/plugin-bundle-ssot.md) for the prompt/native-agent distinction, matching the installed revision when diagnosing version-specific behavior.
+
+With `--team`, retain any `resume_blocker`, `slow_shutdown`, `delayed_status_lag`, `stale_leader`, or `orphan_tmux_session` diagnostics; failed checks set a non-zero exit status.
+
+## Report contract
+
+```text
+## OMX Doctor Report
+### Summary
+[HEALTHY / ISSUES FOUND]
+### Checks
+| Check | Status | Details |
+| Plugin Version | OK/WARN/INFO | ... |
+| Hook Config (config.toml / legacy settings.json) | OK/CRITICAL | ... |
+| Legacy Scripts (~/.codex/hooks/) | OK/WARN | ... |
+| AGENTS.md | OK/WARN/CRITICAL | ... |
+| Plugin Cache | OK/WARN | ... |
+| Native Agents / Legacy Commands | OK/WARN | ... |
+| Skills (canonical / historical root) | OK/WARN | ... |
+### Issues Found
+1. ...
+### Recommended Fixes
+...
+```
+
+## Remediation within the authorized scope
+
+Diagnostics do not authorize deletion or setup changes. Continue an already-authorized repair without asking again; request only missing authority or a material scope/destructive decision. Before any removal or replacement, record the exact target, ownership evidence, current content/identity, active consumers, preserved dependencies, and intended effect. A directory containing OMX files can also contain user files and is not wholly OMX-owned.
+
+`omx doctor --dry-run --force` is an ownership-check preview, not a repair-eligibility preview or a no-write operation. For non-team invocations, Doctor may recover a native-hook claim journal before that check, even with `--dry-run`. Recovery can restore a canonical file, remove a claim file, and clear the journal. Use Doctor only when that recovery is within the authorized scope. Apply `omx doctor --force` only within the authorized repair scope; it is not a diagnostic-only command or a general cleanup mode.
+
+### Hooks, native agents, and skills
+
+- Prefer the installed CLI's check-specific recovery and scoped setup paths. Preview supported repairs before applying the same selected scope.
+- Remove only a confirmed obsolete OMX registration or exact managed file. Preserve unrelated keys in `settings.json`, hook files, custom native roles, custom skills, and discovery links. Do not remove entire `agents/`, `commands/`, or skill roots to resolve a mixed installation.
+- Normal setup uses catalog membership and generated markers to distinguish installable native roles from stale generated/non-installable files. Preserve ambiguous or user-authored TOMLs; do not use `--force` as a generic cleanup shortcut.
+- For duplicate skill names, identify the exact canonical and duplicate entries and any consumers before changing an entry. Preserve non-overlapping personal skills.
+
+### Persistent AGENTS guidance
+
+Record Doctor's resolved setup scope, install mode, and MCP mode before choosing any setup command. Setup does not infer plugin mode or MCP compatibility from the same config evidence as Doctor; absent persisted choices or cache discovery, its defaults can differ. Preserve the diagnosed values explicitly instead of relying on those defaults. The examples below illustrate plugin mode with MCP compatibility: replace `--plugin` with `--legacy` for a diagnosed legacy installation, and replace `--mcp compat` with `--mcp none` for a diagnosed CLI-first installation. Do not copy the illustrative selectors when they differ from the diagnosis. Record the prior Team mode and hook registration/enablement state from matching saved preferences or trusted installation records. Missing preferences do not prove Team or hooks were enabled; if the prior state cannot be established, stop before setup and report the missing evidence. The examples illustrate Team enabled: replace `--enable-team` with `--disable-team` when Team was disabled. Carry the same explicit install-mode, MCP-mode, and Team-mode selectors through merge, creation, policy restoration, and hook restoration. Before any setup-based repair, record the prior matching-scope `mergeAgents` policy (`true`, `false`, or absent) from the invoking project root's `.omx/setup-scope.json`, even for user scope.
+
+For a symlink (including a dangling link), plugin setup skips both merge and defaults. Record the link text, resolved target chain, ownership, and consumers; preserve the link. Update the authorized target through its owning source's normal regeneration or managed-section merge path, backing up the target and preserving manual guidance and runtime markers. Verify the resulting markers through the original link. If the target is missing, its ownership is uncertain, or no authorized target-maintenance path exists, stop with ISSUES FOUND and report the exact blocker. Do not unlink, repoint, or replace the symlink as a shortcut.
+
+Ordinary setup can re-enable intentionally disabled OMX hooks. Use setup for AGENTS recovery only when the authorized effects cover temporary re-enablement and restoration of the recorded hook state; otherwise use an authorized target-maintenance path or report the scope blocker before setup. Adding `--disable-hooks` to an AGENTS write does not solve this: it returns before the AGENTS phase.
+
+For an existing regular file, use the installed release's scoped merge path instead of replacing the file with raw upstream content. Preserve manual guidance and runtime markers. Choose one scope deliberately; project scope runs from the intended project root:
+
+```bash
+omx setup --scope user --plugin --mcp compat --enable-team --merge-agents --dry-run
+# Or, from the intended project:
+omx setup --scope project --plugin --mcp compat --enable-team --merge-agents --dry-run
+```
+
+For a missing persistent AGENTS.md in plugin mode, `--merge-agents` cannot create it because merge mode disables defaults. Confirm that the resolved target is absent, not a dangling symlink, then preview creation with plugin mode explicit and merge mode disabled (including any persisted merge preference):
+
+```bash
+omx setup --scope user --plugin --mcp compat --enable-team --no-merge-agents --dry-run
+# Or, from the intended project:
+omx setup --scope project --plugin --mcp compat --enable-team --no-merge-agents --dry-run
+```
+
+Accept AGENTS.md defaults if prompted. These setup commands can affect other scoped assets and persist the chosen merge preference; inspect all previewed effects and apply only within the authorized setup scope. Inspect the preview and preservation rules, then apply only the authorized chosen command without `--dry-run`. If active-session safeguards skip the guidance write, keep that result visible and use the documented recovery path; do not bypass it by overwriting AGENTS.md manually.
+
+After successful AGENTS repair, restore the recorded policy if setup changed it, in the same invoking root and selected scope. Use `--merge-agents` for `true`, `--no-merge-agents` for `false`, or `--clear-merge-agents-policy` if it was absent. Keep the diagnosed install, MCP, and Team selectors explicit; preview that scoped setup command with `--dry-run`, inspect all effects, then apply it without `--dry-run` within the authorized scope. Verify the selected persistent AGENTS.md exists and the matching-scope saved policy is restored before handoff. Do not leave the one-time `mergeAgents: false` setting in place when the prior policy was true or absent: updates replay it and noninteractive plugin setup then skips refreshing an existing AGENTS.md. Clearing an absent policy restores the previous default behavior; it does not enable automatic merges.
+
+If ordinary setup was used, restore intentionally disabled hooks after the AGENTS write and policy restoration. Use the same root, scope, and diagnosed selectors with `--disable-hooks`; preview and apply this final teardown only within the authorized effects. These examples remain illustrative and require the substitutions above:
+
+```bash
+omx setup --scope user --plugin --mcp compat --enable-team --disable-hooks --dry-run
+# Or, from the intended project:
+omx setup --scope project --plugin --mcp compat --enable-team --disable-hooks --dry-run
+```
+
+Verify the repaired AGENTS content, prior merge policy, Team mode, and hook registration/enablement state before claiming success. Preserve foreign hooks. If restoration fails, report the remaining changed state and stop with ISSUES FOUND.
+
+### Plugin cache
+
+Do not prune cache versions by age, lexical/version order, or presence of a newer version. Inspect the exact marketplace/version entry, live pins, sessions, references, and recovery dependencies. Keep active or uncertain entries. For a diagnosed immutable-cache failure, use the installed CLI's exact repair guidance and supported preview rather than recursively deleting the plugin cache. This card does not authorize in-place edits to a live plugin snapshot.
+
+Rerun `omx doctor` after an applied repair. Report changed exact paths, preserved custom assets, held entries and reasons, and before/after evidence. Restart Codex only when the applied discovery/configuration change requires it.
+
+## Exit conditions
+
+Stop with **HEALTHY** only when required paths, hook/config checks, AGENTS marker, plugin cache status, and (when requested) Team checks pass. Otherwise report **ISSUES FOUND**, exact failed evidence, and the smallest confirmed remediation; do not claim a fix from a recommendation alone.

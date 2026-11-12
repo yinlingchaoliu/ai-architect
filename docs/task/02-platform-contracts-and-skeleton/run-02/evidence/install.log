@@ -1,0 +1,42 @@
+Obtaining file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_llm
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Obtaining file:///Users/chentong/AI/PatientCare/github/ai-architect/lib_request
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: lib-llm, lib_request-sdk
+  Building editable for lib-llm (pyproject.toml): started
+  Building editable for lib-llm (pyproject.toml): finished with status 'done'
+  Created wheel for lib-llm: filename=lib_llm-0.1.0-0.editable-py3-none-any.whl size=4378 sha256=fedff8108457d64faab3ce23c2d62fbef36f1156f439e65b03b24f542685dc7f
+  Stored in directory: /private/var/folders/30/brc5v_tx1_xd2020r893d8l80000gn/T/pip-ephem-wheel-cache-ygvwli1o/wheels/b4/58/ef/61cb23f67524c69688f8e4801147e82f1fa0ce373e2f363e14
+  Building editable for lib_request-sdk (pyproject.toml): started
+  Building editable for lib_request-sdk (pyproject.toml): finished with status 'done'
+  Created wheel for lib_request-sdk: filename=lib_request_sdk-0.1.0-0.editable-py3-none-any.whl size=3337 sha256=a1feb4817400979870feb07450d67d783a94b8fdd311fe1aa9183eccd289379e
+  Stored in directory: /private/var/folders/30/brc5v_tx1_xd2020r893d8l80000gn/T/pip-ephem-wheel-cache-ygvwli1o/wheels/63/83/7b/a6f8f5797c99699b5ffcfae5c0e77e2e136f9daf425f4e06c2
+Successfully built lib-llm lib_request-sdk
+Installing collected packages: lib_request-sdk, lib-llm
+  Attempting uninstall: lib_request-sdk
+    Found existing installation: lib_request-sdk 0.1.0
+    Uninstalling lib_request-sdk-0.1.0:
+      Successfully uninstalled lib_request-sdk-0.1.0
+  Attempting uninstall: lib-llm
+    Found existing installation: lib-llm 0.1.0
+    Uninstalling lib-llm-0.1.0:
+      Successfully uninstalled lib-llm-0.1.0
+
+Successfully installed lib-llm-0.1.0 lib_request-sdk-0.1.0
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: /Users/chentong/AI/PatientCare/github/ai-architect/.venv/bin/python -m pip install --upgrade pip
